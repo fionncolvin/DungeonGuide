@@ -1,0 +1,157 @@
+local f = CreateFrame("Frame")
+
+DungeonGuideDB = DungeonGuideDB or {}
+DungeonGuide_Guides = DungeonGuide_Guides or {}
+DungeonGuideContext = {
+    selectorOpen = false,
+    role = nil,
+    encounter = nil,
+    dungeon = nil
+}
+
+-- Defaults for UI config
+local defaults = {
+    debug = false,
+    font = "GameFontHighlightSmall",
+    fontSize = 12,
+    rowSpacing = 22,
+    colours = {
+        Call = {
+            r = 0.3,
+            g = 0.45,
+            b = 0.75,
+            a = 0.3
+        },
+        Position = {
+            r = 0.8,
+            g = 0.5,
+            b = 0.2,
+            a = 0.3
+        },
+        Interrupt = {
+            r = 0.85,
+            g = 0.4,
+            b = 0.85,
+            a = 0.3
+        },
+        Mechanic = {
+            r = 0.5,
+            g = 0.5,
+            b = 0.5,
+            a = 0.3
+        }
+    }
+}
+
+local function ApplyDefaults()
+    DungeonGuideDB = DungeonGuideDB or {}
+    for k, v in pairs(defaults) do
+        if DungeonGuideDB[k] == nil then
+            DungeonGuideDB[k] = v
+        end
+    end
+    DungeonGuideDB.colours = DungeonGuideDB.colours or {}
+    for key, color in pairs(defaults.colours) do
+        DungeonGuideDB.colours[key] = DungeonGuideDB.colours[key] or color
+    end
+end
+
+ApplyDefaults()
+
+function DungeonGuide_GetGuideEntry()
+    local guide = nil
+
+    if not DungeonGuideContext.encounter or not DungeonGuideContext.dungeon then
+        return nil
+    end
+
+    if DungeonGuideContext.selectorOpen then
+        guide = DungeonGuide_FindGuideEntry(DungeonGuideContext.dungeon, DungeonGuideContext.encounter)
+        return guide
+    end
+
+    DungeonGuide_DebugInfo("Checking for target Guide - " .. DungeonGuideContext.encounter .. " in dungeon: " .. DungeonGuideContext.dungeon)
+
+    -- Check if we have a target and it matches a boss
+    if UnitExists("target") then
+        local targetName = UnitName("target")
+        DungeonGuide_DebugInfo("Checking for target Guide - " .. targetName .. " in dungeon: " .. DungeonGuideContext.dungeon)
+        guide = DungeonGuide_FindGuideEntry(DungeonGuideContext.dungeon, targetName)
+
+        if guide then
+            DungeonGuideContext.encounter = targetName
+            DungeonGuide_DebugInfo("Found Guide for Target - " .. targetName)
+            return guide
+        end
+    end
+
+    DungeonGuideContext.encounter = DungeonGuideContext.dungeon
+    guide = DungeonGuide_FindGuideEntry(DungeonGuideContext.dungeon, DungeonGuideContext.encounter)
+
+    return guide
+end
+
+function DungeonGuide_GetDungeonEntry()
+    return DungeonGuide_Guides[DungeonGuideContext.dungeon] or {}
+end
+
+local function DetectGuideContext()
+    DungeonGuideContext.dungeon = GetRealZoneText()
+
+    if (DungeonGuideContext.dungeon) then
+        DungeonGuide_DebugInfo("Detecting context for dungeon: " .. DungeonGuideContext.dungeon)
+    end
+
+    local inInstance, instanceType = IsInInstance()
+
+    if not inInstance or instanceType ~= "party" then
+        if DungeonGuideUI.GuideButton then
+            DungeonGuideUI.GuideButton:Hide()
+        end
+
+        return
+    end
+
+    local dungeon = DungeonGuide_GetDungeonEntry()
+
+    if dungeon then
+        DungeonGuideContext.role = DungeonGuide_GetPlayerRole()
+        DungeonGuideContext.encounter = DungeonGuideContext.dungeon
+        DungeonGuideUI:ShowGuideButton()
+    else
+        if DungeonGuideUI.GuideButton then
+            DungeonGuideUI.GuideButton:Hide()
+        end
+    end
+end
+
+f:RegisterEvent("PLAYER_REGEN_ENABLED")
+f:RegisterEvent("PLAYER_ENTERING_WORLD")
+f:RegisterEvent("ZONE_CHANGED")
+f:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+f:RegisterEvent("ZONE_CHANGED_INDOORS")
+
+f:SetScript("OnEvent", function()
+    C_Timer.After(1, DetectGuideContext)
+end)
+
+SLASH_DUNGEONGUIDE1 = "/dg"
+
+SlashCmdList["DUNGEONGUIDE"] = function(msg)
+    local role, encounter, dungeon = msg:match("^(.-)%s*@%s*(.-)%s*@%s*(.-)%s*$")
+
+    if role and encounter and dungeon then
+        DungeonGuideContext = {
+            role = role,
+            encounter = encounter,
+            dungeon = dungeon
+        }
+
+        DungeonGuideContext.selectorOpen = true
+        DungeonGuideUI:ShowGuideButton()
+        DungeonGuideUI:ShowGuide()
+        DungeonGuideContext.selectorOpen = false
+    else
+        print("[DungeonGuide] Usage: /dg role @ encounter @ dungeon")
+    end
+end

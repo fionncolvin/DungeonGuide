@@ -1,0 +1,22 @@
+## Interface: 100207
+## Title: DungeonGuide
+## Notes: Compact Mythic+ dungeon notes for Tanks, Healers, and DPS
+## Author: Fionn Colvin
+## Version: 1.0.7
+## SavedVariables: DungeonGuideDB
+## IconTexture: Interface\AddOns\DungeonGuide\DungeonGuide_Icon
+
+main.lua
+ui.lua
+config.lua
+utils.lua
+
+## Guides
+guides/cinderbrew.lua
+guides/darkflame.lua
+guides/floodgate.lua
+guides/mechagon.lua
+guides/motherload.lua
+guides/priory.lua
+guides/rookery.lua
+guides/theater.lua
