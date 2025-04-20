@@ -1,7 +1,7 @@
-DungeonGuide_Guides["THE MOTHERLODE"] = {
-  ["THE MOTHERLODE"] = {
+DungeonGuide_Guides["The MOTHERLODE!!"] = {
+  ["The MOTHERLODE!!"] = {
     order = 1,
-    header = "Guide: THE MOTHERLODE",
+    header = "Guide: The MOTHERLODE!!",
     ALL = {
       { text = "Kick: Toxic Blades, Rock Lance, Goo, Withering Discharge, Rapid Extraction.", type = "Interrupt" },
       { text = "Stop Mech Jockeys reaching suits — Peacekeepers are deadly.", type = "Mechanic" },
