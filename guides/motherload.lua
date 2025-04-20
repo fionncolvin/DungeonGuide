@@ -3,132 +3,134 @@ DungeonGuide_Guides["THE MOTHERLODE"] = {
     order = 1,
     header = "Guide: THE MOTHERLODE",
     ALL = {
-      { text = "Kick Toxic Blades (Assassin), Rock Lance (Earthshaper), Transmute: Goo (Alchemist), Withering Discharge (Sludge), Rapid Extraction (Extractor).", type = "Interrupt" },
-      { text = "Do not let Mech Jockeys reach suits. Use stuns or burst them down. Peacekeepers are lethal if activated.", type = "Mechanic" },
-      { text = "Peacekeeper’s Charged Shield pulses AoE for 12s. Move boss away and use group defensives.", type = "Mechanic" },
-      { text = "Empowered Earthragers in Azerokk are top priority. Swap and kill before Resonant Quake or group wipes.", type = "Mechanic" },
-      { text = "Mines in final area fixate players. Stun or kite — if they touch anyone, it’s a massive explosion.", type = "Mechanic" },
-      { text = "Boom Bots before Razdunk signal missile zones. Move to safe sector before they fire.", type = "Mechanic" },
-      { text = "Big group-wide damage: Rapid Extraction, Charged Shot, Static Pulse, Resonant Quake, Drill Smash, and intermission adds.", type = "Mechanic" }
+      { text = "Kick: Toxic Blades, Rock Lance, Goo, Withering Discharge, Rapid Extraction.", type = "Interrupt" },
+      { text = "Stop Mech Jockeys reaching suits — Peacekeepers are deadly.", type = "Mechanic" },
+      { text = "Peacekeeper Charged Shield: move boss, pop group CDs.", type = "Mechanic" },
+      { text = "Empowered Earthragers = priority kill. Swap fast.", type = "Mechanic" },
+      { text = "Mines fixate — kite or stun. Huge AoE if touched.", type = "Mechanic" },
+      { text = "Boom Bots = missile warnings. Move to safe zone.", type = "Mechanic" },
+      { text = "Big AoE: Rapid Extraction, Charged Shot, Static Pulse, Quake, Drill Smash, adds.", type = "Mechanic" }
     },
     TANK = {
-      { text = "Watch for stacking bleeds: Heavy Slash (Taskmaster), Jagged Cut (Earthragers), Puncture (Extractor).", type = "Mechanic" },
-      { text = "Razdunk and Rixxa do not auto-attack. Use magic mitigation, not physical CDs.", type = "Mechanic" }
+      { text = "Stacking bleeds: Heavy Slash, Jagged Cut, Puncture. Kite or CD.", type = "Mechanic" },
+      { text = "Rixxa/Razdunk don’t auto-attack — use magic mitigation.", type = "Mechanic" }
     },
     HEALER = {
-      { text = "Heavy healing checks: Static Pulse, Fan of Knives + Tear Gas combo, Rapid Extraction, Charged Shot, Drill Smash.", type = "Mechanic" },
-      { text = "Dispel: Poison (Toxic Blades), Magic (Goo, Caustic Compound), and Bleeds if possible.", type = "Mechanic" }
+      { text = "Big damage: Static Pulse, Knives + Gas, Rapid Extraction, Charged Shot, Drill Smash.", type = "Mechanic" },
+      { text = "Dispel: Poison (Toxic Blades), Magic (Goo, Compound), Bleeds if possible.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Kick and purge priority trash. Plan big CDs for empowered Earthrager, Drill Smash, and Coin Pummeler burn window.", type = "Mechanic" },
-      { text = "Avoid unneeded pulls — Peacekeepers are low count and high risk. Skip where possible.", type = "Mechanic" }
+      { text = "Kick/purge priority trash. Save CDs for Earthrager, Drill Smash, Pummeler burn.", type = "Mechanic" },
+      { text = "Avoid Peacekeeper pulls — high risk, low count.", type = "Mechanic" }
     }
   },
-
+  
   ["Coin-Operated Crowd Pummeler"] = {
     order = 2,
     header = "Boss: Coin-Operated Crowd Pummeler",
     ALL = {
-      { text = "Foot Bombs out. Kick them into boss for damage amp.", type = "Call" },
-      { text = "Interrupt Iced Spritzer and Toxic Blades in trash.", type = "Interrupt" }
+      { text = "Foot Bombs out — click and kick toward boss to amplify damage.", type = "Call" },
+      { text = "Interrupt Iced Spritzer and Toxic Blades in trash before pull.", type = "Interrupt" },
+      { text = "Dodge Shocking Claw — random player frontal.", type = "Mechanic" },
+      { text = "Move out of Electroshock Zones after stomp.", type = "Mechanic" }
     },
     TANK = {
-      { text = "Face boss near wall and rotate slowly as coins spawn.", type = "Position" },
-      { text = "Coin Magnet cast. Moving boss away from gold piles.", type = "Call" },
-      { text = "Use CD for Static Pulse — nature burst + DoT.", type = "Mechanic" },
-      { text = "Move boss near wall during Overcharge to keep players from knockback deaths.", type = "Mechanic" },
-      { text = "Keep boss close to center between Overcharge casts for consistent control.", type = "Position" },
-      { text = "Big Dam after first Overcharge. Group CDs line up here.", type = "Call" },
-      { text = "Use CD during Pummel if timed with Overcharge or AoE hit.", type = "Mechanic" },
-      { text = "Reposition after stomp to avoid pulsing Electroshock Zones.", type = "Mechanic" },
+      { text = "Face boss near wall, rotate slowly as coins spawn.", type = "Position" },
+      { text = "During Coin Magnet, pull boss away from gold piles.", type = "Mechanic" },
+      { text = "Keep boss near center to control stomp zones and bomb kicks.", type = "Position" },
+      { text = "Use CD on Static Pulse — heavy nature hit + DoT.", type = "Mechanic" },
+      { text = "Reposition after each Overcharge to avoid knockbacks into danger.", type = "Mechanic" },
+      { text = "Line up CDs for big damage after first Overcharge cast.", type = "Call" },
+      { text = "Use defensive on Pummel if it overlaps with AoE or Overcharge.", type = "Mechanic" }
     },
     HEALER = {
       { text = "CDs for Static Pulse — high AoE + knockback.", type = "Call" },
-      { text = "Spot heal bomb soakers after detonation.", type = "Mechanic" }
+      { text = "Spot heal Foot Bomb soakers after detonation.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Click Foot Bombs and aim toward boss quickly.", type = "Mechanic" },
-      { text = "Dodge Shocking Claw — random player frontal.", type = "Mechanic" }
+      { text = "Click Foot Bombs and kick toward boss quickly.", type = "Mechanic" }
     }
-  },
+  },  
 
   ["Azerokk"] = {
     order = 3,
     header = "Boss: Azerokk",
     ALL = {
-      { text = "Empowered Earthrager. Burn fast before Quake.", type = "Call" },
-      { text = "Frontal incoming. Sidestep Tectonic Smash.", type = "Call" },
-      { text = "Interrupt Rock Lance, Furious Quake, and barrier casts.", type = "Interrupt" }
+      { text = "Burn empowered Earthrager before Resonant Quake or wipe to Aftershock.", type = "Call" },
+      { text = "Unempowered Earthragers fixate — slow, knock, CC to delay them.", type = "Mechanic" },
+      { text = "Frontal: Sidestep Tectonic Smash.", type = "Call" },
+      { text = "Interrupt Rock Lance, Furious Quake, and Earthrager barriers.", type = "Interrupt" },
+      { text = "Use Fracking Totems to CC an Earthrager for 60s — pull boss away from it.", type = "Mechanic" }
     },
     TANK = {
-      { text = "Pick up empowered Earthrager ASAP after infusion.", type = "Mechanic" },
-      { text = "Kite boss to edge before Resonant Quake to drop pools.", type = "Position" },
-      { text = "Interrupt priority is Earthrager. I will pull adds near group for cleave.", type = "Call" },
-      { text = "Pick up all aggro immediately — group damage is high if adds ignored.", type = "Mechanic" },
-      { text = "Use AoE stuns or grip adds in for fast cleave.", type = "Mechanic" },
-      { text = "Kite out of Resonant Quake zones quickly.", type = "Mechanic" },
-      { text = "Dragging adds through boss cleave — group kill window.", type = "Call" },
+      { text = "Pick up empowered Earthrager immediately — tankable and high dmg.", type = "Mechanic" },
+      { text = "Kite boss to edge before Resonant Quake — drop safe zones.", type = "Position" },
+      { text = "Pull adds near boss for cleave. Interrupt priority = Earthrager.", type = "Call" },
+      { text = "Grab aggro fast — missed adds = heavy party damage.", type = "Mechanic" },
+      { text = "Drag boss away from any CC’d Earthrager to prevent breaking it.", type = "Mechanic" },
+      { text = "Reposition out of Quake zones quickly — don’t linger.", type = "Mechanic" }
     },
     HEALER = {
-      { text = "CDs for Resonant Quake and pulsing Earthrager damage.", type = "Call" },
-      { text = "Top fixate targets. Bleeds stack fast.", type = "Mechanic" }
+      { text = "CDs for Resonant Quake + empowered Earthrager pulses.", type = "Call" },
+      { text = "Top fixate targets fast — bleed stacks hurt.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Burn infused Earthrager fast before Quake.", type = "Mechanic" },
-      { text = "Control unempowered adds — use stuns/roots/knocks.", type = "Mechanic" }
+      { text = "Burn infused Earthrager before Quake or wipe.", type = "Mechanic" },
+      { text = "Stun/knock/root unempowered Earthragers to delay fixates.", type = "Mechanic" }
     }
   },
-
+  
   ["Rixxa Fluxflame"] = {
     order = 4,
     header = "Boss: Rixxa Fluxflame",
     ALL = {
-      { text = "Propellant Blast on me. Aiming to clear puddles.", type = "Call" },
-      { text = "Azerite Catalyst on me. Dropping pool near edge.", type = "Call" },
+      { text = "Propellant Blast on me — aiming to clear puddles.", type = "Call" },
+      { text = "Catalyst on me — dropping pool near edge.", type = "Call" },
       { text = "Interrupt Transmute: Goo and Caustic Compound.", type = "Interrupt" }
     },
     TANK = {
-      { text = "Stay in melee range. No physical hits — magic mitigation only.", type = "Mechanic" },
-      { text = "Reposition boss after Propellant Blast clears space.", type = "Position" },
-      { text = "Face boss away from group. Avoid dragging Gush puddles toward others.", type = "Position" },
-      { text = "Don’t backpedal into Gush puddles — walk forward during Fixate.", type = "Mechanic" },
-      { text = "Use defensive on Guzzle or Gush overlap. Group splash is heavy.", type = "Mechanic" },
-      { text = "Fixate on me. I’ll kite left side of platform.", type = "Call" },
+      { text = "Stay in melee — boss uses magic only, not autos.", type = "Mechanic" },
+      { text = "Face boss away from group. Avoid dragging puddles into others.", type = "Position" },
+      { text = "Reposition boss after Blast to free up safe ground.", type = "Position" },
+      { text = "Fixate on me — I’ll kite toward outer edge.", type = "Call" },
+      { text = "Walk forward during Fixate — don’t backpedal into Gush.", type = "Mechanic" },
+      { text = "Use defensive on Guzzle/Gush overlap — group splash hits hard.", type = "Mechanic" }
     },
     HEALER = {
-      { text = "Dispel magic goo or poison DoTs from trash if needed.", type = "Mechanic" },
-      { text = "Prep CDs for back-to-back Propellant Blasts.", type = "Call" }
+      { text = "Dispel poison and magic DoTs on trash.", type = "Mechanic" },
+      { text = "CDs if Propellant Blast overlaps with Catalyst or Fixate.", type = "Call" }
     },
     DPS = {
-      { text = "Aim Propellant Blast at thick puddle zones.", type = "Mechanic" },
-      { text = "Stack Azerite Catalyst on existing pools.", type = "Mechanic" }
+      { text = "Blast thick puddles — aim carefully.", type = "Mechanic" },
+      { text = "Drop Catalyst near existing pools — avoid clutter.", type = "Mechanic" }
     }
   },
-
+  
   ["Mogul Razdunk"] = {
     order = 5,
     header = "Boss: Mogul Razdunk",
     ALL = {
-      { text = "Homing Missile on me. Running out.", type = "Call" },
-      { text = "Gatling Gun soon. Ready for move based on spin direction.", type = "Call" },
-      { text = "Interrupt Buster Shot from Skyscorchers in phase 2.", type = "Interrupt" }
+      { text = "Homing Missile on me — running out, using defensive.", type = "Call" },
+      { text = "Gatling Gun — watch spin direction and reposition fast.", type = "Call" },
+      { text = "Missile Bots glow before firing. Stack in safe zone ahead of time.", type = "Mechanic" },
+      { text = "Interrupt Buster Shot from Skyscorchers in Phase 2.", type = "Interrupt" }
     },
     TANK = {
-      { text = "Face Gatling Gun away and reposition during drone waves.", type = "Position" },
-      { text = "Pick up Skyscorchers if possible in intermission.", type = "Mechanic" },
-      { text = "I’ll pull to front-left. Dodge drill corners clockwise.", type = "Call" },
-      { text = "Tank boss near open edges. Avoid Drill Smash wall traps.", type = "Mechanic" },
-      { text = "Use active mitigation during Machine Gun + Drill overlap.", type = "Mechanic" },
-      { text = "Platform phase: pull bomb bots in. I’ll tank and stun.", type = "Call" },
-      { text = "Keep boss away from rockets + bots. Center platform best.", type = "Position" },
+      { text = "Face Gatling Gun away. Reposition during drone waves.", type = "Position" },
+      { text = "Razdunk deals fire magic — use magic mitigation, not physical CDs.", type = "Mechanic" },
+      { text = "Start pull at front-left. Rotate with drills clockwise.", type = "Call" },
+      { text = "Tank near edge but avoid Drill Smash walls — trap risk.", type = "Mechanic" },
+      { text = "Mitigate overlap: Machine Gun + Drill + Bomb Bots.", type = "Mechanic" },
+      { text = "Pick up Skyscorchers quickly — prevent fire spam.", type = "Mechanic" },
+      { text = "Pull bomb bots in and stun. Keep boss mid for control.", type = "Position" }
     },
     HEALER = {
-      { text = "CDs during intermission — Buster Shot + Drill Smash combo.", type = "Call" },
-      { text = "Top Homing Missile target after hit or cleanse DoT.", type = "Mechanic" }
+      { text = "CDs for Drill Smash + Buster Shot overlap.", type = "Call" },
+      { text = "Top Homing Missile target or cleanse DoT.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Burn Skyscorchers to reduce party-wide fire spam.", type = "Mechanic" },
-      { text = "Stand on rocket for Drill Smash to remove shield stack.", type = "Mechanic" }
+      { text = "Burn Skyscorchers — reduce fire spam Phase 2.", type = "Mechanic" },
+      { text = "Stand on rocket during Drill Smash to clear stacks.", type = "Mechanic" }
     }
-  }
+  }  
 }

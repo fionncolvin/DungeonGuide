@@ -3,128 +3,143 @@ DungeonGuide_Guides["Mechagon Workshop"] = {
     order = 1,
     header = "Guide: Mechagon Workshop",
     ALL = {
-      { text = "Interrupt priorities: Detonate (Bomb Tonk), Mega Drill (Waste Unit), Giga-Wallop (Tinkerer), Tune Up (Mechanic), Short Out (Defense Bot Mk III).", type = "Interrupt" },
-      { text = "Beams, swirls, and mines dominate this dungeon — constant movement and spatial awareness required.", type = "Mechanic" },
-      { text = "Hammer Pads (first boss area) are key. Use them only to break Platinum Plating, not for damage.", type = "Mechanic" },
-      { text = "Junk Cubes (K.U.-J.0) are lifelines. Venting Flames requires LoS behind a fresh cube. Glowing cubes = death.", type = "Mechanic" },
-      { text = "Most trash packs post-second boss contain burst AoE and healing absorbs. Coordinate kicks and CDs.", type = "Mechanic" },
-      { text = "Maze section before Sparkflux is a stealth gauntlet. Use vents to reset patrols — no CC works here.", type = "Mechanic" },
-      { text = "Shield Generators (Defenders) reduce damage by 75%. Pull mobs out — players may stand in for safety.", type = "Mechanic" }
+      { text = "Interrupts: Detonate (Bomb Tonk), Mega Drill, Giga-Wallop, Tune Up, Short Out.", type = "Interrupt" },
+      { text = "Dodge beams, mines, and swirls constantly — movement awareness is key.", type = "Mechanic" },
+      { text = "Use Hammer Pads only to break Platinum Plating — not for damage.", type = "Mechanic" },
+      { text = "Junk Cubes (K.U.-J.0) = Venting Flames safety. Avoid glowing cubes.", type = "Mechanic" },
+      { text = "Post-2nd boss trash = burst AoE + healing absorbs. Coordinate CDs + kicks.", type = "Mechanic" },
+      { text = "Maze before Sparkflux is stealth only — use vents to reset. No CC.", type = "Mechanic" },
+      { text = "Shield Generators reduce damage by 75%. Pull mobs out or stand inside for safety.", type = "Mechanic" },
+      { text = "Avoid saw blades and piston hammers in first room.", type = "Mechanic" },
+      { text = "Trash danger: Mega Drill (Waste Unit), Corrosive Gunk, Short Out (Bot Mk III).", type = "Mechanic" },
+      { text = "Stand behind crate during Venting Flames (K.U.-J.0) — glowing = lethal.", type = "Mechanic" }
     },
     TANK = {
-      { text = "Many mobs are CC-immune. Use positioning to help kite, especially when bleeds or magic DoTs stack.", type = "Mechanic" },
-      { text = "For King Mechagon, never leave melee range or you’ll trigger Protocol: 99 and wipe the group.", type = "Mechanic" }
+      { text = "Many mobs are CC-immune. Kite with positioning if bleeds/DoTs stack.", type = "Mechanic" },
+      { text = "Stay in melee on King Mechagon or trigger Protocol: 99 (wipe).", type = "Mechanic" },
+      { text = "Avoid pulling trash through hammers or saw blades in Tussle room.", type = "Mechanic" },
+      { text = "Pull trash mobs out of Shield Generator fields unless party benefits.", type = "Mechanic" },
+      { text = "Interrupt or position Giga-Wallop (Tinkerer) + Metallic Jaws mobs safely.", type = "Mechanic" }
     },
-    HEALER = {
-      { text = "Major healing moments: Ground Pound (Tussle Tonks), Mega Drill + Gunk, Venting Flames, Magneto Arm (Mechagon).", type = "Mechanic" },
-      { text = "Dispel priorities: Blazing Chomp (Tank), Fiery Jaws (Random), Arcing Zap (Trash). Delay Chomp if group is low.", type = "Mechanic" }
+      HEALER = {
+      { text = "Big healing: Ground Pound, Mega Drill, Venting Flames, Magneto Arm.", type = "Mechanic" },
+      { text = "Dispel: Blazing Chomp (Tank), Fiery Jaws (Random), Arcing Zap (Trash). Delay Chomp if group is low.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Most bosses have large cleave potential — plan CDs for burn windows like Sparkflux plants and Mechagon phase transitions.", type = "Mechanic" },
-      { text = "Keep Sparkflux adds stunned until tank can get aggro. Interrupt heals and avoid empowering mechs.", type = "Mechanic" }
+      { text = "Plan CDs for burn windows: Sparkflux plants + Mechagon phase change.", type = "Mechanic" },
+      { text = "Stun Sparkflux adds till tank picks them up. Kick heals, avoid empower.", type = "Mechanic" }
     }
   },
-
+  
   ["Tussle Tonks"] = {
     order = 2,
     header = "Boss: Tussle Tonks",
     ALL = {
-      { text = "Battle Mines active. Cluster and rotate cleanly.", type = "Call" },
-      { text = "Faux Flipper cast. Avoid knock into mines.", type = "Call" },
-      { text = "Interrupt Detonate from Bomb Tonks.", type = "Interrupt" }
+      { text = "Battle Mines active — stack and rotate zones cleanly.", type = "Call" },
+      { text = "Faux Flipper incoming — dodge knock into mines.", type = "Call" }
     },
     TANK = {
-      { text = "Platinum Pummel cleaves 6yds. Face away from group.", type = "Position" },
-      { text = "Use Hammer to break Platinum Plating at 100 energy.", type = "Mechanic" },
-      { text = "Bait Maximum Thrust into wall for mine control.", type = "Mechanic" },
-      { text = "Focus Tonk Buster during Double Zap phase.", type = "Call" },
-      { text = "Tonk Buster fixates — kite away from Spark Channels.", type = "Mechanic" },
-      { text = "Watch for Discombobulate overlap. Use CDs if stunned near bots.", type = "Mechanic" },
-      { text = "Pull boss to center to keep room space for Tonk movement.", type = "Position" },
+      { text = "Face Pummeler away — cleave hits in 6yd cone.", type = "Position" },
+      { text = "Drag boss into Hammer at 100 energy to remove Plating.", type = "Mechanic" },
+      { text = "Rotate to next Hammer — each goes on 90s cooldown.", type = "Mechanic" },
+      { text = "Bait Maximum Thrust into wall for cleave uptime.", type = "Mechanic" },
+      { text = "Don’t move during Pummel cast — keep positioning clean.", type = "Mechanic" },
+      { text = "Keep both bosses close — enables cleave and hammer use.", type = "Position" },
+      { text = "Balance boss HP — must die together to avoid wipe.", type = "Call" }
     },
     HEALER = {
-      { text = "Use CDs for Ground Pound — 4s of group-wide AoE.", type = "Call" },
-      { text = "Top Faux Flipper targets quickly.", type = "Mechanic" }
+      { text = "CDs for Ground Pound — 4s group-wide AoE.", type = "Call" },
+      { text = "Top up Faux Flipper targets quickly.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Even cleave both bosses — split deaths wipes group.", type = "Mechanic" },
-      { text = "Stack to drop Battle Mines safely and rotate zones.", type = "Mechanic" }
+      { text = "Even cleave both bosses — split deaths = wipe.", type = "Mechanic" },
+      { text = "Stack mines safely. Rotate placement zones.", type = "Mechanic" }
     }
   },
-
+  
   ["K.U.-J.0"] = {
     order = 3,
     header = "Boss: K.U.-J.0",
     ALL = {
-      { text = "Explosive Leap. Spread out and avoid cubes.", type = "Call" },
-      { text = "Venting Flames cast. Hide behind safe cube.", type = "Call" },
-      { text = "Interrupt Junkyard D.O.G. casts pre-boss.", type = "Interrupt" }
+      { text = "Explosive Leap — spread and avoid cubes.", type = "Call" },
+      { text = "Venting Flames — hide behind safe cube.", type = "Call" }
     },
     TANK = {
-      { text = "Use defensive for Blazing Chomp. Dispel when safe.", type = "Mechanic" },
-      { text = "Position boss near safe cube pre-Venting Flames.", type = "Position" }
+      { text = "Use defensive for Blazing Chomp — heavy ticking Magic DoT.", type = "Mechanic" },
+      { text = "Hold near cube before Venting Flames — ensure LoS spot.", type = "Position" },
+      { text = "Avoid standing near cubes during Explosive Leap.", type = "Mechanic" },
+      { text = "Tiptoe boss near crate to allow DPS to stay in range.", type = "Position" }
     },
     HEALER = {
-      { text = "Dispel Blazing Chomp after topping group.", type = "Mechanic" },
-      { text = "Prep healing for Explosive Leap + DoT overlap.", type = "Mechanic" }
+      { text = "Dispel Blazing Chomp (TANK) after topping group.", type = "Mechanic" },
+      { text = "Heal through Leap + DoT overlap.", type = "Mechanic" }
     },
     DPS = {
       { text = "Avoid glowing cubes — second hit = explosion.", type = "Mechanic" },
-      { text = "Use combat drops to cancel Explosive Leap if targeted.", type = "Mechanic" }
+      { text = "Use vanish/shadowmeld to cancel Leap if targeted.", type = "Mechanic" }
     }
   },
-
+  
   ["Head Machinist Sparkflux"] = {
     order = 4,
     header = "Boss: Head Machinist Sparkflux",
     ALL = {
-      { text = "Hidden Flame Cannon. Rotate with group.", type = "Call" },
-      { text = "Discombobulator on me. Moving out of AoE.", type = "Call" },
-      { text = "Inconspicuous Plant spawned. Kill quickly.", type = "Call" },
-      { text = "Interrupt Giga-Wallop from trash near boss.", type = "Interrupt" }
+      { text = "Hidden Flame Cannon — rotate with group.", type = "Call" },
+      { text = "Discombobulator on me — moving out of AoE.", type = "Call" },
+      { text = "Plant spawned — burn Inconspicuous Plant fast.", type = "Call" }
     },
     TANK = {
-      { text = "Bring boss to plant spawn for fast cleave.", type = "Position" },
-      { text = "Watch for blade bounce from Self-Trimming Hedge.", type = "Mechanic" },
-      { text = "Mega Drill targets you? Sidestep then reposition boss.", type = "Mechanic" },
-      { text = "Move boss off Platinum Plating fast.", type = "Mechanic" },
-      { text = "I will bait Mega Drill to safe edge. Stay behind.", type = "Call" },
-      { text = "Pop minor CD if Drill + Shock combo overlaps.", type = "Mechanic" },
+      { text = "Tank boss near plant spawn for cleave.", type = "Position" },
+      { text = "Drag boss off Platinum Plating quickly.", type = "Mechanic" },
+      { text = "Dodge blade bounces from Self-Trimming Hedge.", type = "Mechanic" },
+      { text = "Discombobulator fixate on you — move boss early.", type = "Mechanic" }
     },
     HEALER = {
-      { text = "Prepare CDs for Cannon + Blossom Blast overlap.", type = "Call" },
-      { text = "Dispel Arcing Zap Magic DoTs quickly.", type = "Mechanic" }
+      { text = "CDs if Cannon + Blossom Blast overlap.", type = "Call" },
+      { text = "Dispel Arcing Zap magic DoTs quickly.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Kill Inconspicuous Plant fast before it ramps.", type = "Mechanic" },
-      { text = "Avoid blades and oil swirls post-plant kill.", type = "Mechanic" }
+      { text = "Kill Plant fast — avoid ramp-up.", type = "Mechanic" },
+      { text = "Dodge blades and oil swirls after plant dies.", type = "Mechanic" }
     }
   },
 
-  ["King Mechagon"] = {
+  ["The Maze"] = {
     order = 5,
+    header = "Maze: Stealth Section",
+    ALL = {
+      { text = "Do not use CC or offensive spells — will break stealth instantly.", type = "Mechanic" },
+      { text = "Hug left wall on first patrol, wait for it to pass before moving.", type = "Mechanic" },
+      { text = "Vents can reset patrol aggro. Use to save stealth fails.", type = "Mechanic" },
+      { text = "Second room: Wait for patrol near console to turn away, then move.", type = "Mechanic" },
+      { text = "Final stretch has overlapping patrols. Time your cross with both out of view.", type = "Mechanic" },
+      { text = "Let tank lead. One mistake triggers wipe — no tools to recover.", type = "Call" }
+    }
+  },
+ 
+  ["King Mechagon"] = {
+    order = 6,
     header = "Boss: King Mechagon",
     ALL = {
-      { text = "Recalibrate orbs incoming. Dodge across safely.", type = "Call" },
-      { text = "Mega Zap fixate on me. Standing still and CD.", type = "Call" },
-      { text = "Interrupt Tune Up from Mechagon Mechanics near boss.", type = "Interrupt" }
+      { text = "Recalibrate orbs — dodge across safely.", type = "Call" },
+      { text = "Mega Zap on me — standing still and using CD.", type = "Call" }
     },
     TANK = {
-      { text = "Stay in melee at all times or trigger wipe.", type = "Mechanic" },
-      { text = "Back to wall if using mobility (e.g. The Hunt).", type = "Position" },
-      { text = "Starting on left pylon.", type = "Call" },
-      { text = "Use major CD if Giga-Wallop hits with bots still up.", type = "Mechanic" },
-      { text = "Pull boss to edge after each Shockwave.", type = "Position" },
-      { text = "Interrupt Tune Up and Giga-Wallop if tanking mechanic survives.", type = "Mechanic" },
-      { text = "Avoid overlapping bots and Shockwave. Adjust boss pathing.", type = "Mechanic" },
+      { text = "Stay in melee — triggers Protocol: 99 if too far.", type = "Mechanic" },
+      { text = "Back to wall if using movement abilities (The Hunt etc.).", type = "Position" },
+      { text = "Start at left pylon. Coordinate safe pathing early.", type = "Call" },
+      { text = "CD if Giga-Wallop hits while bots are active.", type = "Mechanic" },
+      { text = "Move boss to edge after Shockwave clears.", type = "Position" },
+      { text = "Interrupt Tune Up / Giga-Wallop if mechanic survives.", type = "Interrupt" },
+      { text = "Avoid Shockwave + bot overlap — adjust position.", type = "Mechanic" }
     },
     HEALER = {
-      { text = "Prep CDs for Cutting Beam or Magneto Arm phases.", type = "Call" },
-      { text = "Dispel Arc Zap or Overclock Magic buffs in P1.", type = "Mechanic" }
+      { text = "Prep CDs for Cutting Beam or Magneto Arm.", type = "Call" },
+      { text = "Dispel Arc Zap + Overclock buffs in Phase 1.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Dodge Mega Zap and Plasma Orbs — 3x zap in P2.", type = "Mechanic" },
-      { text = "Avoid Magneto Arm center pull. Run out hard.", type = "Mechanic" }
+      { text = "Dodge Mega Zap + Plasma Orbs — 3x zap in Phase 2.", type = "Mechanic" },
+      { text = "Run out hard during Magneto Arm pull.", type = "Mechanic" }
     }
   }
 }

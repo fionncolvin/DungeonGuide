@@ -3,135 +3,149 @@ DungeonGuide_Guides["Theater of Pain"] = {
     order = 1,
     header = "Guide: Theater of Pain",
     ALL = {
-      { text = "Combatants on platform edges will knock players back — avoid stepping too close in any boss arena.", type = "Mechanic" },
-      { text = "High-priority interrupts: Necrotic Bolt (Sathel/Bonecasters), Demoralizing Shout (Captain), Withering Discharge (Sludge-Spewer), Bone Spear (Bone Magus).", type = "Interrupt" },
-      { text = "Soothe or purge Death Wish (Contender), Raging Tantrum (Bloodhorn), Swift Strikes (Rek), Shadow Vulnerability (Portal Guardian), Bone Shield (Magus).", type = "Interrupt" },
-      { text = "Use line-of-sight to avoid Ricocheting Blade from Harugia or Advent — position near stairs or corners.", type = "Mechanic" },
-      { text = "Mini-boss duels before Xav vary per run — learn and plan interrupts for the active one.", type = "Mechanic" },
-      { text = "Many abilities apply bleeds, magic DoTs, or healing absorbs — dispels and defensives must be planned around stacking effects.", type = "Mechanic" },
-      { text = "Mordretha: interrupt Death Bolts from spawned adds, dodge Echoes of Carnage swirlies and charge lines.", type = "Mechanic" }
+      { text = "Platform edges knock — stay clear during fights.", type = "Mechanic" },
+      { text = "High-priority kicks: Necrotic Bolt, Bone Spear, Discharge, Shout.", type = "Interrupt" },
+      { text = "Purge/Soothe: Death Wish, Tantrum, Swift Strikes, Shadow Vulnerability, Bone Shield.", type = "Mechanic" },
+      { text = "LoS Blade throws near stairs or pillars.", type = "Mechanic" },
+      { text = "Trash duels before Xav change weekly — learn and assign kicks.", type = "Mechanic" },
+      { text = "Stacking bleeds/DoTs require layered dispels and defensives.", type = "Mechanic" },
+      { text = "Mordretha: interrupt Death Bolts, dodge charge lines + carnage swirls.", type = "Mechanic" }
     },
     TANK = {
-      { text = "Major tank busters: Mortal Strike (Dessia), Reaping Scythe (Mordretha), Unbalancing Blow (Rek), Hateful Strike (Gorechop), Colossus Smash (Heavin).", type = "Mechanic" },
-      { text = "Face frontal casts away from group: Necrotic Eruption, Ground Smash, Death Winds, Bone Storm. Position with safe gaps in mind.", type = "Mechanic" }
+      { text = "Big hits: Mortal Strike, Scythe, Unbalancing Blow, Hateful Strike, Smash.", type = "Mechanic" },
+      { text = "Face all frontals away: Bone Storm, Smash, Death Winds, Eruption.", type = "Position" }
     },
     HEALER = {
-      { text = "Big healing events: Mighty Smash (Dessia), Soulstorm (Guardian), Death Spiral + Well of Darkness (Kul’tharok), Manifest Death + adds (Mordretha).", type = "Mechanic" },
-      { text = "Dispel priority: Withering Touch, Necrotic Blight, Poison/Curse from trash, Manifest Death overlap, Swift Strikes targets.", type = "Mechanic" }
+      { text = "Heavy AoE: Mighty Smash, Soulstorm, Death Spiral, Manifest Death.", type = "Mechanic" },
+      { text = "Dispel priority: Withering Touch, Necrotic Blight, Curse/Poison, Manifest stacks.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Save CDs for Monstrosity burn phase, Xav combo phases, Mordretha phase 2, and clearing Draw Soul adds.", type = "Mechanic" },
-      { text = "Kill banners on Xav, cleave adds on Gorechop, and manage ricocheting blades by spreading/LoS.", type = "Mechanic" }
+      { text = "CD timings: Monstrosity burn, Xav combos, Mordretha p2, Draw Soul adds.", type = "Call" },
+      { text = "Kill banners (Xav), cleave adds (Gorechop), and LoS blades.", type = "Mechanic" }
     }
-  },  
-
+  },
+  
   ["An Affront of Challengers"] = {
     order = 2,
     header = "Boss: An Affront of Challengers",
     ALL = {
-      { text = "Searing Death. Spread and pop personal if overlap.", type = "Call" },
-      { text = "Noxious Spores. Bait puddles and rotate with group.", type = "Call" },
-      { text = "Interrupt Necromantic Bolt from Sathel.", type = "Interrupt" }
+      { text = "Loosely spread before Searing Death — use defensive if also hit by AoE.", type = "Call" },
+      { text = "Bait and rotate during Noxious Spores — drop puddles safely.", type = "Mechanic" },
+      { text = "Interrupt Necromantic Bolt — reduces tank pressure.", type = "Interrupt" },
+      { text = "Keep boss HPs even — Final Will stacks on survivors.", type = "Mechanic" },
+      { text = "Avoid arena edges — outside combatants will knock you back.", type = "Mechanic" }
     },
     TANK = {
-      { text = "Use defensive for Mortal Strike — big hit + 50% healing debuff.", type = "Mechanic" },
-      { text = "Position bosses near entrance, rotate during Spore puddles.", type = "Position" }
+      { text = "Use defensive on Mortal Strike — heavy hit + 50% healing debuff.", type = "Mechanic" },
+      { text = "Pull bosses near entrance. Rotate clockwise with group after Spores.", type = "Position" },
+      { text = "Face Paceran away — random frontal breath can be lethal.", type = "Position" }
     },
     HEALER = {
-      { text = "Dispel Withering Touch quickly. Watch for overlap.", type = "Mechanic" },
-      { text = "Prep CDs for Mighty Smash and Searing overlap.", type = "Call" }
+      { text = "Dispel Withering Touch ASAP. Two players affected at once.", type = "Mechanic" },
+      { text = "Prep CDs for Searing Death + Mighty Smash overlap.", type = "Call" }
     },
     DPS = {
-      { text = "Dodge Decaying Breath frontal from Paceran.", type = "Mechanic" },
-      { text = "Focus Sathel to remove caster early.", type = "Mechanic" }
+      { text = "Focus Sathel early to reduce magic pressure.", type = "Mechanic" },
+      { text = "Dodge Decaying Breath frontal from Paceran.", type = "Mechanic" }
     }
   },
-
+  
   ["Gorechop"] = {
     order = 3,
     header = "Boss: Gorechop",
     ALL = {
-      { text = "Hooks soon. Find gap and dodge both waves.", type = "Call" },
-      { text = "Pulled in! Running out fast before smash.", type = "Call" },
+      { text = "Meat Hooks: Find the gap — dodge both waves cleanly.", type = "Call" },
+      { text = "Tenderizing Smash: Run out when pulled — avoid frontal slam.", type = "Call" },
+      { text = "Kill adds near same location to control puddle sprawl.", type = "Mechanic" },
       { text = "Interrupt Withering Discharge from Sludge-spewers.", type = "Interrupt" }
     },
     TANK = {
-      { text = "Use CD for Hateful Strike — massive phys hit.", type = "Mechanic" },
-      { text = "Position boss near cleared puddle zone pre-smash.", type = "Position" }
+      { text = "Use defensive on Hateful Strike — massive phys hit.", type = "Mechanic" },
+      { text = "Pull boss near wall or cleared area before Smash.", type = "Position" },
+      { text = "Drag adds to boss for cleave. Control puddle zones.", type = "Mechanic" },
+      { text = "Face boss away after Smash — avoid cleaving group.", type = "Position" }
     },
     HEALER = {
-      { text = "Top group before Smash + Hooks combo. Heavy burst.", type = "Mechanic" },
-      { text = "Dispel Withering or Filth debuffs from group.", type = "Mechanic" }
+      { text = "Top group before Smash + Hooks combo — heavy burst.", type = "Call" },
+      { text = "Dispel Withering Touch and Filth from party.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Stay loosely spread for Leaping Thrash from adds.", type = "Mechanic" },
-      { text = "Kill Leftovers near same spot to conserve space.", type = "Position" }
+      { text = "Spread for Leaping Thrash from adds.", type = "Mechanic" },
+      { text = "Burn Leftovers fast — kill near edge to conserve space.", type = "Mechanic" }
     }
   },
-
+  
   ["Xav the Unfallen"] = {
     order = 4,
     header = "Boss: Xav the Unfallen",
     ALL = {
-      { text = "Banner up. Cleave it with boss ASAP.", type = "Call" },
-      { text = "Blood and Glory. Win duel fast to get buff.", type = "Call" },
-      { text = "Interrupt Demoralizing Shout from Captain trash.", type = "Interrupt" }
+      { text = "Oppressive Banner up — drag boss to cleave ASAP.", type = "Call" },
+      { text = "Avoid combo: Cleave (frontal), Slam (line), Crash (AoE silence).", type = "Mechanic" },
+      { text = "Blood and Glory — duel in pit. End fast for buff.", type = "Call" },
+      { text = "Interrupt Demoralizing Shout from Captains (trash).", type = "Interrupt" }
     },
     TANK = {
-      { text = "Use CD for Brutal Combo — stacked physical hits.", type = "Mechanic" },
-      { text = "Face boss toward edge pre-combo. Avoid party cleave.", type = "Position" }
+      { text = "CD for Brutal Combo — heavy phys channel.", type = "Mechanic" },
+      { text = "Pre-position boss near banner spawn and away from group.", type = "Position" },
+      { text = "Rotate boss between phases to avoid clipping party.", type = "Mechanic" }
     },
     HEALER = {
-      { text = "Prepare group CDs for Might of Maldraxxus combo.", type = "Call" },
-      { text = "Top returning duel players quickly.", type = "Mechanic" }
+      { text = "CDs for Might of Maldraxxus combo (3 overlapping hits).", type = "Call" },
+      { text = "Top duel players after return — they re-enter with damage taken.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Avoid Cleave/Crush/Crash combos. Move early.", type = "Mechanic" },
-      { text = "Kill Banner on spawn. Avoid combo while slowed.", type = "Mechanic" }
+      { text = "Kill Banner fast — slow makes combo phase lethal.", type = "Mechanic" },
+      { text = "Win duel fast — Glorified buff = big damage.", type = "Call" },
+      { text = "Avoid all 3 combo casts — spread + move early.", type = "Mechanic" }
     }
   },
-
+  
   ["Kul'tharok"] = {
     order = 5,
     header = "Boss: Kul'tharok",
     ALL = {
-      { text = "Draw Soul phase. Stack at edge to drop adds.", type = "Call" },
-      { text = "Well of Darkness. Spread out from others.", type = "Call" },
-      { text = "Interrupt Necrotic Bolt/Bone Spear from trash.", type = "Interrupt" }
+      { text = "Draw Soul: Stack at edge to drop adds, then AoE + CC fast.", type = "Call" },
+      { text = "Well of Darkness on you — spread 4yds, use personal.", type = "Call" },
+      { text = "Avoid Death Spiral — orbs rotate arena, heavy damage.", type = "Mechanic" },
+      { text = "Interrupt Necrotic Bolt casts throughout fight.", type = "Interrupt" }
     },
     TANK = {
-      { text = "Point Necrotic Eruption frontal away from group.", type = "Mechanic" },
-      { text = "Stay out of boss puddle. Position safely.", type = "Position" }
+      { text = "Face boss away. Avoid standing in central puddle — high shadow dmg.", type = "Mechanic" },
+      { text = "Pull slightly off-center to give melee orb room.", type = "Position" },
+      { text = "No tank buster — save CDs for Draw Soul if needed.", type = "Call" }
     },
     HEALER = {
-      { text = "Prep CDs for Draw Soul + add wave damage.", type = "Call" },
-      { text = "Dispel Shadow Vulnerability from Soulstorm debuff.", type = "Mechanic" }
+      { text = "Prep CDs for Draw Soul — 8s ticking + post-add pressure.", type = "Call" },
+      { text = "Dispel Shadow Vulnerability from Well of Darkness.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Burn adds dropped from Draw Soul quickly.", type = "Mechanic" },
-      { text = "Avoid Death Spiral orbs rotating arena.", type = "Mechanic" }
+      { text = "Burn adds from Draw Soul fast — don’t let them reach boss.", type = "Mechanic" },
+      { text = "Stay loose — don’t overlap Well DoTs or orbs.", type = "Mechanic" }
     }
   },
-
+  
   ["Mordretha, the Endless Empress"] = {
     order = 6,
     header = "Boss: Mordretha, the Endless Empress",
     ALL = {
-      { text = "Manifest Death. Spread and interrupt add.", type = "Call" },
-      { text = "Echoes of Carnage phase. Dodge swirls + charges.", type = "Call" },
-      { text = "Interrupt Death Bolt from Deathwalker adds.", type = "Interrupt" }
+      { text = "Manifest Death: Spread out. Kick your Deathwalker, cleave them up.", type = "Call" },
+      { text = "Echoes of Carnage: Dodge charge lines and swirlies.", type = "Call" },
+      { text = "Grasping Rift: Move out fast — avoid curse + stun pull.", type = "Mechanic" },
+      { text = "Avoid Dark Devastation — frontal sweeps during cast.", type = "Mechanic" },
+      { text = "Don't hug arena edge — knockback risk from surrounding mobs.", type = "Mechanic" }
     },
     TANK = {
-      { text = "Defensive for Reaping Scythe every 15s.", type = "Mechanic" },
-      { text = "Tank boss near center to allow movement away from Rift.", type = "Position" }
+      { text = "CD for every Reaping Scythe — huge Shadow + physical hit.", type = "Mechanic" },
+      { text = "Keep boss mid — gives room to rotate from Rift/Devastation.", type = "Position" },
+      { text = "Drag Deathwalkers into cleave. Group them fast.", type = "Call" }
     },
     HEALER = {
-      { text = "Prep CDs for Echoes of Carnage + Manifest Death.", type = "Call" },
-      { text = "Dispel Death Grasp curse if caught in Rift.", type = "Mechanic" }
+      { text = "CDs for Manifest Death + Deathwalker add phase.", type = "Call" },
+      { text = "Dispel Death Grasp curse if player is pulled by Rift.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Interrupt your add fast after Manifest Death.", type = "Mechanic" },
-      { text = "Avoid Dark Devastation frontal beam.", type = "Mechanic" }
+      { text = "Interrupt your Deathwalker fast. Group them under boss.", type = "Mechanic" },
+      { text = "Save CDs for grouped adds and Echoes overlap.", type = "Call" }
     }
   }
 }

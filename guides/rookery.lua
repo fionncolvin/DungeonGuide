@@ -3,91 +3,103 @@ DungeonGuide_Guides["The Rookery"] = {
     order = 1,
     header = "Guide: The Rookery",
     ALL = {
-      { text = "Quartermaster mini-boss casts Bounding Void + Entropy Shield. Avoid orbs and rotate behind shield to keep DPS uptime.", type = "Mechanic" },
-      { text = "Interrupt Lightning Bolt (Thunderers), Lightning Surge (Rooktenders), Void Bolt (Oracles/Ascendants).", type = "Interrupt" },
-      { text = "Avoid Energized Barrage (Stormrooks) and Wild Lightning (Voidriders). Dodge AoE and stay spread if targeted.", type = "Mechanic" },
-      { text = "Void Diffusers cast Attracting Shadows (pulls + AoE) and Arcing Void (targeted cleave) — dangerous overlaps.", type = "Mechanic" },
-      { text = "Stormguard Gorren requires coordinated debuff passing (Chaotic Corruption) and puddle placement (Crush Reality).", type = "Mechanic" },
-      { text = "Voidstone Monstrosity burn phase at 80% HP — 20s stun, 100% damage amp. Line up cooldowns here.", type = "Mechanic" },
-      { text = "Break Voidstone Fragments after Upheaval with Stormrider’s Charge. Assign lanes in advance to avoid add spawns.", type = "Mechanic" }
+      { text = "Interrupts: Lightning Bolt (Thunderers), Lightning Surge (Rooktenders), Void Bolt (Oracles/Ascendants).", type = "Interrupt" },
+      { text = "Stormrooks cast Energized Barrage — spread + dodge swirlies.", type = "Mechanic" },
+      { text = "Void Diffusers: Interrupt Attracting Shadows, avoid Arcing Void cleave.", type = "Mechanic" },
+      { text = "Gorren: Pass Chaotic Corruption debuff, place Crush puddles at edges.", type = "Mechanic" },
+      { text = "Monstrosity: Burn at 80% — 20s stun + 100% dmg taken. Line up CDs.", type = "Mechanic" },
+      { text = "Assign players to shatter Voidstone Fragments with Stormrider’s Charge after Upheaval.", type = "Mechanic" }
     },
     TANK = {
-      { text = "Void Claw from Crushers reduces healing. Kite when needed to reset. Position Oblivion Wave away from group.", type = "Mechanic" },
-      { text = "Keep boss in melee (Voidstone Monstrosity) or it will cast Entropy repeatedly and wipe the group.", type = "Mechanic" }
+      { text = "Void Claw (Crushers) reduces healing. Kite to reset.", type = "Mechanic" },
+      { text = "Face Oblivion Wave away (Monstrosity). Stay in melee — prevent Entropy casts.", type = "Mechanic" },
+      { text = "Keep mobs out of Entropy fields and AoE puddles when possible.", type = "Mechanic" }
     },
     HEALER = {
-      { text = "Big healing moments: Lightning Torrent (Kyrioss), Attracting Shadows + Arcing Void (Diffusers), Unleash Darkness, and Upheaval burst.", type = "Mechanic" },
+      { text = "Big healing: Lightning Torrent (Kyrioss), Arcing Void, Unleash Darkness, Upheaval.", type = "Mechanic" },
       { text = "Dispel: Chaotic Corruption (Gorren), Seeping Corruption (Oracles), Feasting Void (Ascendants), Unleash Corruption (Monstrosity).", type = "Mechanic" }
     },
     DPS = {
-      { text = "Focus fire high-danger mobs: Void Diffusers, Ascendants, Stormrooks. Save CDs for Monstrosity burn phase.", type = "Mechanic" },
-      { text = "Pre-assign players to break Voidstone Fragments using Stormrider’s Charge — one per platform.", type = "Mechanic" }
+      { text = "Kill priority: Void Diffusers, Stormrooks, Ascendants.", type = "Mechanic" },
+      { text = "Assign shard duty: 1 per platform. Pop Charge after Upheaval swirls clear.", type = "Call" }
     }
   },
-
+  
   ["Kyrioss"] = {
     order = 2,
     header = "Boss: Kyrioss",
     ALL = {
-      { text = "Crashing Thunder cast. Spread and use small CD.", type = "Call" },
-      { text = "Lightning Torrent phase. DONT start on grates and rotate with beams.", type = "Call" },
-      { text = "Interrupt Lightning Bolt from trash Thunderers.", type = "Interrupt" }
+      { text = "Crashing Thunder — spread 8yds. Use minor defensives.", type = "Call" },
+      { text = "Wild Lightning — stack in melee after Thunder to control line spawns.", type = "Mechanic" },
+      { text = "Lightning Torrent phase — group near grates, rotate as a unit.", type = "Call" },
+      { text = "Watch for Grounding Bolts — circles drop under each player.", type = "Mechanic" },
+      { text = "Avoid Lightning Dash at phase end — 12yd AoE on random player.", type = "Mechanic" }
     },
     TANK = {
-      { text = "Face boss to edge during dash phase to avoid overlaps.", type = "Position" },
-      { text = "Pick up any remaining adds before intermission begins.", type = "Mechanic" }
+      { text = "Face boss away during melee phase. Maintain safe space.", type = "Position" },
+      { text = "Hold boss near mid for phase transition positioning.", type = "Position" }
     },
     HEALER = {
-      { text = "Prep CDs for Lightning Torrent + Wild Lightning combo.", type = "Call" },
-      { text = "Top group after Crashing Thunder burst.", type = "Mechanic" }
+      { text = "CDs for Lightning Torrent — heavy ticking AoE + ground effects.", type = "Call" },
+      { text = "Top group after Crashing Thunder and Dash phase.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Stack in melee to align Wild Lightning swirlies.", type = "Position" },
-      { text = "Spread immediately after Lightning Dash ends.", type = "Mechanic" }
+      { text = "Stack after Thunder to align Wild Lightning paths.", type = "Mechanic" },
+      { text = "Dodge into safe space during Lightning Torrent beams.", type = "Mechanic" }
     }
   },
-
+  
   ["Stormguard Gorren"] = {
     order = 3,
     header = "Boss: Stormguard Gorren",
     ALL = {
-      { text = "Corruption debuff on me. Passing to safe target.", type = "Call" },
-      { text = "Crush Reality leaping soon. Moving to soak at edge.", type = "Call" },
+      { text = "Crush Reality targeting soon — move to edge to soak. Avoid beam lines.", type = "Call" },
+      { text = "Corruption DoT on me. Passing to tank, then safe player.", type = "Call" },
+      { text = "Spread ranged around edges to control Crush placement.", type = "Mechanic" },
+      { text = "Run from boss during Dark Gravity — 10yd explosion radius.", type = "Mechanic" },
       { text = "Interrupt Void Bolt from Corrupted Oracles.", type = "Interrupt" }
     },
     TANK = {
-      { text = "Soak 2nd Corruption stack with defensive if needed.", type = "Mechanic" },
-      { text = "Face away during jump to avoid beam cleaves.", type = "Position" }
+      { text = "Soak 2nd Corruption stack if needed — use defensive for Vulnerability hit.", type = "Mechanic" },
+      { text = "Face away before Crush leap — prevent beam cleave on group.", type = "Position" },
+      { text = "Help soak puddles at edge. Rotate position post-leap.", type = "Position" }
     },
     HEALER = {
-      { text = "Use CDs during Dark Gravity + Crush combo.", type = "Call" },
-      { text = "Dispel curse from Seeping Corruption if no defensive used.", type = "Mechanic" }
+      { text = "CDs for Dark Gravity + Crush overlap — high spike.", type = "Call" },
+      { text = "Top players holding Corruption — especially if soaking Crush too.", type = "Mechanic" },
+      { text = "Dispel Seeping Corruption (curse) if players don’t have CDs.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Avoid Crush Reality puddle and beam spawns.", type = "Mechanic" },
-      { text = "Hold CDs for clean platform phase after jump.", type = "Mechanic" }
+      { text = "Help pass Corruption debuff safely — avoid bouncing to same player twice.", type = "Mechanic" },
+      { text = "Dodge beam lines after Crush. Save space near edges.", type = "Mechanic" },
+      { text = "Hold CDs for clean post-jump phase when safe.", type = "Call" }
     }
   },
-
+ 
   ["Voidstone Monstrosity"] = {
     order = 4,
     header = "Boss: Voidstone Monstrosity",
     ALL = {
-      { text = "Stormrider’s Charge on me. Running to assigned shard.", type = "Call" },
-      { text = "Null Upheaval. Spread and pop defensive.", type = "Call" },
-      { text = "Interrupt Void Bolt from trash Ascendants.", type = "Interrupt" }
+      { text = "Null Upheaval soon — spread, pop defensive, dodge swirlies.", type = "Call" },
+      { text = "Void Shell breaks at 80% — burn phase with 100% damage amp.", type = "Call" },
+      { text = "Stormrider’s Charge on me — running to my shard.", type = "Call" },
+      { text = "Stand clear of Oblivion Wave frontal — wide line AoE.", type = "Mechanic" },
+      { text = "Destroy all 3 Voidstone Fragments within 15s or adds spawn.", type = "Mechanic" }
     },
     TANK = {
-      { text = "Face Oblivion Wave away from party. Use major CD.", type = "Mechanic" },
-      { text = "Never leave melee or Entropy wipe will occur.", type = "Mechanic" }
+      { text = "Face boss away for Oblivion Wave. Never leave melee or boss spams Entropy.", type = "Mechanic" },
+      { text = "Major CD on Oblivion Wave — heavy shadow damage to all in line.", type = "Mechanic" },
+      { text = "Reposition boss slightly each cycle to control puddle zones.", type = "Position" }
     },
     HEALER = {
-      { text = "Prep CDs for Unleash Darkness after Void Extraction stacks.", type = "Call" },
-      { text = "Dispel Unleash Corruption when player is out of melee.", type = "Mechanic" }
+      { text = "CDs for Null Upheaval + Unleash Darkness overlap.", type = "Call" },
+      { text = "Dispel Unleash Corruption quickly — position player to avoid melee puddles.", type = "Mechanic" },
+      { text = "Float between shard platforms if a runner fails.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Pop shard with Stormrider’s Charge after swirlies fade.", type = "Mechanic" },
-      { text = "Hold Dam CDs for Storm’s Vengeance burn window.", type = "Call" }
+      { text = "Hold CDs for Storm’s Vengeance burn phase (20s window).", type = "Call" },
+      { text = "Assigned shard runner — wait for swirlies, then charge platform.", type = "Mechanic" },
+      { text = "Destroy Fragments fast — avoid add spawns from Corruption Overload.", type = "Mechanic" }
     }
   }
 }

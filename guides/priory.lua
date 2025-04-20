@@ -3,78 +3,106 @@ DungeonGuide_Guides["Priory of the Sacred Flame"] = {
     order = 1,
     header = "Guide: Priory of the Sacred Flame",
     ALL = {
-      { text = "Paladin and Priest can activate the orb in the courtyard and final boss room for Blessing of the Sacred Flame (30min Holy AoE proc).", type = "Mechanic" },
-      { text = "You must fight 1 Trusted Guard with Dailcry. Defeat any 2 of 3 Lieutenants to choose which is removed. Taener Duelmal is generally preferred.", type = "Mechanic" },
-      { text = "Interrupt priority: Greater Heal (Devout Priest), Fireball Volley (Risen Mage), Battle Cry (Dailcry), Burning Light (Braunpyke), Cinderblast (Taener).", type = "Interrupt" },
-      { text = "Kill Risen Footmen and Risen Mages staggered — Light Expulsion death effect deals AoE and heals nearby mobs.", type = "Mechanic" },
-      { text = "CC-immune mobs include Arathi Knights, Lightspawns, all Lieutenants and Trusted Guards. Plan kicks and avoid stacking these.", type = "Mechanic" },
-      { text = "Play grouped and rotate as a unit in Braunpyke and Murrpray fights to simplify swirlies, beams, and hammer dodges.", type = "Mechanic" }
+      { text = "Paladin/Priest can activate flame orb for 30min Holy AoE proc buff.", type = "Mechanic" },
+      { text = "You must fight Dailcry + 1 Trusted Guard. Kill 2 of 3 Lieutenants to remove 1.", type = "Mechanic" },
+      { text = "Interrupts: Greater Heal (Priest), Fireball Volley (Mage), Battle Cry (Dailcry), Burning Light (Braunpyke), Cinderblast (Taener).", type = "Interrupt" },
+      { text = "Kill Risen Mages/Footmen staggered — death AoE heals allies via Light Expulsion.", type = "Mechanic" },
+      { text = "Trusted Guards, Knights, Lightspawns, and Lieutenants are CC-immune. Plan interrupts.", type = "Mechanic" },
+      { text = "Play stacked and rotate movement during Braunpyke and Murrpray to dodge beams, swirlies, and hammers.", type = "Mechanic" },
+      { text = "Trusted Guard tankbusters: Cinderblast (Taener), Blazing Strike (Braunpyke). Kick or mitigate.", type = "Mechanic" },
+      { text = "Some trash pulls have chain interrupts and high AoE — pre-assign kicks.", type = "Mechanic" }
     },
     TANK = {
-      { text = "Pierce Armor (Dailcry), Divine Judgment (Elaena), and Blazing Strike (Sir Braunpyke) all require CDs — stacking bleeds are common.", type = "Mechanic" },
-      { text = "Plan positioning for bursty swirls and soak circles (especially Braunpyke and Murrpray intermission).", type = "Mechanic" }
+      { text = "CDs for: Pierce Armor (Dailcry), Divine Judgment (Elaena), Blazing Strike (Braunpyke). Bleeds stack fast.", type = "Mechanic" },
+      { text = "Pre-plan group soaks and positioning for Braunpyke and Murrpray phases.", type = "Mechanic" },
+      { text = "Taunt Trusted Guard (Captain Dailcry) instantly. Don’t let it melee others.", type = "Mechanic" }
     },
     HEALER = {
-      { text = "High group damage from Heat Wave (Damian), Holy Radiance (Elaena), Vindictive Wrath (Braunpyke), Inner Fire (Murrpray), and Embrace the Light (Murrpray intermission).", type = "Mechanic" },
-      { text = "Dispel priorities: Reflective Shield (Aemya), Divine Judgment debuff (Elaena), bleeds from Impale and War Lynxes, and any magic slows from Heat Wave.", type = "Mechanic" }
+      { text = "High group damage from: Heat Wave, Holy Radiance, Vindictive Wrath, Inner Fire, Embrace the Light (P2).", type = "Mechanic" },
+      { text = "Dispel: Reflective Shield (Aemya), Divine Judgment debuff, Impale/bleeds, Heat Wave slows.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Save damage cooldowns for Murrpray intermission shield — faster break = fewer add waves.", type = "Mechanic" },
-      { text = "Coordinate soaks on Sacrificial Pyre and avoid overstacking — use immunities or tank CDs if soaking twice.", type = "Mechanic" }
+      { text = "Save cooldowns for Murrpray intermission shield — faster break = fewer add waves.", type = "Mechanic" },
+      { text = "Soak Sacrificial Pyres properly. Avoid doubling up. Immunity/tank soak if needed.", type = "Mechanic" }
     }
   },
-
+  
   ["Captain Dailcry"] = {
     order = 2,
     header = "Boss: Captain Dailcry",
     ALL = {
-      { text = "Interrupt Battle Cry — group dmg + Trusted Guard enrages.", type = "Interrupt" },
-      { text = "Interrupt Cinderblast from guard if active — lethal tank hit + stun.", type = "Interrupt" },
-      { text = "Savage Mauling. Burn shield quickly.", type = "Call" },
-      { text = "Dodge Hurl Spear — it pierces all players in its path.", type = "Mechanic" }
+      { text = "Kick Battle Cry — group damage + Trusted Guard gets enraged.", type = "Interrupt" },
+      { text = "Dodge Hurl Spear — line attack applies bleed to all hit.", type = "Mechanic" },
+      { text = "Savage Mauling incoming — burn absorb to stop the channel.", type = "Call" },
+      { text = "Trusted Guard shares HP — cleave but don’t focus.", type = "Mechanic" }
     },
     TANK = {
-      { text = "Use defensive for Pierce Armor — heavy hit + stacking bleed.", type = "Mechanic" },
-      { text = "Position boss so group avoids Hurl Spear line.", type = "Position" },
-      { text = "Pick up Trusted Guard ASAP — taunt on spawn.", type = "Mechanic" },
-      { text = "Save taunt if Savage Mauling lands on you and healer is stunned or out of range.", type = "Mechanic" },
-      { text = "Position Trusted Guard near boss to cleave both efficiently.", type = "Position" },
-      { text = "Savage Mauling incoming, prepare absorb burn phase.", type = "Call" }
+      { text = "Use major for Pierce Armor — big hit + stacking bleed.", type = "Mechanic" },
+      { text = "Face boss away from group to control Hurl Spear direction.", type = "Position" },
+      { text = "Taunt Trusted Guard instantly. Do not let it cleave others.", type = "Mechanic" },
+      { text = "Reposition out of swirlies from Guard’s Emberstorm if active.", type = "Mechanic" },
+      { text = "Mitigate Pierce + Mauling overlap — high physical burst.", type = "Mechanic" }
+    },
+    HEALER = {
+      { text = "CDs for Savage Mauling + Pierce Armor bleed combo.", type = "Call" },
+      { text = "Top players with Hurl Spear bleed. Watch melee stack.", type = "Mechanic" }
+    },
+    DPS = {
+      { text = "Pool CDs for Mauling absorb. Interrupt Cinderblast if Guard active.", type = "Mechanic" },
+      { text = "Cleave Trusted Guard to boost boss damage. Avoid overfocus.", type = "Mechanic" }
     }
   },
-
+  
   ["Baron Braunpyke"] = {
     order = 3,
     header = "Boss: Baron Braunpyke",
     ALL = {
-      { text = "Interrupt Burning Light — heavy dmg + boss heal.", type = "Interrupt" },
-      { text = "Empowered phase. Stagger sacrificial pyre soaks.", type = "Call" },
-      { text = "Avoid standing near sacrificial pyres not being soaked.", type = "Mechanic" }
+      { text = "Vindictive Wrath active — all boss abilities are stronger. Play safe.", type = "Call" },
+      { text = "Hammer of Purity: Group up + bait to one side. Move as a unit.", type = "Call" },
+      { text = "Empowered: 5x Hammer zones. Stack before cast to manage space.", type = "Mechanic" },
+      { text = "Sacrificial Pyre: Soak 3x (5x if empowered). Rotate soakers, don’t overstack.", type = "Mechanic" },
+      { text = "Use immunities to soak Pyres safely — avoid excessive DoT stacks.", type = "Mechanic" }
     },
     TANK = {
-      { text = "Soak up to 2 stacks from Sacrificial Pyre with defensive.", type = "Mechanic" },
-      { text = "Tank boss on edges and bait after Hammer of Purity to safe zone.", type = "Position" },
-      { text = "Pick up adds quickly during Empowered phase to reduce chaos.", type = "Mechanic" },
-      { text = "I'll soak two in Empowered Pyre, You split the rest.", type = "Call" },
-      { text = "Watch boss energy. Position group for safe bait during Empowered phase.", type = "Position" },
-      { text = "Soaking Pyre now.", type = "Call" }
+      { text = "Pull boss to room edge to bait hammers safely.", type = "Position" },
+      { text = "Soak 2x Sacrificial Pyres with defensive — announce timing.", type = "Mechanic" },
+      { text = "Reposition boss opposite group post-Hammer cast.", type = "Position" }
+    },
+    HEALER = {
+      { text = "Prepare CDs before Empowered Pyre soak or stacked hammers.", type = "Call" },
+      { text = "Watch Sacrificial Flame DoT stacks — heal soakers immediately.", type = "Mechanic" }
+    },
+    DPS = {
+      { text = "Stack with group for Hammer baits. Don’t panic spread.", type = "Mechanic" },
+      { text = "Rotate Pyre soaks smartly — avoid doubling up or early clears.", type = "Mechanic" }
     }
   },
-
+  
   ["Prioress Murrpray"] = {
     order = 4,
     header = "Boss: Prioress Murrpray",
     ALL = {
-      { text = "Interrupt Holy Smite — random target holy burst.", type = "Interrupt" },
-      { text = "Phase 2. I will burst shield fast and CC adds.", type = "Call" },
-      { text = "Avoid AoE flash from Blinding Light cast by turning away.", type = "Mechanic" }
+      { text = "Holy Flame puddle — move ASAP to avoid DoT + flames.", type = "Mechanic" },
+      { text = "Turn away before Blinding Light cast finishes or be disoriented.", type = "Mechanic" },
+      { text = "Interrupt Holy Smite — high tank + group damage.", type = "Interrupt" },
+      { text = "Phase 2: Burn shield fast to interrupt Embrace the Light.", type = "Call" },
+      { text = "Use AoE roots, knockbacks, slows to delay adds on upper platform.", type = "Mechanic" }
     },
     TANK = {
-      { text = "Position boss so Purify beam is kited to edge.", type = "Position" },
-      { text = "Rotate cooldowns for Inner Fire + Blinding Light overlap.", type = "Mechanic" },
-      { text = "Hold aggro on adds during intermission if they reach platform.", type = "Mechanic" },
-      { text = "Assist in shield burn using big cooldowns — timing matters!", type = "Call" },
-      { text = "Pull boss slightly to edge to help ranged bait Holy Flame puddles.", type = "Position" }
+      { text = "Tank boss near edge. Kite Purify beam back to conserve space.", type = "Position" },
+      { text = "Cooldown if Inner Fire overlaps with Blinding Light.", type = "Mechanic" },
+      { text = "Grab adds as they reach the platform — they melee and pulse.", type = "Mechanic" },
+      { text = "Help burst shield with offensive cooldowns.", type = "Call" }
+    },
+    HEALER = {
+      { text = "CDs for Inner Fire + Blinding Light overlap — heavy AoE.", type = "Call" },
+      { text = "Heal through Embrace the Light channel — it pulses until broken.", type = "Mechanic" },
+      { text = "Top off beam targets. Flame DoT can stack quickly.", type = "Mechanic" }
+    },
+    DPS = {
+      { text = "Interrupt Holy Smite. Rotate if healer is locked down.", type = "Interrupt" },
+      { text = "Pop CDs on upper platform to break shield quickly.", type = "Call" },
+      { text = "Help slow and CC adds. Avoid tank/healer pressure.", type = "Mechanic" }
     }
   }
 }
