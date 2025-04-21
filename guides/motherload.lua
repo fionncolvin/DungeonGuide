@@ -29,7 +29,7 @@ DungeonGuide_Guides["The MOTHERLODE!!"] = {
     order = 2,
     header = "Boss: Coin-Operated Crowd Pummeler",
     ALL = {
-      { text = "Foot Bombs out — click and kick toward boss to amplify damage.", type = "Call" },
+      { text = "Foot Bombs Need Clearing — Click and kick toward boss!", type = "Call" },
       { text = "Interrupt Iced Spritzer and Toxic Blades in trash before pull.", type = "Interrupt" },
       { text = "Dodge Shocking Claw — random player frontal.", type = "Mechanic" },
       { text = "Move out of Electroshock Zones after stomp.", type = "Mechanic" }
