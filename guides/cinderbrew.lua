@@ -1,29 +1,32 @@
 DungeonGuide_Guides["Cinderbrew Meadery"] = {
   ["Cinderbrew Meadery"] = {
     order = 1,
-    header = "Guide: Cinderbrew Meadery",
+    header = "Intro: Cinderbrew Meadery",
     ALL = {
-      { text = "Sticky Honey slows enemies and allies — use carefully.", type = "Mechanic" },
-      { text = "Thirsty buff = faster casts/attacks — soothe or skip.", type = "Mechanic" },
-      { text = "Pull Hireds/Harvesters solo — high AoE.", type = "Mechanic" },
-      { text = "Watch for: Failed Batch, Free Samples, Bee-stial Wrath.", type = "Mechanic" },
-      { text = "Yes Men heal/buff — focus fire only.", type = "Mechanic" },
-      { text = "Big group damage: Happy Hour, Fluttering Wing, etc.", type = "Mechanic" }
+      { text = "33-minute timer with split path after Boss 1.", type = "Mechanic" },
+      { text = "Sticky Honey (Cooking/Alchemy 25+): AoE slow + haste debuff — affects allies too.", type = "Mechanic" },
+      { text = "Flamethrower (Eng/Gnome/Goblin 25+): Low AoE damage — best used by healers.", type = "Mechanic" },
+      { text = "Watch for Thirsty enrages — mobs gain haste and damage.", type = "Mechanic" },
+      { text = "Heavy use of swirlies, AoE zones, and frontal attacks — constant movement needed.", type = "Mechanic" },
+      { text = "Interrupt priority: Boiling Flames, Honey Volley, Free Samples, Bee-stial Wrath.", type = "Interrupt" },
+      { text = "Frequent magic debuffs — Burning Fermentation, Bee Venom, Erupting Inferno.", type = "Mechanic" },
     },
     TANK = {
-      { text = "Avoid Thirsty + bleed/DoT mobs together.", type = "Mechanic" },
-      { text = "Drop Marinade at edges — don't buff bees.", type = "Mechanic" }
+      { text = "Route splits to I'pa (left) or Buzzbee (right) after Aldryr.", type = "Mechanic" },
+      { text = "Avoid pulling multiple CC-immune mobs (Chewie, Harvesters, Hopgoblins).", type = "Mechanic" },
+      { text = "Stagger Bee packs — Final Sting and Swarming Surprise can chain kill tanks.", type = "Mechanic" },
+      { text = "Pick up Brew Drops, Beelets, and Cinderbees quickly to control threat.", type = "Mechanic" },
     },
     HEALER = {
-      { text = "Prep for spikes: Volatile Keg, Let it Hail, Fluttering Wing.", type = "Mechanic" },
-      { text = "Heavy bleeds/poisons — dispel + triage.", type = "Mechanic" }
+      { text = "Flamethrower is safe utility — avoid during heavy group damage.", type = "Mechanic" },
+      { text = "Prepare CDs for Volatile Keg, Swarming Surprise, and boss intermissions.", type = "Mechanic" },
     },
     DPS = {
-      { text = "CC + burn: Brew Drop, Cinderbees, Failed Batch barrels.", type = "Mechanic" },
-      { text = "Assign DPS to Bee-Haw at 1% in Benk to clear barrels.", type = "Mechanic" }
-    }
+      { text = "Kill Failed Batch kegs before they explode.", type = "Mechanic" },
+      { text = "Use CC on Brew Drops and Bees — prevent them reaching boss/barrels.", type = "Mechanic" },
+    },
   },
-
+  
   ["Brew Master Aldryr"] = {
     order = 2,
     header = "Boss: Brew Master Aldryr",
