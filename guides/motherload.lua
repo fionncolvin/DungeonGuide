@@ -3,6 +3,7 @@ DungeonGuide_Guides["The MOTHERLODE!!"] = {
     order = 1,
     header = "Guide: The MOTHERLODE!!",
     ALL = {
+      { text = "39-min timer. Route favours skipping early trash with Peacekeepers.", type = "Mechanic" },
       { text = "Kick: Toxic Blades, Rock Lance, Goo, Withering Discharge, Rapid Extraction.", type = "Interrupt" },
       { text = "Stop Mech Jockeys reaching suits — Peacekeepers are deadly.", type = "Mechanic" },
       { text = "Peacekeeper Charged Shield: move boss, pop group CDs.", type = "Mechanic" },

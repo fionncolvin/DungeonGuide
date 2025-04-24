@@ -1,32 +1,30 @@
 DungeonGuide_Guides["Darkflame Cleft"] = {
   ["Darkflame Cleft"] = {
     order = 1,
-    header = "Guide: Darkflame Cleft",
+    header = "Intro: Darkflame Cleft",
     ALL = {
-      { text = "Laborers stack bleeds — kill with minecarts, Charge, or Cave-In.", type = "Mechanic" },
-      { text = "Overseer’s Wallop knocks mobs back — avoid pulling extras.", type = "Mechanic" },
-      { text = "Mole Frenzy enrages moles — interrupt to avoid getting overwhelmed.", type = "Mechanic" },
-      { text = "Interrupt Wicklighters and Fiends — flame combos stack dangerously.", type = "Mechanic" },
-      { text = "Blazikon + Candle hazards = big fire damage. Time defensives.", type = "Mechanic" },
-      { text = "Mini-bosses before Candle King can one-shot — dodge mechanics.", type = "Mechanic" },
-      { text = "Interrupt Paranoid Mind or fear wipes group.", type = "Mechanic" },
-      { text = "Escort cart needs heat + nearby player. Assign wax runners.", type = "Mechanic" },
-      { text = "Final boss needs heat/candle pickups. Missed casts = wipe.", type = "Mechanic" }
+      { text = "33-minute timer with linear progression — 4 boss encounters.", type = "Mechanic" },
+      { text = "Candlelight mechanics define multiple boss phases and escort event.", type = "Mechanic" },
+      { text = "Stay in candlelight during escort and final boss — avoid Smothering Shadows debuff.", type = "Mechanic" },
+      { text = "Interrupt priority: Drain Light, Boiling Flames, Honey Volley, Paranoid Mind.", type = "Interrupt" },
+      { text = "Magic debuffs are frequent — dispel Flashpoint, Burning Fermentation, Bee Venom.", type = "Mechanic" },
+      { text = "Avoid swirlies and Wild Wallop knockbacks — especially near ledges or extra packs.", type = "Mechanic" },
+      { text = "Watch for candle DoT overlaps — e.g. Incite Flames and Enkindling Inferno combo.", type = "Mechanic" },
     },
     TANK = {
-      { text = "Laborer + Creeper bleeds stack fast — kite + rotate CDs.", type = "Mechanic" },
-      { text = "Position bosses to cleave adds or manage safe zones.", type = "Mechanic" },
-      { text = "Pull Overseers away to avoid extra mobs via knockback.", type = "Mechanic" },
-      { text = "Route tip: skip double Wicklighter if possible.", type = "Mechanic" }
+      { text = "Open with safe pull — Overseers knock mobs wide, causing accidental chain pulls.", type = "Mechanic" },
+      { text = "Position minecart adds (Laborers) on tracks for cleave and minecart kills.", type = "Mechanic" },
+      { text = "Corridor Creepers gain power from corpses — kite if stacks grow too high.", type = "Mechanic" },
+      { text = "During escort, stick close to cart — pull carefully, only what's needed.", type = "Mechanic" },
     },
     HEALER = {
-      { text = "Big healing: Dousing Breath, Incite Flames, Eternal Darkness.", type = "Mechanic" },
-      { text = "Dispels: Flashpoint, Flaming Tether, healing absorbs from debuffs.", type = "Mechanic" }
+      { text = "Be ready for burst healing during Volatile Keg, Eternal Darkness, candle DoT overlaps.", type = "Mechanic" },
+      { text = "Candle heat drops during Eternal Darkness — DPS or tank should refill wax mid-cast.", type = "Mechanic" },
     },
     DPS = {
-      { text = "Use carts, boss charges, wax to kill Laborers + control space.", type = "Mechanic" },
-      { text = "Assign candle extinguishers + prep safe zones for Incite Flames.", type = "Mechanic" }
-    }
+      { text = "Kill Failed Batch barrels and low-HP Wax Figures before they reform.", type = "Mechanic" },
+      { text = "CC and burst Brew Drops before they reach bosses — prioritize control.", type = "Mechanic" },
+    },
   },  
 
   ["Ol' Waxbeard"] = {

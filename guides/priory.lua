@@ -31,6 +31,7 @@ DungeonGuide_Guides["Priory of the Sacred Flame"] = {
     order = 2,
     header = "Boss: Captain Dailcry",
     ALL = {
+      { text = "Interrupt Cinder Blast (Duelmall) every time or tank dies.", type = "Interrupt" },
       { text = "Kick Battle Cry — group damage + Trusted Guard gets enraged.", type = "Interrupt" },
       { text = "Dodge Hurl Spear — line attack applies bleed to all hit.", type = "Mechanic" },
       { text = "Savage Mauling incoming — burn absorb to stop the channel.", type = "Call" },

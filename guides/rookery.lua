@@ -21,6 +21,7 @@ DungeonGuide_Guides["The Rookery"] = {
     },
     DPS = {
       { text = "Kill priority: Void Diffusers, Stormrooks, Ascendants.", type = "Mechanic" },
+      { text = "Use movement buffs to rotate during beam phase.", type = "Mechanic" },
       { text = "Assign shard duty: 1 per platform. Pop Charge after Upheaval swirls clear.", type = "Call" }
     }
   },
@@ -87,6 +88,7 @@ DungeonGuide_Guides["The Rookery"] = {
       { text = "Destroy all 3 Voidstone Fragments within 15s or adds spawn.", type = "Mechanic" }
     },
     TANK = {
+      { text = "Never leave melee. Entropy wipe if boss idle.", type = "Mechanic" },
       { text = "Face boss away for Oblivion Wave. Never leave melee or boss spams Entropy.", type = "Mechanic" },
       { text = "Major CD on Oblivion Wave — heavy shadow damage to all in line.", type = "Mechanic" },
       { text = "Reposition boss slightly each cycle to control puddle zones.", type = "Position" }

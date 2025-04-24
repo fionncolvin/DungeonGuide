@@ -35,6 +35,7 @@ DungeonGuide_Guides["Mechagon Workshop"] = {
     order = 2,
     header = "Boss: Tussle Tonks",
     ALL = {
+      { text = "Keep bosses close in HP — Electrical Storm if 1 dies early.", type = "Mechanic" },
       { text = "Battle Mines active — stack and rotate zones cleanly.", type = "Call" },
       { text = "Faux Flipper incoming — dodge knock into mines.", type = "Call" }
     },
@@ -61,6 +62,7 @@ DungeonGuide_Guides["Mechagon Workshop"] = {
     order = 3,
     header = "Boss: K.U.-J.0",
     ALL = {
+      { text = "Avoid glowing Junk Cubes — 2nd hit = lethal explosion.", type = "Mechanic" },
       { text = "Explosive Leap — spread and avoid cubes.", type = "Call" },
       { text = "Venting Flames — hide behind safe cube.", type = "Call" }
     },
@@ -75,7 +77,8 @@ DungeonGuide_Guides["Mechagon Workshop"] = {
       { text = "Heal through Leap + DoT overlap.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Avoid glowing cubes — second hit = explosion.", type = "Mechanic" },
+      { text = "Spread wide on Leap cast. Don’t heat cubes early.", type = "Mechanic" },
+      { text = "Save cubes for future LoS — they don’t respawn fast.", type = "Mechanic" },
       { text = "Use vanish/shadowmeld to cancel Leap if targeted.", type = "Mechanic" }
     }
   },
@@ -84,6 +87,7 @@ DungeonGuide_Guides["Mechagon Workshop"] = {
     order = 4,
     header = "Boss: Head Machinist Sparkflux",
     ALL = {
+      { text = "Avoid Self-Trimming Hedge blades — bounce randomly.", type = "Mechanic" },
       { text = "Hidden Flame Cannon — rotate with group.", type = "Call" },
       { text = "Discombobulator on me — moving out of AoE.", type = "Call" },
       { text = "Plant spawned — burn Inconspicuous Plant fast.", type = "Call" }
@@ -112,8 +116,7 @@ DungeonGuide_Guides["Mechagon Workshop"] = {
       { text = "Hug left wall on first patrol, wait for it to pass before moving.", type = "Mechanic" },
       { text = "Vents can reset patrol aggro. Use to save stealth fails.", type = "Mechanic" },
       { text = "Second room: Wait for patrol near console to turn away, then move.", type = "Mechanic" },
-      { text = "Final stretch has overlapping patrols. Time your cross with both out of view.", type = "Mechanic" },
-      { text = "Let tank lead. One mistake triggers wipe — no tools to recover.", type = "Call" }
+      { text = "Final stretch has overlapping patrols. Time your cross with both out of view.", type = "Mechanic" }
     }
   },
  

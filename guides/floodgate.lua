@@ -1,29 +1,30 @@
 DungeonGuide_Guides["Operation: Floodgate"] = {
   ["Operation: Floodgate"] = {
     order = 1,
-    header = "Guide: Operation: Floodgate",
+    header = "Intro: Operation: Floodgate",
     ALL = {
-      { text = "Destroy 5 Weapon Stockpiles to unlock Swampface. One needs goblin glider — let tank go first.", type = "Mechanic" },
-      { text = "After Demolition Duo, use rocket to destroy Zeppelin. Removes swamp spotlights.", type = "Mechanic" },
-      { text = "Avoid patrol pulls. Many mobs are CC-immune or apply bleeds/healing absorbs.", type = "Mechanic" },
-      { text = "Important kicks: Maximum Distortion, Trick Shot, Surveying Beam, Blood Bolt, Harpoon, Lightning Bolt.", type = "Interrupt" },
-      { text = "Danger mobs: Shreddinator (saw/flame), Diver (Harpoon + bombs), Demolitionist (RPGG), Jumpstarter (AoE/tank hit).", type = "Mechanic" },
-      { text = "Each Spark in Gigazap must touch a Dam Water puddle — don’t overlap.", type = "Mechanic" },
-      { text = "Swampface dodge direction is always LEFT. Set expectation early.", type = "Mechanic" }
+      { text = "32-minute timer with open layout — first two bosses can be done in any order.", type = "Mechanic" },
+      { text = "Collect all 5 Weapon Stockpiles to unlock Swampface — some are off-path.", type = "Mechanic" },
+      { text = "Use gliders (by stockpile on dam) for shortcuts — let tank go first!", type = "Mechanic" },
+      { text = "Zeppelin patrol fires missiles — use rocket after Duo to shoot it down.", type = "Mechanic" },
+      { text = "Interrupt priority: Maximum Distortion, Warp Blood, Trick Shot, Surveying Beam.", type = "Interrupt" },
+      { text = "Magic dispels needed for Overcharge, Electro-Gel, Blood-Infused Strikes.", type = "Mechanic" },
+      { text = "Avoid swirlies, bombs, saws, and CC-immune mob abilities throughout all wings.", type = "Mechanic" },
     },
     TANK = {
-      { text = "Jumpstarter + Bloodwarper hit hard. Use CDs and pull slow.", type = "Mechanic" },
-      { text = "Aggro Divers + Snipers fast. They spike group early.", type = "Mechanic" }
+      { text = "Architects gain DR on scaffolding — break it ASAP, then burn them down.", type = "Mechanic" },
+      { text = "Loaderbots, Shreddators, and Divers have disruptive fixates or random bleeds.", type = "Mechanic" },
+      { text = "Pull Bombshell Crabs carefully — Crabsplosion stacks on death.", type = "Mechanic" },
     },
     HEALER = {
-      { text = "Big healing: Jumpstart (M.O.M.M.A.), Bomb fail (Duo), Awaken (Swampface), Turbocharge (Gigazap).", type = "Mechanic" },
-      { text = "Dispel bleeds/magic DoTs from Surveyors, Divers, and Soldiers quickly.", type = "Mechanic" }
+      { text = "Prepare healing CDs for Warp Blood, Backwash, and Bubble Burp overlaps.", type = "Mechanic" },
+      { text = "Dispel Overcharge quickly — stun on expiration is lethal in AoE overlap.", type = "Mechanic" },
     },
     DPS = {
-      { text = "Plan CDs: Jumpstart, M.O.M.M.A. burn, Bomb waves, Sparks.", type = "Mechanic" },
-      { text = "Interrupt + burn dangerous trash. Many do AoE or big hits.", type = "Mechanic" }
-    }
-  },
+      { text = "Prioritise Bloodwarpers and Inspectors — dangerous group hits and teleports.", type = "Mechanic" },
+      { text = "Use CC to stop Wind-Up, Surveying Beam, and Jetison Kelp when kicks are tight.", type = "Mechanic" },
+    },
+  },  
   
   ["Big M.O.M.M.A."] = {
     order = 2,
