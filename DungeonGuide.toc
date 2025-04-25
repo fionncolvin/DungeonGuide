@@ -4,6 +4,7 @@
 ## Author: Fionn Colvin
 ## Version: 1.1.3
 ## X-Wago-ID: E6gLaAK1
+## Interface: 110001, 110005
 ## SavedVariables: DungeonGuideDB
 ## IconTexture: Interface\AddOns\DungeonGuide\DungeonGuide_Icon
 
