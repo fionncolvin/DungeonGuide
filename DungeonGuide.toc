@@ -1,7 +1,7 @@
 ## Title: DungeonGuide
 ## Notes: Compact Mythic+ dungeon notes for Tanks, Healers, and DPS
 ## Author: Fionn Colvin
-## Version: 1.1.5
+## Version: 1.2.0
 ## X-Wago-ID: E6gLaAK1
 ## Interface: 110001, 110005
 ## SavedVariables: DungeonGuideDB
@@ -13,6 +13,7 @@ config.lua
 utils.lua
 
 ## Guides
+guides/npcnames.lua
 guides/cinderbrew.lua
 guides/darkflame.lua
 guides/floodgate.lua

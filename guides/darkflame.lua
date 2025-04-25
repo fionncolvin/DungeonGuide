@@ -12,18 +12,19 @@ DungeonGuide_Guides["Darkflame Cleft"] = {
       { text = "Watch for candle DoT overlaps — e.g. Incite Flames and Enkindling Inferno combo.", type = "Mechanic" },
     },
     TANK = {
-      { text = "Open with safe pull — Overseers knock mobs wide, causing accidental chain pulls.", type = "Mechanic" },
+      { text = "Open with safe pull — n|Rank Overseer| knock mobs wide, causing accidental chain pulls.", type = "Mechanic" },
       { text = "Position minecart adds (Laborers) on tracks for cleave and minecart kills.", type = "Mechanic" },
-      { text = "Corridor Creepers gain power from corpses — kite if stacks grow too high.", type = "Mechanic" },
+      { text = "n|Corridor Creepers| gain power from corpses — kite if stacks grow too high.", type = "Mechanic" },
       { text = "During escort, stick close to cart — pull carefully, only what's needed.", type = "Mechanic" },
     },
     HEALER = {
-      { text = "Be ready for burst healing during Volatile Keg, Eternal Darkness, candle DoT overlaps.", type = "Mechanic" },
-      { text = "Candle heat drops during Eternal Darkness — DPS or tank should refill wax mid-cast.", type = "Mechanic" },
+      { text = "Be ready for burst healing during s|Volatile Keg|, s|Eternal Darkness|, candle DoT overlaps.", type = "Mechanic" },
+      { text = "Candle heat drops during s|Eternal Darkness| — DPS or tank should refill wax mid-cast.", type = "Mechanic" },
     },
     DPS = {
-      { text = "Kill Failed Batch barrels and low-HP Wax Figures before they reform.", type = "Mechanic" },
-      { text = "CC and burst Brew Drops before they reach bosses — prioritize control.", type = "Mechanic" },
+      { text = "Use CC on Laborers during escort — they can be stunned or rooted.", type = "Mechanic" },
+      { text = "Kill adds fast during boss phases — especially during s|Eternal Darkness|.", type = "Mechanic" },
+      { text = "Use CC on n|Corridor Creepers| to prevent them from gaining stacks.", type = "Mechanic" }
     },
   },  
 

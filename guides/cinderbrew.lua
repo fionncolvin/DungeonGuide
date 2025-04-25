@@ -8,22 +8,22 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
       { text = "Flamethrower (Eng/Gnome/Goblin 25+): Low AoE damage — best used by healers.", type = "Mechanic" },
       { text = "Watch for Thirsty enrages — mobs gain haste and damage.", type = "Mechanic" },
       { text = "Heavy use of swirlies, AoE zones, and frontal attacks — constant movement needed.", type = "Mechanic" },
-      { text = "Interrupt priority: Boiling Flames, Honey Volley, Free Samples, Bee-stial Wrath.", type = "Interrupt" },
-      { text = "Frequent magic debuffs — Burning Fermentation, Bee Venom, Erupting Inferno.", type = "Mechanic" },
+      { text = "Interrupt priority: s|Boiling Flames|, s|Honey Volley|, s|Free Samples|, s|Bee-stial Wrath|.", type = "Interrupt" },
+      { text = "Frequent magic debuffs — s|Burning Fermentation|, s|Bee Venom|, s|Erupting Inferno|.", type = "Mechanic" },
     },
     TANK = {
       { text = "Route splits to I'pa (left) or Buzzbee (right) after Aldryr.", type = "Mechanic" },
-      { text = "Avoid pulling multiple CC-immune mobs (Chewie, Harvesters, Hopgoblins).", type = "Mechanic" },
-      { text = "Stagger Bee packs — Final Sting and Swarming Surprise can chain kill tanks.", type = "Mechanic" },
-      { text = "Pick up Brew Drops, Beelets, and Cinderbees quickly to control threat.", type = "Mechanic" },
+      { text = "Avoid pulling multiple CC-immune mobs (n|Chewie|, n|Harvester|s, n|Hopgoblin|s).", type = "Mechanic" },
+      { text = "Stagger Bee packs — s|Final Sting| and s|Swarming Surprise| can chain kill tanks.", type = "Mechanic" },
+      { text = "Pick up n|Brew Drop|s, n|Bee-let|s, and n|Ravenous Cinderbee|s quickly to control threat.", type = "Mechanic" },
     },
     HEALER = {
       { text = "Flamethrower is safe utility — avoid during heavy group damage.", type = "Mechanic" },
-      { text = "Prepare CDs for Volatile Keg, Swarming Surprise, and boss intermissions.", type = "Mechanic" },
+      { text = "Prepare CDs for s|Volatile Keg|, s|Swarming Surprise|, and boss intermissions.", type = "Mechanic" },
     },
     DPS = {
       { text = "Kill Failed Batch kegs before they explode.", type = "Mechanic" },
-      { text = "Use CC on Brew Drops and Bees — prevent them reaching boss/barrels.", type = "Mechanic" },
+      { text = "Use CC on n|Brew Drop|s and Bees — prevent them reaching boss/barrels.", type = "Mechanic" },
     },
   },
   
@@ -31,24 +31,24 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
     order = 2,
     header = "Boss: Brew Master Aldryr",
     ALL = {
-      { text = "Blazing Belch frontal. Stand close + sidestep.", type = "Mechanic" },
-      { text = "Happy Hour: Healer bar, Tank south, DPS other 3.", type = "Call" }
+      { text = "s|Blazing Belch| frontal. Stand close + sidestep.", type = "Mechanic" },
+      { text = "s|Happy Hour|: Healer bar, Tank south, DPS other 3.", type = "Call" }
     },
     TANK = {
-      { text = "Defensive on Keg Smash. Avoid honey puddle.", type = "Mechanic" },
+      { text = "Defensive on s|Keg Smash|. Avoid honey puddle.", type = "Mechanic" },
       { text = "Kite boss during brawler phase — avoid stuns.", type = "Position" },
       { text = "Face boss to wall to reduce frontal danger.", type = "Mechanic" },
-      { text = "Stay mid-room. Avoid Crawling Brawl zones.", type = "Position" },
-      { text = "Pick up beer early in Happy Hour. Assign patrons if PUG.", type = "Mechanic" },
+      { text = "Stay mid-room. Avoid s|Crawling Brawl| zones.", type = "Position" },
+      { text = "Pick up beer early in s|Happy Hour|. Assign patrons if PUG.", type = "Mechanic" },
       { text = "Call: Tanking front. Watch frontal. Avoid puddles.", type = "Call" }
     },
     HEALER = {
-      { text = "Throw Cinderbrew on 2 players. I’ll spot heal or use CDs.", type = "Call" },
-      { text = "Burst healing: Keg Smash, Happy Hour, and adds.", type = "Mechanic" }
+      { text = "s|Throw Cinderbrew| on 2 players. I’ll spot heal or use CDs.", type = "Call" },
+      { text = "Burst healing: s|Keg Smash|, s|Happy Hour|, and adds.", type = "Mechanic" }
     },
     DPS = {
       { text = "Dodge frontal. Rotate mugs if needed.", type = "Mechanic" },
-      { text = "Interrupt Keg Toss adds during Happy Hour.", type = "Interrupt" },
+      { text = "Interrupt Keg Toss adds during s|Happy Hour|.", type = "Interrupt" },
       { text = "Burn adds fast in brawler phase.", type = "Mechanic" }
     }
   },
@@ -57,23 +57,23 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
     order = 3,
     header = "Boss: I'pa",
     ALL = {
-      { text = "Spouting Stout incoming — dodge swirls!", type = "Call" },
+      { text = "s|Spouting Stout| incoming — dodge swirls!", type = "Call" },
       { text = "Brew Drops spawning — CC + burn before they reach boss.", type = "Call" }
     },
     TANK = {
-      { text = "Move boss to opposite wall on Spouting Stout.", type = "Mechanic" },
+      { text = "Move boss to opposite wall on s|Spouting Stout|.", type = "Mechanic" },
       { text = "Keep boss off puddles — avoid tank knockbacks.", type = "Mechanic" },
       { text = "Call: Moving boss — avoid puddles + handle adds.", type = "Call" },
       { text = "Stun/knock Brew Drops before Fill 'Er Up.", type = "Mechanic" },
       { text = "Watch Uppercut — don't get knocked into puddles or adds.", type = "Mechanic" }
     },
     HEALER = {
-      { text = "Dispel Burning Fermentation ASAP. Spot heal 2 targets.", type = "Mechanic" },
-      { text = "Prep CDs for Spouting Stout + Brew Drop combo.", type = "Call" }
+      { text = "Dispel s|Burning Fermentation| ASAP. Spot heal 2 targets.", type = "Mechanic" },
+      { text = "Prep CDs for s|Spouting Stout| + Brew Drop combo.", type = "Call" }
     },
     DPS = {
       { text = "CC and cleave Brew Drops fast. Second wave respawns from puddles.", type = "Mechanic" },
-      { text = "Interrupt Rejuvenating Honey from Flavor Scientist trash.", type = "Interrupt" }
+      { text = "Interrupt s|Rejuvenating Honey| from Flavor Scientist trash.", type = "Interrupt" }
     }
   },
 
@@ -81,25 +81,25 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
     order = 4,
     header = "Boss: Benk Buzzbee",
     ALL = {
-      { text = "Snack Time active. DPS mount bee and destroy barrel.", type = "Call" },
-      { text = "Avoid Honey Marinade puddles — they buff adds.", type = "Mechanic" }
+      { text = "s|Snack Time| active. DPS mount bee and destroy barrel.", type = "Call" },
+      { text = "Avoid s|Honey Marinade| puddles — they buff adds.", type = "Mechanic" }
     },
     TANK = {
-      { text = "Use major on Honey Marinade. Drop puddle near wall.", type = "Mechanic" },
-      { type = "Mechanic", text = "Honey Marinade placement is critical—use wall edge if possible." },
+      { text = "Use major on s|Honey Marinade|. Drop puddle near wall.", type = "Mechanic" },
+      { type = "Mechanic", text = "s|Honey Marinade| placement is critical—use wall edge if possible." },
       { type = "Call", text = "Dropping marinade far. Keep bees away from puddle." },
       { type = "Mechanic", text = "Pick up threat on spawned Cinderbees ASAP—assign kick focus if needed." },
       { type = "Mechanic", text = "Avoid using Bee-Haw yourself — assign DPS to handle barrels." },
-      { type = "Mechanic", text = "Use major defensives for Final Sting from low-health Worker Bees." },
-      { type = "Interrupt", text = "Bee-stial Wrath enrage from Bee Wrangler must be kicked or soothed." }
+      { type = "Mechanic", text = "Use major defensives for s|Final Sting| from low-health Worker Bees." },
+      { type = "Interrupt", text = "s|Bee-stial Wrath| enrage from Bee Wrangler must be kicked or soothed." }
     },
     HEALER = {
-      { text = "Fluttering Wing. I will top group. Watch pushback.", type = "Call" },
-      { text = "Dispel or heal through Shredding Sting bleeds.", type = "Mechanic" }
+      { text = "s|Fluttering Wing|. I will top group. Watch pushback.", type = "Call" },
+      { text = "Dispel or heal through s|Shredding Sting| bleeds.", type = "Mechanic" }
     },
     DPS = {
       { text = "Nuke Cinderbees. At 1% mount and Bee-Haw into barrels.", type = "Mechanic" },
-      { text = "Bee-zooka line is dodgeable. Let target stay still.", type = "Mechanic" }
+      { text = "s|Bee-zooka| line is dodgeable. Let target stay still.", type = "Mechanic" }
     }
   },
 
@@ -111,9 +111,9 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
       { text = "Let it Hail. Move out and prep defensives for high group damage.", type = "Call" }
     },
     TANK = {
-      { text = "Face Cash Cannon away from group and clear barrels with it.", type = "Position" },
-      { text = "Prep CD if triggering volatile barrels with Cash Cannon.", type = "Mechanic" },
-      { type = "Mechanic", text = "Break 2 volatile barrels with first Cash Cannon using frontal aim." },
+      { text = "Face s|Cash Cannon| away from group and clear barrels with it.", type = "Position" },
+      { text = "Prep CD if triggering volatile barrels with s|Cash Cannon|.", type = "Mechanic" },
+      { type = "Mechanic", text = "Break 2 volatile barrels with first s|Cash Cannon| using frontal aim." },
       { type = "Call", text = "Breaking barrels now. Prepare healing CDs for group DoT." },
       { type = "Position", text = "Always position boss away from barrels to avoid splash destruction." },
       { type = "Mechanic", text = "Use frontal to manage barrel control—avoid clipping allies." },
@@ -121,12 +121,12 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
       { type = "Mechanic", text = "Coordinate with DPS to use Ricochet detonations strategically." }
     },
     HEALER = {
-      { text = "Volatile barrels apply Cindering Wounds. Prep CDs before detonation.", type = "Call" },
+      { text = "Volatile barrels apply s|Cindering Wounds|. Prep CDs before detonation.", type = "Call" },
       { text = "Prep healing for Let it Hail and barrel chain reaction.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Stand near barrels with Burning Ricochet to help clear safely.", type = "Mechanic" },
-      { text = "Interrupt Honey Volley during trash phase. Big AoE + slow.", type = "Interrupt" }
+      { text = "Stand near barrels with s|Burning Ricochet| to help clear safely.", type = "Mechanic" },
+      { text = "Interrupt s|Honey Volley| during trash phase. Big AoE + slow.", type = "Interrupt" }
     }
   }
 }

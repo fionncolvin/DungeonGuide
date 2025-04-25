@@ -5,6 +5,10 @@ DungeonGuideUI = {}
 local ICON_SCROLL = 450907
 local ICON_BUTTON = 441147
 
+-- === Highlight and Tooltip Utilities ===
+local SPELL_COLOR = { r = 3 / 255, g = 198 / 255, b = 252 / 255 }
+local NPC_COLOR = { r = 252 / 255, g = 194 / 255, b = 3 / 255 }
+
 local E, L, V, P, G = unpack(_G.ElvUI or {})
 local S
 
@@ -20,7 +24,10 @@ function DungeonGuideUI:CreateGuideFrame()
     end
 
     local f = CreateFrame("Frame", "DungeonGuideFrame", UIParent, "BackdropTemplate")
-    local size = DungeonGuideDB.windowSize or { width = 600, height = 300 }
+    local size = DungeonGuideDB.windowSize or {
+        width = 600,
+        height = 300
+    }
 
     f:SetSize(size.width, size.height)
     f.mode = "guide"
@@ -109,7 +116,7 @@ function DungeonGuideUI:CreateGuideFrame()
             bottom = 3
         }
     })
-    
+
     selectorPanel:SetPoint("BOTTOMLEFT", f, "TOPLEFT", 0, 5)
     selectorPanel:SetSize(200, 10)
     selectorPanel:Hide()
@@ -278,6 +285,56 @@ function DungeonGuideUI:UpdateGuideContent()
     f.contentFrame:SetWidth(f:GetWidth() - 40)
 end
 
+function DungeonGuideUI:FormatGuideLine(text)
+    local formatted = {}
+    local lastEnd = 1
+
+    for tagStart, tagType, tagValue, tagEnd in text:gmatch("()([sn])|([^|]+)|()") do
+        table.insert(formatted, strsub(text, lastEnd, tagStart - 1))
+        local color = (tagType == "s") and SPELL_COLOR or NPC_COLOR
+        local hex = ("|cff%02x%02x%02x"):format(color.r * 255, color.g * 255, color.b * 255)
+        local display = hex .. tagValue .. "|r"
+        table.insert(formatted, display)
+        lastEnd = tagEnd
+    end
+
+    table.insert(formatted, strsub(text, lastEnd))
+    return table.concat(formatted)
+end
+
+function DungeonGuideUI:AttachTooltipHandlers(frame, text)
+    frame:SetScript("OnEnter", function()
+        local _, tagType, tagValue = string.match(text, "([sn])|([^|]+)|")
+        if not tagType or not tagValue then
+            return
+        end
+        GameTooltip:SetOwner(frame, "ANCHOR_TOP")
+
+        if tagType == "s" then
+            local _, _, _, _, _, _, spellID = GetSpellInfo(tagValue)
+            if spellID then
+                GameTooltip:SetSpellByID(spellID)
+            else
+                GameTooltip:SetText("Spell not found: " .. tagValue)
+            end
+        elseif tagType == "n" then
+            local zone = GetRealZoneText()
+            local npcID = DungeonGuide_NPCNames[zone] and DungeonGuide_NPCNames[zone][tagValue]
+            if npcID then
+                GameTooltip:SetHyperlink("unit:Creature-0-0-0-0-" .. npcID .. "-0000000000")
+            else
+                GameTooltip:SetText("NPC not found: " .. tagValue)
+            end
+        end
+
+        GameTooltip:Show()
+    end)
+
+    frame:SetScript("OnLeave", function()
+        GameTooltip:Hide()
+    end)
+end
+
 function DungeonGuideUI:ShowGuideSelector()
     local f = self.frame
     local dungeon = DungeonGuide_GetDungeonEntry()
@@ -353,7 +410,8 @@ function DungeonGuideUI:CreateGuideButton()
         return
     end
 
-    local button = CreateFrame("Button", "DungeonGuideGuideButton", UIParent, "SecureActionButtonTemplate, UIPanelButtonTemplate")
+    local button = CreateFrame("Button", "DungeonGuideGuideButton", UIParent,
+        "SecureActionButtonTemplate, UIPanelButtonTemplate")
     button:SetSize(32, 32)
     button:SetText("")
     button.icon = button:CreateTexture(nil, "ARTWORK")
