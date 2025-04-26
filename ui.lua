@@ -290,8 +290,8 @@ function DungeonGuideUI:UpdateGuideContent()
             row.indicator = row:CreateTexture(nil, "BACKGROUND")
             row.indicator:SetWidth(6)
             row.indicator:SetDrawLayer("BACKGROUND", 0)
-            row.indicator:SetPoint("TOPLEFT", 0, 0)
-            row.indicator:SetPoint("BOTTOMLEFT", 0, 0)
+            row.indicator:SetPoint("TOPLEFT", 0, -1)
+            row.indicator:SetPoint("BOTTOMLEFT", 0, 1)
 
             -- Text
             row.text = row:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")

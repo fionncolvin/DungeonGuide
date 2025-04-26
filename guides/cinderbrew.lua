@@ -107,7 +107,7 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
     order = 5,
     header = "Boss: Goldie Baronbottom",
     ALL = {
-      { text = "Spread the Love active. Detonate volatile barrels in pairs.", type = "Call" },
+      { text = "s|Spread the Love| active. Detonate volatile barrels in pairs.", type = "Call" },
       { text = "s|Let it Hail|. Move out and prep defensives for high group damage.", type = "Call" }
     },
     TANK = {
