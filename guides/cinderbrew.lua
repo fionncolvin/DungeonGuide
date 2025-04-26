@@ -4,7 +4,7 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
     header = "Intro: Cinderbrew Meadery",
     ALL = {
       { text = "33-minute timer with split path after Boss 1.", type = "Mechanic" },
-      { text = "Sticky Honey (Cooking/Alchemy 25+): AoE slow + haste debuff — affects allies too.", type = "Mechanic" },
+      { text = "s|Sticky Honey| (Cooking/Alchemy 25+): AoE slow + haste debuff — affects allies too.", type = "Mechanic" },
       { text = "Flamethrower (Eng/Gnome/Goblin 25+): Low AoE damage — best used by healers.", type = "Mechanic" },
       { text = "Watch for Thirsty enrages — mobs gain haste and damage.", type = "Mechanic" },
       { text = "Heavy use of swirlies, AoE zones, and frontal attacks — constant movement needed.", type = "Mechanic" },
@@ -13,9 +13,9 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
     },
     TANK = {
       { text = "Route splits to I'pa (left) or Buzzbee (right) after Aldryr.", type = "Mechanic" },
-      { text = "Avoid pulling multiple CC-immune mobs (n|Chewie|, n|Harvester|s, n|Hopgoblin|s).", type = "Mechanic" },
+      { text = "Avoid pulling multiple CC-immune mobs (n|Chewie|, n|Harvesters|, n|Hopgoblins|).", type = "Mechanic" },
       { text = "Stagger Bee packs — s|Final Sting| and s|Swarming Surprise| can chain kill tanks.", type = "Mechanic" },
-      { text = "Pick up n|Brew Drop|s, n|Bee-let|s, and n|Ravenous Cinderbee|s quickly to control threat.", type = "Mechanic" },
+      { text = "Pick up n|Brew Drops|, n|Bee-lets|, and n|Ravenous Cinderbees| quickly to control threat.", type = "Mechanic" },
     },
     HEALER = {
       { text = "Flamethrower is safe utility — avoid during heavy group damage.", type = "Mechanic" },
@@ -23,7 +23,7 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
     },
     DPS = {
       { text = "Kill Failed Batch kegs before they explode.", type = "Mechanic" },
-      { text = "Use CC on n|Brew Drop|s and Bees — prevent them reaching boss/barrels.", type = "Mechanic" },
+      { text = "Use CC on n|Brew Drops| and Bees — prevent them reaching boss/barrels.", type = "Mechanic" },
     },
   },
   
@@ -40,7 +40,7 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
       { text = "Face boss to wall to reduce frontal danger.", type = "Mechanic" },
       { text = "Stay mid-room. Avoid s|Crawling Brawl| zones.", type = "Position" },
       { text = "Pick up beer early in s|Happy Hour|. Assign patrons if PUG.", type = "Mechanic" },
-      { text = "Call: Tanking front. Watch frontal. Avoid puddles.", type = "Call" }
+      { text = "Tanking front. Watch frontal. Avoid puddles.", type = "Call" }
     },
     HEALER = {
       { text = "s|Throw Cinderbrew| on 2 players. I’ll spot heal or use CDs.", type = "Call" },
@@ -58,22 +58,22 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
     header = "Boss: I'pa",
     ALL = {
       { text = "s|Spouting Stout| incoming — dodge swirls!", type = "Call" },
-      { text = "Brew Drops spawning — CC + burn before they reach boss.", type = "Call" }
+      { text = "n|Brew Drops| spawning — CC + burn before they reach boss.", type = "Call" }
     },
     TANK = {
       { text = "Move boss to opposite wall on s|Spouting Stout|.", type = "Mechanic" },
       { text = "Keep boss off puddles — avoid tank knockbacks.", type = "Mechanic" },
-      { text = "Call: Moving boss — avoid puddles + handle adds.", type = "Call" },
-      { text = "Stun/knock Brew Drops before Fill 'Er Up.", type = "Mechanic" },
-      { text = "Watch Uppercut — don't get knocked into puddles or adds.", type = "Mechanic" }
+      { text = "Moving boss — avoid puddles + handle adds.", type = "Call" },
+      { text = "Stun/knock s|Brew Drops| before Fill 'Er Up.", type = "Mechanic" },
+      { text = "Watch s|Uppercut| — don't get knocked into puddles or adds.", type = "Mechanic" }
     },
     HEALER = {
       { text = "Dispel s|Burning Fermentation| ASAP. Spot heal 2 targets.", type = "Mechanic" },
-      { text = "Prep CDs for s|Spouting Stout| + Brew Drop combo.", type = "Call" }
+      { text = "Prep CDs for s|Spouting Stout| + n|Brew Drop| combo.", type = "Call" }
     },
     DPS = {
-      { text = "CC and cleave Brew Drops fast. Second wave respawns from puddles.", type = "Mechanic" },
-      { text = "Interrupt s|Rejuvenating Honey| from Flavor Scientist trash.", type = "Interrupt" }
+      { text = "CC and cleave n|Brew Drops| fast. Second wave respawns from puddles.", type = "Mechanic" },
+      { text = "Interrupt s|Rejuvenating Honey| from n|Flavor Scientist| trash.", type = "Interrupt" }
     }
   },
 
@@ -88,17 +88,17 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
       { text = "Use major on s|Honey Marinade|. Drop puddle near wall.", type = "Mechanic" },
       { type = "Mechanic", text = "s|Honey Marinade| placement is critical—use wall edge if possible." },
       { type = "Call", text = "Dropping marinade far. Keep bees away from puddle." },
-      { type = "Mechanic", text = "Pick up threat on spawned Cinderbees ASAP—assign kick focus if needed." },
+      { type = "Mechanic", text = "Pick up threat on spawned n|Cinderbees| ASAP—assign kick focus if needed." },
       { type = "Mechanic", text = "Avoid using Bee-Haw yourself — assign DPS to handle barrels." },
-      { type = "Mechanic", text = "Use major defensives for s|Final Sting| from low-health Worker Bees." },
-      { type = "Interrupt", text = "s|Bee-stial Wrath| enrage from Bee Wrangler must be kicked or soothed." }
+      { type = "Mechanic", text = "Use major defensives for s|Final Sting| from low-health n|Worker Bees|." },
+      { type = "Interrupt", text = "s|Bee-stial Wrath| enrage from n|Bee Wrangler| must be kicked or soothed." }
     },
     HEALER = {
       { text = "s|Fluttering Wing|. I will top group. Watch pushback.", type = "Call" },
       { text = "Dispel or heal through s|Shredding Sting| bleeds.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Nuke Cinderbees. At 1% mount and Bee-Haw into barrels.", type = "Mechanic" },
+      { text = "Nuke n|Cinderbees|. At 1% mount and Bee-Haw into barrels.", type = "Mechanic" },
       { text = "s|Bee-zooka| line is dodgeable. Let target stay still.", type = "Mechanic" }
     }
   },
@@ -108,7 +108,7 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
     header = "Boss: Goldie Baronbottom",
     ALL = {
       { text = "Spread the Love active. Detonate volatile barrels in pairs.", type = "Call" },
-      { text = "Let it Hail. Move out and prep defensives for high group damage.", type = "Call" }
+      { text = "s|Let it Hail|. Move out and prep defensives for high group damage.", type = "Call" }
     },
     TANK = {
       { text = "Face s|Cash Cannon| away from group and clear barrels with it.", type = "Position" },
@@ -117,12 +117,12 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
       { type = "Call", text = "Breaking barrels now. Prepare healing CDs for group DoT." },
       { type = "Position", text = "Always position boss away from barrels to avoid splash destruction." },
       { type = "Mechanic", text = "Use frontal to manage barrel control—avoid clipping allies." },
-      { type = "Mechanic", text = "During Let it Hail, preposition to empty space and use defensives." },
+      { type = "Mechanic", text = "During s|Let it Hail|, preposition to empty space and use defensives." },
       { type = "Mechanic", text = "Coordinate with DPS to use Ricochet detonations strategically." }
     },
     HEALER = {
       { text = "Volatile barrels apply s|Cindering Wounds|. Prep CDs before detonation.", type = "Call" },
-      { text = "Prep healing for Let it Hail and barrel chain reaction.", type = "Mechanic" }
+      { text = "Prep healing for s|Let it Hail| and barrel chain reaction.", type = "Mechanic" }
     },
     DPS = {
       { text = "Stand near barrels with s|Burning Ricochet| to help clear safely.", type = "Mechanic" },

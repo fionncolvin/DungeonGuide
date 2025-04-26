@@ -40,7 +40,7 @@ DungeonGuide_Guides["Darkflame Cleft"] = {
       { text = "Defensive on Rock Buster — 25% phys dmg amp.", type = "Mechanic" },
       { text = "Position boss near track for minecart cleave.", type = "Position" },
       { text = "Reckless Charge incoming — bait near track to clear adds.", type = "Call" },
-      { text = "Call: Cart up — dragging boss for cleave.", type = "Call" },
+      { text = "Cart up — dragging boss for cleave.", type = "Call" },
       { text = "Avoid Cave-In. Position group to dodge post-charge swirls.", type = "Mechanic" },
       { text = "Pull at edge to avoid aggro from patrol Laborers.", type = "Mechanic" }
     },
@@ -68,7 +68,7 @@ DungeonGuide_Guides["Darkflame Cleft"] = {
       { text = "Call phase loops to coordinate candle safe zones.", type = "Mechanic" },
       { text = "Reposition to safe zone after Gust (extinguished candles).", type = "Position" },
       { text = "CD on Dousing Breath if high Enkindling stacks.", type = "Mechanic" },
-      { text = "Call: DPS light candles. I’m staying on boss.", type = "Call" }
+      { text = "DPS light candles. I’m staying on boss.", type = "Call" }
     },
     HEALER = {
       { text = "CDs for Dousing Breath + DoTs if candles unlit.", type = "Call" },
@@ -115,7 +115,7 @@ DungeonGuide_Guides["Darkflame Cleft"] = {
     TANK = {
       { text = "Refuel candle during Eternal Darkness or Rising Gloom.", type = "Mechanic" },
       { text = "Start fight mid-room for wax rotation.", type = "Position" },
-      { text = "Call: Candle low — grabbing wax to refill.", type = "Call" },
+      { text = "Candle low — grabbing wax to refill.", type = "Call" },
       { text = "Tank on track line. Rotate toward wax spawns.", type = "Position" },
       { text = "Group adds for cleave. Stun wrigglers.", type = "Mechanic" }
     },

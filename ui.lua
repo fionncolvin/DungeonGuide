@@ -6,8 +6,16 @@ local ICON_SCROLL = 450907
 local ICON_BUTTON = 441147
 
 -- === Highlight and Tooltip Utilities ===
-local SPELL_COLOR = { r = 3 / 255, g = 198 / 255, b = 252 / 255 }
-local NPC_COLOR = { r = 252 / 255, g = 194 / 255, b = 3 / 255 }
+local SPELL_COLOR = {
+    r = 3 / 255,
+    g = 198 / 255,
+    b = 252 / 255
+}
+local NPC_COLOR = {
+    r = 252 / 255,
+    g = 194 / 255,
+    b = 3 / 255
+}
 
 local E, L, V, P, G = unpack(_G.ElvUI or {})
 local S
@@ -158,6 +166,63 @@ function DungeonGuideUI:ShowGuide()
     self.frame:Show()
 end
 
+function DungeonGuideUI:FormatGuideLine(text)
+    local formatted = {}
+    local lastEnd = 1
+
+    for tagStart, tagType, tagValue, tagEnd in text:gmatch("()([sn])|([^|]+)|()") do
+        table.insert(formatted, strsub(text, lastEnd, tagStart - 1))
+        local color = (tagType == "s") and SPELL_COLOR or NPC_COLOR
+        local hex = ("|cff%02x%02x%02x"):format(color.r * 255, color.g * 255, color.b * 255)
+        local display = hex .. tagValue .. "|r"
+        table.insert(formatted, display)
+        lastEnd = tagEnd
+    end
+
+    table.insert(formatted, strsub(text, lastEnd))
+    return table.concat(formatted)
+end
+
+function DungeonGuideUI:AttachTooltipHandlers(frame, text)
+    local GetSpellInfo = _G.GetSpellInfo
+
+    frame:SetScript("OnEnter", function()
+        local tagType, tagValue = string.match(text, "([sn])|([^|]+)|")
+
+        if not tagType or not tagValue then
+            print("Invalid tag format in line:", text)
+            return
+        end
+
+        print("Tag Type: " .. tagType .. ", Tag Value: " .. tagValue)
+
+        GameTooltip:SetOwner(frame, "ANCHOR_TOP")
+
+        if tagType == "s" then
+            local info = C_Spell.GetSpellInfo(tagValue)
+            if info then
+                GameTooltip:SetSpellByID(info[7]) -- spellID
+            else
+                GameTooltip:SetText("Spell not found: " .. tagValue)
+            end
+        elseif tagType == "n" then
+            local npcID = DungeonGuide_FindNPCID(DungeonGuideContext.dungeon, tagValue)
+            if npcID then
+                GameTooltip:SetHyperlink("unit:Creature-0-0-0-0-" .. npcID .. "-0000000000")
+                print("NPC ID: " .. npcID)
+            else
+                GameTooltip:SetText("NPC not found: " .. tagValue)
+            end
+        end
+
+        GameTooltip:Show()
+    end)
+
+    frame:SetScript("OnLeave", function()
+        GameTooltip:Hide()
+    end)
+end
+
 function DungeonGuideUI:UpdateGuideContent()
     local f = self.frame
 
@@ -256,12 +321,17 @@ function DungeonGuideUI:UpdateGuideContent()
         local scrollbarOffset = 20
         local textPadding = 30
         local availableWidth = f:GetWidth() - scrollbarOffset - textPadding
+        local formatted = self:FormatGuideLine(line.text)
 
         local font, _, flags = row.text:GetFont()
         row.text:SetFont(font, DungeonGuideDB.fontSize or 12, flags)
         row.text:SetWidth(availableWidth) -- set BEFORE SetText
-        row.text:SetText(line.text)
+        row.text:SetText(formatted)
         row.text:SetHeight(0)
+
+--        if string.find(line.text, "s|") or string.find(line.text, "n|") then
+--            self:AttachTooltipHandlers(row, line.text)
+--        end
 
         local textHeight = row.text:GetStringHeight() + 6
         row:SetHeight(textHeight)
@@ -283,56 +353,6 @@ function DungeonGuideUI:UpdateGuideContent()
 
     f.contentFrame:SetHeight(yOffset + 20)
     f.contentFrame:SetWidth(f:GetWidth() - 40)
-end
-
-function DungeonGuideUI:FormatGuideLine(text)
-    local formatted = {}
-    local lastEnd = 1
-
-    for tagStart, tagType, tagValue, tagEnd in text:gmatch("()([sn])|([^|]+)|()") do
-        table.insert(formatted, strsub(text, lastEnd, tagStart - 1))
-        local color = (tagType == "s") and SPELL_COLOR or NPC_COLOR
-        local hex = ("|cff%02x%02x%02x"):format(color.r * 255, color.g * 255, color.b * 255)
-        local display = hex .. tagValue .. "|r"
-        table.insert(formatted, display)
-        lastEnd = tagEnd
-    end
-
-    table.insert(formatted, strsub(text, lastEnd))
-    return table.concat(formatted)
-end
-
-function DungeonGuideUI:AttachTooltipHandlers(frame, text)
-    frame:SetScript("OnEnter", function()
-        local _, tagType, tagValue = string.match(text, "([sn])|([^|]+)|")
-        if not tagType or not tagValue then
-            return
-        end
-        GameTooltip:SetOwner(frame, "ANCHOR_TOP")
-
-        if tagType == "s" then
-            local _, _, _, _, _, _, spellID = GetSpellInfo(tagValue)
-            if spellID then
-                GameTooltip:SetSpellByID(spellID)
-            else
-                GameTooltip:SetText("Spell not found: " .. tagValue)
-            end
-        elseif tagType == "n" then
-            local zone = GetRealZoneText()
-            local npcID = DungeonGuide_NPCNames[zone] and DungeonGuide_NPCNames[zone][tagValue]
-            if npcID then
-                GameTooltip:SetHyperlink("unit:Creature-0-0-0-0-" .. npcID .. "-0000000000")
-            else
-                GameTooltip:SetText("NPC not found: " .. tagValue)
-            end
-        end
-
-        GameTooltip:Show()
-    end)
-
-    frame:SetScript("OnLeave", function()
-        GameTooltip:Hide()
-    end)
 end
 
 function DungeonGuideUI:ShowGuideSelector()

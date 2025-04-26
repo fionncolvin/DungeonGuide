@@ -1,7 +1,9 @@
-local f = CreateFrame("Frame")
-
 DungeonGuideDB = DungeonGuideDB or {}
 DungeonGuide_Guides = DungeonGuide_Guides or {}
+DungeonGuide_NPCs = DungeonGuide_NPCs or {}
+
+local f = CreateFrame("Frame")
+
 DungeonGuideContext = {
     selectorOpen = false,
     role = nil,

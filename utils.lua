@@ -12,6 +12,23 @@ function DungeonGuide_FindGuideEntry(dungeonName, encounterName)
     end
 end
 
+function DungeonGuide_FindNPCID(dungeonName, npcName)
+    local npcID = nil
+    print("DungeonGuide_FindNPCID: " .. dungeonName .. " - " .. npcName)
+
+    if (DungeonGuide_NPCNames[dungeonName]) then
+        print("DungeonGuide_NPCs: " .. tostring(DungeonGuide_NPCNames[dungeonName]))
+        if type(DungeonGuide_NPCNames[dungeonName] == "table") then
+            if (DungeonGuide_NPCNames[dungeonName][npcName]) then
+                print("DungeonGuide_NPCs: " .. tostring(DungeonGuide_NPCNames[dungeonName][npcName]))
+                npcID = DungeonGuide_NPCNames[dungeonName][npcName]
+            end
+        end
+    end
+
+    return npcID
+end
+
 function DungeonGuide_GetPlayerRole()
     local role = UnitGroupRolesAssigned("player")
     
