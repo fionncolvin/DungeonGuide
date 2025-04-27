@@ -260,18 +260,20 @@ function DungeonGuideUI:UpdateGuideContent()
 
     local yOffset, index = 0, 1
 
-    local typeSortOrder = {
-        Mechanic = 1,
-        Position = 2,
-        Interrupt = 3,
-        Call = 4
-    }
+    if (DungeonGuideContext.encounter ~= "Route") then
+        local typeSortOrder = {
+            Mechanic = 1,
+            Position = 2,
+            Interrupt = 3,
+            Call = 4
+        }
 
-    table.sort(lines, function(a, b)
-        local orderA = typeSortOrder[a.type] or 99
-        local orderB = typeSortOrder[b.type] or 99
-        return orderA < orderB
-    end)
+        table.sort(lines, function(a, b)
+            local orderA = typeSortOrder[a.type] or 99
+            local orderB = typeSortOrder[b.type] or 99
+            return orderA < orderB
+        end)
+    end
 
     for _, line in ipairs(lines) do
         local row = f.contentRows[index]
