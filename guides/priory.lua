@@ -26,9 +26,32 @@ DungeonGuide_Guides["Priory of the Sacred Flame"] = {
       { text = "Soak Sacrificial Pyres properly. Avoid doubling up. Immunity/tank soak if needed.", type = "Mechanic" }
     }
   },
+
+  ["Route"] = {
+    order = 2,
+    header = "Route: Priory of the Sacred Flame",
+    ALL = {
+      { text = "Big pull to start with Footmen into Patrol into 2x packs at Fountain. Bloodlust here.", type = "Call" },
+      { text = "Pull Guard Captain Suleyman next. Position on RIGHT stairs for Shield Slam.", type = "Call" },
+      { text = "Up the stairs for Sergeant Shaynemail when she runs in + RIGHT pack.", type = "Call" },
+      { text = "Patrol + tree-side 3-pack next.", type = "Call" },
+      { text = "Chain Conjurers + Lightspawn + Neophytes. Respect tank damage.", type = "Call" },
+      { text = "Pull High Priest Aemya next. Focus interrupts.", type = "Call" },
+      { text = "Move to catch Duelmal mid-run if possible.", type = "Call" },
+      { text = "Fight Captain Dailcry next. South-side mini-boss preferred for cleave.", type = "Call" },
+      { text = "Full pull Cathedral Neophytes first. Watch Sacred Toll casts.", type = "Mechanic" },
+      { text = "Clear left side first in Cathedral. Then right side.", type = "Call" },
+      { text = "After Braunpyke, pull double Paladins, Priests, and Templars.", type = "Call" },
+      { text = "LOS first stairwell pack into stairwell for safe pull.", type = "Position" },
+      { text = "Focus Lightspawns carefully. Avoid healing mobs with Purification zones.", type = "Mechanic" },
+      { text = "Clear right side first or patrol depending on timing.", type = "Call" },
+      { text = "Middle group last. Must clear both sides of steps as they pull-in with boss.", type = "Call" },
+      { text = "Final boss: Prioress Murrpray after full clear.", type = "Call" },
+    },
+  },
   
   ["Captain Dailcry"] = {
-    order = 2,
+    order = 3,
     header = "Boss: Captain Dailcry",
     ALL = {
       { text = "Interrupt Cinder Blast (Duelmall) every time or tank dies.", type = "Interrupt" },
@@ -55,7 +78,7 @@ DungeonGuide_Guides["Priory of the Sacred Flame"] = {
   },
   
   ["Baron Braunpyke"] = {
-    order = 3,
+    order = 4,
     header = "Boss: Baron Braunpyke",
     ALL = {
       { text = "Vindictive Wrath active — all boss abilities are stronger. Play safe.", type = "Call" },
@@ -80,7 +103,7 @@ DungeonGuide_Guides["Priory of the Sacred Flame"] = {
   },
   
   ["Prioress Murrpray"] = {
-    order = 4,
+    order = 5,
     header = "Boss: Prioress Murrpray",
     ALL = {
       { text = "Holy Flame puddle — move ASAP to avoid DoT + flames.", type = "Mechanic" },

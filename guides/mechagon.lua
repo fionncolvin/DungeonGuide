@@ -30,9 +30,37 @@ DungeonGuide_Guides["Mechagon Workshop"] = {
       { text = "Stun Sparkflux adds till tank picks them up. Kick heals, avoid empower.", type = "Mechanic" }
     }
   },
-  
-  ["Tussle Tonks"] = {
+
+  ["Route"] = {
     order = 2,
+    header = "Route: Mechagon Workshop",
+    ALL = {
+      { text = "Start pulling right side in first boss room. Safer Bomb Tonk control.", type = "Call" },
+      { text = "Left side second. Then south side of room. Clear full room for boss.", type = "Call" },
+      { text = "Keep pulls under 3 Bomb Tonks per pull on higher keys.", type = "Mechanic" },
+      { text = "Watch Rocket Tonk swirlies and Strider Tonk leaps.", type = "Mechanic" },
+      { text = "After Tussle Tonks, pull single Waste Processing Unit solo.", type = "Call" },
+      { text = "LOS Metal Gunk healing absorbs when possible.", type = "Mechanic" },
+      { text = "Chain Metal Gunks into each other carefully. Watch stacking absorbs.", type = "Call" },
+      { text = "Skip patrolling Waste Processing Unit if safe near pool.", type = "Call" },
+      { text = "Clear Junkyard Dogs carefully. Their DoT is brutal without dispels.", type = "Mechanic" },
+      { text = "Pull Junkyard Dogs solo or small for K.U.-J.O. boss space.", type = "Call" },
+      { text = "After K.U.-J.O., walk conveyor belt. Warlock Gate saves time if available.", type = "Mechanic" },
+      { text = "Next pull: 2x Mechagon Tinkerers + 2x Guard Dogs.", type = "Call" },
+      { text = "Next Defense Spot pulls: 2x Mark I + 1x Mark II units.", type = "Call" },
+      { text = "Focus Mark I units first to relieve healer pressure.", type = "Mechanic" },
+      { text = "Fight Blastron X80 stationary. Dodge all telegraphed attacks.", type = "Mechanic" },
+      { text = "Pull Mechanics + Defenders next. Focus Defense Spot interrupts.", type = "Call" },
+      { text = "Defender Barriers are safe zones. Use them for Squirrel explosions.", type = "Mechanic" },
+      { text = "After Sparkflux, fight Spider Tanks. Single pull unless healer strong.", type = "Call" },
+      { text = "Focus top Spider Tank first — it spawns Taxi to next section.", type = "Call" },
+      { text = "Pull Defenders + Tinkerers into final Defense Spots. Use Barrier.", type = "Call" },
+      { text = "Expect slight overcount (103–109%) by end. No big deal.", type = "Mechanic" },
+    },
+  },  
+
+  ["Tussle Tonks"] = {
+    order = 3,
     header = "Boss: Tussle Tonks",
     ALL = {
       { text = "Keep bosses close in HP — Electrical Storm if 1 dies early.", type = "Mechanic" },
@@ -59,7 +87,7 @@ DungeonGuide_Guides["Mechagon Workshop"] = {
   },
   
   ["K.U.-J.0"] = {
-    order = 3,
+    order = 4,
     header = "Boss: K.U.-J.0",
     ALL = {
       { text = "Avoid glowing Junk Cubes — 2nd hit = lethal explosion.", type = "Mechanic" },
@@ -84,7 +112,7 @@ DungeonGuide_Guides["Mechagon Workshop"] = {
   },
   
   ["Head Machinist Sparkflux"] = {
-    order = 4,
+    order = 5,
     header = "Boss: Head Machinist Sparkflux",
     ALL = {
       { text = "Avoid Self-Trimming Hedge blades — bounce randomly.", type = "Mechanic" },
@@ -109,7 +137,7 @@ DungeonGuide_Guides["Mechagon Workshop"] = {
   },
 
   ["The Maze"] = {
-    order = 5,
+    order = 6,
     header = "Maze: Stealth Section",
     ALL = {
       { text = "Do not use CC or offensive spells — will break stealth instantly.", type = "Mechanic" },
@@ -121,7 +149,7 @@ DungeonGuide_Guides["Mechagon Workshop"] = {
   },
  
   ["King Mechagon"] = {
-    order = 6,
+    order = 7,
     header = "Boss: King Mechagon",
     ALL = {
       { text = "Recalibrate orbs — dodge across safely.", type = "Call" },

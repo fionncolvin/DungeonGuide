@@ -25,9 +25,36 @@ DungeonGuide_Guides["The Rookery"] = {
       { text = "Assign shard duty: 1 per platform. Pop Charge after Upheaval swirls clear.", type = "Call" }
     }
   },
-  
-  ["Kyrioss"] = {
+
+  ["Route"] = {
     order = 2,
+    header = "Route: The Rookery",
+    ALL = {
+      { text = "Pull Quartermaster Corti + right-side guards for extra count.", type = "Call" },
+      { text = "Focus Corti quickly. Watch Bounding Void frontal.", type = "Mechanic" },
+      { text = "Move into Storm’s Roost: right side first, grab patrol + adjacent pack.", type = "Call" },
+      { text = "Kick Cursed Thunderers. Watch Storm Rook unavoidable group damage.", type = "Mechanic" },
+      { text = "Clear around Storm’s Roost room one pack at a time.", type = "Call" },
+      { text = "Optional: Skip triple-caster pack if group coordination is low.", type = "Mechanic" },
+      { text = "First boss: Cryos Kyrios next.", type = "Call" },
+      { text = "After boss, pull patrol + adjacent pack downstairs.", type = "Call" },
+      { text = "Ignore corner pack after boss. Not needed for count.", type = "Call" },
+      { text = "One pack at a time after patrol. Respect Attracting Shadows damage.", type = "Mechanic" },
+      { text = "Walk past sleeping Void Crushers safely. Short aggro radius.", type = "Call" },
+      { text = "Next key pull: double Void Diffuser pack. Focus one fast.", type = "Call" },
+      { text = "Leading into Gorak Goran: pull 8 trash onto boss.", type = "Call" },
+      { text = "After Gorak Goran, pull two Crushers + Void Ascendant together.", type = "Call" },
+      { text = "Ascendant orb projectiles: melee position carefully.", type = "Mechanic" },
+      { text = "Head downstairs. Mass pull Afflicted Civilians for cleave.", type = "Call" },
+      { text = "Skip Crushers in lower section if safe on count.", type = "Mechanic" },
+      { text = "Pull Radiating Voidstone solo. Avoid damage debuff stacking.", type = "Call" },
+      { text = "Kill 3 Void Ascendants to spawn final boss.", type = "Call" },
+      { text = "Pull Crushers + Voidstone if short on count at end.", type = "Call" },
+    },
+  },
+    
+  ["Kyrioss"] = {
+    order = 3,
     header = "Boss: Kyrioss",
     ALL = {
       { text = "Crashing Thunder — spread 8yds. Use minor defensives.", type = "Call" },
@@ -51,7 +78,7 @@ DungeonGuide_Guides["The Rookery"] = {
   },
   
   ["Stormguard Gorren"] = {
-    order = 3,
+    order = 4,
     header = "Boss: Stormguard Gorren",
     ALL = {
       { text = "Crush Reality targeting soon — move to edge to soak. Avoid beam lines.", type = "Call" },
@@ -78,7 +105,7 @@ DungeonGuide_Guides["The Rookery"] = {
   },
  
   ["Voidstone Monstrosity"] = {
-    order = 4,
+    order = 5,
     header = "Boss: Voidstone Monstrosity",
     ALL = {
       { text = "Null Upheaval soon — spread, pop defensive, dodge swirlies.", type = "Call" },

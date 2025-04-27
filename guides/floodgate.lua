@@ -25,9 +25,33 @@ DungeonGuide_Guides["Operation: Floodgate"] = {
       { text = "Use CC to stop Wind-Up, Surveying Beam, and Jetison Kelp when kicks are tight.", type = "Mechanic" },
     },
   },  
+
+  ["Route"] = {
+    order = 2,
+    header = "Route: Operation: Floodgate",
+    ALL = {
+      { text = "Pulling double Soldiers, Contractors, Surveyors, and Shreddinator first. Bloodlust and burn cooldowns.", type = "Call" },
+      { text = "Bloodlust first pull after Shreddinator spawns Drums.", type = "Call" },
+      { text = "Next pull: Jump down after Weapon Stock Blows. All trash around pool.", type = "Call" },
+      { text = "Up stars into Demolitionist + Snipers + Inspectors.", type = "Call" },
+      { text = "Up LEFT stairs before Big M.O.M.M.A.", type = "Call" },
+      { text = "Boss pull: Big M.O.M.M.A next.", type = "Call" },
+      { text = "Post-boss: Pull Soldiers and Bloodwarper. Bloodwarper highest priority.", type = "Call" },
+      { text = "Next: Back across boss floor and up stairs. Will chain in Loaderbots. Bloodlust when clearing Bloodwarper pack.", type = "Call" },
+      { text = "Glider across to target. Left pack into right then up stairs.", type = "Call" },
+      { text = "Chain double Shreddinator into Contractors.", type = "Call" },
+      { text = "Short pull: Contractors and Surveyor to boss platform.", type = "Call" },
+      { text = "Boss pull: Bront & Keeza Quickfuse.", type = "Call" },
+      { text = "Post-boss: Pull all Kelp mobs together and AoE.", type = "Call" },
+      { text = "Boss pull: Swampface.", type = "Call" },
+      { text = "Bubbles solo at bridge. Keep him controlled.", type = "Call" },
+      { text = "Contractors, Electricians, Inspectors carefully. Kick Electricians.", type = "Call" },
+      { text = "Final pulls: Soldiers, Contractors, Jumpstarters into final boss.", type = "Call" }
+    },
+  },
   
   ["Big M.O.M.M.A."] = {
-    order = 2,
+    order = 3,
     header = "Boss: Big M.O.M.M.A.",
     ALL = {
       { text = "Interrupt Maximum Distortion — pulsing AoE + pushback.", type = "Interrupt" },
@@ -57,7 +81,7 @@ DungeonGuide_Guides["Operation: Floodgate"] = {
   },
   
   ["Demolition Duo"] = {
-    order = 3,
+    order = 4,
     header = "Boss: Demolition Duo",
     ALL = {
       { text = "Gel on me — I’ll move to bomb. Dispel once stacked.", type = "Call" },
@@ -87,7 +111,7 @@ DungeonGuide_Guides["Operation: Floodgate"] = {
   },
   
   ["Swampface"] = {
-    order = 4,
+    order = 5,
     header = "Boss: Swampface",
     ALL = {
       { text = "Mudslide cast — dodge LEFT with partner.", type = "Call" },
@@ -116,7 +140,7 @@ DungeonGuide_Guides["Operation: Floodgate"] = {
   },
   
   ["Geezle Gigazap"] = {
-    order = 5,
+    order = 6,
     header = "Boss: Geezle Gigazap",
     ALL = {
       { text = "Turbocharge soon — use defensive + dodge lines.", type = "Call" },

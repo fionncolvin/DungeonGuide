@@ -26,9 +26,36 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
       { text = "Use CC on n|Brew Drops| and Bees — prevent them reaching boss/barrels.", type = "Mechanic" },
     },
   },
-  
-  ["Brew Master Aldryr"] = {
+
+  ["Route"] = {
     order = 2,
+    header = "Route: Cinderbrew Meadery",
+    ALL = {
+      { text = "Pulling right side to start. Watch Chef Chewie patrol.", type = "Call" },
+      { text = "Only one Hired Muscle at a time. No double pulls.", type = "Call" },
+      { text = "Pulling far-right Pyromaniac, Patrons, and Hired Muscle first.", type = "Call" },
+      { text = "If Attendant is close, cleave it with first pull.", type = "Call" },
+      { text = "Pop Lust early while burning first pull cooldowns.", type = "Call" },
+      { text = "Wait for safe patrol before pulling Chef Chewie.", type = "Call" },
+      { text = "After Chewie, pull Hired Muscle + nearby trash carefully.", type = "Mechanic" },
+      { text = "Skip deep corner pack. Not needed for count.", type = "Call" },
+      { text = "Heading north after first boss. Fighting IPA next.", type = "Call" },
+      { text = "One pack at a time here. Will struggle otherwise.", type = "Call" },
+      { text = "Focus Flavor Scientists for interrupts. Watch Hop Goblins.", type = "Mechanic" },
+      { text = "Pull Careless Hop Goblin first on IPA platform.", type = "Call" },
+      { text = "Pull packs out into hallway to avoid double patrols.", type = "Call" },
+      { text = "After IPA, move south to Buzzbee wing.", type = "Call" },
+      { text = "Pulling three Bee packs carefully. Watch for Sting casts.", type = "Call" },
+      { text = "Pull corner Purveyor with Worker Bees. Manage puddles.", type = "Call" },
+      { text = "Do not pull more than two Purveyors at once.", type = "Call" },
+      { text = "Try skipping the Purveyor near boss room entrance.", type = "Call" },
+      { text = "Clear most Beelets before Buzzbee fight. Pull a few into boss if clean.", type = "Call" },
+      { text = "After Buzzbee, small pulls to Goldie. Trash gives low count.", type = "Mechanic" }
+    },
+  },
+
+  ["Brew Master Aldryr"] = {
+    order = 3,
     header = "Boss: Brew Master Aldryr",
     ALL = {
       { text = "s|Blazing Belch| frontal. Stand close + sidestep.", type = "Mechanic" },
@@ -54,7 +81,7 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
   },
 
   ["I'pa"] = {
-    order = 3,
+    order = 4,
     header = "Boss: I'pa",
     ALL = {
       { text = "s|Spouting Stout| incoming — dodge swirls!", type = "Call" },
@@ -78,7 +105,7 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
   },
 
   ["Benk Buzzbee"] = {
-    order = 4,
+    order = 5,
     header = "Boss: Benk Buzzbee",
     ALL = {
       { text = "s|Snack Time| active. DPS mount bee and destroy barrel.", type = "Call" },
@@ -104,7 +131,7 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
   },
 
   ["Goldie Baronbottom"] = {
-    order = 5,
+    order = 6,
     header = "Boss: Goldie Baronbottom",
     ALL = {
       { text = "s|Spread the Love| active. Detonate volatile barrels in pairs.", type = "Call" },

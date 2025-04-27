@@ -28,8 +28,33 @@ DungeonGuide_Guides["Darkflame Cleft"] = {
     },
   },  
 
-  ["Ol' Waxbeard"] = {
+  ["Route"] = {
     order = 2,
+    header = "Route: Darkflame Cleft",
+    ALL = {
+      { text = "Pulling full first area. Respect bleed stacks from Laborers.", type = "Call" },
+      { text = "Focus Wicklighter fast in second pull to avoid bolt overlaps.", type = "Call" },
+      { text = "Chain pull Overseers and new Laborers carefully into each other.", type = "Call" },
+      { text = "Tag Mole Herder from range and LOS if possible.", type = "Call" },
+      { text = "Aim for ~28-30% count before first boss.", type = "Mechanic" },
+      { text = "After first boss, jump down and pull Wandering Candle + Task Workers.", type = "Call" },
+      { text = "LOS Wandering Candle AOE under Minecart rail pillar.", type = "Position" },
+      { text = "Second Candle pull: Combine it with next pack for efficiency.", type = "Call" },
+      { text = "In boss room: can either slow pull or YOLO all mobs together.", type = "Mechanic" },
+      { text = "LOS properly to reduce fire stacks from Blazing Fiends.", type = "Mechanic" },
+      { text = "After Blazikon, pull Wandering Candle in new room first.", type = "Call" },
+      { text = "Run far end to stack Flame Bolters via LOS if confident.", type = "Call" },
+      { text = "Snoot and Torch pull next. Tank face headlock safely.", type = "Mechanic" },
+      { text = "After Candle King, proceed straight into Minecart event.", type = "Call" },
+      { text = "Pull 1-2 packs at a time in Minecart to avoid Corridor Creeper scaling.", type = "Call" },
+      { text = "Cart goes left-right-left — clear as we move.", type = "Call" },
+      { text = "At final boss, expect to still be slightly under count.", type = "Mechanic" },
+      { text = "Backpull into earlier cleared mobs if needed to reach 100%.", type = "Call" },
+    },
+  },
+
+  ["Ol' Waxbeard"] = {
+    order = 3,
     header = "Boss: Ol' Waxbeard",
     ALL = {
       { text = "Interrupt Underhanded Track-tics cart or group wipe.", type = "Interrupt" }
@@ -55,7 +80,7 @@ DungeonGuide_Guides["Darkflame Cleft"] = {
   },  
 
   ["Blazikon"] = {
-    order = 3,
+    order = 4,
     header = "Boss: Blazikon",
     ALL = {
       { text = "Light candles during Barrage. Spread swirlies carefully.", type = "Call" },
@@ -81,7 +106,7 @@ DungeonGuide_Guides["Darkflame Cleft"] = {
   },  
 
   ["The Candle King"] = {
-    order = 4,
+    order = 5,
     header = "Boss: The Candle King",
     ALL = {
       { text = "Interrupt Paranoid Mind or party gets feared.", type = "Interrupt" },
@@ -104,7 +129,7 @@ DungeonGuide_Guides["Darkflame Cleft"] = {
   },
   
   ["The Darkness"] = {
-    order = 5,
+    order = 6,
     header = "Boss: The Darkness",
     ALL = {
       { text = "Interrupt Call Darkspawn fast. I’ll AoE + help kick adds.", type = "Call" },
