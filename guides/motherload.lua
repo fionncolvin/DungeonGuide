@@ -26,8 +26,38 @@ DungeonGuide_Guides["The MOTHERLODE!!"] = {
     }
   },
   
-  ["Coin-Operated Crowd Pummeler"] = {
+  ["Route"] = {
     order = 2,
+    header = "Route: The MOTHERLODE!!",
+    ALL = {
+      { text = "Pulling Off-Duty Laborers and right-side Mech Jockey to start.", type = "Call" },
+      { text = "Adding two Hired Assassins into first pull. Blow up Assassins first.", type = "Call" },
+      { text = "Adding Refreshment Vendors as well now.", type = "Call" },
+      { text = "Next pull: Right side up to, but including, Mechanized Peacekeeper. Watch left packs.", type = "Call" },
+      { text = "Single pull: Mechanized Peacekeeper next. Watch Tear Gas.", type = "Call" },
+      { text = "After Peacekeeper, going left side.", type = "Call" },
+      { text = "Addled Thug, Mech Jockey, Vendor, Jockey + Mechanized Peacekeeper. Stop Mech Jockeys from mounting.", type = "Call" },
+      { text = "Next pull: Addled Thug + Assassin into Vendor, Jockey + Laborers.", type = "Call" },
+      { text = "Peacekeeper + Addled Thug + Mech Jockey before Boss.", type = "Call" },
+      { text = "Heading into Coin-Operated Crowd Pummeler boss room next.", type = "Call" },
+      { text = "Post-Pummeler we pull Extractor + Sapper + Rats back here. We then hug right side", type = "Call" },
+      { text = "Big pull now: Extractor + Earthshaper + Rats into Earthshaper + Sapper + Rats. Stay right.", type = "Call" },
+      { text = "Move up hill. Extractor + 2x Earthshaper + 2x Earthshaper.", type = "Call" },
+      { text = "After these we pull 2x Stonefuries + Shale Biters together.", type = "Call" },
+      { text = "Target Taskmaster Askari we will pull trash into boss.", type = "Call" },
+      { text = "Pulling trash into Azerokk boss.", type = "Call" },
+      { text = "After Azerokk, we go centre. Be carful now. Alchemist + Mastermind + Test Subject", type = "Call" },
+      { text = "Focus dodging Echo Blades from Weapon Testers.", type = "Call" },
+      { text = "3x Alchemists. Stay tight, lots around us.", type = "Call" },
+      { text = "Alchemist + 2x Mastermind + Tester before Rixxa Fluxflame.", type = "Call" },
+      { text = "Post-Rixxa, Left side War Machine + 2x Specialist pull back to provide space.", type = "Call" },
+      { text = "Head uphill tight right. War Machine + Specialist. Avoid other War Machine.", type = "Call" },
+      { text = "Stay right to pull Two War Machines then finish to Razdunk.", type = "Call" }
+    }
+  },
+
+  ["Coin-Operated Crowd Pummeler"] = {
+    order = 3,
     header = "Boss: Coin-Operated Crowd Pummeler",
     ALL = {
       { text = "Foot Bombs Need Clearing — Click and kick toward boss!", type = "Call" },
@@ -54,7 +84,7 @@ DungeonGuide_Guides["The MOTHERLODE!!"] = {
   },  
 
   ["Azerokk"] = {
-    order = 3,
+    order = 4,
     header = "Boss: Azerokk",
     ALL = {
       { text = "Burn empowered Earthrager before Resonant Quake or wipe to Aftershock.", type = "Call" },
@@ -82,7 +112,7 @@ DungeonGuide_Guides["The MOTHERLODE!!"] = {
   },
   
   ["Rixxa Fluxflame"] = {
-    order = 4,
+    order = 5,
     header = "Boss: Rixxa Fluxflame",
     ALL = {
       { text = "Propellant Blast on me — aiming to clear puddles.", type = "Call" },
@@ -108,7 +138,7 @@ DungeonGuide_Guides["The MOTHERLODE!!"] = {
   },
   
   ["Mogul Razdunk"] = {
-    order = 5,
+    order = 6,
     header = "Boss: Mogul Razdunk",
     ALL = {
       { text = "Homing Missile on me — running out, using defensive.", type = "Call" },

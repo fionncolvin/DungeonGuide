@@ -25,8 +25,33 @@ DungeonGuide_Guides["Theater of Pain"] = {
     }
   },
   
+  ["Route"] = {    
+    order = 2,    
+    header = "Route: Theater of Pain",
+    ALL = {
+      { text = "Skipping first trash pack. Stay tight and follow me.", type = "Call" },
+      { text = "Pulling first trash into Bloodhorn for cleave.", type = "Call" },
+      { text = "Going to Xav's wing first after An Affront of Challengers.", type = "Call" },
+      { text = "Respect Arbalists bleed. Use personals if targeted.", type = "Call" },
+      { text = "Nekthara mini first. Watch for Whirlwinds and interrupting roars.", type = "Call" },
+      { text = "Harugia next. LOS on stairs if targeted by Ricocheting Blade.", type = "Call" },
+      { text = "Focus Captain fast. Pull mobs out of aura if needed.", type = "Call" },
+      { text = "Skipping Advent mini if we can, Warlock Gate if up.", type = "Call" },
+      { text = "Pulling Advent to stairs for LOS.", type = "Call" },
+      { text = "After Xav, heading Gorechop side next.", type = "Call" },
+      { text = "Big pull with Sludge Spewers first. Kick Withering Discharge.", type = "Call" },
+      { text = "Avoid Gasbag patrol by hugging left wall at top platform.", type = "Call" },
+      { text = "Pulling hallway mobs into Gorechop for cleave.", type = "Call" },
+      { text = "After Gorechop, moving into Ossuary wing (Kul'tharok).", type = "Call" },
+      { text = "Taking right-side portal after first orb drop.", type = "Call" },
+      { text = "Focus Bone Magi shields with Purge or heavy single-target.", type = "Call" },
+      { text = "Avoid pulling Dark Speakers unless we need for count.", type = "Call" },
+      { text = "Kill extra trash near final portal if short on count.", type = "Call" }
+    }
+  },
+
   ["An Affront of Challengers"] = {
-    order = 2,
+    order = 3,
     header = "Boss: An Affront of Challengers",
     ALL = {
       { text = "Loosely spread before Searing Death — use defensive if also hit by AoE.", type = "Call" },
@@ -47,31 +72,6 @@ DungeonGuide_Guides["Theater of Pain"] = {
     DPS = {
       { text = "Focus Sathel early to reduce magic pressure.", type = "Mechanic" },
       { text = "Dodge Decaying Breath frontal from Paceran.", type = "Mechanic" }
-    }
-  },
-  
-  ["Gorechop"] = {
-    order = 3,
-    header = "Boss: Gorechop",
-    ALL = {
-      { text = "Meat Hooks: Find the gap — dodge both waves cleanly.", type = "Call" },
-      { text = "Tenderizing Smash: Run out when pulled — avoid frontal slam.", type = "Call" },
-      { text = "Kill adds near same location to control puddle sprawl.", type = "Mechanic" },
-      { text = "Interrupt Withering Discharge from Sludge-spewers.", type = "Interrupt" }
-    },
-    TANK = {
-      { text = "Use defensive on Hateful Strike — massive phys hit.", type = "Mechanic" },
-      { text = "Pull boss near wall or cleared area before Smash.", type = "Position" },
-      { text = "Drag adds to boss for cleave. Control puddle zones.", type = "Mechanic" },
-      { text = "Face boss away after Smash — avoid cleaving group.", type = "Position" }
-    },
-    HEALER = {
-      { text = "Top group before Smash + Hooks combo — heavy burst.", type = "Call" },
-      { text = "Dispel Withering Touch and Filth from party.", type = "Mechanic" }
-    },
-    DPS = {
-      { text = "Spread for Leaping Thrash from adds.", type = "Mechanic" },
-      { text = "Burn Leftovers fast — kill near edge to conserve space.", type = "Mechanic" }
     }
   },
   
@@ -123,9 +123,34 @@ DungeonGuide_Guides["Theater of Pain"] = {
       { text = "Stay loose — don’t overlap Well DoTs or orbs.", type = "Mechanic" }
     }
   },
+
+  ["Gorechop"] = {
+    order = 6,
+    header = "Boss: Gorechop",
+    ALL = {
+      { text = "Meat Hooks: Find the gap — dodge both waves cleanly.", type = "Call" },
+      { text = "Tenderizing Smash: Run out when pulled — avoid frontal slam.", type = "Call" },
+      { text = "Kill adds near same location to control puddle sprawl.", type = "Mechanic" },
+      { text = "Interrupt Withering Discharge from Sludge-spewers.", type = "Interrupt" }
+    },
+    TANK = {
+      { text = "Use defensive on Hateful Strike — massive phys hit.", type = "Mechanic" },
+      { text = "Pull boss near wall or cleared area before Smash.", type = "Position" },
+      { text = "Drag adds to boss for cleave. Control puddle zones.", type = "Mechanic" },
+      { text = "Face boss away after Smash — avoid cleaving group.", type = "Position" }
+    },
+    HEALER = {
+      { text = "Top group before Smash + Hooks combo — heavy burst.", type = "Call" },
+      { text = "Dispel Withering Touch and Filth from party.", type = "Mechanic" }
+    },
+    DPS = {
+      { text = "Spread for Leaping Thrash from adds.", type = "Mechanic" },
+      { text = "Burn Leftovers fast — kill near edge to conserve space.", type = "Mechanic" }
+    }
+  },
   
   ["Mordretha, the Endless Empress"] = {
-    order = 6,
+    order = 7,
     header = "Boss: Mordretha, the Endless Empress",
     ALL = {
       { text = "Manifest Death: Spread out. Kick your Deathwalker, cleave them up.", type = "Call" },
