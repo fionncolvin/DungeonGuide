@@ -1,7 +1,7 @@
-DungeonGuide_Guides["Mechagon Workshop"] = {
-  ["Mechagon Workshop"] = {
+DungeonGuide_Guides["Operation: Mechagon"] = {
+  ["Operation: Mechagon"] = {
     order = 1,
-    header = "Guide: Mechagon Workshop",
+    header = "Guide: Operation: Mechagon",
     ALL = {
       { text = "Interrupts: Detonate (Bomb Tonk), Mega Drill, Giga-Wallop, Tune Up, Short Out.", type = "Interrupt" },
       { text = "Dodge beams, mines, and swirls constantly — movement awareness is key.", type = "Mechanic" },
@@ -33,10 +33,10 @@ DungeonGuide_Guides["Mechagon Workshop"] = {
 
   ["Route"] = {
     order = 2,
-    header = "Route: Mechagon Workshop",
+    header = "Route: Operation: Mechagon",
     ALL = {
-      { text = "Start pulling right side in first boss room. Safer Bomb Tonk control.", type = "Call" },
-      { text = "Left side second. Then south side of room. Clear full room for boss.", type = "Call" },
+      { text = "Start pulling right side in first boss room. Safer Bomb Tonk control.", type = "Mechanic" },
+      { text = "Left side second. Then south side of room. Clear full room for boss.", type = "Mechanic" },
       { text = "Keep pulls under 3 Bomb Tonks per pull on higher keys.", type = "Mechanic" },
       { text = "Watch Rocket Tonk swirlies and Strider Tonk leaps.", type = "Mechanic" },
       { text = "After Tussle Tonks, pull single Waste Processing Unit solo.", type = "Call" },
