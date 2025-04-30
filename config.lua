@@ -7,6 +7,7 @@ local function CreateDungeonGuideOptionsPanel()
         Mechanic = { r = 0.5, g = 0.5, b = 0.5, a = 0.3 }
     }
 
+    local LSM = LibStub("LibSharedMedia-3.0")
     local panel = CreateFrame("Frame", "DungeonGuideOptionsPanel", UIParent)
     panel.name = "DungeonGuide"
 
@@ -34,9 +35,42 @@ local function CreateDungeonGuideOptionsPanel()
     DungeonGuideFontSizeSliderLow:SetText("8")
     DungeonGuideFontSizeSliderHigh:SetText("24")
 
+    -- Font Dropdown
+    local LSM = LibStub("LibSharedMedia-3.0")
+    local fonts = LSM:List("font")
+    table.sort(fonts)
+    
+    local fontDropdown = CreateFrame("Frame", "DungeonGuideFontDropdown", panel, "UIDropDownMenuTemplate")
+    fontDropdown:SetPoint("TOPLEFT", fontSizeSlider, "BOTTOMLEFT", -20, -40)
+    fontDropdown:SetWidth(200)
+    
+    UIDropDownMenu_SetWidth(fontDropdown, 200)
+
+    UIDropDownMenu_Initialize(fontDropdown, function(self, level)
+        for _, fontName in ipairs(fonts) do
+            local info = UIDropDownMenu_CreateInfo()
+            info.text = fontName
+            info.func = function()
+                DungeonGuideDB.font = fontName
+                UIDropDownMenu_SetSelectedName(fontDropdown, fontName)
+
+                DungeonGuideFontDropdownText:SetWidth(180)  -- make sure text doesn't overflow
+                DungeonGuideFontDropdownButton:SetPoint("RIGHT", DungeonGuideFontDropdown, "RIGHT", -10, 0) -- align arrow nicely
+
+                if DungeonGuideUI and DungeonGuideUI.frame and DungeonGuideUI.frame:IsShown() then
+                    DungeonGuideUI:UpdateGuideContent()
+                end
+            end
+            UIDropDownMenu_AddButton(info)
+        end
+    end)
+    
+    -- Set the currently selected font
+    UIDropDownMenu_SetSelectedName(fontDropdown, DungeonGuideDB.font or "Friz Quadrata TT")
+
     -- Row Spacing Slider
     local rowSpacingSlider = CreateFrame("Slider", "DungeonGuideRowSpacingSlider", panel, "OptionsSliderTemplate")
-    rowSpacingSlider:SetPoint("TOPLEFT", fontSizeSlider, "BOTTOMLEFT", 0, -40)
+    rowSpacingSlider:SetPoint("TOPLEFT", fontDropdown, "BOTTOMLEFT", 20, -40)
     rowSpacingSlider:SetMinMaxValues(16, 36)
     rowSpacingSlider:SetValueStep(1)
     rowSpacingSlider:SetObeyStepOnDrag(true)
@@ -54,6 +88,7 @@ local function CreateDungeonGuideOptionsPanel()
     DungeonGuideRowSpacingSliderLow:SetText("16")
     DungeonGuideRowSpacingSliderHigh:SetText("36")
 
+    -- Debug Checkbox
     local debugCheckbox = CreateFrame("CheckButton", "DG_DebugCheckbox", panel, "InterfaceOptionsCheckButtonTemplate")
     debugCheckbox:SetPoint("TOPLEFT", rowSpacingSlider, "BOTTOMLEFT", 0, -40)
     debugCheckbox.Text:SetText("Enable Debug Mode")

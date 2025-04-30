@@ -26,6 +26,10 @@ end
 
 local isElvUI = S and type(S.HandleFrame) == "function"
 
+function DungeonGuideUI:GetFontPath()
+    return LibStub("LibSharedMedia-3.0"):Fetch("font", DungeonGuideDB.font or "Friz Quadrata TT")
+end
+
 function DungeonGuideUI:CreateGuideFrame()
     if self.frame then
         return
@@ -183,46 +187,6 @@ function DungeonGuideUI:FormatGuideLine(text)
     return table.concat(formatted)
 end
 
-function DungeonGuideUI:AttachTooltipHandlers(frame, text)
-    local GetSpellInfo = _G.GetSpellInfo
-
-    frame:SetScript("OnEnter", function()
-        local tagType, tagValue = string.match(text, "([sn])|([^|]+)|")
-
-        if not tagType or not tagValue then
-            print("Invalid tag format in line:", text)
-            return
-        end
-
-        print("Tag Type: " .. tagType .. ", Tag Value: " .. tagValue)
-
-        GameTooltip:SetOwner(frame, "ANCHOR_TOP")
-
-        if tagType == "s" then
-            local info = C_Spell.GetSpellInfo(tagValue)
-            if info then
-                GameTooltip:SetSpellByID(info[7]) -- spellID
-            else
-                GameTooltip:SetText("Spell not found: " .. tagValue)
-            end
-        elseif tagType == "n" then
-            local npcID = DungeonGuide_FindNPCID(DungeonGuideContext.dungeon, tagValue)
-            if npcID then
-                GameTooltip:SetHyperlink("unit:Creature-0-0-0-0-" .. npcID .. "-0000000000")
-                print("NPC ID: " .. npcID)
-            else
-                GameTooltip:SetText("NPC not found: " .. tagValue)
-            end
-        end
-
-        GameTooltip:Show()
-    end)
-
-    frame:SetScript("OnLeave", function()
-        GameTooltip:Hide()
-    end)
-end
-
 function DungeonGuideUI:UpdateGuideContent()
     local f = self.frame
 
@@ -326,14 +290,10 @@ function DungeonGuideUI:UpdateGuideContent()
         local formatted = self:FormatGuideLine(line.text)
 
         local font, _, flags = row.text:GetFont()
-        row.text:SetFont(font, DungeonGuideDB.fontSize or 12, flags)
+        row.text:SetFont(DungeonGuideUI:GetFontPath(), DungeonGuideDB.fontSize or 12, flags)
         row.text:SetWidth(availableWidth) -- set BEFORE SetText
         row.text:SetText(formatted)
         row.text:SetHeight(0)
-
---        if string.find(line.text, "s|") or string.find(line.text, "n|") then
---            self:AttachTooltipHandlers(row, line.text)
---        end
 
         local textHeight = row.text:GetStringHeight() + 6
         row:SetHeight(textHeight)

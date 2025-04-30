@@ -56,6 +56,8 @@ local function ApplyDefaults()
     for key, color in pairs(defaults.colours) do
         DungeonGuideDB.colours[key] = DungeonGuideDB.colours[key] or color
     end
+    
+    DungeonGuideDB.font = DungeonGuideDB.font or "GameFontHighlightSmall"
 end
 
 ApplyDefaults()
