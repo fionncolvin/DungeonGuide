@@ -1,0 +1,361 @@
+DungeonGuide_Guides["Liberation of Undermine"] = {
+    ["Liberation of Undermine"] = {
+      order = 1,
+      header = "Intro: Liberation of Undermine",
+      ALL = {
+        { text = "To Be Added", type = "Mechanic" }
+      },
+      TANK = {
+        { text = "To Be Added", type = "Call" }
+      },
+      HEALER = {
+        { text = "To Be Added", type = "Position" }
+      },
+      DPS = {
+        { text = "To Be Added", type = "Interrupt" }
+      },
+    },
+  
+    ["Vexie and the Geargrinders"] = {
+      order = 2,
+      header = "Boss: Vexie and the Geargrinders",
+      ALL = {
+        { text = "Boss must be tanked near wall to cleave bikers safely.", type = "Position" },
+        { text = "Tank will move Boss for Oil far left/right to drop safely.", type = "Mechanic" },
+        { text = "Spread loosely to avoid splash from Incendiary Fire.", type = "Position" },
+        { text = "Kill bikers before they charge again.", type = "Call" },
+        { text = "Crash bikes into boss to remove 1 stack of plating each.", type = "Call" },
+        { text = "Do not ride through oil puddles—stuns and wastes bike.", type = "Call" },
+        { text = "Use Heroism during Intermission (100% boss damage taken).", type = "Call" },
+        { text = "Interrupt Pit Mechanics or boss will heal rapidly.", type = "Call" },
+        { text = "Dodge shrapnel during Mechanical Breakdown.", type = "Mechanic" },
+        { text = "Fight restarting — resume biker cycle.", type = "Call" },
+        { text = "[M] Catch Oil Canisters from dead bikers—each missed one spawns a puddle.", type = "Mechanic" },
+        { text = "[M] Refuel bikes using 2 Oil Canisters before use—assign a left-to-right refuel order.", type = "Call" },
+        { text = "[M] Players who catch Canisters take +500% damage from next Canister for 1 min—rotate duties.", type = "Mechanic" },
+        { text = "[M] Aim to remove at least 3 stacks of plating by 50 energy to stay on pace.", type = "Call" },
+        { text = "[M] CC the Support Rig during Intermission or Pit Mechanics become immune to interrupts.", type = "Interrupt" },
+        { text = "[M] Support Rig despawns after Intermission—don't waste time trying to kill it.", type = "Call" }
+      },
+      TANK = {
+        { text = "Swap on every Tank Buster (DoT + knockback).", type = "Mechanic" },
+        { text = "Move boss each Buster to avoid oil zones in cleave area.", type = "Position" },
+        { text = "Avoid dropping Oil where bikes will path through.", type = "Mechanic" },
+        { text = "Keep boss near wall to group biker spawn for cleave.", type = "Position" },
+        { text = "[M] Be mindful of Support Rig position—grips or knockbacks help keep it from boss.", type = "Call" }
+      },
+      HEALER = {
+        { text = "Prep for raid-wide damage: Bomb Voyage! and Intermission.", type = "Mechanic" },
+        { text = "Watch players hit by Incendiary Fire and Bikers.", type = "Mechanic" },
+        { text = "Heavy damage during Mechanical Breakdown (Backfire), personal defensives.", type = "Call" },
+        { text = "Dispel slows from Oil if needed.", type = "Mechanic" },
+        { text = "[M] Extra healing needed if Canisters missed—oil puddles may limit space and cause splash damage.", type = "Mechanic" }
+      },
+      DPS = {
+        { text = "Kill bikers quickly to enable plating removal.", type = "Mechanic" },
+        { text = "Use Fire debuff to burn Oil puddles away.", type = "Mechanic" },
+        { text = "Interrupt Pit Mechanics during Intermission.", type = "Interrupt" },
+        { text = "Maximise cleave on boss + biker overlap.", type = "Position" },
+        { text = "[M] Assign DPS to catch and refuel bikes—rotate Canister soakers to avoid debuff overlap.", type = "Mechanic" },
+        { text = "[M] Use CC on Support Rig during Intermission—grips, stuns, vortexes, etc.", type = "Interrupt" }
+      }
+    },
+
+    ["Cauldron of Carnage"] = {
+        order = 3,
+        header = "Boss: Cauldron of Carnage",
+        ALL = {
+          { text = "Split raid into 2 groups: Flamendo (mostly ranged), Torq (mostly melee).", type = "Position" },
+          { text = "Soak Scrapbomb with 4+ players or raid takes massive damage.", type = "Mechanic" },
+          { text = "Spread out quickly for Molten Phlegm after each Scrapbomb.", type = "Mechanic" },
+          { text = "Avoid laser fixate from Flamendo—turn away from raid and other group.", type = "Call" },
+          { text = "Stay mostly still on Torq side to avoid filling Static Charge.", type = "Mechanic" },
+          { text = "Dodge Thunderdrum Salvo circles—move only if your Static Charge is low.", type = "Mechanic" },
+          { text = "Kill Voltaic Images quickly—don’t let them reach players.", type = "Mechanic" },
+          { text = "During Intermission, focus boss with more HP to balance kills.", type = "Call" },
+          { text = "Dodge Zapbolts and Fiery Waves during Colossal Clash.", type = "Mechanic" },
+          { text = "If one boss dies, swap quickly and prepare for increased damage.", type = "Call" },
+          { text = "[M] Each side gets 3 'Tiny Tussle' toys—crash 2 at a time to avoid raid-wide DoT stacking.", type = "Mechanic" },
+          { text = "[M] All remaining toys auto-crash during intermission—clear them before then.", type = "Call" },
+          { text = "[M] Flamendo side should control crash timing—knock toys between bomb soaks.", type = "Mechanic" },
+          { text = "[M] Torq side knock all toys at pull—can’t move freely later due to debuff.", type = "Call" },
+          { text = "[M] Send 1–2 extra players to Flamendo for safer bomb soaks—balance boss HP later.", type = "Position" },
+        },
+        TANK = {
+          { text = "Flarendo: Watch for Eruption Stomp—knockup + fiery wave combo.", type = "Mechanic" },
+          { text = "Torq: Lightning Bash scales with unmitigated damage—use cooldowns.", type = "Mechanic" },
+          { text = "Do NOT tank bosses near each other—Raised Guard triggers 99% DR.", type = "Position" },
+          { text = "Swap sides after Intermission to avoid stacking DoTs.", type = "Call" },
+        },
+        HEALER = {
+          { text = "Expect high group damage after Scrapbomb and Molten Phlegm combo.", type = "Call" },
+          { text = "Top players quickly if hit by laser or Voltaic Image explosion.", type = "Mechanic" },
+          { text = "Heavy healing during Colossal Clash—20s unavoidable AoE.", type = "Call" },
+          { text = "Silence pools from Voltaic Images can lock out healers—watch placement.", type = "Mechanic" },
+          { text = "[M] Pre-plan healing CDs if toys crash during intermission—stacks with Zapbolt damage.", type = "Call" },
+        },
+        DPS = {
+          { text = "Flarendo side: spread around bomb soak to avoid Phlegm overlap.", type = "Position" },
+          { text = "Torq side: move as little as possible—Static Charge stuns at full.", type = "Mechanic" },
+          { text = "Kill Voltaic Images fast to prevent fixate explosions.", type = "Mechanic" },
+          { text = "Use intermission to burn the higher HP boss to even health.", type = "Call" },
+          { text = "[M] Flamendo beam fixate now shoots 3 lasers—dodging requires mobility.", type = "Mechanic" },
+          { text = "[M] Make sure Flamendo's beam isn’t pointed at Torq group—3 lasers cover wide area.", type = "Call" },
+          { text = "[M] On Torq side, Voltaic Images now drop puddles even if they expire—kill them fast.", type = "Mechanic" },
+        }
+      },
+      
+      ["Rik Reverb"] = {
+        order = 4,
+        header = "Boss: Rik Reverb",
+        ALL = {
+          { text = "Move Rik away from Amplifiers to slow their energy gain.", type = "Position" },
+          { text = "Soak Amplifiers at 50+ energy to avoid Haywire.", type = "Call" },
+          { text = "Rotate soakers—taking stacks too fast causes Lingering Voltage damage.", type = "Mechanic" },
+          { text = "Avoid Sonic circles and Echoes—getting hit twice charms you!", type = "Mechanic" },
+          { text = "Destroy barrels ASAP—more than 1 exploding is deadly.", type = "Call" },
+          { text = "Faulty Zap: don’t overlap blue circles—causes raid-wide damage.", type = "Mechanic" },
+          { text = "During Echoing Chant, all Amplifiers pulse—extra dodging needed.", type = "Call" },
+          { text = "Intermission: stand in glowing blue Amplifier to get launched over the wave.", type = "Mechanic" },
+          { text = "Move to next Amplifier each knock—use speed boosts as needed.", type = "Call" },
+          { text = "Kill boss before 3rd Intermission or you wipe to Hype Fever.", type = "Call" },
+          { text = "[M] Amplifiers start shielded—2 Faulty Zap players must collide near them to remove it.", type = "Mechanic" },
+          { text = "[M] Shields must be broken ASAP—delay leads to near-100 energy panic soaks.", type = "Call" },
+          { text = "[M] Getting hit by 2 Echoes in 6s causes Entranced—nuke charmed player to break effect.", type = "Mechanic" },
+        },
+        TANK = {
+          { text = "Face Rik away from raid—Sonic Blast is a frontal.", type = "Position" },
+          { text = "Tank swap every Sonic Blast—debuff increases damage taken.", type = "Call" },
+          { text = "After 3rd Amplifier set, move boss far across room to prep intermission space.", type = "Position" },
+          { text = "After intermission, start new phase near leftover Amplifier.", type = "Position" },
+          { text = "[M] Start baiting Faulty Zap on skull to help line up shield breaks.", type = "Position" },
+        },
+        HEALER = {
+          { text = "Heavy healing on soakers—especially high-stack or late drains.", type = "Mechanic" },
+          { text = "Lingering Voltage at 4+ stacks deals heavy ticking damage.", type = "Mechanic" },
+          { text = "Raid damage spikes from Haywire and Echoing Chant.", type = "Mechanic" },
+          { text = "Prep cooldowns for intermission transitions and Sparkblast Ignition.", type = "Call" },
+          { text = "[M] Watch for AoE when Faulty Zap shield breaks—everyone takes damage.", type = "Call" },
+        },
+        DPS = {
+          { text = "Kill barrels ASAP—don’t let more than 1 explode.", type = "Mechanic" },
+          { text = "Avoid Sound Cannon and don’t overlap Faulty Zap blue circles.", type = "Mechanic" },
+          { text = "Help soak Amplifiers when assigned—use defensives if soaking at high energy.", type = "Call" },
+          { text = "Stay alert during Echoing Chant—Echoes fire in all directions.", type = "Mechanic" },
+          { text = "[M] Help with Faulty Zap shield breaks—collide near Amplifier to remove.", type = "Call" },
+          { text = "[M] Stand in Sound Cannon beam to split damage—falling below 75% = Entranced.", type = "Mechanic" },
+        }
+    },
+
+    ["Stix Bunkjunker"] = {
+        order = 5,
+        header = "Boss: Stix Bunkjunker",
+        ALL = {
+          { text = "Explosives must be destroyed with Large balls before detonation or it's a wipe.", type = "Call" },
+          { text = "Kill Bombshells fast—do not let them explode or get run over by a ball.", type = "Mechanic" },
+          { text = "Spread for Incineration—don’t ignite Garbage Piles.", type = "Position" },
+          { text = "Avoid overlapping with large fire circles and Hot Garbage pools.", type = "Mechanic" },
+          { text = "Dodge all Overdrive blue circles—final slam hits wide area.", type = "Mechanic" },
+          { text = "During ball phase, pick up adds and garbage—grow the ball before crashing.", type = "Mechanic" },
+          { text = "Assign ball players to fixed markers for optimal garbage pickup routes.", type = "Mechanic" },
+          { text = "Crash Large balls into Explosives or boss only if safe.", type = "Call" },
+          { text = "Use CC on Bombshells after 75% HP to group them before killing.", type = "Call" },
+          { text = "Stacked Short Fuse debuffs will wipe the raid—do not fail bomb timings.", type = "Call" },
+          { text = "[M] Balls deal 2% boss damage when max size—clean execution = 30% HP chunk.", type = "Call" },
+          { text = "[M] Do NOT crash into boss sides—only approach from rear to avoid Bombshells.", type = "Mechanic" },
+          { text = "[M] If 2 bombs spawn close, both nearby players go—failover strategy for safety.", type = "Call" },
+          { text = "[M] If boss <10%, grow and crash into boss—ignore other mechanics for kill push.", type = "Call" },
+        },
+        TANK = {
+          { text = "Swap on Demolish—applies 100% increased damage taken debuff.", type = "Call" },
+          { text = "Use strong defensives for Meltdown—burst tank damage.", type = "Mechanic" },
+          { text = "Pick up Bombshells once they reach 75% HP and become mobile.", type = "Call" },
+          { text = "Position boss near Bombshell spawn—facilitates cleave and grouping.", type = "Position" },
+          { text = "[M] Tanks always take same ball marker to start their pickup route.", type = "Call" },
+          { text = "[M] Group Bombshells tightly in front of boss—avoid side hits from ball players.", type = "Position" },
+        },
+        HEALER = {
+          { text = "Spot heal Incineration targets—fire splash and Hot Garbage ramp damage fast.", type = "Mechanic" },
+          { text = "Prepare raid cooldowns for Overdrive crash impact.", type = "Call" },
+          { text = "Watch for Short Fuse stacks if Bombshells explode.", type = "Mechanic" },
+          { text = "Be ready for spike damage if garbage piles ignite during ball phase.", type = "Call" },
+          { text = "[M] Players targeted by Prototype Powercoil take ramping damage—watch stack count.", type = "Call" },
+          { text = "[M] Ball hits near Powercoil beam will knock ball away—warn assigned players.", type = "Mechanic" },
+        },
+        DPS = {
+          { text = "Always target Bombshells first—boss damage is secondary.", type = "Mechanic" },
+          { text = "Interrupt Scrapmasters to prevent raid-wide damage.", type = "Interrupt" },
+          { text = "Avoid igniting Garbage Piles with Incineration—fire puddles cause Toxic Fumes.", type = "Mechanic" },
+          { text = "Ball players: collect adds and garbage, avoid crashing into Bombshells.", type = "Call" },
+          { text = "Only crash into boss if no Explosives are active and it’s safe.", type = "Call" },
+          { text = "[M] Grab Hyenas first—they boost ball size fast for early Scrapmaster pickup.", type = "Call" },
+          { text = "[M] Use Medium ball to pick up Scrapmaster before 'Recycler' cast finishes.", type = "Interrupt" },
+          { text = "[M] Ball players must crash from behind boss—sides are too risky.", type = "Mechanic" },
+        }
+    },
+
+    ["Sprocketmonger Lockenstock"] = {
+        order = 6,
+        header = "Boss: Sprocketmonger Lockenstock",
+        ALL = {
+          { text = "Soak mines one at a time—never pop two within 2s or it’s a wipe.", type = "Call" },
+          { text = "Mine soakers must wait 2 mins before soaking again—use assignments.", type = "Mechanic" },
+          { text = "Use Warlock Gate for Wire Transfer floor swap after each mine set.", type = "Call" },
+          { text = "Dodge Rocket Barrage and Void Barrage—they hit hard and splash nearby players.", type = "Mechanic" },
+          { text = "Avoid Blazing Beam and Jumbo Void Beam—insta-kill if hit.", type = "Mechanic" },
+          { text = "Move away from Magnets to avoid being stunned and pulled in.", type = "Mechanic" },
+          { text = "Intermission: get knocked, heal through absorb, dodge swirls, regroup on boss.", type = "Mechanic" },
+          { text = "Empowered phase: dodge multiple inventions at once—Rockets + Beam.", type = "Mechanic" },
+          { text = "Use speed boosts or gates to help melee avoid death during intermission end.", type = "Call" },
+          { text = "[M] Players receive Positive (blue) or Negative (red) polarity—avoid touching opposite colours.", type = "Mechanic" },
+          { text = "[M] Touching opposite polarity knocks you and applies lethal DoT—maintain positioning.", type = "Call" },
+          { text = "[M] Mines also have colours—only pop mines matching your polarity.", type = "Mechanic" },
+          { text = "[M] If invention hits a mine, it explodes instantly—pop mines quickly.", type = "Call" },
+          { text = "[M] During knock phases, stand in exact position based on polarity or get knocked off.", type = "Mechanic" },
+          { text = "[M] Red team: stand behind boss and spam gate on knock. Blue: get knocked to belt lanes.", type = "Position" },
+          { text = "[M] Final knock swaps colours—assign teams in advance for second intermission.", type = "Mechanic" },
+        },
+        TANK = {
+          { text = "Swap on Gravi-Gunk—stacks increase damage taken and slow movement.", type = "Mechanic" },
+          { text = "Run Pyro Party Pack to edge—explosion is distance-based.", type = "Mechanic" },
+          { text = "Avoid standing in mine zones when dropping Party Pack or dealing with Drill.", type = "Position" },
+          { text = "Start mines closest to wall—clear safe zones for ranged next.", type = "Call" },
+          { text = "[M] Tanks must be prepared to reposition quickly if they don't match colour swap.", type = "Call" },
+          { text = "[M] Allow space for colour-correct tanks to move boss safely during swap.", type = "Position" },
+        },
+        HEALER = {
+          { text = "Heavy healing on Sonic Ba-Boom—10s raid-wide pulse damage.", type = "Mechanic" },
+          { text = "Top players after Magnet stuns and Drill hits—they apply bleeds.", type = "Mechanic" },
+          { text = "During intermission, focus healing through raid-wide absorb from Voidsplosion.", type = "Mechanic" },
+          { text = "Prep cooldowns after 2nd intermission—Void Rockets and Jumbo Beam overlap.", type = "Call" },
+          { text = "[M] Assign mobile healers to pop far mines based on polarity match.", type = "Mechanic" },
+          { text = "[M] Coordinate barrier and healing CDs during polarity knock & colour swap overlaps.", type = "Call" },
+        },
+        DPS = {
+          { text = "Dodge Screw Up drill lines—stun + bleed if hit.", type = "Mechanic" },
+          { text = "Stay out of Blisterizer traps—slow, knockup, and DoT effect.", type = "Mechanic" },
+          { text = "Use personal movement cooldowns during floor electrification swaps.", type = "Call" },
+          { text = "If assigned to soak mines, wait for debuff to expire before popping yours.", type = "Mechanic" },
+          { text = "Focus boss after 2nd intermission—burn phase begins.", type = "Call" },
+          { text = "[M] Ranged: bait drills and pop far mines with correct colour.", type = "Call" },
+          { text = "[M] Players with immunities should intercept Void Rockets in tight overlaps.", type = "Mechanic" },
+          { text = "[M] All DPS stop damage and focus dodging during final empowered inventions.", type = "Call" },
+        }
+    },
+
+    ["The One-Armed Bandit"] = {
+        order = 7,
+        header = "Boss: The One-Armed Bandit",
+        ALL = {
+          { text = "Kill 2 specific Reel Assistants, insert their coins within 30s to avoid wipe.", type = "Call" },
+          { text = "Reel Assistants cast Overload!—interrupt all 3 or raid takes heavy damage.", type = "Interrupt" },
+          { text = "Stand near Pay-Line for a DPS/healing buff, but don’t get hit by the coin.", type = "Position" },
+          { text = "Players can click Pay-Line coins on the ground to launch and remove boss damage buff.", type = "Mechanic" },
+          { text = "Avoid repeating coin combos—activates Fraud Detection and wipes raid.", type = "Call" },
+          { text = "Fire swirls, laser beams, and coin paths must be dodged throughout.", type = "Mechanic" },
+          { text = "Prepare to swap to Phase 2 at 30% boss HP or after all combos used.", type = "Call" },
+          { text = "Phase 2: Avoid knockbacks, dodge boss-tethered beam, and burn hard to beat bomb enrage.", type = "Mechanic" },
+          { text = "Phase 2 Combo Order: Shock > Fire > Coin > Bomb (Wipe).", type = "Call" },
+        },
+        TANK = {
+          { text = "Big Hit leaves puddle and applies 350% damage debuff—tank swap required.", type = "Call" },
+          { text = "Drop puddles near edges—keep center clear for movement.", type = "Position" },
+          { text = "Use Coil to clear 2 nearby puddles when 3+ are active—watch for fire when triggering.", type = "Mechanic" },
+          { text = "In Phase 2, avoid moving boss through tether beam during Shock Combo.", type = "Mechanic" },
+        },
+        HEALER = {
+          { text = "Dispel Withering Flames—targeted player takes damage and must move away first.", type = "Mechanic" },
+          { text = "Foul Exhaust applies absorb + ticking DoT on all players—topping everyone quickly.", type = "Call" },
+          { text = "Scattered Payout during Coin Combo = massive AoE, defensives needed.", type = "Call" },
+          { text = "Prepare CDs for pulsing raid-wide damage in Phase 2.", type = "Call" },
+        },
+        DPS = {
+          { text = "Kill 2 marked Reel Assistants fast—ignore the third or cleave lightly.", type = "Mechanic" },
+          { text = "Kite and kill bomb adds before they reach raid members.", type = "Mechanic" },
+          { text = "Pick up dropped coins immediately and use extra action button to insert.", type = "Call" },
+          { text = "Interact with ground coins to remove boss damage buff stack (Up the Ante).", type = "Mechanic" },
+          { text = "In Phase 2, dodge targeted fire laser (Hot Hot Heat) and stay clear of others.", type = "Mechanic" },
+        }
+    },
+    
+    ["Mug'Zee, Heads of Security"] = {
+        order = 8,
+        header = "Boss: Mug'Zee, Heads of Security",
+        ALL = {
+          { text = "Swap sides before 100 energy to reset Moxie stacks and avoid enrage.", type = "Call" },
+          { text = "Split raid for Earthshaker Gaol prisons and soak both circles.", type = "Mechanic" },
+          { text = "Stand behind stone wall if targeted by Frostshatter Boots to avoid freeze.", type = "Call" },
+          { text = "Players fixated by Stormfury Finger Gun must stand alone and soak it.", type = "Call" },
+          { text = "Assigned mine soakers must pop one mine at a time and soak 2 circles.", type = "Mechanic" },
+          { text = "Don’t step on mines or pop unassigned—leads to raid wipe via absorb overload.", type = "Call" },
+          { text = "Soak Goblin-guided Rocket with 5 assigned players, avoid debuffed players.", type = "Call" },
+          { text = "Volunteer Rocketeer must be killed quickly after Rocket soak.", type = "Mechanic" },
+          { text = "Avoid Spray and Pray frontal cone—move away if targeted.", type = "Mechanic" },
+          { text = "Avoid Disintegration Beam and static charge cones during intermission.", type = "Mechanic" },
+          { text = "In Phase 2, all Phase 1 abilities are active—play each correctly by position.", type = "Call" },
+          { text = "Use CC on mines in final phase—do not pop them.", type = "Call" },
+          { text = "Kill before boss reaches 100 energy in Phase 2.", type = "Call" },
+        },
+        TANK = {
+          { text = "Swap on Molten Gold Knuckles—remove stacks by moving and dropping puddles.", type = "Mechanic" },
+          { text = "Intercept Double Whammy Shot to reduce damage on targeted player.", type = "Interrupt" },
+          { text = "Face boss away from raid to prevent frontal overlaps with prisons and fixates.", type = "Position" },
+          { text = "In Phase 2, intercept beam and position boss near Skull then Cross markers.", type = "Position" },
+        },
+        HEALER = {
+          { text = "Assign 1 healer to stay outside prison to keep tanks alive.", type = "Mechanic" },
+          { text = "Heavy healing after mine pops—raid-wide absorb must be cleared before next.", type = "Mechanic" },
+          { text = "Prepare cooldowns for Rocket soaks and final prison phase overlaps.", type = "Call" },
+          { text = "Heal Frostshatter Boots players and be ready for Disintegration Beam ramps.", type = "Mechanic" },
+        },
+        DPS = {
+          { text = "Kill Goon adds in prisons quickly to break allies free.", type = "Mechanic" },
+          { text = "Burn MK2 Electro Shocker when stunned at 80% HP—take advantage of damage amp.", type = "Mechanic" },
+          { text = "Drop Rocket soaks at assigned markers (Skull/Red) and soak with correct group.", type = "Call" },
+          { text = "Avoid cleaving mines, keep fixated players alive, and don't cross unsoaked mines.", type = "Mechanic" },
+          { text = "During Intermission, avoid getting knocked into walls or mines.", type = "Mechanic" },
+        }
+    },
+    
+    ["Chrome King Gallywix"] = {
+        order = 9,
+        header = "Boss: Chrome King Gallywix",
+        ALL = {
+          { text = "Split raid into 2 groups to rotate Scatterblast Canister soaks.", type = "Call" },
+          { text = "Healers must top players with absorb before 15s or they explode.", type = "Mechanic" },
+          { text = "Dodge swirls, satchels, fireworks, and beams constantly.", type = "Mechanic" },
+          { text = "Big Bad Buncha Bombs = bait away, then move fast to avoid detonation.", type = "Call" },
+          { text = "At 100 energy: kill Technicians, pick up bombs, and interrupt Coil.", type = "Call" },
+          { text = "Throw leftover bombs into hole or off platform to prevent wipe.", type = "Mechanic" },
+          { text = "During intermission, kite adds, interrupt Juice It!, and dodge laser beam (rotate right).", type = "Call" },
+          { text = "Soak Tick-Tock Canisters in groups of 4 to prevent absorb on entire raid.", type = "Mechanic" },
+          { text = "Use same groups to soak Fused Canisters throughout Phase 2.", type = "Call" },
+          { text = "Phase 3: Interrupt TOTAL DESTRUCTION!!! once shield is broken.", type = "Call" },
+          { text = "Avoid rotating electric beams in P3—stun + lethal damage if hit.", type = "Mechanic" },
+          { text = "Stand far away during Gallybux Finale Blast—damage falloff reduces risk.", type = "Mechanic" },
+          { text = "Avoid Overloaded Rockets lines—spread safely away from raid.", type = "Mechanic" },
+        },
+        TANK = {
+          { text = "Face Scatterblast away from raid—split hit with assigned soakers.", type = "Position" },
+          { text = "Disarm 1500-Pound Duds (big bombs)—knockback + raid hit after DoT ends.", type = "Mechanic" },
+          { text = "Avoid Trick Shots stacks—tank swap to drop stacks regularly.", type = "Mechanic" },
+          { text = "During Giga Coil phase, stand near boss for Gatling Cannon to reduce damage.", type = "Position" },
+          { text = "During Bigger Badder Bomb Blast, run out with frontal and pop strong defensive.", type = "Mechanic" },
+        },
+        HEALER = {
+          { text = "Rotate CDs for each Scatterblast soak—6 total (3 per group).", type = "Call" },
+          { text = "Healers must remove all absorbs before 15s—explosion scales with leftover absorb.", type = "Mechanic" },
+          { text = "Top group after Fused Canister soaks—massive AoE absorb.", type = "Mechanic" },
+          { text = "Prepare burst healing during Juice It! and P2 intermission coil delay.", type = "Mechanic" },
+          { text = "Heavy healing needed during TOTAL DESTRUCTION!!! cast—interrupted after shield.", type = "Mechanic" },
+        },
+        DPS = {
+          { text = "Kill Technicians during intermissions fast—interrupt Juice It!", type = "Mechanic" },
+          { text = "Pick up Charged Giga Bombs and deliver to active Coil ASAP.", type = "Call" },
+          { text = "Avoid detonating bombs with Giga Blast—clear platform carefully.", type = "Mechanic" },
+          { text = "Soak Tick-Tock Canisters and Fused Canisters as assigned.", type = "Call" },
+          { text = "During Overloaded Rockets, stand still in safe direction and avoid hitting others.", type = "Mechanic" },
+          { text = "Burn shield quickly at 50% HP—interrupt before TOTAL DESTRUCTION!!! completes.", type = "Mechanic" },
+        }
+    }      
+}
