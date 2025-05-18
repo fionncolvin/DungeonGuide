@@ -106,16 +106,6 @@ local function DetectGuideContext()
         DungeonGuide_DebugInfo("Detecting context for dungeon: " .. DungeonGuideContext.dungeon)
     end
 
-    local inInstance, instanceType = IsInInstance()
-
-    if not inInstance or instanceType ~= "party" then
-        if DungeonGuideUI.GuideButton then
-            DungeonGuideUI.GuideButton:Hide()
-        end
-
-        return
-    end
-
     local dungeon = DungeonGuide_GetDungeonEntry()
 
     if dungeon then
