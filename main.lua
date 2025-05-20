@@ -96,7 +96,7 @@ function DungeonGuide_GetGuideEntry()
 end
 
 function DungeonGuide_GetDungeonEntry()
-    return DungeonGuide_Guides[DungeonGuideContext.dungeon] or {}
+    return DungeonGuide_Guides[DungeonGuideContext.dungeon] or null
 end
 
 local function DetectGuideContext()
