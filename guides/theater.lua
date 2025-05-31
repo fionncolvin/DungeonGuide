@@ -29,7 +29,7 @@ DungeonGuide_Guides["Theater of Pain"] = {
     order = 2,    
     header = "Route: Theater of Pain",
     ALL = {
-      { text = "Skipping first trash pack. Stay tight and follow me.", type = "Call" },
+      { text = "Can skip first trash pack. Stay tight on LEFT and follow me.", type = "Call" },
       { text = "Pulling first trash into Bloodhorn for cleave.", type = "Call" },
       { text = "Going to Xav's wing first after An Affront of Challengers.", type = "Call" },
       { text = "Respect Arbalists bleed. Use personals if targeted.", type = "Call" },
@@ -43,7 +43,8 @@ DungeonGuide_Guides["Theater of Pain"] = {
       { text = "Avoid Gasbag patrol by hugging left wall at top platform.", type = "Call" },
       { text = "Pulling hallway mobs into Gorechop for cleave.", type = "Call" },
       { text = "After Gorechop, moving into Ossuary wing (Kul'tharok).", type = "Call" },
-      { text = "Taking right-side portal after first orb drop.", type = "Call" },
+      { text = "Grouping souls with LOS up to 1st Guardian. Let me agro.", type = "Call" },
+      { text = "Taking right-left-right portals.", type = "Call" },
       { text = "Focus Bone Magi shields with Purge or heavy single-target.", type = "Call" },
       { text = "Avoid pulling Dark Speakers unless we need for count.", type = "Call" },
       { text = "Kill extra trash near final portal if short on count.", type = "Call" }
@@ -62,7 +63,7 @@ DungeonGuide_Guides["Theater of Pain"] = {
     },
     TANK = {
       { text = "Use defensive on Mortal Strike — heavy hit + 50% healing debuff.", type = "Mechanic" },
-      { text = "Pull bosses near entrance. Rotate clockwise with group after Spores.", type = "Position" },
+      { text = "Will pull bosses near entrance. Rotating clockwise as group after Spores.", type = "Call" },
       { text = "Face Paceran away — random frontal breath can be lethal.", type = "Position" }
     },
     HEALER = {
@@ -161,7 +162,7 @@ DungeonGuide_Guides["Theater of Pain"] = {
     },
     TANK = {
       { text = "CD for every Reaping Scythe — huge Shadow + physical hit.", type = "Mechanic" },
-      { text = "Keep boss mid — gives room to rotate from Rift/Devastation.", type = "Position" },
+      { text = "Pulling boss to side — gives room to avoid Rift/Devastation.", type = "Call" },
       { text = "Drag Deathwalkers into cleave. Group them fast.", type = "Call" }
     },
     HEALER = {
