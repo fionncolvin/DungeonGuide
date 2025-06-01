@@ -31,9 +31,9 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
     order = 2,
     header = "Route: Cinderbrew Meadery",
     ALL = {
-      { text = "Pulling right side to start. Watch Chef Chewie patrol.", type = "Call" },
-      { text = "Only one Hired Muscle at a time. No double pulls.", type = "Call" },
-      { text = "Pulling far-right Pyromaniac, Patrons, and Hired Muscle first.", type = "Call" },
+      { text = "Pulling right side to start. Watch n|Chef Chewie| patrol.", type = "Call" },
+      { text = "Only one n|Hired Muscle| at a time. No double pulls.", type = "Call" },
+      { text = "Pulling far-right n|Pyromaniac, Patrons|, and n|Hired Muscle| first.", type = "Call" },
       { text = "If Attendant is close, cleave it with first pull.", type = "Call" },
       { text = "Pop Lust early while burning first pull cooldowns.", type = "Call" },
       { text = "Wait for safe patrol before pulling Chef Chewie.", type = "Call" },

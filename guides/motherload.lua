@@ -57,13 +57,13 @@ DungeonGuide_Guides["The MOTHERLODE!!"] = {
     header = "Boss: Coin-Operated Crowd Pummeler",
     ALL = {
       { text = "Foot Bombs Need Clearing — Click and kick toward boss!", type = "Call" },
-      { text = "Interrupt Iced Spritzer and Toxic Blades in trash before pull.", type = "Interrupt" },
-      { text = "Dodge Shocking Claw — random player frontal.", type = "Mechanic" },
-      { text = "Move out of Electroshock Zones after stomp.", type = "Mechanic" }
+      { text = "Interrupt s|Iced Spritzer| and s|Toxic Blades| in trash before pull.", type = "Interrupt" },
+      { text = "Dodge s|Shocking Claw| — random player frontal.", type = "Mechanic" },
+      { text = "Move out of s|Electroshock| Zones after stomp.", type = "Mechanic" }
     },
     TANK = {
       { text = "Face boss near wall, rotate slowly as coins spawn.", type = "Position" },
-      { text = "During Coin Magnet, pull boss away from gold piles.", type = "Mechanic" },
+      { text = "During s|Coin Magnet|, pull boss away from gold piles.", type = "Mechanic" },
       { text = "Keep boss near center to control stomp zones and bomb kicks.", type = "Position" },
       { text = "Use CD on Static Pulse — heavy nature hit + DoT.", type = "Mechanic" },
       { text = "Reposition after each Overcharge to avoid knockbacks into danger.", type = "Mechanic" },
@@ -83,26 +83,26 @@ DungeonGuide_Guides["The MOTHERLODE!!"] = {
     order = 4,
     header = "Boss: Azerokk",
     ALL = {
-      { text = "Burn empowered Earthrager before Resonant Quake or wipe to Aftershock.", type = "Call" },
-      { text = "Unempowered Earthragers fixate — slow, knock, CC to delay them.", type = "Mechanic" },
+      { text = "Burn empowered n|Earthrager| before Resonant Quake or wipe to Aftershock.", type = "Call" },
+      { text = "Unempowered n|Earthragers| fixate — slow, knock, CC to delay them.", type = "Mechanic" },
       { text = "Frontal: Sidestep Tectonic Smash.", type = "Call" },
-      { text = "Interrupt Rock Lance, Furious Quake, and Earthrager barriers.", type = "Interrupt" },
-      { text = "Use Fracking Totems to CC an Earthrager for 60s — pull boss away from it.", type = "Mechanic" }
+      { text = "Interrupt Rock Lance, Furious Quake, and n|Earthrager| barriers.", type = "Interrupt" },
+      { text = "Use Fracking Totems to CC an n|Earthrager| for 60s — pull boss away from it.", type = "Mechanic" }
     },
     TANK = {
-      { text = "Pick up empowered Earthrager immediately — tankable and high dmg.", type = "Mechanic" },
+      { text = "Pick up empowered n|Earthrager| immediately — tankable and high dmg.", type = "Mechanic" },
       { text = "Kite boss to edge before Resonant Quake — drop safe zones.", type = "Position" },
       { text = "Pull adds near boss for cleave. Interrupt priority = Earthrager.", type = "Call" },
       { text = "Grab aggro fast — missed adds = heavy party damage.", type = "Mechanic" },
-      { text = "Drag boss away from any CC’d Earthrager to prevent breaking it.", type = "Mechanic" },
+      { text = "Drag boss away from any CC’d n|Earthrager| to prevent breaking it.", type = "Mechanic" },
       { text = "Reposition out of Quake zones quickly — don’t linger.", type = "Mechanic" }
     },
     HEALER = {
-      { text = "CDs for Resonant Quake + empowered Earthrager pulses.", type = "Call" },
+      { text = "CDs for Resonant Quake + empowered n|Earthrager| pulses.", type = "Call" },
       { text = "Top fixate targets fast — bleed stacks hurt.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Burn infused Earthrager before Quake or wipe.", type = "Mechanic" },
+      { text = "Burn infused n|Earthrager| before Quake or wipe.", type = "Mechanic" },
       { text = "Stun/knock/root unempowered Earthragers to delay fixates.", type = "Mechanic" }
     }
   },
