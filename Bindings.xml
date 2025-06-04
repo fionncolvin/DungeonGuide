@@ -1,0 +1,5 @@
+<Bindings>
+  <Binding name="DUNGEONGUIDE_OPEN_SELECTOR" category="Dungeon Guide">
+    DungeonGuideUI:OpenGlobalDungeonSelector()
+  </Binding>
+</Bindings>

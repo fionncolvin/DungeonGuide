@@ -2,6 +2,8 @@ DungeonGuideDB = DungeonGuideDB or {}
 DungeonGuide_Guides = DungeonGuide_Guides or {}
 DungeonGuide_NPCs = DungeonGuide_NPCs or {}
 
+BINDING_NAME_DUNGEONGUIDE_OPEN_SELECTOR = "Open Dungeon Selector"
+
 local f = CreateFrame("Frame")
 
 DungeonGuideContext = {

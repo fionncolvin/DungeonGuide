@@ -387,6 +387,81 @@ function DungeonGuideUI:ShowGuideSelector()
     panel:Show()
 end
 
+function DungeonGuideUI:OpenGlobalDungeonSelector()
+    if not self.frame then
+        self:CreateGuideFrame()
+    end
+
+    local f = self.frame
+    local rows = f.contentRows or {}
+    local yOffset = 0
+    local index = 1
+
+    if f.header then
+        f.header:SetText("Select a Dungeon")
+    end
+
+    for dungeonName, _ in pairs(DungeonGuide_Guides) do
+        local row = rows[index]
+        local c = DungeonGuideDB.colours and DungeonGuideDB.colours.Position or { r = 0.8, g = 0.5, b = 0.2, a = 0.3 }
+
+        if not row then
+            row = CreateFrame("Button", nil, f.contentFrame)
+
+            row.indicator = row:CreateTexture(nil, "BACKGROUND")
+            row.indicator:SetWidth(6)
+            row.indicator:SetDrawLayer("BACKGROUND", 0)
+            row.indicator:SetPoint("TOPLEFT", 0, -1)
+            row.indicator:SetPoint("BOTTOMLEFT", 0, 1)
+
+            row.text = row:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+            row.text:SetJustifyH("LEFT")
+            row.text:SetJustifyV("TOP")
+            row.text:SetDrawLayer("ARTWORK", 1)
+            row.text:SetWordWrap(true)
+            row.text:SetPoint("TOPLEFT", row, "TOPLEFT", 10, 0)
+            row.text:SetPoint("TOPRIGHT", row, "TOPRIGHT", -2, 0)
+
+            rows[index] = row
+        end
+
+        row.indicator:SetColorTexture(c.r, c.g, c.b, c.a)
+
+        local spacing = DungeonGuideDB.rowSpacing or 22
+        row:SetPoint("TOPLEFT", 10, -yOffset)
+        row:SetWidth(f:GetWidth() - 20)
+        row.text:SetText(dungeonName)
+        row:SetHeight(spacing)
+
+        row:SetScript("OnClick", function()
+            DungeonGuideContext = {
+                role = DungeonGuide_GetPlayerRole(),
+                dungeon = dungeonName,
+                encounter = dungeonName
+            }
+
+            DungeonGuide_DebugInfo("Opening dungeon guide for " .. DungeonGuideContext.dungeon .. " as " .. DungeonGuideContext.role)
+
+            DungeonGuideContext.selectorOpen = true
+            DungeonGuideUI:ShowGuideButton()
+            DungeonGuideUI:ShowGuide()
+            DungeonGuideContext.selectorOpen = false
+        end)
+
+        row:Show()
+        yOffset = yOffset + (DungeonGuideDB.rowSpacing or 22)
+        index = index + 1
+    end
+
+    -- Hide unused rows
+    for i = index, #rows do
+        rows[i]:Hide()
+    end
+
+    f.contentRows = rows
+    f:Show()
+end
+
 function DungeonGuideUI:CreateGuideButton()
     if self.GuideButton then
         return
