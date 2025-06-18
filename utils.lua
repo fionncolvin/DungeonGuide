@@ -18,7 +18,7 @@ function DungeonGuide_FindNPCID(dungeonName, npcName)
 
     if (DungeonGuide_NPCNames[dungeonName]) then
         print("DungeonGuide_NPCs: " .. tostring(DungeonGuide_NPCNames[dungeonName]))
-        if type(DungeonGuide_NPCNames[dungeonName] == "table") then
+        if type(DungeonGuide_NPCNames[dungeonName]) == "table" then
             if (DungeonGuide_NPCNames[dungeonName][npcName]) then
                 print("DungeonGuide_NPCs: " .. tostring(DungeonGuide_NPCNames[dungeonName][npcName]))
                 npcID = DungeonGuide_NPCNames[dungeonName][npcName]
