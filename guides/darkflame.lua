@@ -134,14 +134,14 @@ DungeonGuide_Guides["Darkflame Cleft"] = {
     ALL = {
       { text = "Interrupt s|Call Darkspawn| fast. I’ll AoE adds.", type = "Call" },
       { text = "If s|Umbral Slash| targets your candle, reposition immediately.", type = "Mechanic" },
-      { text = "Shadowblast on me — moving out from candle to explode.", type = "Call" },
+      { text = "s|Shadowblast| on me — moving out from candle to explode.", type = "Call" },
+      { text = "Grabbing wax to refill candle.", type = "Call" },
       { text = "Interrupt s|Drain Light| from adds — saves candle heat.", type = "Interrupt" }
     },
     TANK = {
       { text = "Refuel candle during s|Eternal Darkness| or s|Rising Gloom|.", type = "Mechanic" },
       { text = "Tank starting mid-room for wax rotation.", type = "Position" },
-      { text = "Grabbing wax to refill candle.", type = "Call" },
-      { text = "Rotate boss toward wax spawns along track lines.", type = "Position" },
+      { text = "Rotate boss toward wax spawns along track lines.", type = "Position" },      
       { text = "Group adds for cleave. Stun wrigglers.", type = "Mechanic" }
     },
     HEALER = {
@@ -149,7 +149,7 @@ DungeonGuide_Guides["Darkflame Cleft"] = {
       { text = "Top group during s|Rising Gloom| phases.", type = "Mechanic" }
     },
     DPS = {
-      { text = "Kill Darkspawn quickly. Interrupt s|Drain Light|.", type = "Mechanic" },
+      { text = "Kill n|Darkspawn| quickly. Interrupt s|Drain Light|.", type = "Mechanic" },
       { text = "Return wax to candle if heat is low.", type = "Mechanic" }
     }
   }

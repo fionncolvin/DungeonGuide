@@ -35,17 +35,17 @@ DungeonGuide_Guides["Operation: Floodgate"] = {
       { text = "Up stairs into n|Darkfuse Demolitionist| + n|Mechadrone Sniper| + n|Darkfuse Inspectors|.", type = "Call" },
       { text = "Up LEFT stairs before n|Big M.O.M.M.A.|.", type = "Call" },
       { text = "Boss pull: n|Big M.O.M.M.A.| next.", type = "Call" },
-      { text = "Post-boss: Pull n|Darkfuse Soldiers| and n|Darkfuse Bloodwarper|. Focus Bloodwarper.", type = "Call" },
-      { text = "Back across floor. Chain in n|Loaderbots|. Bloodlust when clearing Bloodwarper pack.", type = "Call" },
+      { text = "Post-boss: Pull n|Darkfuse Soldiers| and n|Darkfuse Bloodwarper|. Focus n|Bloodwarper|.", type = "Call" },
+      { text = "Back across floor. Chain in n|Loaderbots|. Bloodlust when clearing n|Bloodwarper| pack.", type = "Call" },
       { text = "Glider across. Pull left into right then up stairs.", type = "Call" },
       { text = "Chain double n|Shreddinator 3000s| into Contractors.", type = "Call" },
-      { text = "Short pull to boss: Contractors and Surveyor.", type = "Call" },
+      { text = "Short pull to boss: n|Contractors| and n|Surveyor|.", type = "Call" },
       { text = "Boss pull: n|Demolition Duo|.", type = "Call" },
       { text = "Post-boss: Pull all n|Disturbed Kelp|s together and AoE.", type = "Call" },
       { text = "Boss pull: n|Swampface|.", type = "Call" },
       { text = "Pull n|Bubbles| solo at bridge. Keep him controlled.", type = "Call" },
-      { text = "Pull Contractors, Electricians, Inspectors carefully. Kick Electricians.", type = "Call" },
-      { text = "Final pulls: n|Darkfuse Soldiers|, Contractors, Jumpstarters into final boss.", type = "Call" }
+      { text = "Pull n|Contractors|, n|Electricians|, n|Inspectors| carefully. Kick n|Electricians|.", type = "Call" },
+      { text = "Final pulls: n|Darkfuse Soldiers|, n|Contractors|, n|Jumpstarters| into final boss.", type = "Call" }
     },
   },
   

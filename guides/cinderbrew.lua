@@ -5,20 +5,20 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
     ALL = {
       { text = "33-minute timer with split path after Boss 1.", type = "Mechanic" },
       { text = "s|Sticky Honey| (Cooking/Alchemy 25+): AoE slow + haste debuff — affects allies too.", type = "Mechanic" },
-      { text = "Flamethrower (Eng/Gnome/Goblin 25+): Low AoE damage — best used by healers.", type = "Mechanic" },
+      { text = "s|Flamethrower| (Eng/Gnome/Goblin 25+): Low AoE damage — best used by healers.", type = "Mechanic" },
       { text = "Watch for Thirsty enrages — mobs gain haste and damage.", type = "Mechanic" },
       { text = "Heavy use of swirlies, AoE zones, and frontal attacks — constant movement needed.", type = "Mechanic" },
       { text = "Interrupt priority: s|Boiling Flames|, s|Honey Volley|, s|Free Samples|, s|Bee-stial Wrath|.", type = "Interrupt" },
       { text = "Frequent magic debuffs — s|Burning Fermentation|, s|Bee Venom|, s|Erupting Inferno|.", type = "Mechanic" },
     },
     TANK = {
-      { text = "Route splits to I'pa (left) or Buzzbee (right) after Aldryr.", type = "Mechanic" },
+      { text = "Route splits to n|I'pa| (left) or n|Buzzbee| (right) after n|Aldryr|.", type = "Mechanic" },
       { text = "Avoid pulling multiple CC-immune mobs (n|Chewie|, n|Harvesters|, n|Hopgoblins|).", type = "Mechanic" },
       { text = "Stagger Bee packs — s|Final Sting| and s|Swarming Surprise| can chain kill tanks.", type = "Mechanic" },
       { text = "Pick up n|Brew Drops|, n|Bee-lets|, and n|Ravenous Cinderbees| quickly to control threat.", type = "Mechanic" },
     },
     HEALER = {
-      { text = "Flamethrower is safe utility — avoid during heavy group damage.", type = "Mechanic" },
+      { text = "s|Flamethrower| is safe utility — avoid during heavy group damage.", type = "Mechanic" },
       { text = "Prepare CDs for s|Volatile Keg|, s|Swarming Surprise|, and boss intermissions.", type = "Mechanic" },
     },
     DPS = {
@@ -33,24 +33,24 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
     ALL = {
       { text = "Pulling right side to start. Watch n|Chef Chewie| patrol.", type = "Call" },
       { text = "Only one n|Hired Muscle| at a time. No double pulls.", type = "Call" },
-      { text = "Pulling far-right n|Pyromaniac, Patrons|, and n|Hired Muscle| first.", type = "Call" },
-      { text = "If Attendant is close, cleave it with first pull.", type = "Call" },
+      { text = "Pulling far-right n|Pyromaniac|, n|Patrons|, and n|Hired Muscle| first.", type = "Call" },
+      { text = "If n|Attendant| is close, cleave it with first pull.", type = "Call" },
       { text = "Pop Lust early while burning first pull cooldowns.", type = "Call" },
-      { text = "Wait for safe patrol before pulling Chef Chewie.", type = "Call" },
-      { text = "After Chewie, pull Hired Muscle + nearby trash carefully.", type = "Mechanic" },
+      { text = "Wait for safe patrol before pulling n|Chef Chewie|.", type = "Call" },
+      { text = "After n|Chewie|, pull n|Hired Muscle| + nearby trash carefully.", type = "Mechanic" },
       { text = "Skip deep corner pack. Not needed for count.", type = "Call" },
-      { text = "Heading north after first boss. Fighting IPA next.", type = "Call" },
+      { text = "Heading north after first boss. Fighting n|I'pa| next.", type = "Call" },
       { text = "One pack at a time here. Will struggle otherwise.", type = "Call" },
-      { text = "Focus Flavor Scientists for interrupts. Watch Hop Goblins.", type = "Mechanic" },
-      { text = "Pull Careless Hop Goblin first on IPA platform.", type = "Call" },
+      { text = "Focus n|Flavor Scientists| for interrupts. Watch n|Hop Goblins|.", type = "Mechanic" },
+      { text = "Pull n|Careless Hop Goblin| first on n|I'pa| platform.", type = "Call" },
       { text = "Pull packs out into hallway to avoid double patrols.", type = "Call" },
-      { text = "After IPA, move south to Buzzbee wing.", type = "Call" },
+      { text = "After n|I'pa|, move south to n|Buzzbee| wing.", type = "Call" },
       { text = "Pulling three Bee packs carefully. Watch for Sting casts.", type = "Call" },
-      { text = "Pull corner Purveyor with Worker Bees. Manage puddles.", type = "Call" },
-      { text = "Do not pull more than two Purveyors at once.", type = "Call" },
-      { text = "Try skipping the Purveyor near boss room entrance.", type = "Call" },
-      { text = "Clear most Beelets before Buzzbee fight. Pull a few into boss if clean.", type = "Call" },
-      { text = "After Buzzbee, small pulls to Goldie. Trash gives low count.", type = "Mechanic" }
+      { text = "Pull corner n|Purveyor| with Worker Bees. Manage puddles.", type = "Call" },
+      { text = "Do not pull more than two n|Purveyors| at once.", type = "Call" },
+      { text = "Try skipping the n|Purveyor| near boss room entrance.", type = "Call" },
+      { text = "Clear most Beelets before n|Buzzbee| fight. Pull a few into boss if clean.", type = "Call" },
+      { text = "After n|Buzzbee|, small pulls to n|Goldie|. Trash gives low count.", type = "Mechanic" }
     },
   },
 
@@ -75,7 +75,7 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
     },
     DPS = {
       { text = "Dodge frontal. Rotate mugs if needed.", type = "Mechanic" },
-      { text = "Interrupt Keg Toss adds during s|Happy Hour|.", type = "Interrupt" },
+      { text = "Interrupt s|Keg Toss| adds during s|Happy Hour|.", type = "Interrupt" },
       { text = "Burn adds fast in brawler phase.", type = "Mechanic" }
     }
   },
