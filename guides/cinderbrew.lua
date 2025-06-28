@@ -1,4 +1,4 @@
-DungeonGuide_Guides["Cinderbrew Meadery"] = {
+DungeonGuide_Guides[""] = {
   ["Cinderbrew Meadery"] = {
     order = 1,
     header = "Intro: Cinderbrew Meadery",

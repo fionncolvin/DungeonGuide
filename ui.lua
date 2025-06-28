@@ -6,16 +6,8 @@ local ICON_SCROLL = 450907
 local ICON_BUTTON = 441147
 
 -- === Highlight and Tooltip Utilities ===
-local SPELL_COLOR = {
-    r = 3 / 255,
-    g = 198 / 255,
-    b = 252 / 255
-}
-local NPC_COLOR = {
-    r = 252 / 255,
-    g = 194 / 255,
-    b = 3 / 255
-}
+local SPELL_COLOR = { r = 3 / 255, g = 198 / 255, b = 252 / 255 }
+local NPC_COLOR = { r = 252 / 255, g = 194 / 255, b = 3 / 255 }
 
 local E, L, V, P, G = unpack(_G.ElvUI or {})
 local S
@@ -30,6 +22,11 @@ function DungeonGuideUI:GetFontPath()
     return LibStub("LibSharedMedia-3.0"):Fetch("font", DungeonGuideDB.font or "Friz Quadrata TT")
 end
 
+--- Creates and initializes the main guide frame for the DungeonGuide UI.
+-- This function sets up the visual frame and its components, such as title, content area,
+-- and any interactive elements required for displaying dungeon guides.
+-- It is intended to be called once during the addon initialization to prepare the UI for user interaction.
+-- @return frame The created guide frame object.
 function DungeonGuideUI:CreateGuideFrame()
     if self.frame then
         return
@@ -100,40 +97,32 @@ function DungeonGuideUI:CreateGuideFrame()
     header:SetText("")
     f.header = header
 
-    local selectorBtn = CreateFrame("Button", nil, f)
-    selectorBtn:SetSize(18, 18)
-    selectorBtn:SetPoint("LEFT", f.header, "LEFT", -10, 0)
+    self.MenuButton = CreateFrame("Button", nil, f, "BackdropTemplate")
+    self.MenuButton:SetSize(24, 24)
+    self.MenuButton:SetPoint("LEFT", f.header, "LEFT", -10, 0)
 
-    selectorBtn.icon = selectorBtn:CreateTexture(nil, "ARTWORK")
-    selectorBtn.icon:SetAllPoints()
-    selectorBtn.icon:SetTexture(ICON_SCROLL)
+    -- Light grey square background
+    self.MenuButton:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8x8" })
+    self.MenuButton:SetBackdropColor(0.8, 0.8, 0.8, 1)
 
-    selectorBtn:SetScript("OnClick", function()
-        DungeonGuideUI:ShowGuideSelector()
+    -- Your transparent PNG
+    self.MenuButton.icon = self.MenuButton:CreateTexture(nil, "ARTWORK")
+    self.MenuButton.icon:SetTexture("Interface\\AddOns\\DungeonGuide\\media\\hamburger.png")
+    self.MenuButton.icon:SetPoint("CENTER")
+    self.MenuButton.icon:SetSize(16, 16)
+
+    -- Click handler
+    self.MenuButton:SetScript("OnClick", function()
+        DungeonGuideUI:BuildMainMenu()
     end)
 
-    f.selector = selectorBtn
+    self.MenuButton:SetScript("OnEnter", function(self)
+        self:SetBackdropColor(0.6, 0.6, 0.6, 1) -- mid grey on hover
+    end)
 
-    local selectorPanel = CreateFrame("Frame", nil, f, "BackdropTemplate")
-    selectorPanel:SetBackdrop({
-        bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-        edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-        tile = true,
-        tileSize = 8,
-        edgeSize = 8,
-        insets = {
-            left = 3,
-            right = 3,
-            top = 3,
-            bottom = 3
-        }
-    })
-
-    selectorPanel:SetPoint("BOTTOMLEFT", f, "TOPLEFT", 0, 5)
-    selectorPanel:SetSize(200, 10)
-    selectorPanel:Hide()
-    f.selectorPanel = selectorPanel
-    selectorPanel.rows = {}
+    self.MenuButton:SetScript("OnLeave", function(self)
+        self:SetBackdropColor(0.8, 0.8, 0.8, 1) -- back to light grey
+    end)
 
     local scrollFrame = CreateFrame("ScrollFrame", nil, f, "UIPanelScrollFrameTemplate")
     -- Hide scrollbar and disable interaction
@@ -317,151 +306,6 @@ function DungeonGuideUI:UpdateGuideContent()
     f.contentFrame:SetWidth(f:GetWidth() - 40)
 end
 
-function DungeonGuideUI:ShowGuideSelector()
-    local f = self.frame
-    local dungeon = DungeonGuide_GetDungeonEntry()
-
-    if not dungeon then
-        return
-    end
-
-    DungeonGuideContext.selectorOpen = true
-
-    local panel = f.selectorPanel
-    local yOffset = -5
-    local index = 1
-
-    for _, row in ipairs(panel.rows) do
-        row:Hide()
-    end
-
-    local function AddRow(label, encounter)
-        local row = panel.rows[index]
-        if not row then
-            row = CreateFrame("Button", nil, panel)
-            row:SetHeight(20)
-            row:SetHighlightTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
-            row.text = row:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-            row.text:SetPoint("LEFT", 5, 0)
-            row.text:SetPoint("RIGHT", -5, 0)
-            row.text:SetJustifyH("LEFT")
-            panel.rows[index] = row
-        end
-
-        row:SetWidth(panel:GetWidth() - 10)
-        row:SetPoint("TOPLEFT", 5, yOffset)
-        row.text:SetText(label)
-
-        row:SetScript("OnClick", function()
-            panel:Hide()
-            DungeonGuideContext.encounter = encounter
-            DungeonGuideUI:ShowGuide()
-            DungeonGuideContext.selectorOpen = false
-        end)
-
-        row:Show()
-        yOffset = yOffset - 20
-        index = index + 1
-    end
-
-    local orderedEntries = {}
-
-    for name, entry in pairs(dungeon) do
-        if type(entry) == "table" and entry.order then
-            table.insert(orderedEntries, {
-                name = name,
-                order = entry.order
-            })
-        end
-    end
-
-    table.sort(orderedEntries, function(a, b)
-        return a.order < b.order
-    end)
-
-    for _, entry in ipairs(orderedEntries) do
-        AddRow(entry.name, entry.name)
-    end
-
-    panel:SetHeight(-yOffset + 10)
-    panel:Show()
-end
-
-function DungeonGuideUI:OpenGlobalDungeonSelector()
-    if not self.frame then
-        self:CreateGuideFrame()
-    end
-
-    local f = self.frame
-    local rows = f.contentRows or {}
-    local yOffset = 0
-    local index = 1
-
-    if f.header then
-        f.header:SetText("Select a Dungeon")
-    end
-
-    for dungeonName, _ in pairs(DungeonGuide_Guides) do
-        local row = rows[index]
-        local c = DungeonGuideDB.colours and DungeonGuideDB.colours.Position or { r = 0.8, g = 0.5, b = 0.2, a = 0.3 }
-
-        if not row then
-            row = CreateFrame("Button", nil, f.contentFrame)
-
-            row.indicator = row:CreateTexture(nil, "BACKGROUND")
-            row.indicator:SetWidth(6)
-            row.indicator:SetDrawLayer("BACKGROUND", 0)
-            row.indicator:SetPoint("TOPLEFT", 0, -1)
-            row.indicator:SetPoint("BOTTOMLEFT", 0, 1)
-
-            row.text = row:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-            row.text:SetJustifyH("LEFT")
-            row.text:SetJustifyV("TOP")
-            row.text:SetDrawLayer("ARTWORK", 1)
-            row.text:SetWordWrap(true)
-            row.text:SetPoint("TOPLEFT", row, "TOPLEFT", 10, 0)
-            row.text:SetPoint("TOPRIGHT", row, "TOPRIGHT", -2, 0)
-
-            rows[index] = row
-        end
-
-        row.indicator:SetColorTexture(c.r, c.g, c.b, c.a)
-
-        local spacing = DungeonGuideDB.rowSpacing or 22
-        row:SetPoint("TOPLEFT", 10, -yOffset)
-        row:SetWidth(f:GetWidth() - 20)
-        row.text:SetText(dungeonName)
-        row:SetHeight(spacing)
-
-        row:SetScript("OnClick", function()
-            DungeonGuideContext = {
-                role = DungeonGuide_GetPlayerRole(),
-                dungeon = dungeonName,
-                encounter = dungeonName
-            }
-
-            DungeonGuide_DebugInfo("Opening dungeon guide for " .. DungeonGuideContext.dungeon .. " as " .. DungeonGuideContext.role)
-
-            DungeonGuideContext.selectorOpen = true
-            DungeonGuideUI:ShowGuideButton()
-            DungeonGuideUI:ShowGuide()
-            DungeonGuideContext.selectorOpen = false
-        end)
-
-        row:Show()
-        yOffset = yOffset + (DungeonGuideDB.rowSpacing or 22)
-        index = index + 1
-    end
-
-    -- Hide unused rows
-    for i = index, #rows do
-        rows[i]:Hide()
-    end
-
-    f.contentRows = rows
-    f:Show()
-end
-
 function DungeonGuideUI:CreateGuideButton()
     if self.GuideButton then
         return
@@ -519,4 +363,121 @@ function DungeonGuideUI:ShowGuideButton()
 
     button:SetPoint(pos.point, UIParent, pos.point, pos.x, pos.y)
     button:Show()
+end
+
+-- === DungeonGuide Menu System ===
+
+function DungeonGuideUI:BuildMainMenu()
+    if not self.MenuButton then return end
+
+    if self.MainMenu then
+        self.MainMenu:Hide()
+        self.MainMenu:SetParent(nil)
+        self.MainMenu = nil
+    end
+
+    self.MainMenu = CreateFrame("Frame", nil, self.frame, "BackdropTemplate")
+    self.MainMenu:SetSize(200, 1)
+    self.MainMenu:SetPoint("TOPLEFT", self.MenuButton, "BOTTOMLEFT", 0, -5)
+    self.MainMenu:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8x8" })
+    self.MainMenu:SetBackdropColor(0, 0, 0, 0.95) -- 95% black background
+    self.MainMenu:SetFrameStrata("DIALOG")
+    self.MainMenu:SetFrameLevel(self.MenuButton:GetFrameLevel() + 5)
+    self.MainMenu.items = {}
+    local menu = self.MainMenu
+
+    if not self.MenuState then
+        self.MenuState = { showDungeons = false, selectedDungeon = nil }
+    end
+
+    local y = -10
+
+    local function AddButton(label, onClick, indent, isHeader, isSmall)
+        local btn = CreateFrame("Button", nil, menu)
+        btn:SetSize(180, isSmall and 16 or 20)
+        btn:SetPoint("TOPLEFT", 10 + (indent or 0), y)
+
+        -- Black background
+        btn.bg = btn:CreateTexture(nil, "BACKGROUND")
+        btn.bg:SetAllPoints()
+        btn.bg:SetColorTexture(0, 0, 0, 0.8) -- solid black
+
+        -- White text
+        btn.text = btn:CreateFontString(nil, "ARTWORK")
+        btn.text:SetFontObject(isHeader and GameFontHighlight or GameFontHighlightSmall)
+        btn.text:SetTextColor(1, 1, 1)
+        btn.text:SetPoint("LEFT", 4, 0)
+        btn.text:SetJustifyH("LEFT")
+        btn.text:SetText(label)
+
+        btn:SetScript("OnEnter", function()
+            btn.bg:SetColorTexture(0.2, 0.2, 0.2, 1) -- dark grey hover
+        end)
+        btn:SetScript("OnLeave", function()
+            btn.bg:SetColorTexture(0, 0, 0, 0.8)
+        end)
+        btn:SetScript("OnClick", onClick)
+
+        y = y - (isSmall and 18 or 22)
+        table.insert(menu.items, btn)
+    end
+
+
+    -- Dungeons root
+    AddButton("Dungeons", function()
+        self.MenuState.selectedDungeon = nil
+        self.MenuState.showDungeons = not self.MenuState.showDungeons
+        DungeonGuideUI:BuildMainMenu()
+    end, 0, true)
+
+    if self.MenuState.selectedDungeon then
+        local guide = DungeonGuide_Guides[self.MenuState.selectedDungeon]
+        if guide then
+            local ordered = {}
+            for enc, entry in pairs(guide) do
+                if type(entry) == "table" and entry.order then
+                    table.insert(ordered, { name = enc, order = entry.order })
+                end
+            end
+            table.sort(ordered, function(a, b) return a.order < b.order end)
+
+            for _, enc in ipairs(ordered) do
+                AddButton(enc.name, function()
+                    DungeonGuideContext = {
+                        role = DungeonGuide_GetPlayerRole(),
+                        dungeon = self.MenuState.selectedDungeon,
+                        encounter = enc.name
+                    }
+
+                    DungeonGuideContext.selectorOpen = true
+                    DungeonGuideUI:ShowGuide()
+                    DungeonGuideContext.selectorOpen = false
+                    self.MainMenu:Hide()
+                end, 20, false, true)
+            end
+        end
+    elseif self.MenuState.showDungeons then
+        -- Show full dungeon list
+        for dungeonName, _ in pairs(DungeonGuide_Guides) do
+            AddButton(dungeonName, function()
+                self.MenuState.selectedDungeon = dungeonName
+                self.MenuState.showDungeons = false
+                DungeonGuideUI:BuildMainMenu()
+            end, 10)
+        end
+    end
+
+    -- Final static buttons
+    AddButton("Edit", function()
+        print("DungeonGuide: Edit Menu")
+        self.MainMenu:Hide()
+    end, 0, true)
+
+    AddButton("Options", function()
+        print("DungeonGuide: Options")
+        self.MainMenu:Hide()
+    end, 0, true)
+
+    menu:SetHeight(-y + 10)
+    menu:Show()
 end
