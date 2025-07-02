@@ -474,7 +474,8 @@ function DungeonGuideUI:BuildMainMenu()
     end, 0, true)
 
     AddButton("Options", function()
-        print("DungeonGuide: Options")
+        InterfaceOptionsFrame_OpenToCategory("DungeonGuide")
+        InterfaceOptionsFrame_OpenToCategory("DungeonGuide")
         self.MainMenu:Hide()
     end, 0, true)
 
