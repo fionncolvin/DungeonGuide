@@ -107,17 +107,62 @@ function DungeonGuideEditorUI:Create()
     self.editArea = editContent
     self.editScroll = editScroll
 
-    local saveBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    saveBtn:SetSize(100, 24)
-    saveBtn:SetPoint("BOTTOMRIGHT", -120, 10)
-    saveBtn:SetText("Save")
-    if isElvUI then S:HandleButton(saveBtn) end
-
+    -- Export Button (right-most)
     local exportBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     exportBtn:SetSize(100, 24)
     exportBtn:SetPoint("BOTTOMRIGHT", -10, 10)
     exportBtn:SetText("Export")
     if isElvUI then S:HandleButton(exportBtn) end
+
+    -- Reset Button (middle)
+    local resetBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    resetBtn:SetSize(100, 24)
+    resetBtn:SetPoint("RIGHT", exportBtn, "LEFT", -10, 0)
+    resetBtn:SetText("Reset")
+    if isElvUI then S:HandleButton(resetBtn) end
+
+    resetBtn:SetScript("OnClick", function()
+        if not self.currentDungeon or not self.currentEncounter then return end
+
+        if DungeonGuide_Overrides[self.currentDungeon] then
+            DungeonGuide_Overrides[self.currentDungeon][self.currentEncounter] = nil
+            if next(DungeonGuide_Overrides[self.currentDungeon]) == nil then
+                DungeonGuide_Overrides[self.currentDungeon] = nil
+            end
+        end
+
+        DungeonGuide_DebugInfo("Cleared overrides for " .. self.currentDungeon .. " - " .. self.currentEncounter)
+        self:PopulateGuideEntries(self.currentDungeon, self.currentEncounter)
+    end)
+
+    -- Save Button (left-most)
+    local saveBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    saveBtn:SetSize(100, 24)
+    saveBtn:SetPoint("RIGHT", resetBtn, "LEFT", -10, 0)
+    saveBtn:SetText("Save")
+    if isElvUI then S:HandleButton(saveBtn) end
+
+    saveBtn:SetScript("OnClick", function()
+        if not self.currentDungeon or not self.currentEncounter then return end
+
+        local editedEntries = {}
+        for _, child in ipairs({ self.editArea:GetChildren() }) do
+            if child.entry then
+                table.insert(editedEntries, child.entry)
+            end
+        end
+
+        local overrides = DungeonGuide_GetModifiedOverrides(self.currentDungeon, self.currentEncounter, editedEntries)
+        DungeonGuide_Overrides[self.currentDungeon] = DungeonGuide_Overrides[self.currentDungeon] or {}
+
+        if #overrides > 0 then
+            DungeonGuide_Overrides[self.currentDungeon][self.currentEncounter] = overrides
+            DungeonGuide_DebugInfo("Saved " .. #overrides .. " overrides for " .. self.currentDungeon .. " - " .. self.currentEncounter)
+        else
+            DungeonGuide_Overrides[self.currentDungeon][self.currentEncounter] = nil
+            DungeonGuide_DebugInfo("No changes to save for " .. self.currentDungeon .. " - " .. self.currentEncounter)
+        end
+    end)
 
     local close = CreateFrame("Button", nil, f, "UIPanelCloseButton")
     close:SetPoint("TOPRIGHT", -5, -5)
@@ -159,14 +204,17 @@ function DungeonGuideEditorUI:PopulateEncounters(dungeonName)
     if not guide then return end
 
     local ordered = {}
+
     for enc, entry in pairs(guide) do
         if type(entry) == "table" and entry.order then
             table.insert(ordered, { name = enc, order = entry.order, header = entry.header })
         end
     end
+
     table.sort(ordered, function(a, b) return a.order < b.order end)
 
     local yOffset = -5
+
     for _, enc in ipairs(ordered) do
         local btn = CreateFrame("Button", nil, encounterContent)
         btn:SetSize(140, 20)
@@ -203,10 +251,10 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
         type = 100,
         role = 90,
         text = 760, -- will be updated below
-        show = 40,
+        hide = 40,
     }
 
-    local fixedWidth = columnWidths.order + columnWidths.type + columnWidths.role + columnWidths.show
+    local fixedWidth = columnWidths.order + columnWidths.type + columnWidths.role + columnWidths.hide
     local textWidth = math.max(fullWidth - fixedWidth - 4, 200)
     columnWidths.text = textWidth
 
@@ -215,7 +263,7 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
         { key = "type", width = columnWidths.type, align = "LEFT", label = "TYPE" },
         { key = "role", width = columnWidths.role, align = "LEFT", label = "ROLE" },
         { key = "text", width = columnWidths.text, align = "LEFT", label = "GUIDE" },
-        { key = "show", width = columnWidths.show, align = "CENTER", label = "SHOW" }
+        { key = "hide", width = columnWidths.hide, align = "CENTER", label = "HIDE" }
     }
 
     -- Header row
@@ -239,6 +287,7 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
     -- Guide row factory
     local function CreateRow(index, order, entry, role)
         local row = CreateFrame("Frame", nil, editArea, "BackdropTemplate")
+        row.entry = entry
         row:SetSize(fullWidth, rowHeight)
         row:SetPoint("TOPLEFT", 10, -10 - rowHeight * index)
 
@@ -254,7 +303,7 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
             type = entry.type or "",
             role = role,
             text = entry.text or "",
-            show = entry.show ~= true
+            hide = entry.hide ~= false
         }
 
         local x = 0
@@ -265,13 +314,13 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
             border:SetPoint("BOTTOMLEFT", x, 0)
             border:SetWidth(1)
 
-            if col.key == "show" then
+            if col.key == "hide" then
                 local cb = CreateFrame("CheckButton", nil, row, "UICheckButtonTemplate")
                 cb:SetPoint("LEFT", x + (col.width - 20) / 2, 0)
                 cb:SetSize(20, 20)
-                cb:SetChecked(show)
+                cb:SetChecked(hide)
                 cb:SetScript("OnClick", function(self)
-                    entry.show = self:GetChecked()
+                    entry.hide = self:GetChecked()
                 end)
                 if isElvUI and S.HandleCheckBox then S:HandleCheckBox(cb) end
             elseif col.key == "role" then
@@ -316,6 +365,48 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
                         UIDropDownMenu_AddButton(info)
                     end
                 end)
+            elseif col.key == "text" then
+                -- TEXT: editable field
+                local textFrame = CreateFrame("Frame", nil, row)
+                textFrame:SetPoint("LEFT", x + 2, 0)
+                textFrame:SetSize(col.width - 6, rowHeight)
+
+                -- Display label (initial view)
+                local label = textFrame:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+                label:SetAllPoints()
+                label:SetJustifyH("LEFT")
+                label:SetJustifyV("MIDDLE")
+                label:SetText((entry.text or ""):gsub("|", "||"))
+
+                -- Editable box (initially hidden)
+                local editBox = CreateFrame("EditBox", nil, textFrame, "InputBoxTemplate")
+                editBox:SetAllPoints()
+                editBox:SetAutoFocus(false)
+                editBox:SetMultiLine(false)
+                editBox:Hide()
+                editBox:SetFontObject("GameFontHighlightSmall")
+                editBox:SetText(entry.text or "")
+
+                -- Show edit box on click
+                textFrame:SetScript("OnMouseDown", function()
+                    label:Hide()
+                    editBox:Show()
+                    editBox:SetFocus()
+                    editBox:SetCursorPosition(0)
+                end)
+
+                -- Commit on Enter or focus lost
+                local function commitEdit()
+                    local newText = editBox:GetText()
+                    entry.text = newText
+                    label:SetText(newText:gsub("|", "||"))
+                    editBox:Hide()
+                    label:Show()
+                end
+
+                editBox:SetScript("OnEnterPressed", commitEdit)
+                editBox:SetScript("OnEscapePressed", commitEdit)
+                editBox:SetScript("OnEditFocusLost", commitEdit)
             else
                 local fs = row:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
                 fs:SetPoint("LEFT", x + 4, 0)
@@ -336,6 +427,7 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
     for _, role in ipairs({ "ALL", "TANK", "HEALER", "DPS" }) do
         if section[role] then
             for _, entry in ipairs(section[role]) do
+                entry.role = role
                 CreateRow(index, order, entry, role)
                 order = order + 1
                 index = index + 1

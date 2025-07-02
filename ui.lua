@@ -188,12 +188,16 @@ function DungeonGuideUI:UpdateGuideContent()
     f.header:SetText(DungeonGuideContext.encounter or "Dungeon Guide")
 
     -- Combine ALL + role-specific lines
+
+    DungeonGuide_DebugInfo("Updating guide content for " .. (DungeonGuideContext.encounter or "unknown encounter") .. " in dungeon: " .. (DungeonGuideContext.dungeon or "unknown dungeon") .. " for role: " .. (DungeonGuideContext.role or "unknown role"))
+
     local lines = {}
     if guide.ALL then
         for _, line in ipairs(guide.ALL) do
             table.insert(lines, line)
         end
     end
+
     if guide[DungeonGuideContext.role] then
         for _, line in ipairs(guide[DungeonGuideContext.role]) do
             table.insert(lines, line)

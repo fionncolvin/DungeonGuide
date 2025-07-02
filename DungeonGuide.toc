@@ -5,6 +5,7 @@
 ## X-Wago-ID: E6gLaAK1
 ## Interface: 110001, 110005
 ## SavedVariables: DungeonGuideDB
+## SavedVariablesPerCharacter: DungeonGuide_Overrides
 ## IconTexture: Interface\AddOns\DungeonGuide\DungeonGuide_Icon
 ## OptionalDeps: LibSharedMedia-3.0
 
