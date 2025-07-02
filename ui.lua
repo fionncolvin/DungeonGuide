@@ -474,8 +474,11 @@ function DungeonGuideUI:BuildMainMenu()
     end, 0, true)
 
     AddButton("Options", function()
-        InterfaceOptionsFrame_OpenToCategory("DungeonGuide")
-        InterfaceOptionsFrame_OpenToCategory("DungeonGuide")
+        if DungeonGuideOptionsCategory then
+            Settings.OpenToCategory(DungeonGuideOptionsCategory)
+        else
+            print("DungeonGuide: Options not registered.")
+        end
         self.MainMenu:Hide()
     end, 0, true)
 

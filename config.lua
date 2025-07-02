@@ -173,8 +173,8 @@ local function CreateDungeonGuideOptionsPanel()
     CreateColorPicker(panel, "Interrupt", "Interrupt", -30, nil, true)
     CreateColorPicker(panel, "Mechanic", "Mechanic", -30, nil, true)
 
-    local category = Settings.RegisterCanvasLayoutCategory(panel, "DungeonGuide")
-    Settings.RegisterAddOnCategory(category)
+    DungeonGuideOptionsCategory = Settings.RegisterCanvasLayoutCategory(panel, "DungeonGuide")
+    Settings.RegisterAddOnCategory(DungeonGuideOptionsCategory)
 end
 
 -- Run after ADDON_LOADED to ensure DungeonGuideDB is ready
