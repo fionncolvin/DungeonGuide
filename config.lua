@@ -100,8 +100,8 @@ local function CreateDungeonGuideOptionsPanel()
 
     -- Auto-Hide Guide Button Checkbox
     local autoHideCheckbox = CreateFrame("CheckButton", "DG_AutoHideCheckbox", panel, "InterfaceOptionsCheckButtonTemplate")
-    autoHideCheckbox:SetPoint("TOPLEFT", rowSpacingSlider, "BOTTOMLEFT", 0, -40)
-    autoHideCheckbox.Text:SetText("Enable Debug Mode")
+    autoHideCheckbox:SetPoint("TOPLEFT", debugCheckbox, "BOTTOMLEFT", 0, -40)
+    autoHideCheckbox.Text:SetText("Auto Hide Guide Button")
     autoHideCheckbox:SetChecked(DungeonGuideDB.autoHide)
     
     autoHideCheckbox:SetScript("OnClick", function(self)
