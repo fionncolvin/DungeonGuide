@@ -16,6 +16,7 @@ DungeonGuideContext = {
 -- Defaults for UI config
 local defaults = {
     debug = false,
+    autoHide = true,
     font = "GameFontHighlightSmall",
     fontSize = 12,
     rowSpacing = 22,
@@ -115,7 +116,7 @@ local function DetectGuideContext()
         DungeonGuideContext.encounter = DungeonGuideContext.dungeon
         DungeonGuideUI:ShowGuideButton()
     else
-        if DungeonGuideUI.GuideButton then
+        if DungeonGuideUI.GuideButton and DungeonGuideDB.autoHide then
             DungeonGuideUI.GuideButton:Hide()
         end
     end

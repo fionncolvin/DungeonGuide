@@ -98,6 +98,16 @@ local function CreateDungeonGuideOptionsPanel()
         DungeonGuideDB.debug = self:GetChecked()
     end)
 
+    -- Auto-Hide Guide Button Checkbox
+    local autoHideCheckbox = CreateFrame("CheckButton", "DG_AutoHideCheckbox", panel, "InterfaceOptionsCheckButtonTemplate")
+    autoHideCheckbox:SetPoint("TOPLEFT", rowSpacingSlider, "BOTTOMLEFT", 0, -40)
+    autoHideCheckbox.Text:SetText("Enable Debug Mode")
+    autoHideCheckbox:SetChecked(DungeonGuideDB.autoHide)
+    
+    autoHideCheckbox:SetScript("OnClick", function(self)
+        DungeonGuideDB.autoHide = self:GetChecked()
+    end)
+
     -- Color Picker Helper
     local function CreateColorPicker(parent, label, key, yOffset, relativeTo, stackBelow)
         local title = parent:CreateFontString(nil, "ARTWORK", "GameFontNormal")
@@ -158,7 +168,7 @@ local function CreateDungeonGuideOptionsPanel()
     end
 
     -- Create one for each type
-    CreateColorPicker(panel, "Call", "Call", -40, debugCheckbox)
+    CreateColorPicker(panel, "Call", "Call", -40, autoHideCheckbox)
     CreateColorPicker(panel, "Position", "Position", -30, nil, true)
     CreateColorPicker(panel, "Interrupt", "Interrupt", -30, nil, true)
     CreateColorPicker(panel, "Mechanic", "Mechanic", -30, nil, true)
