@@ -1,5 +1,5 @@
 <Bindings>
   <Binding name="DUNGEONGUIDE_OPEN_SELECTOR" category="Dungeon Guide">
-    DungeonGuideUI:OpenGlobalDungeonSelector()
+    DungeonGuideUI:ShowGuide()
   </Binding>
 </Bindings>

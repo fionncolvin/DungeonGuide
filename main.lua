@@ -7,7 +7,7 @@ BINDING_NAME_DUNGEONGUIDE_OPEN_SELECTOR = "Open Dungeon Selector"
 local f = CreateFrame("Frame")
 
 DungeonGuideContext = {
-    selectorOpen = false,
+    forceSelect = false,
     role = nil,
     encounter = nil,
     dungeon = nil
@@ -65,39 +65,6 @@ end
 
 ApplyDefaults()
 
-function DungeonGuide_GetGuideEntry()
-    local guide = nil
-
-    if not DungeonGuideContext.encounter or not DungeonGuideContext.dungeon then
-        return nil
-    end
-
-    if DungeonGuideContext.selectorOpen then
-        guide = DungeonGuide_FindGuideEntry(DungeonGuideContext.dungeon, DungeonGuideContext.encounter)
-        return guide
-    end
-
-    DungeonGuide_DebugInfo("Checking for target Guide - " .. DungeonGuideContext.encounter .. " in dungeon: " .. DungeonGuideContext.dungeon)
-
-    -- Check if we have a target and it matches a boss
-    if UnitExists("target") then
-        local targetName = UnitName("target")
-        DungeonGuide_DebugInfo("Checking for target Guide - " .. targetName .. " in dungeon: " .. DungeonGuideContext.dungeon)
-        guide = DungeonGuide_FindGuideEntry(DungeonGuideContext.dungeon, targetName)
-
-        if guide then
-            DungeonGuideContext.encounter = targetName
-            DungeonGuide_DebugInfo("Found Guide for Target - " .. targetName)
-            return guide
-        end
-    end
-
-    DungeonGuideContext.encounter = DungeonGuideContext.dungeon
-    guide = DungeonGuide_FindGuideEntry(DungeonGuideContext.dungeon, DungeonGuideContext.encounter)
-
-    return guide
-end
-
 function DungeonGuide_GetDungeonEntry()
     return DungeonGuide_Guides[DungeonGuideContext.dungeon] or nil
 end
@@ -144,10 +111,10 @@ SlashCmdList["DUNGEONGUIDE"] = function(msg)
             dungeon = dungeon
         }
 
-        DungeonGuideContext.selectorOpen = true
+        DungeonGuideContext.forceSelect = true
         DungeonGuideUI:ShowGuideButton()
         DungeonGuideUI:ShowGuide()
-        DungeonGuideContext.selectorOpen = false
+        DungeonGuideContext.forceSelect = false
     else
         print("[DungeonGuide] Usage: /dg role @ encounter @ dungeon")
     end

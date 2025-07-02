@@ -45,3 +45,36 @@ function DungeonGuide_DebugInfo(content)
         print("|cff8888ff[DungeonGuide Debug]|r " .. content)
     end
 end
+
+function DungeonGuide_GetGuideEntry()
+    local guide = nil
+
+    if not DungeonGuideContext.encounter or not DungeonGuideContext.dungeon then
+        return nil
+    end
+
+    if DungeonGuideContext.forceSelect then
+        guide = DungeonGuide_FindGuideEntry(DungeonGuideContext.dungeon, DungeonGuideContext.encounter)
+        return guide
+    end
+
+    DungeonGuide_DebugInfo("Checking for target Guide - " .. DungeonGuideContext.encounter .. " in dungeon: " .. DungeonGuideContext.dungeon)
+
+    -- Check if we have a target and it matches a boss
+    if UnitExists("target") then
+        local targetName = UnitName("target")
+        DungeonGuide_DebugInfo("Checking for target Guide - " .. targetName .. " in dungeon: " .. DungeonGuideContext.dungeon)
+        guide = DungeonGuide_FindGuideEntry(DungeonGuideContext.dungeon, targetName)
+
+        if guide then
+            DungeonGuideContext.encounter = targetName
+            DungeonGuide_DebugInfo("Found Guide for Target - " .. targetName)
+            return guide
+        end
+    end
+
+    DungeonGuideContext.encounter = DungeonGuideContext.dungeon
+    guide = DungeonGuide_FindGuideEntry(DungeonGuideContext.dungeon, DungeonGuideContext.encounter)
+
+    return guide
+end

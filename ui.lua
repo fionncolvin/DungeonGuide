@@ -213,21 +213,6 @@ function DungeonGuideUI:UpdateGuideContent()
 
     local yOffset, index = 0, 1
 
-    if (DungeonGuideContext.encounter ~= "Route") then
-        local typeSortOrder = {
-            Mechanic = 1,
-            Position = 2,
-            Interrupt = 3,
-            Call = 4
-        }
-
-        table.sort(lines, function(a, b)
-            local orderA = typeSortOrder[a.type] or 99
-            local orderB = typeSortOrder[b.type] or 99
-            return orderA < orderB
-        end)
-    end
-
     for _, line in ipairs(lines) do
         local row = f.contentRows[index]
         if not row then
@@ -311,8 +296,7 @@ function DungeonGuideUI:CreateGuideButton()
         return
     end
 
-    local button = CreateFrame("Button", "DungeonGuideGuideButton", UIParent,
-        "SecureActionButtonTemplate, UIPanelButtonTemplate")
+    local button = CreateFrame("Button", "DungeonGuideGuideButton", UIParent, "SecureActionButtonTemplate, UIPanelButtonTemplate")
     button:SetSize(32, 32)
     button:SetText("")
     button.icon = button:CreateTexture(nil, "ARTWORK")
@@ -323,6 +307,7 @@ function DungeonGuideUI:CreateGuideButton()
     button:EnableMouse(true)
     button:RegisterForDrag("LeftButton")
     button:SetScript("OnDragStart", button.StartMoving)
+
     button:SetScript("OnDragStop", function(self)
         self:StopMovingOrSizing()
         local point, _, _, x, y = self:GetPoint()
@@ -332,14 +317,17 @@ function DungeonGuideUI:CreateGuideButton()
             y = y
         }
     end)
+
     button:SetScript("OnClick", function()
         DungeonGuideUI:ShowGuide()
     end)
+
     button:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
         GameTooltip:SetText("DungeonGuide\nLeft-click to open\nRight-click to move", 1, 1, 1)
         GameTooltip:Show()
     end)
+
     button:SetScript("OnLeave", function()
         GameTooltip:Hide()
     end)
@@ -366,7 +354,6 @@ function DungeonGuideUI:ShowGuideButton()
 end
 
 -- === DungeonGuide Menu System ===
-
 function DungeonGuideUI:BuildMainMenu()
     if not self.MenuButton then return end
 
@@ -377,7 +364,7 @@ function DungeonGuideUI:BuildMainMenu()
     end
 
     self.MainMenu = CreateFrame("Frame", nil, self.frame, "BackdropTemplate")
-    self.MainMenu:SetSize(200, 1)
+    self.MainMenu:SetSize(230, 1)
     self.MainMenu:SetPoint("TOPLEFT", self.MenuButton, "BOTTOMLEFT", 0, -5)
     self.MainMenu:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8x8" })
     self.MainMenu:SetBackdropColor(0, 0, 0, 0.95) -- 95% black background
@@ -442,16 +429,19 @@ function DungeonGuideUI:BuildMainMenu()
             table.sort(ordered, function(a, b) return a.order < b.order end)
 
             for _, enc in ipairs(ordered) do
-                AddButton(enc.name, function()
+                local entry = guide[enc.name]
+                local displayName = entry.header or enc.name
+
+                AddButton(displayName, function()
                     DungeonGuideContext = {
                         role = DungeonGuide_GetPlayerRole(),
                         dungeon = self.MenuState.selectedDungeon,
                         encounter = enc.name
                     }
 
-                    DungeonGuideContext.selectorOpen = true
+                    DungeonGuideContext.forceSelect = true
                     DungeonGuideUI:ShowGuide()
-                    DungeonGuideContext.selectorOpen = false
+                    DungeonGuideContext.forceSelect = false
                     self.MainMenu:Hide()
                 end, 20, false, true)
             end
@@ -469,7 +459,7 @@ function DungeonGuideUI:BuildMainMenu()
 
     -- Final static buttons
     AddButton("Edit", function()
-        print("DungeonGuide: Edit Menu")
+        DungeonGuideEditorUI:Show()
         self.MainMenu:Hide()
     end, 0, true)
 
