@@ -143,9 +143,12 @@ function DungeonGuideEditorUI:Create()
     if isElvUI then S:HandleButton(saveBtn) end
 
     saveBtn:SetScript("OnClick", function()
-        if not self.currentDungeon or not self.currentEncounter then return end
+        if not self.currentDungeon or not self.currentEncounter then
+            return
+        end
 
         local editedEntries = {}
+
         for _, child in ipairs({ self.editArea:GetChildren() }) do
             if child.entry then
                 table.insert(editedEntries, child.entry)
@@ -432,8 +435,9 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
     for _, role in ipairs({ "ALL", "TANK", "HEALER", "DPS" }) do
         if guide[role] then
             for _, entry in ipairs(guide[role]) do
-                entry.role = role
-                CreateRow(index, order, entry, role)
+                local workingEntry = CopyTable(entry)
+                workingEntry.role = role
+                CreateRow(index, order, workingEntry, role)
                 order = order + 1
                 index = index + 1
             end
