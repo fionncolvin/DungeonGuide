@@ -2,7 +2,7 @@
 
 DungeonGuideEditorUI = {}
 
-local E, L, V, P, G = unpack(_G.ElvUI or {})
+local E = _G.ElvUI and unpack(_G.ElvUI) or nil
 local S
 
 if E and E.GetModule then

@@ -8,7 +8,7 @@ local ICON_BUTTON = 441147
 local SPELL_COLOR = { r = 3 / 255, g = 198 / 255, b = 252 / 255 }
 local NPC_COLOR = { r = 252 / 255, g = 194 / 255, b = 3 / 255 }
 
-local E, L, V, P, G = unpack(_G.ElvUI or {})
+local E = (_G.ElvUI and unpack(_G.ElvUI)) or nil
 local S
 
 if E and E.GetModule then
@@ -266,7 +266,7 @@ function DungeonGuideUI:UpdateGuideContent()
         local availableWidth = f:GetWidth() - scrollbarOffset - textPadding
         local formatted = self:FormatGuideLine(line.text)
 
-        local font, _, flags = row.text:GetFont()
+        local _, _, flags = row.text:GetFont()
         row.text:SetFont(DungeonGuideUI:GetFontPath(), DungeonGuideDB.fontSize or 12, flags)
         row.text:SetWidth(availableWidth) -- set BEFORE SetText
         row.text:SetText(formatted)
