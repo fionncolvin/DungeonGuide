@@ -66,10 +66,6 @@ end
 
 ApplyDefaults()
 
-function DungeonGuide_GetDungeonEntry()
-    return DungeonGuide_Guides[DungeonGuideContext.dungeon] or nil
-end
-
 local function DetectGuideContext()
     DungeonGuideContext.dungeon = GetRealZoneText()
 

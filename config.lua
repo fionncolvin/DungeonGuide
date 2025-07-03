@@ -7,7 +7,6 @@ local function CreateDungeonGuideOptionsPanel()
         Mechanic = { r = 0.5, g = 0.5, b = 0.5, a = 0.3 }
     }
 
-    local LSM = LibStub("LibSharedMedia-3.0")
     local panel = CreateFrame("Frame", "DungeonGuideOptionsPanel", UIParent)
     panel.name = "DungeonGuide"
 
@@ -26,14 +25,10 @@ local function CreateDungeonGuideOptionsPanel()
     fontSizeSlider:SetScript("OnValueChanged", function(self, value)
         value = math.floor(value)
         DungeonGuideDB.fontSize = value
-        DungeonGuideFontSizeSliderText:SetText("Font Size: " .. value)
         if DungeonGuideUI and DungeonGuideUI.frame and DungeonGuideUI.frame:IsShown() then
             DungeonGuideUI:UpdateGuideContent()
         end
     end)
-    DungeonGuideFontSizeSliderText:SetText("Font Size")
-    DungeonGuideFontSizeSliderLow:SetText("8")
-    DungeonGuideFontSizeSliderHigh:SetText("24")
 
     -- Font Dropdown
     local LSM = LibStub("LibSharedMedia-3.0")

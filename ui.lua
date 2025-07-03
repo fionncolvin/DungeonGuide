@@ -2,7 +2,6 @@ DungeonGuideDropdown = CreateFrame("Frame", "DungeonGuideDropdown", UIParent, "U
 
 DungeonGuideUI = {}
 
-local ICON_SCROLL = 450907
 local ICON_BUTTON = 441147
 
 -- === Highlight and Tooltip Utilities ===
@@ -113,7 +112,7 @@ function DungeonGuideUI:CreateGuideFrame()
 
     -- Click handler
     self.MenuButton:SetScript("OnClick", function()
-        DungeonGuideUI:BuildMainMenu()
+        DungeonGuideUI:BuildMainMenu(true)
     end)
 
     self.MenuButton:SetScript("OnEnter", function(self)
@@ -358,7 +357,7 @@ function DungeonGuideUI:ShowGuideButton()
 end
 
 -- === DungeonGuide Menu System ===
-function DungeonGuideUI:BuildMainMenu()
+function DungeonGuideUI:BuildMainMenu(currentDungeon)
     if not self.MenuButton then return end
 
     if self.MainMenu then
@@ -379,6 +378,11 @@ function DungeonGuideUI:BuildMainMenu()
 
     if not self.MenuState then
         self.MenuState = { showDungeons = false, selectedDungeon = nil }
+    end
+
+    if (currentDungeon) then
+        self.MenuState.selectedDungeon = DungeonGuideContext.dungeon or nil
+        self.MenuState.showDungeons = false
     end
 
     local y = -10
@@ -418,7 +422,7 @@ function DungeonGuideUI:BuildMainMenu()
     AddButton("Dungeons", function()
         self.MenuState.selectedDungeon = nil
         self.MenuState.showDungeons = not self.MenuState.showDungeons
-        DungeonGuideUI:BuildMainMenu()
+        DungeonGuideUI:BuildMainMenu(false)
     end, 0, true)
 
     if self.MenuState.selectedDungeon then
@@ -456,7 +460,7 @@ function DungeonGuideUI:BuildMainMenu()
             AddButton(dungeonName, function()
                 self.MenuState.selectedDungeon = dungeonName
                 self.MenuState.showDungeons = false
-                DungeonGuideUI:BuildMainMenu()
+                DungeonGuideUI:BuildMainMenu(false)
             end, 10)
         end
     end

@@ -236,11 +236,11 @@ end
 
 function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
     local editArea = self.editArea
-    for _, child in ipairs({ editArea:GetChildren() }) do child:Hide() end
+    local guide = DungeonGuide_GetGuideEntry(dungeonName, encounterName, true)
 
-    local guide = DungeonGuide_Guides[dungeonName]
-    local section = guide and guide[encounterName]
-    if not section then return end
+    if not guide then
+        return
+    end
 
     local rowHeight = 22
     local scrollFrame = self.editScroll
@@ -265,6 +265,11 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
         { key = "text", width = columnWidths.text, align = "LEFT", label = "GUIDE" },
         { key = "hide", width = columnWidths.hide, align = "CENTER", label = "HIDE" }
     }
+
+    -- Clear previous content
+    for _, child in ipairs({editArea:GetChildren()}) do
+        child:Hide()
+    end
 
     -- Header row
     local headerRow = CreateFrame("Frame", nil, editArea)
@@ -425,8 +430,8 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
     local order = 1
     local index = 1
     for _, role in ipairs({ "ALL", "TANK", "HEALER", "DPS" }) do
-        if section[role] then
-            for _, entry in ipairs(section[role]) do
+        if guide[role] then
+            for _, entry in ipairs(guide[role]) do
                 entry.role = role
                 CreateRow(index, order, entry, role)
                 order = order + 1

@@ -14,13 +14,13 @@ end
 
 function DungeonGuide_FindNPCID(dungeonName, npcName)
     local npcID = nil
-    print("DungeonGuide_FindNPCID: " .. dungeonName .. " - " .. npcName)
+    DungeonGuide_DebugInfo("DungeonGuide_FindNPCID: " .. dungeonName .. " - " .. npcName)
 
     if (DungeonGuide_NPCNames[dungeonName]) then
-        print("DungeonGuide_NPCs: " .. tostring(DungeonGuide_NPCNames[dungeonName]))
+        DungeonGuide_DebugInfo("DungeonGuide_NPCs: " .. tostring(DungeonGuide_NPCNames[dungeonName]))
         if type(DungeonGuide_NPCNames[dungeonName]) == "table" then
             if (DungeonGuide_NPCNames[dungeonName][npcName]) then
-                print("DungeonGuide_NPCs: " .. tostring(DungeonGuide_NPCNames[dungeonName][npcName]))
+                DungeonGuide_DebugInfo("DungeonGuide_NPCs: " .. tostring(DungeonGuide_NPCNames[dungeonName][npcName]))
                 npcID = DungeonGuide_NPCNames[dungeonName][npcName]
             end
         end
@@ -34,7 +34,9 @@ function DungeonGuide_GetPlayerRole()
     
     if role == "NONE" then
         local specID = GetSpecialization()
-        role = select(5, GetSpecializationInfo(specID))
+        if specID then
+            role = select(5, GetSpecializationInfo(specID))
+        end
     end
 
     return role
@@ -46,44 +48,54 @@ function DungeonGuide_DebugInfo(content)
     end
 end
 
-function DungeonGuide_GetGuideEntry()
-    local guide = nil
+function DungeonGuide_GetDungeonEntry()
+    return DungeonGuide_Guides[DungeonGuideContext.dungeon] or nil
+end
+
+function DungeonGuide_GetGuideEntry(dungeon, encounter, force)
     local base = nil
     local override = nil
 
-    if not DungeonGuideContext.encounter or not DungeonGuideContext.dungeon then
-        return nil
+    DungeonGuide_DebugInfo("DungeonGuide_GetGuideEntry called with dungeon: " .. tostring(dungeon) .. ", encounter: " .. tostring(encounter) .. ", force: " .. tostring(force))
+
+    if not dungeon then
+        dungeon = DungeonGuideContext.dungeon
+    end
+
+    if not encounter then
+        encounter = DungeonGuideContext.encounter
     end
 
     -- If we have a specific encounter set, use that
-    if DungeonGuideContext.forceSelect then
-        base = DungeonGuide_FindGuideEntry(DungeonGuideContext.dungeon, DungeonGuideContext.encounter)
-        override = DungeonGuide_Overrides[DungeonGuideContext.dungeon] and DungeonGuide_Overrides[DungeonGuideContext.dungeon][DungeonGuideContext.encounter]
+    if force then
+        base = DungeonGuide_FindGuideEntry(dungeon, encounter)
+        override = DungeonGuide_Overrides[dungeon] and DungeonGuide_Overrides[dungeon][encounter]
 
         if override then
-            DungeonGuide_DebugInfo("Using override for " .. DungeonGuideContext.encounter .. " in dungeon: " .. DungeonGuideContext.dungeon)
+            DungeonGuide_DebugInfo("Using override for " .. encounter .. " in dungeon: " .. dungeon)
             return DungeonGuide_MergeGuide(base, override)
         end
 
         return base
     end
 
-    DungeonGuide_DebugInfo("Checking for target Guide - " .. DungeonGuideContext.encounter .. " in dungeon: " .. DungeonGuideContext.dungeon)
+    DungeonGuide_DebugInfo("Checking for target Guide - " .. encounter .. " in dungeon: " .. dungeon)
 
     -- Check if we have a target and it matches a boss
     if UnitExists("target") then
         local targetName = UnitName("target")
-        DungeonGuide_DebugInfo("Checking for target Guide - " .. targetName .. " in dungeon: " .. DungeonGuideContext.dungeon)
-        base = DungeonGuide_FindGuideEntry(DungeonGuideContext.dungeon, targetName)
+        DungeonGuide_DebugInfo("Checking for target Guide - " .. targetName .. " in dungeon: " .. dungeon)
+        base = DungeonGuide_FindGuideEntry(dungeon, targetName)
 
         if base then
             DungeonGuideContext.encounter = targetName
+            encounter = targetName
             DungeonGuide_DebugInfo("Found Guide for Target - " .. targetName)
 
-            override = DungeonGuide_Overrides[DungeonGuideContext.dungeon] and DungeonGuide_Overrides[DungeonGuideContext.dungeon][DungeonGuideContext.encounter]
+            override = DungeonGuide_Overrides[dungeon] and DungeonGuide_Overrides[dungeon][encounter]
 
             if override then
-                DungeonGuide_DebugInfo("Using override for " .. DungeonGuideContext.encounter .. " in dungeon: " .. DungeonGuideContext.dungeon)
+                DungeonGuide_DebugInfo("Using override for " .. encounter .. " in dungeon: " .. dungeon)
                 return DungeonGuide_MergeGuide(base, override)
             end
 
@@ -91,12 +103,11 @@ function DungeonGuide_GetGuideEntry()
         end
     end
 
-    DungeonGuideContext.encounter = DungeonGuideContext.dungeon
-    base = DungeonGuide_FindGuideEntry(DungeonGuideContext.dungeon, DungeonGuideContext.encounter)
-    override = DungeonGuide_Overrides[DungeonGuideContext.dungeon] and DungeonGuide_Overrides[DungeonGuideContext.dungeon][DungeonGuideContext.encounter]
+    base = DungeonGuide_FindGuideEntry(dungeon, encounter)
+    override = DungeonGuide_Overrides[dungeon] and DungeonGuide_Overrides[dungeon][encounter]
 
     if override then
-        DungeonGuide_DebugInfo("Using override for " .. DungeonGuideContext.encounter .. " in dungeon: " .. DungeonGuideContext.dungeon)
+        DungeonGuide_DebugInfo("Using override for " .. encounter .. " in dungeon: " .. dungeon)
         return DungeonGuide_MergeGuide(base, override)
     end
 
