@@ -1,3 +1,6 @@
+-- Define roles as a module-level constant to avoid recreating the table
+local DUNGEONGUIDE_ROLES = { "ALL", "TANK", "HEALER", "DPS" }
+
 function DungeonGuide_FindGuideEntry(dungeonName, encounterName)
     for dungeon, encounters in pairs(DungeonGuide_Guides) do
         if dungeon == dungeonName then
@@ -117,7 +120,7 @@ end
 function DungeonGuide_MergeGuide(base, override)
     local merged = { ALL = {}, TANK = {}, HEALER = {}, DPS = {} }
 
-    for _, role in ipairs({ "ALL", "TANK", "HEALER", "DPS" }) do
+    for _, role in ipairs(DUNGEONGUIDE_ROLES) do
         if base[role] then
             for _, entry in ipairs(base[role]) do
                 table.insert(merged[role], CopyTable(entry))
