@@ -147,6 +147,7 @@ function DungeonGuideEditorUI:Create()
             return
         end
 
+        --[[
         local editedEntries = {}
 
         for _, child in ipairs({ self.editArea:GetChildren() }) do
@@ -165,6 +166,7 @@ function DungeonGuideEditorUI:Create()
             DungeonGuide_Overrides[self.currentDungeon][self.currentEncounter] = nil
             DungeonGuide_DebugInfo("No changes to save for " .. self.currentDungeon .. " - " .. self.currentEncounter)
         end
+        ]]
     end)
 
     local close = CreateFrame("Button", nil, f, "UIPanelCloseButton")
