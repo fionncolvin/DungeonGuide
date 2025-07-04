@@ -1,6 +1,3 @@
--- Define roles as a module-level constant to avoid recreating the table
-local DUNGEONGUIDE_ROLES = { "ALL", "TANK", "HEALER", "DPS" }
-
 function DungeonGuide_FindGuideEntry(dungeonName, encounterName)
     for dungeon, encounters in pairs(DungeonGuide_Guides) do
         if dungeon == dungeonName then
@@ -34,7 +31,7 @@ end
 
 function DungeonGuide_GetPlayerRole()
     local role = UnitGroupRolesAssigned("player")
-    
+
     if role == "NONE" then
         local specID = GetSpecialization()
         if specID then
@@ -120,23 +117,42 @@ end
 function DungeonGuide_MergeGuide(base, override)
     local merged = { ALL = {}, TANK = {}, HEALER = {}, DPS = {} }
 
+    -- Build a quick lookup of override IDs
+    local overrideMap = {}
+
+    for _, entry in ipairs(override or {}) do
+        if entry.id then
+            overrideMap[entry.id] = true
+        end
+    end
+
+    -- Copy base entries unless overridden
     for _, role in ipairs(DUNGEONGUIDE_ROLES) do
         if base[role] then
             for _, entry in ipairs(base[role]) do
-                table.insert(merged[role], CopyTable(entry))
+                if not entry.id then
+                    DungeonGuide_DebugInfo("WARNING: Entry is missing ID: " .. (entry.text or "???"))
+                end
+                
+                if not (entry.id and overrideMap[entry.id]) then
+                    table.insert(merged[role], CopyTable(entry))
+
+                    DungeonGuide_DebugInfo("Adding base entry: " .. (entry.text or "Unnamed") .. " for role: " .. role)
+                end
             end
         end
     end
 
-    if override then
-        for _, entry in ipairs(override) do
-            DungeonGuide_DebugInfo("Merging entry: " .. (entry.text or "Unnamed") .. " for role: " .. (entry.role or "ALL"))
-            if entry.show ~= false then
-                table.insert(merged[entry.role or "ALL"], CopyTable(entry))
-            end
+    -- Add overrides (which replace matching base entries)
+    for _, entry in ipairs(override or {}) do
+        if entry.show ~= false then
+            table.insert(merged[entry.role or "ALL"], CopyTable(entry))
+
+            DungeonGuide_DebugInfo("Adding override entry: " .. (entry.text or "Unnamed") .. " for role: " .. (entry.role or "ALL"))
         end
     end
 
+    -- Sort all
     for _, entries in pairs(merged) do
         table.sort(entries, function(a, b) return (a.order or 0) < (b.order or 0) end)
     end
@@ -144,39 +160,61 @@ function DungeonGuide_MergeGuide(base, override)
     return merged
 end
 
-function DungeonGuide_GetModifiedOverrides(dungeon, encounter, editedEntries)
-    local base = DungeonGuide_Guides[dungeon] and DungeonGuide_Guides[dungeon][encounter] or {}
+function DungeonGuide_GetModifiedOverridesFromBase(baseEntries, editedEntries)
     local overrides = {}
 
-    local function findMatchingBase(entry)
-        local candidates = base[entry.role] or {}
-        for _, orig in ipairs(candidates) do
-            if (orig.text == entry.text) then
-                return orig
-            end
+    local baseById = {}
+    for _, entry in ipairs(baseEntries) do
+        if entry.id then
+            baseById[entry.id] = entry
         end
-        return nil
+    end
+
+    local function areEntriesDifferent(a, b)
+        return
+            (a.order ~= b.order) or
+            (a.type ~= b.type) or
+            (a.role ~= b.role) or
+            (a.text ~= b.text) or
+            ((a.hide ~= false) ~= (b.hide ~= false))
     end
 
     for _, edited in ipairs(editedEntries) do
-        local original = findMatchingBase(edited)
+        local original = edited.id and baseById[edited.id]
 
-        local isDifferent = false
-
-        if not original then
-            isDifferent = true
-        else
-            if original.order ~= edited.order then isDifferent = true end
-            if original.type ~= edited.type then isDifferent = true end
-            if original.role ~= edited.role then isDifferent = true end
-            if original.text ~= edited.text then isDifferent = true end
-            if (original.show ~= false) ~= (edited.show ~= false) then isDifferent = true end
-        end
-
-        if isDifferent then
+        if not original or not DungeonGuide_AreEntriesEqual(original, edited) then
             table.insert(overrides, CopyTable(edited))
         end
     end
 
     return overrides
+end
+
+function DungeonGuide_BuildEntryMapById(entries)
+    local map = {}
+    for _, entry in ipairs(entries) do
+        if entry.id then
+            map[entry.id] = entry
+        end
+    end
+    return map
+end
+
+function DungeonGuide_AreEntriesEqual(a, b)
+    return
+        (a.order == b.order) and
+        (a.type == b.type) and
+        (a.role == b.role) and
+        (a.text == b.text) and
+        ((a.hide ~= false) == (b.hide ~= false))
+end
+
+function DungeonGuide_EnsureEntryIDs(guide)
+    for _, role in ipairs(DUNGEONGUIDE_ROLES) do
+        for _, entry in ipairs(guide[role] or {}) do
+            if not entry.id then
+                entry.id = "gen-" .. math.random(1e9)
+            end
+        end
+    end
 end

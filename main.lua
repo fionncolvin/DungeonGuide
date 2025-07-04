@@ -4,6 +4,7 @@ DungeonGuide_Overrides = DungeonGuide_Overrides or {}
 DungeonGuide_NPCs = DungeonGuide_NPCs or {}
 
 BINDING_NAME_DUNGEONGUIDE_OPEN_SELECTOR = "Open Dungeon Selector"
+DUNGEONGUIDE_ROLES = { "ALL", "TANK", "HEALER", "DPS" }
 
 local f = CreateFrame("Frame")
 
