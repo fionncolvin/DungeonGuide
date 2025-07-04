@@ -202,7 +202,6 @@ end
 
 function DungeonGuide_AreEntriesEqual(a, b)
     return
-        (a.order == b.order) and
         (a.type == b.type) and
         (a.role == b.role) and
         (a.text == b.text) and
@@ -217,4 +216,18 @@ function DungeonGuide_EnsureEntryIDs(guide)
             end
         end
     end
+end
+
+function DungeonGuide_SaveBaseEntries(guide)
+    local baseEntries = {}
+    for _, role in ipairs(DUNGEONGUIDE_ROLES) do
+        for _, entry in ipairs(guide[role] or {}) do
+            if entry.id then
+                local copied = CopyTable(entry)
+                copied.role = copied.role or role -- Ensure role is present
+                baseEntries[copied.id] = copied
+            end
+        end
+    end
+    return baseEntries
 end

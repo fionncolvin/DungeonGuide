@@ -228,6 +228,7 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
         return
     end
 
+    self.currentRows = {}
     local rowHeight = 22
     local scrollFrame = self.editScroll
     local fullWidth = math.max(scrollFrame:GetWidth() or 800, 800) - 20
@@ -281,6 +282,8 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
         row.entry = entry
         row:SetSize(fullWidth, rowHeight)
         row:SetPoint("TOPLEFT", 10, -10 - rowHeight * index)
+
+        table.insert(self.currentRows, row)  -- Track this row explicitly
 
         if index % 2 == 0 then
             local bg = row:CreateTexture(nil, "BACKGROUND")
@@ -415,14 +418,7 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
     local order = 1
     local index = 1
 
-    self.baseEntries = {}
-    for _, role in ipairs(DUNGEONGUIDE_ROLES) do
-        for _, entry in ipairs(guide[role] or {}) do
-            if entry.id then
-                self.baseEntries[entry.id] = CopyTable(entry)
-            end
-        end
-    end
+    self.baseEntries = DungeonGuide_SaveBaseEntries(guide)
 
     for _, role in ipairs(DUNGEONGUIDE_ROLES) do
         if guide[role] then
@@ -445,13 +441,14 @@ function DungeonGuideEditorUI:SaveData()
     end
 
     local editedEntries = {}
-
-    -- Collect edited rows
-    for _, child in ipairs({self.editArea:GetChildren()}) do
-        if child.entry and child.entry.id then
-            editedEntries[child.entry.id] = CopyTable(child.entry)
+    for _, row in ipairs(self.currentRows or {}) do
+        if row.entry and row.entry.id then
+            editedEntries[row.entry.id] = CopyTable(row.entry)
+            DungeonGuide_DebugInfo("Edited entry: " .. row.entry.id)
         end
     end
+
+    DungeonGuide_DebugInfo("Number of editedEntries: " .. #editedEntries)
 
     -- Compare against base by ID
     local overrides = {}
@@ -461,27 +458,34 @@ function DungeonGuideEditorUI:SaveData()
         local isDifferent = false
 
         if not original then
+            DungeonGuide_DebugInfo("No original entry found for ID: " .. id)
             isDifferent = true
         else
-            if original.order ~= edited.order then
-                isDifferent = true
-            end
             if original.type ~= edited.type then
+                DungeonGuide_DebugInfo("Original Type: " .. tostring(original.type) .. ", Edited Type: " .. tostring(edited.type))
                 isDifferent = true
+                DungeonGuide_DebugInfo("Type changed for entry: " .. id)
             end
             if original.role ~= edited.role then
+                DungeonGuide_DebugInfo("Original Role: " .. tostring(original.role) .. ", Edited Role: " .. tostring(edited.role))
                 isDifferent = true
+                DungeonGuide_DebugInfo("Role changed for entry: " .. id)
             end
             if original.text ~= edited.text then
+                DungeonGuide_DebugInfo("Original Text: " .. tostring(original.text) .. ", Edited Text: " .. tostring(edited.text))
                 isDifferent = true
+                DungeonGuide_DebugInfo("Text changed for entry: " .. id)
             end
             if (original.show ~= false) ~= (edited.show ~= false) then
+                DungeonGuide_DebugInfo("Original Visibility: " .. tostring(original.show ~= false) .. ", Edited Visibility: " .. tostring(edited.show ~= false))
                 isDifferent = true
+                DungeonGuide_DebugInfo("Visibility changed for entry: " .. id)
             end
         end
 
         if isDifferent then
             table.insert(overrides, edited)
+            DungeonGuide_DebugInfo("Override detected for entry: " .. id)
         end
     end
 
@@ -490,8 +494,7 @@ function DungeonGuideEditorUI:SaveData()
 
     if #overrides > 0 then
         DungeonGuide_Overrides[self.currentDungeon][self.currentEncounter] = overrides
-        DungeonGuide_DebugInfo("Saved " .. #overrides .. " overrides for " .. self.currentDungeon .. " - " ..
-                                   self.currentEncounter)
+        DungeonGuide_DebugInfo("Saved " .. #overrides .. " overrides for " .. self.currentDungeon .. " - " .. self.currentEncounter)
     else
         DungeonGuide_Overrides[self.currentDungeon][self.currentEncounter] = nil
         DungeonGuide_DebugInfo("No changes to save for " .. self.currentDungeon .. " - " .. self.currentEncounter)
