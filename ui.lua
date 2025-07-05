@@ -162,12 +162,11 @@ function DungeonGuideUI:FormatGuideLine(text)
     local formatted = {}
     local lastEnd = 1
 
-    for tagStart, tagType, tagValue, tagEnd in text:gmatch("()([sn])|([^|]+)|()") do
+    for tagStart, tagType, tagValue, tagEnd in text:gmatch("()([sn]):([^:]+):()") do
         table.insert(formatted, strsub(text, lastEnd, tagStart - 1))
         local color = (tagType == "s") and SPELL_COLOR or NPC_COLOR
         local hex = ("|cff%02x%02x%02x"):format(color.r * 255, color.g * 255, color.b * 255)
-        local display = hex .. tagValue .. "|r"
-        table.insert(formatted, display)
+        table.insert(formatted, hex .. tagValue .. "|r")
         lastEnd = tagEnd
     end
 
@@ -213,76 +212,78 @@ function DungeonGuideUI:UpdateGuideContent()
     local yOffset, index = 0, 1
 
     for _, line in ipairs(lines) do
-        local row = f.contentRows[index]
-        if not row then
-            row = CreateFrame("Button", nil, f.contentFrame)
-            row:SetParent(f.contentFrame)
+        if not line.hide or line.hide == false then
+            local row = f.contentRows[index]
+            if not row then
+                row = CreateFrame("Button", nil, f.contentFrame)
+                row:SetParent(f.contentFrame)
+                row:SetWidth(f:GetWidth() - 10)
+
+                -- Background + indicator bar
+                row.stripe = row:CreateTexture(nil, "BACKGROUND")
+                row.stripe:SetAllPoints()
+                row.stripe:SetColorTexture(1, 1, 1, 0.02)
+                row.stripe:SetDrawLayer("BACKGROUND", -1)
+
+                row.indicator = row:CreateTexture(nil, "BACKGROUND")
+                row.indicator:SetWidth(6)
+                row.indicator:SetDrawLayer("BACKGROUND", 0)
+                row.indicator:SetPoint("TOPLEFT", 0, -1)
+                row.indicator:SetPoint("BOTTOMLEFT", 0, 1)
+
+                -- Text setup
+                row.text = row:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+                row.text:SetJustifyH("LEFT")
+                row.text:SetJustifyV("TOP")
+                row.text:SetDrawLayer("ARTWORK", 1)
+                row.text:SetWordWrap(true)
+                row.text:SetPoint("TOPLEFT", row, "TOPLEFT", 10, 0)
+                row.text:SetPoint("TOPRIGHT", row, "TOPRIGHT", -2, 0)
+
+                f.contentRows[index] = row
+            end
+
+            row:SetScript("OnClick", nil)
+
+            -- Colour bar
+            local c = DungeonGuideDB.colours[line.type]
+            if c then
+                row.indicator:SetColorTexture(c.r, c.g, c.b, c.a)
+            else
+                row.indicator:SetColorTexture(0, 0, 0, 0.2)
+            end
+
+            row:SetPoint("TOPLEFT", 0, -yOffset)
             row:SetWidth(f:GetWidth() - 10)
 
-            -- Background + indicator bar
-            row.stripe = row:CreateTexture(nil, "BACKGROUND")
-            row.stripe:SetAllPoints()
-            row.stripe:SetColorTexture(1, 1, 1, 0.02)
-            row.stripe:SetDrawLayer("BACKGROUND", -1)
+            local scrollbarOffset = 20
+            local textPadding = 30
+            local availableWidth = f:GetWidth() - scrollbarOffset - textPadding
+            local formatted = self:FormatGuideLine(line.text)
 
-            row.indicator = row:CreateTexture(nil, "BACKGROUND")
-            row.indicator:SetWidth(6)
-            row.indicator:SetDrawLayer("BACKGROUND", 0)
-            row.indicator:SetPoint("TOPLEFT", 0, -1)
-            row.indicator:SetPoint("BOTTOMLEFT", 0, 1)
+            local _, _, flags = row.text:GetFont()
+            row.text:SetFont(DungeonGuideUI:GetFontPath(), DungeonGuideDB.fontSize or 12, flags)
+            row.text:SetWidth(availableWidth)
+            row.text:SetText(formatted)
+            row.text:SetHeight(0)
 
-            -- Text setup
-            row.text = row:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
-            row.text:SetJustifyH("LEFT")
-            row.text:SetJustifyV("TOP")
-            row.text:SetDrawLayer("ARTWORK", 1)
-            row.text:SetWordWrap(true)
-            row.text:SetPoint("TOPLEFT", row, "TOPLEFT", 10, 0)
-            row.text:SetPoint("TOPRIGHT", row, "TOPRIGHT", -2, 0)
+            local textHeight = row.text:GetStringHeight() + 6
+            row:SetHeight(textHeight)
 
-            f.contentRows[index] = row
+            if line.type == "Call" then
+                row:SetScript("OnClick", function()
+                    if IsInGroup(LE_PARTY_CATEGORY_HOME) then
+                        SendChatMessage(line.text, "PARTY")
+                    else
+                        print("[DungeonGuide] Not in a party.")
+                    end
+                end)
+            end
+
+            row:Show()
+            yOffset = yOffset + textHeight
+            index = index + 1
         end
-
-        row:SetScript("OnClick", nil)
-
-        -- Colour bar
-        local c = DungeonGuideDB.colours[line.type]
-        if c then
-            row.indicator:SetColorTexture(c.r, c.g, c.b, c.a)
-        else
-            row.indicator:SetColorTexture(0, 0, 0, 0.2)
-        end
-
-        row:SetPoint("TOPLEFT", 0, -yOffset)
-        row:SetWidth(f:GetWidth() - 10)
-
-        local scrollbarOffset = 20
-        local textPadding = 30
-        local availableWidth = f:GetWidth() - scrollbarOffset - textPadding
-        local formatted = self:FormatGuideLine(line.text)
-
-        local _, _, flags = row.text:GetFont()
-        row.text:SetFont(DungeonGuideUI:GetFontPath(), DungeonGuideDB.fontSize or 12, flags)
-        row.text:SetWidth(availableWidth)
-        row.text:SetText(formatted)
-        row.text:SetHeight(0)
-
-        local textHeight = row.text:GetStringHeight() + 6
-        row:SetHeight(textHeight)
-
-        if line.type == "Call" then
-            row:SetScript("OnClick", function()
-                if IsInGroup(LE_PARTY_CATEGORY_HOME) then
-                    SendChatMessage(line.text, "PARTY")
-                else
-                    print("[DungeonGuide] Not in a party.")
-                end
-            end)
-        end
-
-        row:Show()
-        yOffset = yOffset + textHeight
-        index = index + 1
     end
 
     f.contentFrame:SetHeight(yOffset + 20)

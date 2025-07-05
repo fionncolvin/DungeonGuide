@@ -17,8 +17,11 @@ function DungeonGuideEditorUI:Create()
         return
     end
 
+    DungeonGuideEditorUI.selectedDungeonBtn = nil
+    DungeonGuideEditorUI.selectedEncounterBtn = nil
+
     local f = CreateFrame("Frame", "DungeonGuideEditorFrame", UIParent, "BackdropTemplate")
-    f:SetSize(1200, 580)
+    f:SetSize(1230, 580)
     f:SetPoint("CENTER")
     f:SetMovable(true)
     f:EnableMouse(true)
@@ -27,30 +30,6 @@ function DungeonGuideEditorUI:Create()
     f:SetScript("OnDragStop", f.StopMovingOrSizing)
 
     f:SetResizable(false)
-
-    --[[
-    f:SetResizeBounds(1000, 580, 1400, 580)
-
-    local resizer = CreateFrame("Frame", nil, f)
-    resizer:SetPoint("BOTTOMRIGHT", -5, 5)
-    resizer:SetSize(16, 16)
-    resizer:EnableMouse(true)
-
-    resizer:SetScript("OnMouseDown", function()
-        f:StartSizing("BOTTOMRIGHT")
-    end)
-
-    resizer:SetScript("OnMouseUp", function()
-        f:StopMovingOrSizing()
-        if self.currentDungeon and self.currentEncounter then
-            self:PopulateGuideEntries(self.currentDungeon, self.currentEncounter)
-        end
-    end)
-
-    resizer.texture = resizer:CreateTexture(nil, "OVERLAY")
-    resizer.texture:SetAllPoints()
-    resizer.texture:SetTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
-    ]]
 
     if isElvUI then
         S:HandleFrame(f, true)
@@ -136,10 +115,6 @@ function DungeonGuideEditorUI:Create()
     end
 
     saveBtn:SetScript("OnClick", function()
-        if not self.currentDungeon or not self.currentEncounter then
-            return
-        end
-
         self:SaveData()
     end)
 
@@ -154,8 +129,9 @@ function DungeonGuideEditorUI:Create()
     end
 
     resetBtn:SetScript("OnClick", function()
-        -- Reset the current dungeon and encounter
-        self:Reset()
+        DungeonGuideEditorUI:Confirm("Reset this Encounter to BASE?", function()
+            self:Reset()
+        end)
     end)
 
     -- Export Button (left-most)
@@ -168,6 +144,21 @@ function DungeonGuideEditorUI:Create()
         S:HandleButton(exportBtn)
     end
 
+    -- Add Button (bottom-left)
+    local addBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    addBtn:SetSize(100, 24)
+    addBtn:SetPoint("BOTTOMLEFT", 200, 10)
+    addBtn:SetText("Add")
+
+    if isElvUI then
+        S:HandleButton(addBtn)
+    end
+
+    addBtn:SetScript("OnClick", function()
+        self:AddNewEntry()
+    end)
+
+    -- Close Button
     local close = CreateFrame("Button", nil, f, "UIPanelCloseButton")
     close:SetPoint("TOPRIGHT", -5, -5)
 
@@ -197,9 +188,28 @@ function DungeonGuideEditorUI:PopulateDungeonList()
         btn.text:SetText(dungeonName)
         btn:SetPoint("TOPLEFT", 5, yOffset)
 
+        -- Add background for highlight
+        btn.bg = btn:CreateTexture(nil, "BACKGROUND")
+        btn.bg:SetAllPoints()
+        btn.bg:SetColorTexture(0, 0, 0, 0) -- transparent by default
+
         btn:SetScript("OnClick", function()
+            -- Un-highlight previous
+            if DungeonGuideEditorUI.selectedDungeonBtn then
+                DungeonGuideEditorUI.selectedDungeonBtn.bg:SetColorTexture(0, 0, 0, 0)
+            end
+            -- Highlight this one
+            btn.bg:SetColorTexture(0.2, 0.8, 0.4, 0.6)
+            DungeonGuideEditorUI.selectedDungeonBtn = btn
+
             DungeonGuideEditorUI:PopulateEncounters(dungeonName)
         end)
+
+        -- If this is the current dungeon, highlight it
+        if DungeonGuideEditorUI.currentDungeon == dungeonName then
+            btn.bg:SetColorTexture(0.2, 0.8, 0.4, 0.6)
+            DungeonGuideEditorUI.selectedDungeonBtn = btn
+        end
 
         if isElvUI then
             S:HandleButton(btn)
@@ -243,11 +253,30 @@ function DungeonGuideEditorUI:PopulateEncounters(dungeonName)
         btn.text:SetText(enc.header or enc.name)
         btn:SetPoint("TOPLEFT", 5, yOffset)
 
+        -- Add background for highlight
+        btn.bg = btn:CreateTexture(nil, "BACKGROUND")
+        btn.bg:SetAllPoints()
+        btn.bg:SetColorTexture(0, 0, 0, 0) -- transparent by default
+
         btn:SetScript("OnClick", function()
+            -- Un-highlight previous
+            if DungeonGuideEditorUI.selectedEncounterBtn then
+                DungeonGuideEditorUI.selectedEncounterBtn.bg:SetColorTexture(0, 0, 0, 0)
+            end
+            -- Highlight this one
+            btn.bg:SetColorTexture(0.2, 0.8, 0.4, 0.6)
+            DungeonGuideEditorUI.selectedEncounterBtn = btn
+
             DungeonGuideEditorUI.currentDungeon = dungeonName
             DungeonGuideEditorUI.currentEncounter = enc.name
             DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, enc.name)
         end)
+
+        -- If this is the current encounter, highlight it
+        if DungeonGuideEditorUI.currentEncounter == enc.name then
+            btn.bg:SetColorTexture(0.2, 0.8, 0.4, 0.6)
+            DungeonGuideEditorUI.selectedEncounterBtn = btn
+        end
 
         if isElvUI then S:HandleButton(btn) end
         yOffset = yOffset - 22
@@ -275,8 +304,9 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
         order = 40,
         type = 100,
         role = 90,
-        text = 680, -- default width, will be adjusted later
+        text = 680,
         hide = 40,
+        remove = 26,
     }
 
     local positions = {
@@ -284,7 +314,8 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
         { key = "type", width = columnWidths.type, align = "LEFT", label = "TYPE" },
         { key = "role", width = columnWidths.role, align = "LEFT", label = "ROLE" },
         { key = "text", width = columnWidths.text, align = "LEFT", label = "GUIDE" },
-        { key = "hide", width = columnWidths.hide, align = "CENTER", label = "HIDE" }
+        { key = "hide", width = columnWidths.hide, align = "CENTER", label = "HIDE" },
+        { key = "remove", width = columnWidths.remove, align = "CENTER", label = "" }
     }
 
     -- Clear previous content
@@ -372,11 +403,35 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
 
                 cb:SetScript("OnClick", function(self)
                     entry.hide = self:GetChecked()
+
+                    row:SetDirtyState(DungeonGuide_AreEntriesEqual(baseEntry, entry) == false)
                 end)
 
                 if isElvUI and S.HandleCheckBox then
                     S:HandleCheckBox(cb)
                 end
+            elseif col.key == "remove" then
+                if entry.added then
+                    local removeBtn = CreateFrame("Button", nil, row, "UIPanelCloseButton")
+                    removeBtn:SetSize(18, 18)
+                    removeBtn:SetPoint("LEFT", x + 4, 0)
+
+                    -- Mid red tint
+                    local tex = removeBtn:GetNormalTexture()
+                    if tex then tex:SetVertexColor(0.8, 0.2, 0.2) end
+                    local htex = removeBtn:GetHighlightTexture()
+                    if htex then htex:SetVertexColor(1.0, 0.4, 0.4) end
+
+                    removeBtn:SetScript("OnClick", function()
+                        DungeonGuideEditorUI:Confirm("Remove this Entry?", function()
+                            DungeonGuideEditorUI:RemoveRow(row)
+                        end)
+                    end)
+
+                    if isElvUI and S.HandleCloseButton then
+                        S:HandleCloseButton(removeBtn)
+                    end
+                end    
             elseif col.key == "role" then
                 local dd = CreateFrame("Frame", nil, row, "UIDropDownMenuTemplate")
                 dd:SetPoint("LEFT", x - 14, 0)
@@ -435,7 +490,7 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
                 label:SetAllPoints()
                 label:SetJustifyH("LEFT")
                 label:SetJustifyV("MIDDLE")
-                label:SetText((entry.text or ""):gsub("|", "||"))
+                label:SetText(entry.text or "")
 
                 -- Editable box (initially hidden)
                 local editBox = CreateFrame("EditBox", nil, textFrame, "InputBoxTemplate")
@@ -458,7 +513,7 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
                 local function commitEdit()
                     local newText = editBox:GetText()
                     entry.text = newText
-                    label:SetText(newText:gsub("|", "||"))
+                    label:SetText(newText)
                     editBox:Hide()
                     label:Show()
 
@@ -543,7 +598,7 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
                 fs:SetHeight(rowHeight)
                 fs:SetJustifyH(col.align)
                 fs:SetJustifyV("MIDDLE")
-                fs:SetText((fields[col.key] or ""):gsub("|", "||"))
+                fs:SetText(fields[col.key] or "")
             end
 
             x = x + col.width
@@ -576,8 +631,84 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
     editArea:SetHeight((index + 1) * rowHeight + 10)
 end
 
+function DungeonGuideEditorUI:AddNewEntry()
+    if not self.currentDungeon or not self.currentEncounter then
+        return
+    end
+
+    local dungeon = self.currentDungeon
+    local encounter = self.currentEncounter
+
+    -- Ensure base structure
+    DungeonGuide_Overrides[dungeon] = DungeonGuide_Overrides[dungeon] or {}
+    DungeonGuide_Overrides[dungeon][encounter] = DungeonGuide_Overrides[dungeon][encounter] or {}
+    DungeonGuide_Orders[dungeon] = DungeonGuide_Orders[dungeon] or {}
+    DungeonGuide_Orders[dungeon][encounter] = DungeonGuide_Orders[dungeon][encounter] or {}
+
+    local overrideList = DungeonGuide_Overrides[dungeon][encounter]
+    local orderTable = DungeonGuide_Orders[dungeon][encounter]
+
+    -- Generate a new unique ID
+    local newID = "gen-" .. math.random(1e9)
+
+    -- Create new entry
+    local newEntry = {
+        id = newID,
+        type = "Mechanic",
+        role = "TANK",
+        text = "",
+        hide = false,
+        override = true,
+        added = true
+    }
+
+    -- Add to override list
+    table.insert(overrideList, newEntry)
+
+    -- Set order to max + 1
+    local maxOrder = 0
+    for _, ord in pairs(orderTable) do
+        if ord > maxOrder then maxOrder = ord end
+    end
+    orderTable[newID] = maxOrder + 1
+
+    -- Re-render
+    self:PopulateGuideEntries(dungeon, encounter)
+end
+
+function DungeonGuideEditorUI:RemoveRow(row)
+    if not row or not row.entry or not row.entry.id then
+        return
+    end
+
+    local id = row.entry.id
+    local dungeon = self.currentDungeon
+    local encounter = self.currentEncounter
+
+    -- Remove from override list
+    local overrides = DungeonGuide_Overrides[dungeon] and DungeonGuide_Overrides[dungeon][encounter]
+    if overrides then
+        for i = #overrides, 1, -1 do
+            if overrides[i].id == id then
+                table.remove(overrides, i)
+                break
+            end
+        end
+    end
+
+    -- Remove from order list
+    if DungeonGuide_Orders[dungeon] and DungeonGuide_Orders[dungeon][encounter] then
+        DungeonGuide_Orders[dungeon][encounter][id] = nil
+    end
+
+    -- Refresh UI
+    self:PopulateGuideEntries(dungeon, encounter)
+end
+
 function DungeonGuideEditorUI:SaveData()
-    if not self.currentDungeon or not self.currentEncounter then return end
+    if not self.currentDungeon or not self.currentEncounter then
+        return
+    end
 
     local dungeon = self.currentDungeon
     local encounter = self.currentEncounter
@@ -693,6 +824,69 @@ function DungeonGuideEditorUI:Reset()
 
     DungeonGuide_DebugInfo("Cleared overrides for " .. self.currentDungeon .. " - " .. self.currentEncounter)
     self:PopulateGuideEntries(self.currentDungeon, self.currentEncounter)
+end
+
+function DungeonGuideEditorUI:Confirm(message, onConfirm)
+    -- If a confirm dialog is already open, do nothing
+    if self.confirmDialog and self.confirmDialog:IsShown() then
+        return
+    end
+
+    local dialog = CreateFrame("Frame", nil, UIParent, "BackdropTemplate")
+    dialog:SetSize(280, 120)
+    dialog:SetPoint("CENTER")
+    dialog:SetBackdrop({
+        bgFile = "Interface\\Buttons\\WHITE8x8",
+        edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+        edgeSize = 16,
+        insets = { left = 4, right = 4, top = 4, bottom = 4 }
+    })
+
+    dialog:SetFrameStrata("DIALOG")
+    dialog:SetMovable(true)
+    dialog:EnableMouse(true)
+    dialog:RegisterForDrag("LeftButton")
+    dialog:SetScript("OnDragStart", dialog.StartMoving)
+    dialog:SetScript("OnDragStop", dialog.StopMovingOrSizing)
+    dialog:SetBackdropColor(0, 0, 0, 1)
+
+    -- Message text
+    local label = dialog:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
+    label:SetPoint("TOP", 0, -20)
+    label:SetText(message or "Are you sure?")
+    label:SetTextColor(1, 1, 1)  -- White text
+
+    -- Yes Button
+    local yesBtn = CreateFrame("Button", nil, dialog, "UIPanelButtonTemplate")
+    yesBtn:SetSize(80, 24)
+    yesBtn:SetPoint("BOTTOMLEFT", 20, 20)
+    yesBtn:SetNormalTexture("Interface\\Buttons\\WHITE8x8")
+    yesBtn:GetNormalTexture():SetVertexColor(0.2, 0.2, 0.2, 1)  -- dark grey
+    yesBtn:SetHighlightTexture("Interface\\Buttons\\WHITE8x8")
+    yesBtn:GetHighlightTexture():SetVertexColor(0.4, 0.4, 0.4, 1)
+    yesBtn:SetText("Yes")
+    yesBtn:GetFontString():SetTextColor(1, 1, 0.4) -- yellow-ish
+    yesBtn:SetScript("OnClick", function()
+        dialog:Hide()
+        if onConfirm then onConfirm() end
+    end)
+
+    -- No Button
+    local noBtn = CreateFrame("Button", nil, dialog, "UIPanelButtonTemplate")
+    noBtn:SetSize(80, 24)
+    noBtn:SetPoint("BOTTOMRIGHT", -20, 20)
+    noBtn:SetNormalTexture("Interface\\Buttons\\WHITE8x8")
+    noBtn:GetNormalTexture():SetVertexColor(0.2, 0.2, 0.2, 1)  -- dark grey
+    noBtn:SetHighlightTexture("Interface\\Buttons\\WHITE8x8")
+    noBtn:GetHighlightTexture():SetVertexColor(0.4, 0.2, 0.2, 1)
+    noBtn:SetText("No")
+    noBtn:GetFontString():SetTextColor(1, 0.6, 0.6) -- light red
+    noBtn:SetScript("OnClick", function()
+        dialog:Hide()
+    end)
+
+    dialog:Show()
+    self.confirmDialog = dialog
 end
 
 function DungeonGuideEditorUI:Show()

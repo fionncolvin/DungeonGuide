@@ -182,11 +182,15 @@ end
 
 -- DungeonGuide_AreEntriesEqual is a utility function that checks if two entries are equal.
 function DungeonGuide_AreEntriesEqual(a, b)
+    if not a or not b then
+        return false
+    end
+
     return
         (a.type == b.type) and
         (a.role == b.role) and
         (a.text == b.text) and
-        ((a.hide ~= false) == (b.hide ~= false))
+        ((a.hide or false) == (b.hide or false))
 end
 
 -- DungeonGuide_SaveBaseEntries is a utility function that saves the base entries of a guide.
