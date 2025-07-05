@@ -1,6 +1,7 @@
 -- editor.lua
 
 DungeonGuideEditorUI = {}
+DUNGEONGUIDE_ROLES = { "ALL", "TANK", "HEALER", "DPS" }
 
 local E = _G.ElvUI and unpack(_G.ElvUI) or nil
 local S
@@ -12,10 +13,12 @@ end
 local isElvUI = S and type(S.HandleFrame) == "function"
 
 function DungeonGuideEditorUI:Create()
-    if self.frame then return end
+    if self.frame then
+        return
+    end
 
     local f = CreateFrame("Frame", "DungeonGuideEditorFrame", UIParent, "BackdropTemplate")
-    f:SetSize(800, 580)
+    f:SetSize(1200, 580)
     f:SetPoint("CENTER")
     f:SetMovable(true)
     f:EnableMouse(true)
@@ -23,14 +26,20 @@ function DungeonGuideEditorUI:Create()
     f:SetScript("OnDragStart", f.StartMoving)
     f:SetScript("OnDragStop", f.StopMovingOrSizing)
 
-    f:SetResizable(true)
-    f:SetResizeBounds(800, 580, 1200, 580)
+    f:SetResizable(false)
+
+    --[[
+    f:SetResizeBounds(1000, 580, 1400, 580)
 
     local resizer = CreateFrame("Frame", nil, f)
     resizer:SetPoint("BOTTOMRIGHT", -5, 5)
     resizer:SetSize(16, 16)
     resizer:EnableMouse(true)
-    resizer:SetScript("OnMouseDown", function() f:StartSizing("BOTTOMRIGHT") end)
+
+    resizer:SetScript("OnMouseDown", function()
+        f:StartSizing("BOTTOMRIGHT")
+    end)
+
     resizer:SetScript("OnMouseUp", function()
         f:StopMovingOrSizing()
         if self.currentDungeon and self.currentEncounter then
@@ -41,6 +50,7 @@ function DungeonGuideEditorUI:Create()
     resizer.texture = resizer:CreateTexture(nil, "OVERLAY")
     resizer.texture:SetAllPoints()
     resizer.texture:SetTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
+    ]]
 
     if isElvUI then
         S:HandleFrame(f, true)
@@ -55,7 +65,10 @@ function DungeonGuideEditorUI:Create()
     dungeonList:SetPoint("TOPLEFT", 10, -40)
     dungeonList:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8x8" })
     dungeonList:SetBackdropColor(0.1, 0.1, 0.1, 0.9)
-    if isElvUI then S:HandleFrame(dungeonList, true) end
+
+    if isElvUI then
+        S:HandleFrame(dungeonList, true)
+    end
 
     local dungeonScroll = CreateFrame("ScrollFrame", nil, dungeonList, "UIPanelScrollFrameTemplate")
     dungeonScroll:SetPoint("TOPLEFT", 5, -5)
@@ -75,7 +88,10 @@ function DungeonGuideEditorUI:Create()
     encounterList:SetPoint("TOPLEFT", dungeonList, "BOTTOMLEFT", 0, -10)
     encounterList:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8x8" })
     encounterList:SetBackdropColor(0.1, 0.1, 0.1, 0.9)
-    if isElvUI then S:HandleFrame(encounterList, true) end
+
+    if isElvUI then
+        S:HandleFrame(encounterList, true)
+    end
 
     local encounterScroll = CreateFrame("ScrollFrame", nil, encounterList, "UIPanelScrollFrameTemplate")
     encounterScroll:SetPoint("TOPLEFT", 5, -5)
@@ -102,45 +118,22 @@ function DungeonGuideEditorUI:Create()
     editContent:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8x8" })
     editContent:SetBackdropColor(0.05, 0.05, 0.05, 0.9)
 
-    if isElvUI then S:HandleFrame(editContent, true) end
+    if isElvUI then
+        S:HandleFrame(editContent, true)
+    end
 
     self.editArea = editContent
     self.editScroll = editScroll
 
-    -- Export Button (right-most)
-    local exportBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    exportBtn:SetSize(100, 24)
-    exportBtn:SetPoint("BOTTOMRIGHT", -10, 10)
-    exportBtn:SetText("Export")
-    if isElvUI then S:HandleButton(exportBtn) end
-
-    -- Reset Button (middle)
-    local resetBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    resetBtn:SetSize(100, 24)
-    resetBtn:SetPoint("RIGHT", exportBtn, "LEFT", -10, 0)
-    resetBtn:SetText("Reset")
-    if isElvUI then S:HandleButton(resetBtn) end
-
-    resetBtn:SetScript("OnClick", function()
-        if not self.currentDungeon or not self.currentEncounter then return end
-
-        if DungeonGuide_Overrides[self.currentDungeon] then
-            DungeonGuide_Overrides[self.currentDungeon][self.currentEncounter] = nil
-            if next(DungeonGuide_Overrides[self.currentDungeon]) == nil then
-                DungeonGuide_Overrides[self.currentDungeon] = nil
-            end
-        end
-
-        DungeonGuide_DebugInfo("Cleared overrides for " .. self.currentDungeon .. " - " .. self.currentEncounter)
-        self:PopulateGuideEntries(self.currentDungeon, self.currentEncounter)
-    end)
-
-    -- Save Button (left-most)
+    -- Save Button (right-most)
     local saveBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     saveBtn:SetSize(100, 24)
-    saveBtn:SetPoint("RIGHT", resetBtn, "LEFT", -10, 0)
+    saveBtn:SetPoint("BOTTOMRIGHT", -10, 10)
     saveBtn:SetText("Save")
-    if isElvUI then S:HandleButton(saveBtn) end
+
+    if isElvUI then
+        S:HandleButton(saveBtn)
+    end
 
     saveBtn:SetScript("OnClick", function()
         if not self.currentDungeon or not self.currentEncounter then
@@ -149,6 +142,31 @@ function DungeonGuideEditorUI:Create()
 
         self:SaveData()
     end)
+
+    -- Reset Button (middle)
+    local resetBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    resetBtn:SetSize(100, 24)
+    resetBtn:SetPoint("RIGHT", saveBtn, "LEFT", -10, 0)
+    resetBtn:SetText("Reset")
+
+    if isElvUI then
+        S:HandleButton(resetBtn)
+    end
+
+    resetBtn:SetScript("OnClick", function()
+        -- Reset the current dungeon and encounter
+        self:Reset()
+    end)
+
+    -- Export Button (left-most)
+    local exportBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    exportBtn:SetSize(100, 24)
+    exportBtn:SetPoint("RIGHT", resetBtn, "LEFT", -10, 0)
+    exportBtn:SetText("Export")
+
+    if isElvUI then
+        S:HandleButton(exportBtn)
+    end
 
     local close = CreateFrame("Button", nil, f, "UIPanelCloseButton")
     close:SetPoint("TOPRIGHT", -5, -5)
@@ -160,13 +178,17 @@ function DungeonGuideEditorUI:Create()
 
     self.frame = f
     self:PopulateDungeonList()
+
 end
 
 function DungeonGuideEditorUI:PopulateDungeonList()
     local content = self.dungeonList.content
-    for _, child in ipairs({ content:GetChildren() }) do child:Hide() end
-
     local yOffset = -5
+
+    for _, child in ipairs({content:GetChildren()}) do
+        child:Hide()
+    end
+
     for dungeonName, _ in pairs(DungeonGuide_Guides or {}) do
         local btn = CreateFrame("Button", nil, content)
         btn:SetSize(140, 20)
@@ -174,23 +196,36 @@ function DungeonGuideEditorUI:PopulateDungeonList()
         btn.text:SetPoint("LEFT", 5, 0)
         btn.text:SetText(dungeonName)
         btn:SetPoint("TOPLEFT", 5, yOffset)
+
         btn:SetScript("OnClick", function()
             DungeonGuideEditorUI:PopulateEncounters(dungeonName)
         end)
-        if isElvUI then S:HandleButton(btn) end
+
+        if isElvUI then
+            S:HandleButton(btn)
+        end
+
         yOffset = yOffset - 22
     end
 end
 
 function DungeonGuideEditorUI:PopulateEncounters(dungeonName)
+    local guide = DungeonGuide_GetDungeonEntry(dungeonName)
+
+    if not guide then
+        return
+    end
+
     local encounterContent = self.encounterList.content
-    for _, child in ipairs({ encounterContent:GetChildren() }) do child:Hide() end
-
-    local guide = DungeonGuide_Guides[dungeonName]
-    if not guide then return end
-
     local ordered = {}
+    local yOffset = -5
 
+    -- Clear previous content
+    for _, child in ipairs({encounterContent:GetChildren()}) do
+        child:Hide()
+    end
+
+    -- Sort encounters by order
     for enc, entry in pairs(guide) do
         if type(entry) == "table" and entry.order then
             table.insert(ordered, { name = enc, order = entry.order, header = entry.header })
@@ -199,8 +234,7 @@ function DungeonGuideEditorUI:PopulateEncounters(dungeonName)
 
     table.sort(ordered, function(a, b) return a.order < b.order end)
 
-    local yOffset = -5
-
+    -- Create buttons for each encounter
     for _, enc in ipairs(ordered) do
         local btn = CreateFrame("Button", nil, encounterContent)
         btn:SetSize(140, 20)
@@ -228,22 +262,22 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
         return
     end
 
+    -- Generate order data for entries if missing
+    DungeonGuideEditorUI:InitialiseOrderIfMissing(dungeonName, encounterName, guide.entries or {})
+
     self.currentRows = {}
     local rowHeight = 22
     local scrollFrame = self.editScroll
     local fullWidth = math.max(scrollFrame:GetWidth() or 800, 800) - 20
+    local x = 0
 
     local columnWidths = {
         order = 40,
         type = 100,
         role = 90,
-        text = 760, -- will be updated below
+        text = 680, -- default width, will be adjusted later
         hide = 40,
     }
-
-    local fixedWidth = columnWidths.order + columnWidths.type + columnWidths.role + columnWidths.hide
-    local textWidth = math.max(fullWidth - fixedWidth - 4, 200)
-    columnWidths.text = textWidth
 
     local positions = {
         { key = "order", width = columnWidths.order, align = "CENTER", label = "ORDER" },
@@ -263,7 +297,6 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
     headerRow:SetPoint("TOPLEFT", 10, -10)
     headerRow:SetSize(fullWidth, rowHeight)
 
-    local x = 0
     for _, col in ipairs(positions) do
         local label = headerRow:CreateFontString(nil, "ARTWORK", "GameFontNormalSmall")
         label:SetPoint("LEFT", x + 4, 0)
@@ -278,29 +311,52 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
 
     -- Guide row factory
     local function CreateRow(index, order, entry, role)
+        local baseEntry = self.baseEntries and self.baseEntries[entry.id]
         local row = CreateFrame("Frame", nil, editArea, "BackdropTemplate")
+        local x = 0
+
         row.entry = entry
+        row.dirty = false
+        row.baseEntry = baseEntry
         row:SetSize(fullWidth, rowHeight)
         row:SetPoint("TOPLEFT", 10, -10 - rowHeight * index)
 
         table.insert(self.currentRows, row)  -- Track this row explicitly
 
+        -- Always create a background texture, so we can update its color
+        local bg = row:CreateTexture(nil, "BACKGROUND")
+        bg:SetPoint("TOPLEFT")
+        bg:SetPoint("BOTTOMRIGHT")
+        row.bg = bg  -- store reference on the row
+
+        -- Initial zebra colour
         if index % 2 == 0 then
-            local bg = row:CreateTexture(nil, "BACKGROUND")
-            bg:SetPoint("TOPLEFT")
-            bg:SetPoint("BOTTOMRIGHT")
-            bg:SetColorTexture(1, 1, 1, 0.08)
+            bg:SetColorTexture(1, 1, 1, 0.08) -- light zebra
+        else
+            bg:SetColorTexture(0, 0, 0, 0.05) -- dark zebra
         end
+
+        row._zebraColor = { r = (index % 2 == 0 and 1 or 0), g = (index % 2 == 0 and 1 or 0), b = (index % 2 == 0 and 1 or 0), a = (index % 2 == 0 and 0.08 or 0.05) }
 
         local fields = {
             order = tostring(order),
             type = entry.type or "",
             role = role,
             text = entry.text or "",
-            hide = entry.hide ~= false
+            hide = entry.hide or false
         }
 
-        local x = 0
+        function row:SetDirtyState(isDirty)
+            self.dirty = isDirty
+
+            if isDirty then
+                self.bg:SetColorTexture(0.2, 0.4, 0.8, 0.6) -- mid blue highlight
+            else
+                local c = self._zebraColor
+                self.bg:SetColorTexture(c.r, c.g, c.b, c.a)
+            end
+        end
+
         for _, col in ipairs(positions) do
             local border = row:CreateTexture(nil, "BORDER")
             border:SetColorTexture(0.5, 0.5, 0.5, 0.3)
@@ -312,11 +368,15 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
                 local cb = CreateFrame("CheckButton", nil, row, "UICheckButtonTemplate")
                 cb:SetPoint("LEFT", x + (col.width - 20) / 2, 0)
                 cb:SetSize(20, 20)
-                cb:SetChecked(hide)
+                cb:SetChecked(fields.hide)
+
                 cb:SetScript("OnClick", function(self)
                     entry.hide = self:GetChecked()
                 end)
-                if isElvUI and S.HandleCheckBox then S:HandleCheckBox(cb) end
+
+                if isElvUI and S.HandleCheckBox then
+                    S:HandleCheckBox(cb)
+                end
             elseif col.key == "role" then
                 local dd = CreateFrame("Frame", nil, row, "UIDropDownMenuTemplate")
                 dd:SetPoint("LEFT", x - 14, 0)
@@ -333,6 +393,9 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
                         info.func = function()
                             entry.role = r
                             UIDropDownMenu_SetText(dd, r)
+
+                            -- Check for difference from base
+                            row:SetDirtyState(DungeonGuide_AreEntriesEqual(baseEntry, entry) == false)
                         end
                         UIDropDownMenu_AddButton(info)
                     end
@@ -354,6 +417,9 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
                         info.func = function()
                             entry.type = t
                             UIDropDownMenu_SetText(dd, t)
+
+                            -- Check for difference from base
+                            row:SetDirtyState(DungeonGuide_AreEntriesEqual(baseEntry, entry) == false)
                         end
                         UIDropDownMenu_AddButton(info)
                     end
@@ -395,11 +461,81 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
                     label:SetText(newText:gsub("|", "||"))
                     editBox:Hide()
                     label:Show()
+
+                    -- Check for difference from base
+                    row:SetDirtyState(DungeonGuide_AreEntriesEqual(baseEntry, entry) == false)
                 end
 
                 editBox:SetScript("OnEnterPressed", commitEdit)
                 editBox:SetScript("OnEscapePressed", commitEdit)
                 editBox:SetScript("OnEditFocusLost", commitEdit)
+            elseif col.key == "order" then
+                local orderFrame = CreateFrame("Frame", nil, row)
+                orderFrame:SetPoint("LEFT", x + 2, 0)
+                orderFrame:SetSize(col.width - 6, rowHeight)
+
+                local label = orderFrame:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+                label:SetAllPoints()
+                label:SetJustifyH("CENTER")
+                label:SetJustifyV("MIDDLE")
+                label:SetText(fields.order)
+
+                if (entry.override) then
+                    label:SetTextColor(1, 0.4, 1) -- Highlight color for overrides
+                else
+                    label:SetTextColor(1, 1, 1) -- Default text color
+                end
+
+                local editBox = CreateFrame("EditBox", nil, orderFrame, "InputBoxTemplate")
+                editBox:SetAllPoints()
+                editBox:SetAutoFocus(false)
+                editBox:SetMultiLine(false)
+                editBox:Hide()
+                editBox:SetFontObject("GameFontHighlightSmall")
+                editBox:SetText(fields.order)
+
+                orderFrame:SetScript("OnMouseDown", function()
+                    label:Hide()
+                    editBox:Show()
+                    editBox:SetFocus()
+                    editBox:SetCursorPosition(0)
+                end)
+
+                local function commitOrderEdit()
+                    editBox:Hide()
+                    label:Show()
+
+                    local newOrder = tonumber(editBox:GetText())
+
+                    if not newOrder then
+                        return
+                    end
+
+                    -- Clamp the value within range
+                    newOrder = math.max(1, math.min(#self.currentRows, newOrder))
+
+                    label:SetText(tostring(newOrder))
+
+                    -- Find and remove current row
+                    local oldIndex = DungeonGuide_tIndexOf(self.currentRows, row)
+
+                    if oldIndex then
+                        table.remove(self.currentRows, oldIndex)
+                    end
+
+                    -- Insert into new position
+                    table.insert(self.currentRows, newOrder, row)
+
+                    -- Rebuild order values
+                    self:UpdateOrder(self.currentDungeon, self.currentEncounter)
+
+                    -- Re-render table
+                    self:PopulateGuideEntries(self.currentDungeon, self.currentEncounter)
+                end
+
+                editBox:SetScript("OnEnterPressed", commitOrderEdit)
+                editBox:SetScript("OnEscapePressed", commitOrderEdit)
+                editBox:SetScript("OnEditFocusLost", commitOrderEdit)
             else
                 local fs = row:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
                 fs:SetPoint("LEFT", x + 4, 0)
@@ -415,90 +551,148 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
     end
 
     -- Generate guide rows
+    self.baseEntries = DungeonGuide_SaveBaseEntries(self.currentDungeon, self.currentEncounter)
+
     local order = 1
     local index = 1
 
-    self.baseEntries = DungeonGuide_SaveBaseEntries(guide)
+    local orderedEntries = CopyTable(guide.entries or {})
 
-    for _, role in ipairs(DUNGEONGUIDE_ROLES) do
-        if guide[role] then
-            for _, entry in ipairs(guide[role]) do
-                local workingEntry = CopyTable(entry)
-                workingEntry.role = role
-                CreateRow(index, order, workingEntry, role)
-                order = order + 1
-                index = index + 1
-            end
-        end
+    local orderTable = DungeonGuide_Orders[dungeonName] and DungeonGuide_Orders[dungeonName][encounterName]
+
+    if orderTable then
+        table.sort(orderedEntries, function(a, b)
+            return (orderTable[a.id] or 9999) < (orderTable[b.id] or 9999)
+        end)
+    end
+
+    for _, entry in ipairs(orderedEntries) do
+        local workingEntry = CopyTable(entry)
+        CreateRow(index, order, workingEntry, entry.role or "ALL")
+        order = order + 1
+        index = index + 1
     end
 
     editArea:SetHeight((index + 1) * rowHeight + 10)
 end
 
 function DungeonGuideEditorUI:SaveData()
-    if not self.currentDungeon or not self.currentEncounter then
-        return
-    end
+    if not self.currentDungeon or not self.currentEncounter then return end
 
-    local editedEntries = {}
+    local dungeon = self.currentDungeon
+    local encounter = self.currentEncounter
+
+    -- Load existing overrides for this encounter (if any)
+    local previousOverrides = DungeonGuide_GetOverrideEntry(dungeon, encounter) or {}
+    local previousMap = DungeonGuide_BuildEntryMapById(previousOverrides)
+
+    -- Build new merged override list
+    local newOverrideMap = {}
+
     for _, row in ipairs(self.currentRows or {}) do
         if row.entry and row.entry.id then
-            editedEntries[row.entry.id] = CopyTable(row.entry)
-            DungeonGuide_DebugInfo("Edited entry: " .. row.entry.id)
+            local id = row.entry.id
+            local isModified = DungeonGuide_AreEntriesEqual(row.entry, row.baseEntry) == false
+
+            if isModified then
+                -- Changed: mark as override
+                row.entry.override = true
+                newOverrideMap[id] = CopyTable(row.entry)
+                DungeonGuide_DebugInfo("Saving dirty entry: " .. id)
+            elseif previousMap[id] then
+                -- Reverted: was previously overridden but now matches base — omit from save
+                DungeonGuide_DebugInfo("Entry reverted to base: " .. id)
+            end
         end
     end
 
-    DungeonGuide_DebugInfo("Number of editedEntries: " .. #editedEntries)
-
-    -- Compare against base by ID
-    local overrides = {}
-
-    for id, edited in pairs(editedEntries) do
-        local original = self.baseEntries and self.baseEntries[id]
-        local isDifferent = false
-
-        if not original then
-            DungeonGuide_DebugInfo("No original entry found for ID: " .. id)
-            isDifferent = true
-        else
-            if original.type ~= edited.type then
-                DungeonGuide_DebugInfo("Original Type: " .. tostring(original.type) .. ", Edited Type: " .. tostring(edited.type))
-                isDifferent = true
-                DungeonGuide_DebugInfo("Type changed for entry: " .. id)
+    -- Convert merged map to ordered list
+    local mergedOverrides = {}
+    for _, row in ipairs(self.currentRows) do
+        if row.entry and row.entry.id then
+            local id = row.entry.id
+            if newOverrideMap[id] then
+                table.insert(mergedOverrides, newOverrideMap[id])
             end
-            if original.role ~= edited.role then
-                DungeonGuide_DebugInfo("Original Role: " .. tostring(original.role) .. ", Edited Role: " .. tostring(edited.role))
-                isDifferent = true
-                DungeonGuide_DebugInfo("Role changed for entry: " .. id)
-            end
-            if original.text ~= edited.text then
-                DungeonGuide_DebugInfo("Original Text: " .. tostring(original.text) .. ", Edited Text: " .. tostring(edited.text))
-                isDifferent = true
-                DungeonGuide_DebugInfo("Text changed for entry: " .. id)
-            end
-            if (original.show ~= false) ~= (edited.show ~= false) then
-                DungeonGuide_DebugInfo("Original Visibility: " .. tostring(original.show ~= false) .. ", Edited Visibility: " .. tostring(edited.show ~= false))
-                isDifferent = true
-                DungeonGuide_DebugInfo("Visibility changed for entry: " .. id)
-            end
-        end
-
-        if isDifferent then
-            table.insert(overrides, edited)
-            DungeonGuide_DebugInfo("Override detected for entry: " .. id)
         end
     end
 
     -- Save or clear
-    DungeonGuide_Overrides[self.currentDungeon] = DungeonGuide_Overrides[self.currentDungeon] or {}
+    DungeonGuide_Overrides[dungeon] = DungeonGuide_Overrides[dungeon] or {}
 
-    if #overrides > 0 then
-        DungeonGuide_Overrides[self.currentDungeon][self.currentEncounter] = overrides
-        DungeonGuide_DebugInfo("Saved " .. #overrides .. " overrides for " .. self.currentDungeon .. " - " .. self.currentEncounter)
+    if #mergedOverrides > 0 then
+        DungeonGuide_Overrides[dungeon][encounter] = mergedOverrides
+        DungeonGuide_DebugInfo("Saved " .. #mergedOverrides .. " override(s) for " .. dungeon .. " - " .. encounter)
     else
-        DungeonGuide_Overrides[self.currentDungeon][self.currentEncounter] = nil
-        DungeonGuide_DebugInfo("No changes to save for " .. self.currentDungeon .. " - " .. self.currentEncounter)
+        DungeonGuide_Overrides[dungeon][encounter] = nil
+        DungeonGuide_DebugInfo("Cleared overrides for " .. dungeon .. " - " .. encounter)
     end
+end
+
+function DungeonGuideEditorUI:InitialiseOrderIfMissing(dungeonID, encounterID, entries)
+    DungeonGuide_Orders[dungeonID] = DungeonGuide_Orders[dungeonID] or {}
+    DungeonGuide_Orders[dungeonID][encounterID] = DungeonGuide_Orders[dungeonID][encounterID] or {}
+
+    local orderTable = DungeonGuide_Orders[dungeonID][encounterID]
+
+    -- Get current max index in the order table
+    local maxIndex = 0
+    for _, index in pairs(orderTable) do
+        if index > maxIndex then
+            maxIndex = index
+        end
+    end
+
+    -- Add missing entries to the order table
+    for _, entry in ipairs(entries) do
+        if entry.id and not orderTable[entry.id] then
+            maxIndex = maxIndex + 1
+            orderTable[entry.id] = maxIndex
+        end
+    end
+end
+
+function DungeonGuideEditorUI:UpdateOrder(dungeonID, encounterID)
+    if not self.currentRows or not next(self.currentRows) then
+        return
+    end
+
+    DungeonGuide_Orders[dungeonID] = DungeonGuide_Orders[dungeonID] or {}
+    local newOrder = {}
+
+    for index, row in ipairs(self.currentRows) do
+        if row.entry and row.entry.id then
+            newOrder[row.entry.id] = index
+        end
+    end
+
+    DungeonGuide_Orders[dungeonID][encounterID] = newOrder
+    DungeonGuide_DebugInfo("Updated entry order for " .. dungeonID .. " - " .. encounterID)
+end
+
+function DungeonGuideEditorUI:Reset()
+    if not self.currentDungeon or not self.currentEncounter then
+        return
+    end
+
+    if DungeonGuide_Overrides[self.currentDungeon] then
+        DungeonGuide_Overrides[self.currentDungeon][self.currentEncounter] = nil
+
+        if next(DungeonGuide_Overrides[self.currentDungeon]) == nil then
+            DungeonGuide_Overrides[self.currentDungeon] = nil
+        end
+    end
+
+    if DungeonGuide_Orders[self.currentDungeon] then
+        DungeonGuide_Orders[self.currentDungeon][self.currentEncounter] = nil
+
+        if next(DungeonGuide_Orders[self.currentDungeon]) == nil then
+            DungeonGuide_Orders[self.currentDungeon] = nil
+        end
+    end
+
+    DungeonGuide_DebugInfo("Cleared overrides for " .. self.currentDungeon .. " - " .. self.currentEncounter)
+    self:PopulateGuideEntries(self.currentDungeon, self.currentEncounter)
 end
 
 function DungeonGuideEditorUI:Show()

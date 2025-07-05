@@ -3,7 +3,7 @@ DungeonGuide_Guides["Operation: Floodgate"] = {
   ["Operation: Floodgate"] = {
     id = "enc-floodgate-guide",
     order = 1,
-    header = "Guide: Operation: Floodgate",
+    header = "Intro",
     entries = {
       { role = "ALL", text = "32-minute timer with open layout — first two bosses can be done in any order.", type = "Mechanic", id = "gui-i6hdbRa4yjs" },
       { role = "ALL", text = "Collect all 5 Weapon Stockpiles to unlock n|Swampface| — some are off-path.", type = "Mechanic", id = "gui-zOtwsukZ5Bg" },
@@ -25,7 +25,7 @@ DungeonGuide_Guides["Operation: Floodgate"] = {
   ["Route"] = {
     id = "enc-floodgate-route",
     order = 2,
-    header = "Route: Operation: Floodgate",
+    header = "Route",
     entries = {
       { role = "ALL", text = "Pulling double n|Darkfuse Soldiers|, n|Venture Co. Contractors|, n|Surveyors|, and n|Shreddinator 3000| first. Bloodlust and burn cooldowns.", type = "Call", id = "gui-NCFjtHrwLQg" },
       { role = "ALL", text = "Next pull: Jump down after Weapon Stock blows. All trash around pool.", type = "Call", id = "gui-rp8MtULJKnw" },

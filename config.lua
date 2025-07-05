@@ -33,7 +33,7 @@ local function CreateDungeonGuideOptionsPanel()
     -- Font Dropdown
     local LSM = LibStub("LibSharedMedia-3.0")
     local fonts = LSM:List("font")
-    table.sort(fonts)
+    table.sort(fonts, function(a, b) return a:lower() < b:lower() end)
     
     local fontDropdown = CreateFrame("Frame", "DungeonGuideFontDropdown", panel, "UIDropDownMenuTemplate")
     fontDropdown:SetPoint("TOPLEFT", fontSizeSlider, "BOTTOMLEFT", -20, -40)

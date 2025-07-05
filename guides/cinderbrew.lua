@@ -3,7 +3,7 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
   ["Cinderbrew Meadery"] = {
     id = "enc-cinderbrew-guide",
     order = 1,
-    header = "Guide: Cinderbrew Meadery",
+    header = "Intro",
     entries = {
       { role = "ALL", text = "33-minute timer with split path after Boss 1.", type = "Mechanic", id = "gui-mjwlPbE32PA" },
       { role = "ALL", text = "s|Sticky Honey| (Cooking/Alchemy 25+): AoE slow + haste debuff — affects allies too.", type = "Mechanic", id = "gui-S9Z39Og" },
@@ -26,7 +26,7 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
   ["Route"] = {
     id = "enc-cinderbrew-route",
     order = 2,
-    header = "Route: Cinderbrew Meadery",
+    header = "Route",
     entries = {
       { role = "ALL", text = "Pulling right side to start. Watch n|Chef Chewie| patrol.", type = "Call", id = "gui-8fcNHfunSg4" },
       { role = "ALL", text = "Only one n|Hired Muscle| at a time. No double pulls.", type = "Call", id = "gui-dCxLtK2KroA" },

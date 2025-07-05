@@ -3,7 +3,7 @@ DungeonGuide_Guides["The MOTHERLODE!!"] = {
   ["The MOTHERLODE!!"] = {
     id = "enc-motherlode-guide",
     order = 1,
-    header = "Guide: The MOTHERLODE!!",
+    header = "Intro",
     entries = {
       { role = "ALL", text = "39-min timer. Route favours skipping early trash with Peacekeepers.", type = "Mechanic", id = "gui-cbJeACJ9Scw" },
       { role = "ALL", text = "Kick: Toxic Blades, Rock Lance, Goo, Withering Discharge, Rapid Extraction.", type = "Interrupt", id = "gui-a1DXQWQcAQM" },
@@ -25,7 +25,7 @@ DungeonGuide_Guides["The MOTHERLODE!!"] = {
   ["Route"] = {
     id = "enc-motherlode-route",
     order = 2,
-    header = "Route: The MOTHERLODE!!",
+    header = "Route",
     entries = {
       { role = "ALL", text = "Up to first Mechanized Peacekeeper. Stay RIGHT. Kill Mech Jockeys + Assassins first.", type = "Call", id = "gui-Ii4u2uv2GaY" },
       { role = "ALL", text = "Single pull: Mechanized Peacekeeper next. Watch Tear Gas.", type = "Call", id = "gui-CvVZK591kY" },

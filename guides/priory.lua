@@ -3,7 +3,7 @@ DungeonGuide_Guides["Priory of the Sacred Flame"] = {
   ["Priory of the Sacred Flame"] = {
     id = "enc-priory-guide",
     order = 1,
-    header = "Guide: Priory of the Sacred Flame",
+    header = "Intro",
     entries = {
       { role = "ALL", text = "Paladin/Priest can activate flame orb for 30min Holy AoE proc buff.", type = "Mechanic", id = "gui-ECoA78wXczY" },
       { role = "ALL", text = "You must fight Dailcry + 1 Trusted Guard. Kill 2 of 3 Lieutenants to remove 1.", type = "Mechanic", id = "gui-xObZTyb5rmc" },
@@ -26,7 +26,7 @@ DungeonGuide_Guides["Priory of the Sacred Flame"] = {
   ["Route"] = {
     id = "enc-priory-route",
     order = 2,
-    header = "Route: Priory of the Sacred Flame",
+    header = "Route",
     entries = {
       { role = "ALL", text = "Big pull to start with Footmen into Patrol into 2x packs at Fountain. Bloodlust here.", type = "Call", id = "gui-kIhqDxwfWk" },
       { role = "ALL", text = "Pull Guard Captain Suleyman next. Position on RIGHT stairs for Shield Slam.", type = "Call", id = "gui-gfqks7ejSUQ" },

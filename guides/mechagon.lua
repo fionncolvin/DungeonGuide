@@ -3,7 +3,7 @@ DungeonGuide_Guides["Operation: Mechagon"] = {
   ["Operation: Mechagon"] = {
     id = "enc-mechagon-guide",
     order = 1,
-    header = "Guide: Operation: Mechagon",
+    header = "Intro",
     entries = {
       { role = "ALL", text = "Interrupts: Detonate (Bomb Tonk), Mega Drill, Giga-Wallop, Tune Up, Short Out.", type = "Interrupt", id = "gui-XX9qYToKY7k" },
       { role = "ALL", text = "Dodge beams, mines, and swirls constantly — movement awareness is key.", type = "Mechanic", id = "gui-IyiSc424rZ0" },
@@ -30,7 +30,7 @@ DungeonGuide_Guides["Operation: Mechagon"] = {
   ["Route"] = {
     id = "enc-mechagon-route",
     order = 2,
-    header = "Route: Operation: Mechagon",
+    header = "Route",
     entries = {
       { role = "ALL", text = "Start pulling right side in first boss room. Safer Bomb Tonk control.", type = "Mechanic", id = "gui-q191ICSTRC4" },
       { role = "ALL", text = "Left side second. Then south side of room. Clear full room for boss.", type = "Mechanic", id = "gui-cesGuK4aqKo" },

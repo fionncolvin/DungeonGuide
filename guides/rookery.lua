@@ -3,7 +3,7 @@ DungeonGuide_Guides["The Rookery"] = {
   ["The Rookery"] = {
     id = "enc-rookery-guide",
     order = 1,
-    header = "Guide: The Rookery",
+    header = "Intro",
     entries = {
       { role = "ALL", text = "Interrupts: Lightning Bolt (Thunderers), Lightning Surge (Rooktenders), Void Bolt (Oracles/Ascendants).", type = "Interrupt", id = "gui-jACtGQKZI" },
       { role = "ALL", text = "Stormrooks cast Energized Barrage — spread + dodge swirlies.", type = "Mechanic", id = "gui-OHdznq0AmbY" },
@@ -25,7 +25,7 @@ DungeonGuide_Guides["The Rookery"] = {
   ["Route"] = {
     id = "enc-rookery-route",
     order = 2,
-    header = "Route: The Rookery",
+    header = "Route",
     entries = {
       { role = "ALL", text = "Pull Quartermaster Corti + right-side guards for extra count.", type = "Call", id = "gui-KsZDSRTIow" },
       { role = "ALL", text = "Focus Corti quickly. Watch Bounding Void frontal.", type = "Mechanic", id = "gui-5CnFPSceC4" },

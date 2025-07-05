@@ -3,7 +3,7 @@ DungeonGuide_Guides["Theater of Pain"] = {
   ["Theater of Pain"] = {
     id = "enc-theater-guide",
     order = 1,
-    header = "Guide: Theater of Pain",
+    header = "Intro",
     entries = {
       { role = "ALL", text = "Platform edges knock — stay clear during fights.", type = "Mechanic", id = "gui-rTn7Sfkc99s" },
       { role = "ALL", text = "High-priority kicks: Necrotic Bolt, Bone Spear, Discharge, Shout.", type = "Interrupt", id = "gui-ihU6zmS8LEA" },
@@ -24,7 +24,7 @@ DungeonGuide_Guides["Theater of Pain"] = {
   ["Route"] = {
     id = "enc-theater-route",    
     order = 2,    
-    header = "Route: Theater of Pain",
+    header = "Route",
     entries = {
       { role = "ALL", text = "Can skip first trash pack. Stay tight on LEFT and follow me.", type = "Call", id = "gui-1YPffLjdwU0" },
       { role = "ALL", text = "Pulling first trash into Bloodhorn for cleave.", type = "Call", id = "gui-zxxVDL29AcU" },

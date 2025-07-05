@@ -3,7 +3,7 @@ DungeonGuide_Guides["Liberation of Undermine"] = {
   ["Liberation of Undermine"] = {
       id = "enc-liberation-guide",
       order = 1,
-      header = "Guide: Liberation of Undermine",
+      header = "Intro",
     entries = {
       { role = "ALL", text = "To Be Added", type = "Mechanic", id = "gui-BCgkjzycxiY" },
       { role = "TANK", text = "To Be Added", type = "Call", id = "gui-u0rcqX0LjLs" },

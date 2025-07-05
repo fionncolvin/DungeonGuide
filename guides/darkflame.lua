@@ -3,7 +3,7 @@ DungeonGuide_Guides["Darkflame Cleft"] = {
   ["Darkflame Cleft"] = {
     id = "enc-darkflame-guide",
     order = 1,
-    header = "Guide: Darkflame Cleft",
+    header = "Intro",
     entries = {
       { role = "ALL", text = "33-minute timer with linear progression — 4 boss encounters.", type = "Mechanic", id = "gui-4MoFXwO3lLQ" },
       { role = "ALL", text = "Candlelight mechanics define multiple boss phases and escort event.", type = "Mechanic", id = "gui-gjeE1OV18" },
@@ -27,7 +27,7 @@ DungeonGuide_Guides["Darkflame Cleft"] = {
   ["Route"] = {
     id = "enc-darkflame-route",
     order = 2,
-    header = "Route: Darkflame Cleft",
+    header = "Route",
     entries = {
       { role = "ALL", text = "Pulling full first area. Respect bleed stacks from n|Menial Laborers|.", type = "Call", id = "gui-1zLA9dXLw" },
       { role = "ALL", text = "Focus n|Royal Wicklighter| fast in second pull to avoid bolt overlaps.", type = "Call", id = "gui-ghaDhWwPiZU" },

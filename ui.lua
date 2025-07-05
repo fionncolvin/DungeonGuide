@@ -21,7 +21,7 @@ function DungeonGuideUI:GetFontPath()
     return LibStub("LibSharedMedia-3.0"):Fetch("font", DungeonGuideDB.font or "Friz Quadrata TT")
 end
 
---- Creates and initializes the main guide frame for the DungeonGuide UI.
+-- Creates and initializes the main guide frame for the DungeonGuide UI.
 -- This function sets up the visual frame and its components, such as title, content area,
 -- and any interactive elements required for displaying dungeon guides.
 -- It is intended to be called once during the addon initialization to prepare the UI for user interaction.
@@ -177,29 +177,25 @@ end
 
 function DungeonGuideUI:UpdateGuideContent()
     local f = self.frame
+    local guideData = DungeonGuide_GetGuideEntry()
 
-    local guide = DungeonGuide_GetGuideEntry()
-
-    if not guide then
+    if not guideData or not guideData.entries then
         return
     end
 
     f.header:SetText(DungeonGuideContext.encounter or "Dungeon Guide")
 
-    -- Combine ALL + role-specific lines
+    DungeonGuide_DebugInfo("Updating guide content for " ..
+        (DungeonGuideContext.encounter or "unknown encounter") ..
+        " in dungeon: " .. (DungeonGuideContext.dungeon or "unknown dungeon") ..
+        " for role: " .. (DungeonGuideContext.role or "unknown role"))
 
-    DungeonGuide_DebugInfo("Updating guide content for " .. (DungeonGuideContext.encounter or "unknown encounter") .. " in dungeon: " .. (DungeonGuideContext.dungeon or "unknown dungeon") .. " for role: " .. (DungeonGuideContext.role or "unknown role"))
-
+    local role = DungeonGuideContext.role or "ALL"
     local lines = {}
-    if guide.ALL then
-        for _, line in ipairs(guide.ALL) do
-            table.insert(lines, line)
-        end
-    end
 
-    if guide[DungeonGuideContext.role] then
-        for _, line in ipairs(guide[DungeonGuideContext.role]) do
-            table.insert(lines, line)
+    for _, entry in ipairs(guideData.entries) do
+        if entry.role == "ALL" or entry.role == role then
+            table.insert(lines, entry)
         end
     end
 
@@ -223,20 +219,19 @@ function DungeonGuideUI:UpdateGuideContent()
             row:SetParent(f.contentFrame)
             row:SetWidth(f:GetWidth() - 10)
 
-            -- Optional: subtle stripe background
+            -- Background + indicator bar
             row.stripe = row:CreateTexture(nil, "BACKGROUND")
             row.stripe:SetAllPoints()
             row.stripe:SetColorTexture(1, 1, 1, 0.02)
             row.stripe:SetDrawLayer("BACKGROUND", -1)
 
-            -- Left-side colour bar
             row.indicator = row:CreateTexture(nil, "BACKGROUND")
             row.indicator:SetWidth(6)
             row.indicator:SetDrawLayer("BACKGROUND", 0)
             row.indicator:SetPoint("TOPLEFT", 0, -1)
             row.indicator:SetPoint("BOTTOMLEFT", 0, 1)
 
-            -- Text
+            -- Text setup
             row.text = row:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
             row.text:SetJustifyH("LEFT")
             row.text:SetJustifyV("TOP")
@@ -268,7 +263,7 @@ function DungeonGuideUI:UpdateGuideContent()
 
         local _, _, flags = row.text:GetFont()
         row.text:SetFont(DungeonGuideUI:GetFontPath(), DungeonGuideDB.fontSize or 12, flags)
-        row.text:SetWidth(availableWidth) -- set BEFORE SetText
+        row.text:SetWidth(availableWidth)
         row.text:SetText(formatted)
         row.text:SetHeight(0)
 
@@ -322,6 +317,7 @@ function DungeonGuideUI:CreateGuideButton()
     end)
 
     button:SetScript("OnClick", function()
+        DungeonGuide_DetectGuideContext()
         DungeonGuideUI:ShowGuide()
     end)
 
