@@ -19,7 +19,8 @@ DungeonGuide_Guides["Priory of the Sacred Flame"] = {
       { role = "HEALER", text = "High group damage from: Heat Wave, Holy Radiance, Vindictive Wrath, Inner Fire, Embrace the Light (P2).", type = "Mechanic", id = "gui-veBVRECAq2Q" },
       { role = "HEALER", text = "Dispel: Reflective Shield (Aemya), Divine Judgment debuff, Impale/bleeds, Heat Wave slows.", type = "Mechanic", id = "gui-IVplJVD2gIE" },
       { role = "DPS", text = "Save cooldowns for Murrpray intermission shield — faster break = fewer add waves.", type = "Mechanic", id = "gui-LJjhkqAzwHQ" },
-      { role = "DPS", text = "Soak Sacrificial Pyres properly. Avoid doubling up. Immunity/tank soak if needed.", type = "Mechanic", id = "gui-9MQ1wJw2wjE" }
+      { role = "DPS", text = "Soak Sacrificial Pyres properly. Avoid doubling up. Immunity/tank soak if needed.", type = "Mechanic", id = "gui-9MQ1wJw2wjE" },
+      { role = "ALL", text = "Route", type = "Jump", target="Route", id = "gui-EKYX3gkN4U-b4BdqDhcumw" }
     },
   },
 
@@ -68,8 +69,7 @@ DungeonGuide_Guides["Priory of the Sacred Flame"] = {
       { role = "HEALER", text = "CDs for Savage Mauling + Pierce Armor bleed combo.", type = "Call", id = "gui-Nb61TSIUZRQ" },
       { role = "HEALER", text = "Top players with Hurl Spear bleed. Watch melee stack.", type = "Mechanic", id = "gui-libYLuQeFCY" },
       { role = "DPS", text = "Pool CDs for Mauling absorb. Interrupt Cinderblast if Guard active.", type = "Mechanic", id = "gui-IGIWI4eWHqg" },
-      { role = "DPS", text = "Cleave Trusted Guard to boost boss damage. Avoid overfocus.", type = "Mechanic", id = "gui-bS3SqSzHyI" },
-      { role = "ALL", text = "Route", type = "Jump", target="Route", id = "gui-QpuSX3JVdUOTPdqySbkWyA" }
+      { role = "DPS", text = "Cleave Trusted Guard to boost boss damage. Avoid overfocus.", type = "Mechanic", id = "gui-bS3SqSzHyI" }
     },
   },
   
@@ -89,8 +89,7 @@ DungeonGuide_Guides["Priory of the Sacred Flame"] = {
       { role = "HEALER", text = "Prepare CDs before Empowered Pyre soak or stacked hammers.", type = "Call", id = "gui-d0mbSvIbDk" },
       { role = "HEALER", text = "Watch Sacrificial Flame DoT stacks — heal soakers immediately.", type = "Mechanic", id = "gui-tSsR27tXMwI" },
       { role = "DPS", text = "Stack with group for Hammer baits. Don’t panic spread.", type = "Mechanic", id = "gui-UkjDZFB7z8E" },
-      { role = "DPS", text = "Rotate Pyre soaks smartly — avoid doubling up or early clears.", type = "Mechanic", id = "gui-OdoqP2w4r64" },
-      { role = "ALL", text = "Route", type = "Jump", target="Route", id = "gui-uy2X7nfmPUWcvaoZBiTXqg" }
+      { role = "DPS", text = "Rotate Pyre soaks smartly — avoid doubling up or early clears.", type = "Mechanic", id = "gui-OdoqP2w4r64" }
     },
   },
   
@@ -113,8 +112,7 @@ DungeonGuide_Guides["Priory of the Sacred Flame"] = {
       { role = "HEALER", text = "Top off beam targets. Flame DoT can stack quickly.", type = "Mechanic", id = "gui-CN85LPJHq4" },
       { role = "DPS", text = "Interrupt Holy Smite. Rotate if healer is locked down.", type = "Interrupt", id = "gui-ZLFZHIg0ltQ" },
       { role = "DPS", text = "Pop CDs on upper platform to break shield quickly.", type = "Call", id = "gui-AsgaLXqBSTE" },
-      { role = "DPS", text = "Help slow and CC adds. Avoid tank/healer pressure.", type = "Mechanic", id = "gui-8HCUvLJiYtw" },
-      { role = "ALL", text = "Route", type = "Jump", target="Route", id = "gui-tSlEkmlwhEWZ9b1GEerLdw" }
-    },
+      { role = "DPS", text = "Help slow and CC adds. Avoid tank/healer pressure.", type = "Mechanic", id = "gui-8HCUvLJiYtw" }
+    }
   }
 }

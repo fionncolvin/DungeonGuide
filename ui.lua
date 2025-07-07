@@ -174,7 +174,11 @@ function DungeonGuideUI:FormatGuideLine(text)
     return table.concat(formatted)
 end
 
-function DungeonGuideUI:UpdateGuideContent()
+function DungeonGuideUI:StripFormat(text)
+    return text:gsub(":[sn]:([^:]+):", "%1")
+end
+
+function DungeonGuideUI:UpdateGuideContent(returnGuide)
     local f = self.frame
     local guideData = DungeonGuide_GetGuideEntry()
 
@@ -202,44 +206,52 @@ function DungeonGuideUI:UpdateGuideContent()
         return
     end
 
+    f.contentRows = f.contentRows or {}
+
     -- Hide old rows
     for _, row in ipairs(f.contentRows) do
         row:Hide()
     end
 
-    f.contentRows = f.contentRows or {}
-
     local yOffset, index = 0, 1
+    local scrollbarOffset = 20
+    local textPadding = 30
+    local availableWidth = f:GetWidth() - scrollbarOffset - textPadding
+
+    local function createRow() 
+        local row = CreateFrame("Button", nil, f.contentFrame)
+        row:SetParent(f.contentFrame)
+        row:SetWidth(f:GetWidth() - 10)
+
+        -- Background + indicator bar
+        row.stripe = row:CreateTexture(nil, "BACKGROUND")
+        row.stripe:SetAllPoints()
+        row.stripe:SetColorTexture(1, 1, 1, 0.02)
+        row.stripe:SetDrawLayer("BACKGROUND", -1)
+
+        row.indicator = row:CreateTexture(nil, "BACKGROUND")
+        row.indicator:SetWidth(6)
+        row.indicator:SetDrawLayer("BACKGROUND", 0)
+        row.indicator:SetPoint("TOPLEFT", 0, -1)
+        row.indicator:SetPoint("BOTTOMLEFT", 0, 1)
+
+        -- Text setup
+        row.text = row:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+        row.text:SetJustifyH("LEFT")
+        row.text:SetJustifyV("TOP")
+        row.text:SetDrawLayer("ARTWORK", 1)
+        row.text:SetWordWrap(true)
+        row.text:SetPoint("TOPLEFT", row, "TOPLEFT", 10, 0)
+        row.text:SetPoint("TOPRIGHT", row, "TOPRIGHT", -2, 0)
+
+        return row
+    end
 
     for _, line in ipairs(lines) do
         if not line.hide or line.hide == false then
             local row = f.contentRows[index]
             if not row then
-                row = CreateFrame("Button", nil, f.contentFrame)
-                row:SetParent(f.contentFrame)
-                row:SetWidth(f:GetWidth() - 10)
-
-                -- Background + indicator bar
-                row.stripe = row:CreateTexture(nil, "BACKGROUND")
-                row.stripe:SetAllPoints()
-                row.stripe:SetColorTexture(1, 1, 1, 0.02)
-                row.stripe:SetDrawLayer("BACKGROUND", -1)
-
-                row.indicator = row:CreateTexture(nil, "BACKGROUND")
-                row.indicator:SetWidth(6)
-                row.indicator:SetDrawLayer("BACKGROUND", 0)
-                row.indicator:SetPoint("TOPLEFT", 0, -1)
-                row.indicator:SetPoint("BOTTOMLEFT", 0, 1)
-
-                -- Text setup
-                row.text = row:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
-                row.text:SetJustifyH("LEFT")
-                row.text:SetJustifyV("TOP")
-                row.text:SetDrawLayer("ARTWORK", 1)
-                row.text:SetWordWrap(true)
-                row.text:SetPoint("TOPLEFT", row, "TOPLEFT", 10, 0)
-                row.text:SetPoint("TOPRIGHT", row, "TOPRIGHT", -2, 0)
-
+                row = createRow()
                 f.contentRows[index] = row
             end
 
@@ -257,9 +269,6 @@ function DungeonGuideUI:UpdateGuideContent()
             row:SetPoint("TOPLEFT", 0, -yOffset)
             row:SetWidth(f:GetWidth() - 10)
 
-            local scrollbarOffset = 20
-            local textPadding = 30
-            local availableWidth = f:GetWidth() - scrollbarOffset - textPadding
             local formatted = self:FormatGuideLine(line.text)
 
             local _, _, flags = row.text:GetFont()
@@ -274,7 +283,7 @@ function DungeonGuideUI:UpdateGuideContent()
             if line.type == "Call" then
                 row:SetScript("OnClick", function()
                     if IsInGroup(LE_PARTY_CATEGORY_HOME) then
-                        SendChatMessage(line.text, "PARTY")
+                        SendChatMessage(self:StripFormat(line.text), "PARTY")
                     else
                         print("[DungeonGuide] Not in a party.")
                     end
@@ -282,9 +291,10 @@ function DungeonGuideUI:UpdateGuideContent()
             elseif line.type == "Jump" then 
                 row:SetScript("OnClick", function()
                     if line.target then
+                        local returnGuide = DungeonGuideContext.encounter
                         DungeonGuideContext.encounter = line.target
                         DungeonGuideContext.forceSelect = true
-                        DungeonGuideUI:UpdateGuideContent()
+                        DungeonGuideUI:UpdateGuideContent(returnGuide)
                         DungeonGuideContext.forceSelect = false
                     else
                         DungeonGuide_DebugInfo("No target specified for jump action: " .. line.text)
@@ -296,6 +306,60 @@ function DungeonGuideUI:UpdateGuideContent()
             yOffset = yOffset + textHeight
             index = index + 1
         end
+    end
+
+    if returnGuide then
+        DungeonGuide_DebugInfo("Adding return jump to " .. returnGuide)
+        local row = f.contentRows[index]
+        if not row then
+            row = createRow()
+            f.contentRows[index] = row
+        end
+
+        -- Colour bar
+        local c = DungeonGuideDB.colours["Jump"]
+
+        if c then
+            row.indicator:SetColorTexture(c.r, c.g, c.b, c.a)
+        else
+            row.indicator:SetColorTexture(0, 0, 0, 0.2)
+        end
+
+        row:SetPoint("TOPLEFT", 0, -yOffset)
+        row:SetWidth(f:GetWidth() - 10)
+
+        local _, _, flags = row.text:GetFont()
+        row.text:SetFont(DungeonGuideUI:GetFontPath(), DungeonGuideDB.fontSize or 12, flags)
+        row.text:SetWidth(availableWidth)
+        row.text:SetText(" >>> Return to " .. returnGuide)
+        row.text:SetHeight(0)
+
+        local textHeight = row.text:GetStringHeight() + 6
+        row:SetHeight(textHeight)
+
+        row:SetScript("OnClick", function()
+            DungeonGuideContext.encounter = returnGuide
+            DungeonGuideContext.forceSelect = true
+            DungeonGuideUI:UpdateGuideContent()
+            DungeonGuideContext.forceSelect = false
+        end)
+
+        row:Show()
+        index = index + 1
+    end
+
+    -- Hide any remaining unused rows
+    for i = index, #f.contentRows do
+        if f.contentRows[i] then
+            f.contentRows[i]:Hide()
+        end
+    end
+
+    for i = index, #f.contentRows do
+        local row = f.contentRows[i]
+        row:SetScript("OnClick", nil)
+        row.text:SetText("")
+        row:Hide()
     end
 
     f.contentFrame:SetHeight(yOffset + 20)
