@@ -171,10 +171,9 @@ function DungeonGuide_MergeGuide(base, override)
 
     -- Add override entries
     for _, entry in ipairs(overrideEntries) do
-        if entry.show ~= false then
-            table.insert(merged, CopyTable(entry))
-            DungeonGuide_DebugInfo("Adding override entry: " .. (entry.text or "Unnamed") .. " [" .. (entry.role or "ALL") .. "]")
-        end
+        table.insert(merged, CopyTable(entry))
+        DungeonGuide_DebugInfo("Adding override entry: " .. (entry.text or "Unnamed") .. " [" .. (entry.role or "ALL") ..
+                                "]")
     end
 
     return { entries = merged }
@@ -190,6 +189,7 @@ function DungeonGuide_AreEntriesEqual(a, b)
         (a.type == b.type) and
         (a.role == b.role) and
         (a.text == b.text) and
+        (a.target == b.target) and
         ((a.hide or false) == (b.hide or false))
 end
 

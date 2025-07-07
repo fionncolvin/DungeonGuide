@@ -14,40 +14,6 @@ DungeonGuideContext = {
     dungeon = nil
 }
 
--- Default settings
-local defaults = {
-    debug = false,
-    autoHide = true,
-    font = "GameFontHighlightSmall",
-    fontSize = 12,
-    rowSpacing = 22,
-    colours = {
-        Call =      { r = 0.3,  g = 0.45, b = 0.75, a = 0.3 },
-        Position =  { r = 0.8,  g = 0.5,  b = 0.2,  a = 0.3 },
-        Interrupt = { r = 0.85, g = 0.4,  b = 0.85, a = 0.3 },
-        Mechanic =  { r = 0.5,  g = 0.5,  b = 0.5,  a = 0.3 }
-    }
-}
-
-local function ApplyDefaults()
-    DungeonGuideDB = DungeonGuideDB or {}
-
-    for k, v in pairs(defaults) do
-        if DungeonGuideDB[k] == nil then
-            DungeonGuideDB[k] = v
-        end
-    end
-
-    DungeonGuideDB.colours = DungeonGuideDB.colours or {}
-    for key, color in pairs(defaults.colours) do
-        DungeonGuideDB.colours[key] = DungeonGuideDB.colours[key] or color
-    end
-
-    DungeonGuideDB.font = DungeonGuideDB.font or "GameFontHighlightSmall"
-end
-
-ApplyDefaults()
-
 -- Detect context based on zone and set guide data
 function DungeonGuide_DetectGuideContext()
     DungeonGuideContext.dungeon = GetRealZoneText()

@@ -21,7 +21,7 @@ function DungeonGuideEditorUI:Create()
     DungeonGuideEditorUI.selectedEncounterBtn = nil
 
     local f = CreateFrame("Frame", "DungeonGuideEditorFrame", UIParent, "BackdropTemplate")
-    f:SetSize(1230, 580)
+    f:SetSize(1330, 580)
     f:SetPoint("CENTER")
     f:SetMovable(true)
     f:EnableMouse(true)
@@ -202,7 +202,7 @@ function DungeonGuideEditorUI:PopulateDungeonList()
             btn.bg:SetColorTexture(0.2, 0.8, 0.4, 0.6)
             DungeonGuideEditorUI.selectedDungeonBtn = btn
 
-            DungeonGuideEditorUI:PopulateEncounters(dungeonName)
+            self:PopulateEncounters(dungeonName)
         end)
 
         -- If this is the current dungeon, highlight it
@@ -303,6 +303,7 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
     local columnWidths = {
         order = 40,
         type = 100,
+        target = 100,
         role = 90,
         text = 680,
         hide = 40,
@@ -314,6 +315,7 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
         { key = "type", width = columnWidths.type, align = "LEFT", label = "TYPE" },
         { key = "role", width = columnWidths.role, align = "LEFT", label = "ROLE" },
         { key = "text", width = columnWidths.text, align = "LEFT", label = "GUIDE" },
+        { key = "target", width = columnWidths.target, align = "LEFT", label = "TARGET" },
         { key = "hide", width = columnWidths.hide, align = "CENTER", label = "HIDE" },
         { key = "remove", width = columnWidths.remove, align = "CENTER", label = "" }
     }
@@ -372,21 +374,11 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
         local fields = {
             order = tostring(order),
             type = entry.type or "",
+            target = entry.target or "",
             role = role,
             text = entry.text or "",
             hide = entry.hide or false
         }
-
-        function row:SetDirtyState(isDirty)
-            self.dirty = isDirty
-
-            if isDirty then
-                self.bg:SetColorTexture(0.2, 0.4, 0.8, 0.6) -- mid blue highlight
-            else
-                local c = self._zebraColor
-                self.bg:SetColorTexture(c.r, c.g, c.b, c.a)
-            end
-        end
 
         for _, col in ipairs(positions) do
             local border = row:CreateTexture(nil, "BORDER")
@@ -404,7 +396,8 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
                 cb:SetScript("OnClick", function(self)
                     entry.hide = self:GetChecked()
 
-                    row:SetDirtyState(DungeonGuide_AreEntriesEqual(baseEntry, entry) == false)
+                    -- DungeonGuide_AreEntriesEqual returns true if the entries are equal, false otherwise.
+                    SetDirtyState(row, DungeonGuide_AreEntriesEqual(baseEntry, entry) == false)
                 end)
 
                 if isElvUI and S.HandleCheckBox then
@@ -450,7 +443,7 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
                             UIDropDownMenu_SetText(dd, r)
 
                             -- Check for difference from base
-                            row:SetDirtyState(DungeonGuide_AreEntriesEqual(baseEntry, entry) == false)
+                            SetDirtyState(row, DungeonGuide_AreEntriesEqual(baseEntry, entry) == false)
                         end
                         UIDropDownMenu_AddButton(info)
                     end
@@ -464,7 +457,7 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
                 UIDropDownMenu_SetText(dd, fields.type)
 
                 UIDropDownMenu_Initialize(dd, function(self, level)
-                    local types = { "Call", "Position", "Interrupt", "Mechanic" }
+                    local types = { "Call", "Position", "Interrupt", "Mechanic", "Jump" }
                     for _, t in ipairs(types) do
                         local info = UIDropDownMenu_CreateInfo()
                         info.text = t
@@ -474,11 +467,56 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
                             UIDropDownMenu_SetText(dd, t)
 
                             -- Check for difference from base
-                            row:SetDirtyState(DungeonGuide_AreEntriesEqual(baseEntry, entry) == false)
+                            SetDirtyState(row, DungeonGuide_AreEntriesEqual(baseEntry, entry) == false)
                         end
                         UIDropDownMenu_AddButton(info)
                     end
                 end)
+            elseif col.key == "target" then
+                -- TARGET: editable field
+                local targetFrame = CreateFrame("Frame", nil, row)
+                targetFrame:SetPoint("LEFT", x + 2, 0)
+                targetFrame:SetSize(col.width - 6, rowHeight)
+
+                -- Display label (initial view)
+                local targetLabel = targetFrame:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+                targetLabel:SetAllPoints()
+                targetLabel:SetJustifyH("LEFT")
+                targetLabel:SetJustifyV("MIDDLE")
+                targetLabel:SetText(entry.target or "")
+
+                -- Editable box (initially hidden)
+                local targetEditBox = CreateFrame("EditBox", nil, targetFrame, "InputBoxTemplate")
+                targetEditBox:SetAllPoints()
+                targetEditBox:SetAutoFocus(false)
+                targetEditBox:SetMultiLine(false)
+                targetEditBox:Hide()
+                targetEditBox:SetFontObject("GameFontHighlightSmall")
+                targetEditBox:SetText(entry.target or "")
+
+                -- Show edit box on click
+                targetFrame:SetScript("OnMouseDown", function()
+                    targetLabel:Hide()
+                    targetEditBox:Show()
+                    targetEditBox:SetFocus()
+                    targetEditBox:SetCursorPosition(0)
+                end)
+
+                -- Commit on Enter or focus lost
+                local function commitEdit()
+                    local newText = targetEditBox:GetText()
+                    entry.target = newText
+                    targetLabel:SetText(newText)
+                    targetEditBox:Hide()
+                    targetLabel:Show()
+
+                    -- Check for difference from base
+                    SetDirtyState(row, DungeonGuide_AreEntriesEqual(baseEntry, entry) == false)
+                end
+
+                targetEditBox:SetScript("OnEnterPressed", commitEdit)
+                targetEditBox:SetScript("OnEscapePressed", commitEdit)
+                targetEditBox:SetScript("OnEditFocusLost", commitEdit)
             elseif col.key == "text" then
                 -- TEXT: editable field
                 local textFrame = CreateFrame("Frame", nil, row)
@@ -486,81 +524,81 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
                 textFrame:SetSize(col.width - 6, rowHeight)
 
                 -- Display label (initial view)
-                local label = textFrame:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
-                label:SetAllPoints()
-                label:SetJustifyH("LEFT")
-                label:SetJustifyV("MIDDLE")
-                label:SetText(entry.text or "")
+                local textLabel = textFrame:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+                textLabel:SetAllPoints()
+                textLabel:SetJustifyH("LEFT")
+                textLabel:SetJustifyV("MIDDLE")
+                textLabel:SetText(entry.text or "")
 
                 -- Editable box (initially hidden)
-                local editBox = CreateFrame("EditBox", nil, textFrame, "InputBoxTemplate")
-                editBox:SetAllPoints()
-                editBox:SetAutoFocus(false)
-                editBox:SetMultiLine(false)
-                editBox:Hide()
-                editBox:SetFontObject("GameFontHighlightSmall")
-                editBox:SetText(entry.text or "")
+                local textEditBox = CreateFrame("EditBox", nil, textFrame, "InputBoxTemplate")
+                textEditBox:SetAllPoints()
+                textEditBox:SetAutoFocus(false)
+                textEditBox:SetMultiLine(false)
+                textEditBox:Hide()
+                textEditBox:SetFontObject("GameFontHighlightSmall")
+                textEditBox:SetText(entry.text or "")
 
                 -- Show edit box on click
                 textFrame:SetScript("OnMouseDown", function()
-                    label:Hide()
-                    editBox:Show()
-                    editBox:SetFocus()
-                    editBox:SetCursorPosition(0)
+                    textLabel:Hide()
+                    textEditBox:Show()
+                    textEditBox:SetFocus()
+                    textEditBox:SetCursorPosition(0)
                 end)
 
                 -- Commit on Enter or focus lost
                 local function commitEdit()
-                    local newText = editBox:GetText()
+                    local newText = textEditBox:GetText()
                     entry.text = newText
-                    label:SetText(newText)
-                    editBox:Hide()
-                    label:Show()
+                    textLabel:SetText(newText)
+                    textEditBox:Hide()
+                    textLabel:Show()
 
                     -- Check for difference from base
-                    row:SetDirtyState(DungeonGuide_AreEntriesEqual(baseEntry, entry) == false)
+                    SetDirtyState(row, DungeonGuide_AreEntriesEqual(baseEntry, entry) == false)
                 end
 
-                editBox:SetScript("OnEnterPressed", commitEdit)
-                editBox:SetScript("OnEscapePressed", commitEdit)
-                editBox:SetScript("OnEditFocusLost", commitEdit)
+                textEditBox:SetScript("OnEnterPressed", commitEdit)
+                textEditBox:SetScript("OnEscapePressed", commitEdit)
+                textEditBox:SetScript("OnEditFocusLost", commitEdit)
             elseif col.key == "order" then
                 local orderFrame = CreateFrame("Frame", nil, row)
                 orderFrame:SetPoint("LEFT", x + 2, 0)
                 orderFrame:SetSize(col.width - 6, rowHeight)
 
-                local label = orderFrame:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
-                label:SetAllPoints()
-                label:SetJustifyH("CENTER")
-                label:SetJustifyV("MIDDLE")
-                label:SetText(fields.order)
+                local orderLabel = orderFrame:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+                orderLabel:SetAllPoints()
+                orderLabel:SetJustifyH("CENTER")
+                orderLabel:SetJustifyV("MIDDLE")
+                orderLabel:SetText(fields.order)
 
                 if (entry.override) then
-                    label:SetTextColor(1, 0.4, 1) -- Highlight color for overrides
+                    orderLabel:SetTextColor(1, 0.4, 1) -- Highlight color for overrides
                 else
-                    label:SetTextColor(1, 1, 1) -- Default text color
+                    orderLabel:SetTextColor(1, 1, 1) -- Default text color
                 end
 
-                local editBox = CreateFrame("EditBox", nil, orderFrame, "InputBoxTemplate")
-                editBox:SetAllPoints()
-                editBox:SetAutoFocus(false)
-                editBox:SetMultiLine(false)
-                editBox:Hide()
-                editBox:SetFontObject("GameFontHighlightSmall")
-                editBox:SetText(fields.order)
+                local orderEditBox = CreateFrame("EditBox", nil, orderFrame, "InputBoxTemplate")
+                orderEditBox:SetAllPoints()
+                orderEditBox:SetAutoFocus(false)
+                orderEditBox:SetMultiLine(false)
+                orderEditBox:Hide()
+                orderEditBox:SetFontObject("GameFontHighlightSmall")
+                orderEditBox:SetText(fields.order)
 
                 orderFrame:SetScript("OnMouseDown", function()
-                    label:Hide()
-                    editBox:Show()
-                    editBox:SetFocus()
-                    editBox:SetCursorPosition(0)
+                    orderLabel:Hide()
+                    orderEditBox:Show()
+                    orderEditBox:SetFocus()
+                    orderEditBox:SetCursorPosition(0)
                 end)
 
                 local function commitOrderEdit()
-                    editBox:Hide()
-                    label:Show()
+                    orderEditBox:Hide()
+                    orderLabel:Show()
 
-                    local newOrder = tonumber(editBox:GetText())
+                    local newOrder = tonumber(orderEditBox:GetText())
 
                     if not newOrder then
                         return
@@ -569,7 +607,7 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
                     -- Clamp the value within range
                     newOrder = math.max(1, math.min(#self.currentRows, newOrder))
 
-                    label:SetText(tostring(newOrder))
+                    orderLabel:SetText(tostring(newOrder))
 
                     -- Find and remove current row
                     local oldIndex = DungeonGuide_tIndexOf(self.currentRows, row)
@@ -588,9 +626,9 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
                     self:PopulateGuideEntries(self.currentDungeon, self.currentEncounter)
                 end
 
-                editBox:SetScript("OnEnterPressed", commitOrderEdit)
-                editBox:SetScript("OnEscapePressed", commitOrderEdit)
-                editBox:SetScript("OnEditFocusLost", commitOrderEdit)
+                orderEditBox:SetScript("OnEnterPressed", commitOrderEdit)
+                orderEditBox:SetScript("OnEscapePressed", commitOrderEdit)
+                orderEditBox:SetScript("OnEditFocusLost", commitOrderEdit)
             else
                 local fs = row:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
                 fs:SetPoint("LEFT", x + 4, 0)
@@ -649,7 +687,7 @@ function DungeonGuideEditorUI:AddNewEntry()
     local orderTable = DungeonGuide_Orders[dungeon][encounter]
 
     -- Generate a new unique ID
-    local newID = "gen-" .. math.random(1e9)
+    local newID = "gen-" .. tostring(time()) .. "-" .. tostring(math.random(1e9))
 
     -- Create new entry
     local newEntry = {
@@ -887,6 +925,18 @@ function DungeonGuideEditorUI:Confirm(message, onConfirm)
 
     dialog:Show()
     self.confirmDialog = dialog
+end
+
+
+function SetDirtyState(row, isDirty)
+    row.dirty = isDirty
+
+    if isDirty then
+        row.bg:SetColorTexture(0.2, 0.4, 0.8, 0.6) -- mid blue highlight
+    else
+        local c = row._zebraColor
+        row.bg:SetColorTexture(c.r, c.g, c.b, c.a)
+    end
 end
 
 function DungeonGuideEditorUI:Show()

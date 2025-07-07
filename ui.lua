@@ -247,6 +247,7 @@ function DungeonGuideUI:UpdateGuideContent()
 
             -- Colour bar
             local c = DungeonGuideDB.colours[line.type]
+
             if c then
                 row.indicator:SetColorTexture(c.r, c.g, c.b, c.a)
             else
@@ -276,6 +277,17 @@ function DungeonGuideUI:UpdateGuideContent()
                         SendChatMessage(line.text, "PARTY")
                     else
                         print("[DungeonGuide] Not in a party.")
+                    end
+                end)
+            elseif line.type == "Jump" then 
+                row:SetScript("OnClick", function()
+                    if line.target then
+                        DungeonGuideContext.encounter = line.target
+                        DungeonGuideContext.forceSelect = true
+                        DungeonGuideUI:UpdateGuideContent()
+                        DungeonGuideContext.forceSelect = false
+                    else
+                        DungeonGuide_DebugInfo("No target specified for jump action: " .. line.text)
                     end
                 end)
             end

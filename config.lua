@@ -1,11 +1,46 @@
+-- Default settings
+local defaults = {
+    debug = false,
+    autoHide = true,
+    font = "GameFontHighlightSmall",
+    fontSize = 12,
+    rowSpacing = 22,
+    colours = {
+        Call =      { r = 0.3,  g = 0.45, b = 0.75, a = 0.3 },
+        Position =  { r = 0.8,  g = 0.5,  b = 0.2,  a = 0.3 },
+        Interrupt = { r = 0.85, g = 0.4,  b = 0.85, a = 0.3 },
+        Mechanic =  { r = 0.5,  g = 0.5,  b = 0.5,  a = 0.3 },
+        Jump = { r = 0.18, g = 0.93, b = 0.21, a = 0.3 }
+    }
+}
+
+local function ApplyDefaults()
+    DungeonGuideDB = DungeonGuideDB or {}
+
+    for k, v in pairs(defaults) do
+        if DungeonGuideDB[k] == nil then
+            DungeonGuideDB[k] = v
+        end
+    end
+
+    DungeonGuideDB.colours = DungeonGuideDB.colours or {}
+
+    for key, defaultColor in pairs(defaults.colours) do
+        local userColor = DungeonGuideDB.colours[key]
+        if type(userColor) ~= "table" then
+            DungeonGuideDB.colours[key] = CopyTable(defaultColor)
+        else
+            for channel, value in pairs(defaultColor) do
+                if userColor[channel] == nil then
+                    userColor[channel] = value
+                end
+            end
+        end
+    end
+end
+
 local function CreateDungeonGuideOptionsPanel()
     DungeonGuideDB = DungeonGuideDB or {}
-    DungeonGuideDB.colours = DungeonGuideDB.colours or {
-        Call = { r = 0.3, g = 0.45, b = 0.75, a = 0.3 },
-        Position = { r = 0.8, g = 0.5, b = 0.2, a = 0.3 },
-        Interrupt = { r = 0.85, g = 0.4, b = 0.85, a = 0.3 },
-        Mechanic = { r = 0.5, g = 0.5, b = 0.5, a = 0.3 }
-    }
 
     local panel = CreateFrame("Frame", "DungeonGuideOptionsPanel", UIParent)
     panel.name = "DungeonGuide"
@@ -106,6 +141,7 @@ local function CreateDungeonGuideOptionsPanel()
     -- Color Picker Helper
     local function CreateColorPicker(parent, label, key, yOffset, relativeTo, stackBelow)
         local title = parent:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+        local defaultColor = { r = 1, g = 0, b = 0, a = 1 }
 
         if relativeTo then
             title:SetPoint("TOPLEFT", relativeTo, "BOTTOMLEFT", 0, yOffset)
@@ -123,7 +159,7 @@ local function CreateDungeonGuideOptionsPanel()
 
         local tex = swatch:CreateTexture(nil, "BACKGROUND")
         tex:SetAllPoints()
-        local c = DungeonGuideDB.colours[key]
+        local c = DungeonGuideDB.colours[key] or defaultColor
         tex:SetColorTexture(c.r, c.g, c.b, c.a)
 
         swatch:SetScript("OnClick", function()
@@ -142,7 +178,10 @@ local function CreateDungeonGuideOptionsPanel()
             end
         
             local c = DungeonGuideDB.colours[key]
-            if not c then return end
+            if not c then
+                DungeonGuide_DebugInfo("No color set for " .. key .. ", using default.")
+                return
+            end
         
             ColorPickerFrame.r = c.r
             ColorPickerFrame.g = c.g
@@ -167,6 +206,7 @@ local function CreateDungeonGuideOptionsPanel()
     CreateColorPicker(panel, "Position", "Position", -30, nil, true)
     CreateColorPicker(panel, "Interrupt", "Interrupt", -30, nil, true)
     CreateColorPicker(panel, "Mechanic", "Mechanic", -30, nil, true)
+    CreateColorPicker(panel, "Jump", "Jump", -30, nil, true)
 
     DungeonGuideOptionsCategory = Settings.RegisterCanvasLayoutCategory(panel, "DungeonGuide")
     Settings.RegisterAddOnCategory(DungeonGuideOptionsCategory)
@@ -177,6 +217,7 @@ local f = CreateFrame("Frame")
 f:RegisterEvent("ADDON_LOADED")
 f:SetScript("OnEvent", function(_, event, addonName)
     if addonName == "DungeonGuide" then
+        ApplyDefaults()  -- Moved here
         CreateDungeonGuideOptionsPanel()
     end
 end)

@@ -29,21 +29,24 @@ DungeonGuide_Guides["Priory of the Sacred Flame"] = {
     header = "Route",
     entries = {
       { role = "ALL", text = "Big pull to start with Footmen into Patrol into 2x packs at Fountain. Bloodlust here.", type = "Call", id = "gui-kIhqDxwfWk" },
-      { role = "ALL", text = "Pull Guard Captain Suleyman next. Position on RIGHT stairs for Shield Slam.", type = "Call", id = "gui-gfqks7ejSUQ" },
-      { role = "ALL", text = "Up the stairs for Sergeant Shaynemail when she runs in + RIGHT pack.", type = "Call", id = "gui-cyzAUTtDF8" },
+      { role = "ALL", text = "Pull Guard Captain Suleyman next. Position on LEFT stairs for Shield Slam.", type = "Call", id = "gui-gfqks7ejSUQ" },
+      { role = "ALL", text = "Up the stairs for Sergeant Shaynemail when she runs in + RIGHT pack. Avoiding the Sharpshooter on the left.", type = "Call", id = "gui-cyzAUTtDF8" },
       { role = "ALL", text = "Patrol + tree-side 3-pack next.", type = "Call", id = "gui-UPNVz3p2NV0" },
       { role = "ALL", text = "Chain Conjurers + Lightspawn + Neophytes. Respect tank damage.", type = "Call", id = "gui-Zc4XA9N91ZA" },
       { role = "ALL", text = "Pull High Priest Aemya next. Focus interrupts.", type = "Call", id = "gui-eX5R4W9h0X8" },
       { role = "ALL", text = "Move to catch Duelmal mid-run if possible.", type = "Call", id = "gui-ewaWcy1DJM" },
       { role = "ALL", text = "Fight Captain Dailcry next. South-side mini-boss preferred for cleave.", type = "Call", id = "gui-m40lJTaD7t8" },
-      { role = "ALL", text = "Full pull Cathedral Neophytes first. Watch Sacred Toll casts.", type = "Mechanic", id = "gui-UeSsgsKPaXU" },
+      { role = "ALL", text = "Boss Fight: Captain Dailcry", type = "Jump", target="Captain Dailcry", id = "gui-wut5kvUhDUK" },
+      { role = "ALL", text = "Full pull Cathedral Neophytes first. Watch Sacred Toll casts.", type = "Call", id = "gui-UeSsgsKPaXU" },
       { role = "ALL", text = "Clear left side first in Cathedral. Then right side.", type = "Call", id = "gui-X9FH87CTkxc" },
+      { role = "ALL", text = "Boss Fight: Baron Braunpyke", type = "Jump", target="Baron Braunpyke", id = "gui-pmj_Kq2ihUW" },
       { role = "ALL", text = "After Braunpyke, pull double Paladins, Priests, and Templars.", type = "Call", id = "gui-z4qacZAObMk" },
-      { role = "ALL", text = "LOS first stairwell pack into stairwell for safe pull.", type = "Position", id = "gui-FRgix4GVT4" },
-      { role = "ALL", text = "Focus Lightspawns carefully. Avoid healing mobs with Purification zones.", type = "Mechanic", id = "gui-Q2t7EOfZrZE" },
+      { role = "ALL", text = "LOS first stairwell pack into stairwell for safe pull.", type = "Call", id = "gui-FRgix4GVT4" },
+      { role = "ALL", text = "Focus Lightspawns carefully. Avoid healing mobs with Purification zones.", type = "Call", id = "gui-Q2t7EOfZrZE" },
       { role = "ALL", text = "Clear right side first or patrol depending on timing.", type = "Call", id = "gui-KY41qFQ1iwY" },
       { role = "ALL", text = "Middle group last. Must clear both sides of steps as they pull-in with boss.", type = "Call", id = "gui-nI68QelBas" },
-      { role = "ALL", text = "Final boss: Prioress Murrpray after full clear.", type = "Call", id = "gui-3Jm9aaC5QpY" }
+      { role = "ALL", text = "Final boss: Prioress Murrpray after full clear.", type = "Call", id = "gui-3Jm9aaC5QpY" },
+      { role = "ALL", text = "Boss Fight: Prioress Murrpray", type = "Jump", target="Prioress Murrpray", id = "gui-U0-2uRhkhky" }
     },
   },
   
@@ -65,7 +68,8 @@ DungeonGuide_Guides["Priory of the Sacred Flame"] = {
       { role = "HEALER", text = "CDs for Savage Mauling + Pierce Armor bleed combo.", type = "Call", id = "gui-Nb61TSIUZRQ" },
       { role = "HEALER", text = "Top players with Hurl Spear bleed. Watch melee stack.", type = "Mechanic", id = "gui-libYLuQeFCY" },
       { role = "DPS", text = "Pool CDs for Mauling absorb. Interrupt Cinderblast if Guard active.", type = "Mechanic", id = "gui-IGIWI4eWHqg" },
-      { role = "DPS", text = "Cleave Trusted Guard to boost boss damage. Avoid overfocus.", type = "Mechanic", id = "gui-bS3SqSzHyI" }
+      { role = "DPS", text = "Cleave Trusted Guard to boost boss damage. Avoid overfocus.", type = "Mechanic", id = "gui-bS3SqSzHyI" },
+      { role = "ALL", text = "Route", type = "Jump", target="Route", id = "gui-QpuSX3JVdUOTPdqySbkWyA" }
     },
   },
   
@@ -85,7 +89,8 @@ DungeonGuide_Guides["Priory of the Sacred Flame"] = {
       { role = "HEALER", text = "Prepare CDs before Empowered Pyre soak or stacked hammers.", type = "Call", id = "gui-d0mbSvIbDk" },
       { role = "HEALER", text = "Watch Sacrificial Flame DoT stacks — heal soakers immediately.", type = "Mechanic", id = "gui-tSsR27tXMwI" },
       { role = "DPS", text = "Stack with group for Hammer baits. Don’t panic spread.", type = "Mechanic", id = "gui-UkjDZFB7z8E" },
-      { role = "DPS", text = "Rotate Pyre soaks smartly — avoid doubling up or early clears.", type = "Mechanic", id = "gui-OdoqP2w4r64" }
+      { role = "DPS", text = "Rotate Pyre soaks smartly — avoid doubling up or early clears.", type = "Mechanic", id = "gui-OdoqP2w4r64" },
+      { role = "ALL", text = "Route", type = "Jump", target="Route", id = "gui-uy2X7nfmPUWcvaoZBiTXqg" }
     },
   },
   
@@ -108,7 +113,8 @@ DungeonGuide_Guides["Priory of the Sacred Flame"] = {
       { role = "HEALER", text = "Top off beam targets. Flame DoT can stack quickly.", type = "Mechanic", id = "gui-CN85LPJHq4" },
       { role = "DPS", text = "Interrupt Holy Smite. Rotate if healer is locked down.", type = "Interrupt", id = "gui-ZLFZHIg0ltQ" },
       { role = "DPS", text = "Pop CDs on upper platform to break shield quickly.", type = "Call", id = "gui-AsgaLXqBSTE" },
-      { role = "DPS", text = "Help slow and CC adds. Avoid tank/healer pressure.", type = "Mechanic", id = "gui-8HCUvLJiYtw" }
+      { role = "DPS", text = "Help slow and CC adds. Avoid tank/healer pressure.", type = "Mechanic", id = "gui-8HCUvLJiYtw" },
+      { role = "ALL", text = "Route", type = "Jump", target="Route", id = "gui-tSlEkmlwhEWZ9b1GEerLdw" }
     },
   }
 }
