@@ -34,18 +34,22 @@ DungeonGuide_Guides["The MOTHERLODE!!"] = {
       { role = "ALL", text = "Next pull: Heading straight into Addled Thug + Assassin + Mech Jockey then right into Mech Jockey + Vendor.", type = "Call", id = "gui-2nwTwo0NHE" },
       { role = "ALL", text = "Peacekeeper + Addled Thug + Mech Jockey before Boss.", type = "Call", id = "gui-DDPidI8S86w" },
       { role = "ALL", text = "Heading into Coin-Operated Crowd Pummeler boss room next.", type = "Call", id = "gui-LMiWYPutZ5A" },
+      { role = "ALL", text = "Boss Fight: Coin-Operated Crowd Pummeler", type = "Jump", target="Coin-Operated Crowd Pummeler", id = "gui-npABceicM" },
       { role = "ALL", text = "Post-Pummeler pull Extractor + Sapper + Rats back here. Then hug right side", type = "Call", id = "gui-kbwLNhyRPgg" },
       { role = "ALL", text = "Big pull: Extractor + Earthshaper + Rats into Earthshaper + Sapper + Rats. *Stay right*.", type = "Call", id = "gui-q2dh129jyng" },
       { role = "ALL", text = "Move up hill. Extractor + 2x Earthshaper + 2x Earthshaper. Go down hill to avoid swirlies", type = "Call", id = "gui-lkc9c3KttvE" },
       { role = "ALL", text = "After these pull 2x Stonefuries + Shale Biters together.", type = "Call", id = "gui-rb5UKLlpfUs" },
       { role = "ALL", text = "Target Taskmaster Askari then pull trash into boss.", type = "Call", id = "gui-PFJtwwzERPI" },
       { role = "ALL", text = "Pulling trash into Azerokk boss.", type = "Call", id = "gui-cde6Zb8OeA" },
+      { role = "ALL", text = "Boss Fight: Azerokk", type = "Jump", target="Azerokk", id = "gui-8900OlQIkcU" },
       { role = "ALL", text = "After Azerokk, go centre. Be carful - lots around. Alchemist + Mastermind + Test Subject", type = "Call", id = "gui-q1mJFneocPs" },
       { role = "ALL", text = "3x Alchemists. Stay tight, lots around.", type = "Call", id = "gui-A2U3fjJbC8" },
       { role = "ALL", text = "Alchemist + 2x Mastermind + Tester before Rixxa Fluxflame.", type = "Call", id = "gui-qARMtVkCdk" },
+      { role = "ALL", text = "Boss Fight: Rixxa Fluxflame", type = "Jump", target="Rixxa Fluxflame", id = "gui-t6kbqlbzzhQ" },
       { role = "ALL", text = "Post-Rixxa, Left side War Machine + 2x Specialist pull back to provide space.", type = "Call", id = "gui-tsQBSvA4Tpg" },
       { role = "ALL", text = "Head uphill tight right. War Machine + Specialist. Avoid other War Machine.", type = "Call", id = "gui-uDlrjFbSfn8" },
-      { role = "ALL", text = "Stay right to pull Two War Machines then finish to Razdunk.", type = "Call", id = "gui-Wj4XGOYh3RA" }
+      { role = "ALL", text = "Stay right to pull Two War Machines then finish to Razdunk.", type = "Call", id = "gui-Wj4XGOYh3RA" },
+      { role = "ALL", text = "Boss Fight: Mogul Razdunk", type = "Jump", target="Mogul Razdunk", id = "gui-XvpnsAAUb4" }
     },
   },
 

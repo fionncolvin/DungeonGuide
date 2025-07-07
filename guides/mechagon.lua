@@ -36,12 +36,14 @@ DungeonGuide_Guides["Operation: Mechagon"] = {
       { role = "ALL", text = "Left side second. Then south side of room. Clear full room for boss.", type = "Mechanic", id = "gui-cesGuK4aqKo" },
       { role = "ALL", text = "Keep pulls under 3 Bomb Tonks per pull on higher keys.", type = "Mechanic", id = "gui-nlYP4kUqs4" },
       { role = "ALL", text = "Watch Rocket Tonk swirlies and Strider Tonk leaps.", type = "Mechanic", id = "gui-rm6kaGZBDA8" },
+      { role = "ALL", text = "Boss Fight: Tussle Tonks", type = "Jump", target="Tussle Tonks", id = "gui-LWEv1i0CMw" },
       { role = "ALL", text = "After Tussle Tonks, pull single Waste Processing Unit solo.", type = "Call", id = "gui-dPYQyrU89IQ" },
       { role = "ALL", text = "LOS Metal Gunk healing absorbs when possible.", type = "Mechanic", id = "gui-j6i3yBoUgwU" },
       { role = "ALL", text = "Chain Metal Gunks into each other carefully. Watch stacking absorbs.", type = "Call", id = "gui-fIzYVJUNi58" },
       { role = "ALL", text = "Skip patrolling Waste Processing Unit if safe near pool.", type = "Call", id = "gui-7tyPuXxDFIg" },
       { role = "ALL", text = "Clear Junkyard Dogs carefully. Their DoT is brutal without dispels.", type = "Mechanic", id = "gui-j96UyFJqzGE" },
       { role = "ALL", text = "Pull Junkyard Dogs solo or small for K.U.-J.O. boss space.", type = "Call", id = "gui-Cdc2FXUUDxA" },
+      { role = "ALL", text = "Boss Fight: K.U.-J.0", type = "Jump", target="K.U.-J.0", id = "gui-Y895gtqrVk" },
       { role = "ALL", text = "After K.U.-J.O., walk conveyor belt. Warlock Gate saves time if available.", type = "Mechanic", id = "gui-HPqKrr7xhI" },
       { role = "ALL", text = "Next pull: 2x Mechagon Tinkerers + 2x Guard Dogs.", type = "Call", id = "gui-25FlsRJ2ICQ" },
       { role = "ALL", text = "Next Defense Spot pulls: 2x Mark I + 1x Mark II units.", type = "Call", id = "gui-m9YeNCqJs" },
@@ -49,10 +51,12 @@ DungeonGuide_Guides["Operation: Mechagon"] = {
       { role = "ALL", text = "Fight Blastron X80 stationary. Dodge all telegraphed attacks.", type = "Mechanic", id = "gui-MimSpFWtdk" },
       { role = "ALL", text = "Pull Mechanics + Defenders next. Focus Defense Spot interrupts.", type = "Call", id = "gui-DTbEy87vOc" },
       { role = "ALL", text = "Defender Barriers are safe zones. Use them for Squirrel explosions.", type = "Mechanic", id = "gui-qPxEAJzs0c" },
+      { role = "ALL", text = "Boss Fight: Head Machinist Sparkflux", type = "Jump", target="Head Machinist Sparkflux", id = "gui-yYWGd3NC82c" },
       { role = "ALL", text = "After Sparkflux, fight Spider Tanks. Single pull unless healer strong.", type = "Call", id = "gui-0YgJOdtt9xg" },
       { role = "ALL", text = "Focus top Spider Tank first — it spawns Taxi to next section.", type = "Call", id = "gui-tXs23sS8T4U" },
       { role = "ALL", text = "Pull Defenders + Tinkerers into final Defense Spots. Use Barrier.", type = "Call", id = "gui-4aBu1vxomh4" },
-      { role = "ALL", text = "Expect slight overcount (103–109%) by end. No big deal.", type = "Mechanic", id = "gui-uyJh99ZM" }
+      { role = "ALL", text = "Expect slight overcount (103–109%) by end. No big deal.", type = "Mechanic", id = "gui-uyJh99ZM" },
+      { role = "ALL", text = "Boss Fight: King Mechagon", type = "Jump", target="King Mechagon", id = "gui-8DGOk3z0jH8" }
     },
   },  
 

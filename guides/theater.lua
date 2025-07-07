@@ -28,6 +28,7 @@ DungeonGuide_Guides["Theater of Pain"] = {
     entries = {
       { role = "ALL", text = "Can skip first trash pack. Stay tight on LEFT and follow me.", type = "Call", id = "gui-1YPffLjdwU0" },
       { role = "ALL", text = "Pulling first trash into Bloodhorn for cleave.", type = "Call", id = "gui-zxxVDL29AcU" },
+      { role = "ALL", text = "Boss Fight: An Affront of Challengers", type = "Jump", target="An Affront of Challengers", id = "gui-FweOhs8UMOA" },
       { role = "ALL", text = "Going to Xav's wing first after An Affront of Challengers.", type = "Call", id = "gui-LiNzIidodLQ" },
       { role = "ALL", text = "Respect Arbalists bleed. Use personals if targeted.", type = "Call", id = "gui-bPN0lhEoUj4" },
       { role = "ALL", text = "Nekthara mini first. Watch for Whirlwinds and interrupting roars.", type = "Call", id = "gui-Pa82uN8XDO4" },
@@ -35,16 +36,20 @@ DungeonGuide_Guides["Theater of Pain"] = {
       { role = "ALL", text = "Focus Captain fast. Pull mobs out of aura if needed.", type = "Call", id = "gui-LwNlZMVqXlc" },
       { role = "ALL", text = "Skipping Advent mini if we can, Warlock Gate if up.", type = "Call", id = "gui-YtwnpacEY" },
       { role = "ALL", text = "Pulling Advent to stairs for LOS.", type = "Call", id = "gui-UPeRsAgLadA" },
+      { role = "ALL", text = "Boss Fight: Xav the Unfallen", type = "Jump", target="Xav the Unfallen", id = "gui-ixGnCNaweNI" },
       { role = "ALL", text = "After Xav, heading Gorechop side next.", type = "Call", id = "gui-M7Exb8rielY" },
       { role = "ALL", text = "Big pull with Sludge Spewers first. Kick Withering Discharge.", type = "Call", id = "gui-0BH2qgRqJIg" },
       { role = "ALL", text = "Avoid Gasbag patrol by hugging left wall at top platform.", type = "Call", id = "gui-2IsS3mG6mmc" },
       { role = "ALL", text = "Pulling hallway mobs into Gorechop for cleave.", type = "Call", id = "gui-pf2l70YWcXI" },
+      { role = "ALL", text = "Boss Fight: Gorechop", type = "Jump", target="Gorechop", id = "gui-w1NrFjxWNNA" },
       { role = "ALL", text = "After Gorechop, moving into Ossuary wing (Kul'tharok).", type = "Call", id = "gui-RNAxVh5qT4" },
       { role = "ALL", text = "Grouping souls with LOS up to 1st Guardian. Let me agro.", type = "Call", id = "gui-6osMfh9Jl8k" },
       { role = "ALL", text = "Taking right-left-right portals.", type = "Call", id = "gui-avACROFhTyA" },
       { role = "ALL", text = "Focus Bone Magi shields with Purge or heavy single-target.", type = "Call", id = "gui-F4gThntmqkg" },
       { role = "ALL", text = "Avoid pulling Dark Speakers unless we need for count.", type = "Call", id = "gui-KrjQlEiAPYU" },
-      { role = "ALL", text = "Kill extra trash near final portal if short on count.", type = "Call", id = "gui-KdvW1vtTDB4" }
+      { role = "ALL", text = "Boss Fight: Kul'tharok", type = "Jump", target="Kul'tharok", id = "gui-WiYIaXjhb8" },
+      { role = "ALL", text = "Kill extra trash near final portal if short on count.", type = "Call", id = "gui-KdvW1vtTDB4" },
+      { role = "ALL", text = "Boss Fight: Mordretha, the Endless Empress", type = "Jump", target="Mordretha, the Endless Empress", id = "gui-VOk3PtBefGw" }
     },
   },
 

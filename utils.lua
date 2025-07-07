@@ -232,15 +232,6 @@ function DungeonGuide_SortEntries(entries, dungeon, encounter)
     end)
 end
 
--- Ensures all entries in the guide have unique IDs
-function DungeonGuide_EnsureEntryIDs(guide)
-    for _, entry in ipairs(guide.entries or {}) do
-        if not entry.id then
-            entry.id = "gen-" .. math.random(1e9)
-        end
-    end
-end
-
 -- DungeonGuide_BuildEntryMapById is a utility function that creates a map of entries by their IDs.
 function DungeonGuide_BuildEntryMapById(entries)
     local map = {}
@@ -250,4 +241,13 @@ function DungeonGuide_BuildEntryMapById(entries)
         end
     end
     return map
+end
+
+-- Ensures all entries in the guide have unique IDs
+function DungeonGuide_EnsureEntryIDs(guide)
+    for _, entry in ipairs(guide.entries or {}) do
+        if not entry.id then
+            entry.id = "gen-" .. math.random(1e9)
+        end
+    end
 end

@@ -36,18 +36,22 @@ DungeonGuide_Guides["Cinderbrew Meadery"] = {
       { role = "ALL", text = "Wait for safe patrol before pulling n:Chef Chewie:.", type = "Call", id = "gui-VZWYglRlafs" },
       { role = "ALL", text = "After n:Chewie:, pull n:Hired Muscle: + nearby trash carefully.", type = "Mechanic", id = "gui-0dKnSwBXFZo" },
       { role = "ALL", text = "Skip deep corner pack. Not needed for count.", type = "Call", id = "gui-8p72Zia2s0" },
+      { role = "ALL", text = "Boss Fight: Brew Master Aldryr", type = "Jump", target="Brew Master Aldryr", id = "gui-droN422Qx8" },
       { role = "ALL", text = "Heading north after first boss. Fighting n:I'pa: next.", type = "Call", id = "gui-QM79W2M9xIU" },
       { role = "ALL", text = "One pack at a time here. Will struggle otherwise.", type = "Call", id = "gui-u3YwQrepmvQ" },
       { role = "ALL", text = "Focus n:Flavor Scientists: for interrupts. Watch n:Hop Goblins:.", type = "Mechanic", id = "gui-ZH6PqNA8PKs" },
       { role = "ALL", text = "Pull n:Careless Hop Goblin: first on n:I'pa: platform.", type = "Call", id = "gui-rJffNDDpKv4" },
       { role = "ALL", text = "Pull packs out into hallway to avoid double patrols.", type = "Call", id = "gui-WG6i0qvhaUk" },
+      { role = "ALL", text = "Boss Fight: I'pa", type = "Jump", target="I'pa", id = "gui-JBBzNkMmA8" },
       { role = "ALL", text = "After n:I'pa:, move south to n:Buzzbee: wing.", type = "Call", id = "gui-0y8O7qDhPLI" },
       { role = "ALL", text = "Pulling three Bee packs carefully. Watch for Sting casts.", type = "Call", id = "gui-F99olTkCiU" },
       { role = "ALL", text = "Pull corner n:Purveyor: with Worker Bees. Manage puddles.", type = "Call", id = "gui-Xi2wKqoSOiU" },
       { role = "ALL", text = "Do not pull more than two n:Purveyors: at once.", type = "Call", id = "gui-L8GmJ7ywIRM" },
       { role = "ALL", text = "Try skipping the n:Purveyor: near boss room entrance.", type = "Call", id = "gui-2uEiHPVsXZg" },
       { role = "ALL", text = "Clear most Beelets before n:Buzzbee: fight. Pull a few into boss if clean.", type = "Call", id = "gui-uwfABRbgXZo" },
-      { role = "ALL", text = "After n:Buzzbee:, small pulls to n:Goldie:. Trash gives low count.", type = "Mechanic", id = "gui-VeOD6rvH6mw" }
+      { role = "ALL", text = "Boss Fight: Benk Buzzbee", type = "Jump", target="Benk Buzzbee", id = "gui-IggYIXGR1gM" },
+      { role = "ALL", text = "After n:Buzzbee:, small pulls to n:Goldie:. Trash gives low count.", type = "Mechanic", id = "gui-VeOD6rvH6mw" },
+      { role = "ALL", text = "Boss Fight: Goldie Baronbottom", type = "Jump", target="Goldie Baronbottom", id = "gui-LeS7U1BljGk" }
     },
   },
 

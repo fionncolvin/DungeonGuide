@@ -31,18 +31,19 @@ DungeonGuide_Guides["Operation: Floodgate"] = {
       { role = "ALL", text = "Next pull: Jump down after Weapon Stock blows. All trash around pool.", type = "Call", id = "gui-rp8MtULJKnw" },
       { role = "ALL", text = "Up stairs into n:Darkfuse Demolitionist: + n:Mechadrone Sniper: + n:Darkfuse Inspectors:.", type = "Call", id = "gui-EzscQNsopm4" },
       { role = "ALL", text = "Up LEFT stairs before n:Big M.O.M.M.A.:.", type = "Call", id = "gui-oBwAZxR9P4E" },
-      { role = "ALL", text = "Boss pull: n:Big M.O.M.M.A.: next.", type = "Call", id = "gui-ks1xLdlsCDY" },
+      { role = "ALL", text = "Boss Fight: Big M.O.M.M.A.", type = "Jump", target="Big M.O.M.M.A.", id = "gui-NH7Ru9Sm9MU" },
       { role = "ALL", text = "Post-boss: Pull n:Darkfuse Soldiers: and n:Darkfuse Bloodwarper:. Focus n:Bloodwarper:.", type = "Call", id = "gui-mI2Uwu6J2uU" },
       { role = "ALL", text = "Back across floor. Chain in n:Loaderbots:. Bloodlust when clearing n:Bloodwarper: pack.", type = "Call", id = "gui-A627BGVwkio" },
       { role = "ALL", text = "Glider across. Pull left into right then up stairs.", type = "Call", id = "gui-rs8I4V0RX5o" },
       { role = "ALL", text = "Chain double n:Shreddinator 3000s: into Contractors.", type = "Call", id = "gui-m9EffM96yw" },
       { role = "ALL", text = "Short pull to boss: n:Contractors: and n:Surveyor:.", type = "Call", id = "gui-SY2xpuzDdU" },
-      { role = "ALL", text = "Boss pull: n:Demolition Duo:.", type = "Call", id = "gui-WxdVC3DGtdU" },
+      { role = "ALL", text = "Boss Fight: Demolition Duo", type = "Jump", target="Demolition Duo", id = "gui-QV6QQhrtPbQ" },
       { role = "ALL", text = "Post-boss: Pull all n:Disturbed Kelp:s together and AoE.", type = "Call", id = "gui-BjG2NaGSusk" },
-      { role = "ALL", text = "Boss pull: n:Swampface:.", type = "Call", id = "gui-i6ykxT0uZeo" },
+      { role = "ALL", text = "Boss Fight: Swampface", type = "Jump", target="Swampface", id = "gui-kcC6ytsMg5I" },
       { role = "ALL", text = "Pull n:Bubbles: solo at bridge. Keep him controlled.", type = "Call", id = "gui-9TBw8a49oKw" },
       { role = "ALL", text = "Pull n:Contractors:, n:Electricians:, n:Inspectors: carefully. Kick n:Electricians:.", type = "Call", id = "gui-yDrBWJbQ0RU" },
-      { role = "ALL", text = "Final pulls: n:Darkfuse Soldiers:, n:Contractors:, n:Jumpstarters: into final boss.", type = "Call", id = "gui-OBTG7XsQ34" }
+      { role = "ALL", text = "Final pulls: n:Darkfuse Soldiers:, n:Contractors:, n:Jumpstarters: into final boss.", type = "Call", id = "gui-OBTG7XsQ34" },
+      { role = "ALL", text = "Boss Fight: Geezle Gigazap", type = "Jump", target="Geezle Gigazap", id = "gui-HyORkn4t2RA" }
     },
   },
   
