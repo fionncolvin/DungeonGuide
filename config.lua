@@ -15,6 +15,7 @@ local defaults = {
 }
 
 local CURRENT_ORDER_VERSION = "1.0"  -- Change this when structure changes
+local CURRENT_OVERRIDE_VERSION = "1.0"  -- Change this when structure changes
 
 local function ApplyDefaults()
     DungeonGuideDB = DungeonGuideDB or {}
@@ -24,6 +25,14 @@ local function ApplyDefaults()
         print("|cffff0000DungeonGuide: DungeonGuide_Orders missing or outdated. Wiping.|r")
         DungeonGuide_Orders = {
             version = CURRENT_ORDER_VERSION
+        }
+    end
+
+    -- Check and wipe DungeonGuide_Overrides if version is missing or mismatched
+    if type(DungeonGuide_Overrides) ~= "table" or DungeonGuide_Overrides.version ~= CURRENT_OVERRIDE_VERSION then
+        print("|cffff0000DungeonGuide: DungeonGuide_Overrides missing or outdated. Wiping.|r")
+        DungeonGuide_Overrides = {
+            version = CURRENT_OVERRIDE_VERSION
         }
     end
 

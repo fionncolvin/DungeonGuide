@@ -168,7 +168,7 @@ function DungeonGuideUI:FormatGuideLine(text)
     local formatted = {}
     local lastEnd = 1
 
-    for tagStart, tagType, tagValue, tagEnd in text:gmatch("()([sn]):([^:]+):()") do
+    for tagStart, tagType, tagValue, tagEnd in text:gmatch("()([sn])%[([^%]]+)%]()") do
         table.insert(formatted, strsub(text, lastEnd, tagStart - 1))
         local color = (tagType == "s") and SPELL_COLOR or NPC_COLOR
         local hex = ("|cff%02x%02x%02x"):format(color.r * 255, color.g * 255, color.b * 255)
@@ -181,7 +181,7 @@ function DungeonGuideUI:FormatGuideLine(text)
 end
 
 function DungeonGuideUI:StripFormat(text)
-    return text:gsub(":[sn]:([^:]+):", "%1")
+    return text:gsub("[sn]%[([^%]]+)%]", "%1")
 end
 
 function DungeonGuideUI:UpdateGuideContent(returnGuide)
