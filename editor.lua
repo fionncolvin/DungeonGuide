@@ -226,6 +226,8 @@ function DungeonGuideEditorUI:PopulateEncounters(dungeonName)
         return
     end
 
+    DungeonGuideEditorUI.currentEncounter = nil
+
     local encounterContent = self.encounterList.content
     local ordered = {}
     local yOffset = -5
@@ -292,7 +294,7 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
     end
 
     -- Generate order data for entries if missing
-    DungeonGuideEditorUI:InitialiseOrderIfMissing(dungeonName, encounterName, guide.entries or {})
+    DungeonGuide_InitialiseOrderIfMissing(dungeonName, encounterName, guide.entries or {})
 
     self.currentRows = {}
     local rowHeight = 22
@@ -650,8 +652,12 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonName, encounterName)
     local index = 1
 
     local orderedEntries = CopyTable(guide.entries or {})
-
     local orderTable = DungeonGuide_Orders[dungeonName] and DungeonGuide_Orders[dungeonName][encounterName]
+
+    if not orderTable then
+        DungeonGuide_InitialiseOrderIfMissing(dungeonName, encounterName, guide.entries or {})
+        orderTable = DungeonGuide_Orders[dungeonName] and DungeonGuide_Orders[dungeonName][encounterName]
+    end
 
     if orderTable then
         table.sort(orderedEntries, function(a, b)
@@ -798,29 +804,6 @@ function DungeonGuideEditorUI:SaveData()
     end
 end
 
-function DungeonGuideEditorUI:InitialiseOrderIfMissing(dungeonID, encounterID, entries)
-    DungeonGuide_Orders[dungeonID] = DungeonGuide_Orders[dungeonID] or {}
-    DungeonGuide_Orders[dungeonID][encounterID] = DungeonGuide_Orders[dungeonID][encounterID] or {}
-
-    local orderTable = DungeonGuide_Orders[dungeonID][encounterID]
-
-    -- Get current max index in the order table
-    local maxIndex = 0
-    for _, index in pairs(orderTable) do
-        if index > maxIndex then
-            maxIndex = index
-        end
-    end
-
-    -- Add missing entries to the order table
-    for _, entry in ipairs(entries) do
-        if entry.id and not orderTable[entry.id] then
-            maxIndex = maxIndex + 1
-            orderTable[entry.id] = maxIndex
-        end
-    end
-end
-
 function DungeonGuideEditorUI:UpdateOrder(dungeonID, encounterID)
     if not self.currentRows or not next(self.currentRows) then
         return
@@ -849,7 +832,11 @@ function DungeonGuideEditorUI:Reset()
 
         if next(DungeonGuide_Overrides[self.currentDungeon]) == nil then
             DungeonGuide_Overrides[self.currentDungeon] = nil
+
+            DungeonGuide_DebugInfo("Cleared Dungeon overrides for " .. self.currentDungeon)
         end
+
+        DungeonGuide_DebugInfo("Cleared Encounter overrides for " .. self.currentDungeon .. " - " .. self.currentEncounter)
     end
 
     if DungeonGuide_Orders[self.currentDungeon] then
@@ -857,10 +844,13 @@ function DungeonGuideEditorUI:Reset()
 
         if next(DungeonGuide_Orders[self.currentDungeon]) == nil then
             DungeonGuide_Orders[self.currentDungeon] = nil
+
+            DungeonGuide_DebugInfo("Cleared Dungeon orders for " .. self.currentDungeon)
         end
+
+        DungeonGuide_DebugInfo("Cleared Encounter orders for " .. self.currentDungeon .. " - " .. self.currentEncounter)
     end
 
-    DungeonGuide_DebugInfo("Cleared overrides for " .. self.currentDungeon .. " - " .. self.currentEncounter)
     self:PopulateGuideEntries(self.currentDungeon, self.currentEncounter)
 end
 

@@ -112,7 +112,13 @@ function DungeonGuideUI:CreateGuideFrame()
 
     -- Click handler
     self.MenuButton:SetScript("OnClick", function()
-        DungeonGuideUI:BuildMainMenu(true)
+        if self.MainMenu and self.MainMenu:IsShown() then
+            self.MainMenu:Hide()
+            self.MainMenu:SetParent(nil)
+            self.MainMenu = nil
+        else
+            DungeonGuideUI:BuildMainMenu(true)
+        end
     end)
 
     self.MenuButton:SetScript("OnEnter", function(self)
@@ -431,7 +437,10 @@ end
 
 -- === DungeonGuide Menu System ===
 function DungeonGuideUI:BuildMainMenu(currentDungeon)
-    if not self.MenuButton then return end
+    if not self.MenuButton then
+        DungeonGuide_DebugInfo("Menu button not initialized, cannot build main menu.")
+        return
+    end
 
     if self.MainMenu then
         self.MainMenu:Hide()
@@ -539,14 +548,14 @@ function DungeonGuideUI:BuildMainMenu(currentDungeon)
     end
 
     -- Final static buttons
-    AddButton("Edit", function()
+    AddButton("Editor", function()
         DungeonGuideEditorUI:Show()
         self.MainMenu:Hide()
     end, 0, true)
 
     AddButton("Options", function()
         if DungeonGuideOptionsCategory then
-            Settings.OpenToCategory(DungeonGuideOptionsCategory)
+            Settings.OpenToCategory(DungeonGuideOptionsCategory:GetID())
         else
             print("DungeonGuide: Options not registered.")
         end

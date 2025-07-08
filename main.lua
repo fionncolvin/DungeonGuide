@@ -61,14 +61,18 @@ SlashCmdList["DUNGEONGUIDE"] = function(msg)
             dungeon = dungeon,
             forceSelect = true
         }
-
-        if DungeonGuideUI and DungeonGuideUI.ShowGuide then
-            DungeonGuideUI:ShowGuideButton()
-            DungeonGuideUI:ShowGuide()
-        end
-
-        DungeonGuideContext.forceSelect = false
     else
-        print("[DungeonGuide] Usage: /dg role @ encounter @ dungeon")
+        DungeonGuideContext = {
+            encounter = "Route",
+            dungeon = "Priory of the Sacred Flame",
+            forceSelect = true
+        }
     end
+
+    if DungeonGuideUI and DungeonGuideUI.ShowGuide then
+        DungeonGuideUI:ShowGuideButton()
+        DungeonGuideUI:ShowGuide()
+    end
+
+    DungeonGuideContext.forceSelect = false
 end

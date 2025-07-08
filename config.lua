@@ -14,8 +14,18 @@ local defaults = {
     }
 }
 
+local CURRENT_ORDER_VERSION = "1.0"  -- Change this when structure changes
+
 local function ApplyDefaults()
     DungeonGuideDB = DungeonGuideDB or {}
+
+    -- Check and wipe DungeonGuide_Orders if version is missing or mismatched
+    if type(DungeonGuide_Orders) ~= "table" or DungeonGuide_Orders.version ~= CURRENT_ORDER_VERSION then
+        print("|cffff0000DungeonGuide: DungeonGuide_Orders missing or outdated. Wiping.|r")
+        DungeonGuide_Orders = {
+            version = CURRENT_ORDER_VERSION
+        }
+    end
 
     for k, v in pairs(defaults) do
         if DungeonGuideDB[k] == nil then

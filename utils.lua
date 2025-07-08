@@ -46,7 +46,7 @@ function DungeonGuide_GetPlayerRole()
 
     if role == "NONE" then
         local specID = GetSpecialization()
-        
+
         if specID then
             role = select(5, GetSpecializationInfo(specID))
         end
@@ -89,7 +89,8 @@ function DungeonGuide_GetGuideEntry(dungeon, encounter, force)
     local base = nil
     local override = nil
 
-    DungeonGuide_DebugInfo("DungeonGuide_GetGuideEntry called with dungeon: " .. tostring(dungeon) .. ", encounter: " .. tostring(encounter) .. ", force: " .. tostring(force))
+    DungeonGuide_DebugInfo("DungeonGuide_GetGuideEntry called with dungeon: " .. tostring(dungeon) .. ", encounter: " ..
+                               tostring(encounter) .. ", force: " .. tostring(force))
 
     if not dungeon then
         dungeon = DungeonGuideContext.dungeon
@@ -142,7 +143,7 @@ function DungeonGuide_GetGuideEntry(dungeon, encounter, force)
 
     base = DungeonGuide_GetBaseEntry(dungeon, encounter) or nil
     override = DungeonGuide_GetOverrideEntry(dungeon, encounter) or nil
-    
+
     return sortedEntries(override, base)
 end
 
@@ -165,18 +166,21 @@ function DungeonGuide_MergeGuide(base, override)
     for _, entry in ipairs(baseEntries) do
         if not entry.id or not overrideMap[entry.id] then
             table.insert(merged, CopyTable(entry))
-            DungeonGuide_DebugInfo("Adding base entry: " .. (entry.text or "Unnamed") .. " [" .. (entry.role or "ALL") .. "]")
+            DungeonGuide_DebugInfo(
+                "Adding base entry: " .. (entry.text or "Unnamed") .. " [" .. (entry.role or "ALL") .. "]")
         end
     end
 
     -- Add override entries
     for _, entry in ipairs(overrideEntries) do
         table.insert(merged, CopyTable(entry))
-        DungeonGuide_DebugInfo("Adding override entry: " .. (entry.text or "Unnamed") .. " [" .. (entry.role or "ALL") ..
-                                "]")
+        DungeonGuide_DebugInfo(
+            "Adding override entry: " .. (entry.text or "Unnamed") .. " [" .. (entry.role or "ALL") .. "]")
     end
 
-    return { entries = merged }
+    return {
+        entries = merged
+    }
 end
 
 -- DungeonGuide_AreEntriesEqual is a utility function that checks if two entries are equal.
@@ -185,12 +189,8 @@ function DungeonGuide_AreEntriesEqual(a, b)
         return false
     end
 
-    return
-        (a.type == b.type) and
-        (a.role == b.role) and
-        (a.text == b.text) and
-        (a.target == b.target) and
-        ((a.hide or false) == (b.hide or false))
+    return (a.type == b.type) and (a.role == b.role) and (a.text == b.text) and (a.target == b.target) and
+               ((a.hide or false) == (b.hide or false))
 end
 
 -- DungeonGuide_SaveBaseEntries is a utility function that saves the base entries of a guide.
@@ -222,14 +222,46 @@ end
 
 -- DungeonGuide_SortEntries sorts the entries of a dungeon guide based on a predefined order.
 function DungeonGuide_SortEntries(entries, dungeon, encounter)
-    if not entries then return end
+    if not entries then
+        return
+    end
 
     local orderTable = DungeonGuide_Orders[dungeon] and DungeonGuide_Orders[dungeon][encounter]
-    if not orderTable then return end
+
+    if not orderTable then
+        DungeonGuide_InitialiseOrderIfMissing(dungeon, encounter, entries)
+
+        orderTable = DungeonGuide_Orders[dungeon] and DungeonGuide_Orders[dungeon][encounter]
+    end
 
     table.sort(entries, function(a, b)
         return (orderTable[a.id] or 9999) < (orderTable[b.id] or 9999)
     end)
+end
+
+function DungeonGuide_InitialiseOrderIfMissing(dungeonID, encounterID, entries)
+    DungeonGuide_Orders[dungeonID] = DungeonGuide_Orders[dungeonID] or {}
+    DungeonGuide_Orders[dungeonID][encounterID] = DungeonGuide_Orders[dungeonID][encounterID] or {}
+
+    local orderTable = DungeonGuide_Orders[dungeonID][encounterID]
+
+    -- Get current max index in the order table
+    local maxIndex = 0
+    for _, index in pairs(orderTable) do
+        if index > maxIndex then
+            maxIndex = index
+        end
+    end
+
+    -- Add missing entries to the order table
+    for _, entry in ipairs(entries) do
+        if entry.id and not orderTable[entry.id] then
+            maxIndex = maxIndex + 1
+            orderTable[entry.id] = maxIndex
+
+            DungeonGuide_DebugInfo("Initialised order for entry " .. entry.text .. " in " .. dungeonID .. " - " .. encounterID)
+        end
+    end
 end
 
 -- DungeonGuide_BuildEntryMapById is a utility function that creates a map of entries by their IDs.
