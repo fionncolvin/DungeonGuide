@@ -1,10 +1,10 @@
 ## Title: DungeonGuide
 ## Notes: Compact Mythic+ dungeon notes for Tanks, Healers, and DPS
 ## Author: Fionn Colvin
-## Version: 1.3.7
+## Version: 1.3.8
 ## X-Wago-ID: E6gLaAK1
 ## X-Curse-Project-ID: 1305196
-## Interface: 110001, 110005
+## Interface: 110107, 110200
 ## SavedVariables: DungeonGuideDB
 ## SavedVariablesPerCharacter: DungeonGuide_Overrides, DungeonGuide_Orders
 ## IconTexture: Interface\AddOns\DungeonGuide\DungeonGuide_Icon
