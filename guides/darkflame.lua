@@ -1,5 +1,7 @@
 ﻿DungeonGuide_Guides["Darkflame Cleft"] = {
   id = "dung-darkflame",
+  season = "TWW-S2",
+  guideType = "M+",
   ["Darkflame Cleft"] = {
     id = "enc-darkflame-guide",
     order = 1,

@@ -22,44 +22,21 @@ function DungeonGuide_GetOverrideEntry(dungeonName, encounterName)
     return nil
 end
 
--- DungeonGuide_FindNPCID retrieves the NPC ID for a given dungeon and NPC name.
-function DungeonGuide_FindNPCID(dungeonName, npcName)
-    local npcID = nil
-    DungeonGuide_DebugInfo("DungeonGuide_FindNPCID: " .. dungeonName .. " - " .. npcName)
+-- DungeonGuide_GetSeasonDungeonList retrieves a list of dungeons for a specific season.
+function DungeonGuide_GetSeasonDungeonList(season)
+    local dungeons = {}
 
-    if DungeonGuide_NPCNames[dungeonName] then
-        DungeonGuide_DebugInfo("DungeonGuide_NPCs: " .. tostring(DungeonGuide_NPCNames[dungeonName]))
-        if type(DungeonGuide_NPCNames[dungeonName]) == "table" then
-            if DungeonGuide_NPCNames[dungeonName][npcName] then
-                DungeonGuide_DebugInfo("DungeonGuide_NPCs: " .. tostring(DungeonGuide_NPCNames[dungeonName][npcName]))
-                npcID = DungeonGuide_NPCNames[dungeonName][npcName]
-            end
+    for dungeon, entry in pairs(DungeonGuide_Guides) do
+        if entry.season == season then
+            table.insert(dungeons, dungeon)
         end
     end
 
-    return npcID
-end
+    table.sort(dungeons, function(a, b)
+        return a < b
+    end)
 
--- DungeonGuide_GetPlayerRole retrieves the player's role based on their specialization.
-function DungeonGuide_GetPlayerRole()
-    local role = UnitGroupRolesAssigned("player")
-
-    if role == "NONE" then
-        local specID = GetSpecialization()
-
-        if specID then
-            role = select(5, GetSpecializationInfo(specID))
-        end
-    end
-
-    return role
-end
-
--- DungeonGuide_DebugInfo is a utility function that prints debug information if debugging is enabled.
-function DungeonGuide_DebugInfo(content)
-    if DungeonGuideDB.debug then
-        print("|cff8888ff[DungeonGuide Debug]|r " .. content)
-    end
+    return dungeons
 end
 
 -- DungeonGuide_GetDungeonEntry retrieves the dungeon entry for a specific dungeon.
@@ -239,6 +216,7 @@ function DungeonGuide_SortEntries(entries, dungeon, encounter)
     end)
 end
 
+-- DungeonGuide_InitialiseOrderIfMissing initializes the order table for a dungeon and encounter if it is missing.
 function DungeonGuide_InitialiseOrderIfMissing(dungeonID, encounterID, entries)
     DungeonGuide_Orders[dungeonID] = DungeonGuide_Orders[dungeonID] or {}
     DungeonGuide_Orders[dungeonID][encounterID] = DungeonGuide_Orders[dungeonID][encounterID] or {}
@@ -264,6 +242,22 @@ function DungeonGuide_InitialiseOrderIfMissing(dungeonID, encounterID, entries)
     end
 end
 
+-- DungeonGuide_GetAvailableSeasons retrieves a list of unique seasons available in the guides.
+function DungeonGuide_GetAvailableSeasons()
+    local seen = {}
+    local seasons = {}
+    
+    for _, guide in pairs(DungeonGuide_Guides or {}) do
+        if guide.season and not seen[guide.season] then
+            seen[guide.season] = true
+            table.insert(seasons, guide.season)
+        end
+    end
+
+    table.sort(seasons, function(a, b) return a > b end) -- Newest season first
+    return seasons
+end
+
 -- DungeonGuide_BuildEntryMapById is a utility function that creates a map of entries by their IDs.
 function DungeonGuide_BuildEntryMapById(entries)
     local map = {}
@@ -283,3 +277,44 @@ function DungeonGuide_EnsureEntryIDs(guide)
         end
     end
 end
+
+-- DungeonGuide_FindNPCID retrieves the NPC ID for a given dungeon and NPC name.
+function DungeonGuide_FindNPCID(dungeonName, npcName)
+    local npcID = nil
+    DungeonGuide_DebugInfo("DungeonGuide_FindNPCID: " .. dungeonName .. " - " .. npcName)
+
+    if DungeonGuide_NPCNames[dungeonName] then
+        DungeonGuide_DebugInfo("DungeonGuide_NPCs: " .. tostring(DungeonGuide_NPCNames[dungeonName]))
+        if type(DungeonGuide_NPCNames[dungeonName]) == "table" then
+            if DungeonGuide_NPCNames[dungeonName][npcName] then
+                DungeonGuide_DebugInfo("DungeonGuide_NPCs: " .. tostring(DungeonGuide_NPCNames[dungeonName][npcName]))
+                npcID = DungeonGuide_NPCNames[dungeonName][npcName]
+            end
+        end
+    end
+
+    return npcID
+end
+
+-- DungeonGuide_GetPlayerRole retrieves the player's role based on their specialization.
+function DungeonGuide_GetPlayerRole()
+    local role = UnitGroupRolesAssigned("player")
+
+    if role == "NONE" then
+        local specID = GetSpecialization()
+
+        if specID then
+            role = select(5, GetSpecializationInfo(specID))
+        end
+    end
+
+    return role
+end
+
+-- DungeonGuide_DebugInfo is a utility function that prints debug information if debugging is enabled.
+function DungeonGuide_DebugInfo(content)
+    if DungeonGuideDB.debug then
+        print("|cff8888ff[DungeonGuide Debug]|r " .. content)
+    end
+end
+

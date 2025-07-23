@@ -1,5 +1,7 @@
 ﻿DungeonGuide_Guides["Cinderbrew Meadery"] = {
   id = "dung-cinderbrew",
+  season = "TWW-S2",
+  guideType = "M+",
   ["Cinderbrew Meadery"] = {
     id = "enc-cinderbrew-guide",
     order = 1,

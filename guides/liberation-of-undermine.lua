@@ -1,15 +1,17 @@
 ﻿DungeonGuide_Guides["Liberation of Undermine"] = {
   id = "dung-liberation",
+  season = "TWW-S2",
+  guideType = "RAID",
   ["Liberation of Undermine"] = {
       id = "enc-liberation-guide",
       order = 1,
       header = "Intro",
-    entries = {
-      { order = 1, role = "ALL", text = "To Be Added", type = "Mechanic", id = "gui-BCgkjzycxiY" },
-      { order = 2, role = "TANK", text = "To Be Added", type = "Call", id = "gui-u0rcqX0LjLs" },
-      { order = 3, role = "HEALER", text = "To Be Added", type = "Position", id = "gui-1kPbeGbrBSU" },
-      { order = 4, role = "DPS", text = "To Be Added", type = "Interrupt", id = "gui-UL0HRP5Z2s8" }
-    },
+      entries = {
+        { order = 1, role = "ALL", text = "To Be Added", type = "Mechanic", id = "gui-BCgkjzycxiY" },
+        { order = 2, role = "TANK", text = "To Be Added", type = "Call", id = "gui-u0rcqX0LjLs" },
+        { order = 3, role = "HEALER", text = "To Be Added", type = "Position", id = "gui-1kPbeGbrBSU" },
+        { order = 4, role = "DPS", text = "To Be Added", type = "Interrupt", id = "gui-UL0HRP5Z2s8" }
+      },
     },
   
     ["Vexie and the Geargrinders"] = {

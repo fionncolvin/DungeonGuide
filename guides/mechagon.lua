@@ -1,5 +1,7 @@
 ﻿DungeonGuide_Guides["Operation: Mechagon"] = {
   id = "dung-mechagon",
+  season = "TWW-S2",
+  guideType = "M+",
   ["Operation: Mechagon"] = {
     id = "enc-mechagon-guide",
     order = 1,

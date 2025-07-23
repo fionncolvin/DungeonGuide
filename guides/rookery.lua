@@ -1,5 +1,7 @@
 ﻿DungeonGuide_Guides["The Rookery"] = {
   id = "dung-rookery",
+  season = "TWW-S2",
+  guideType = "M+",
   ["The Rookery"] = {
     id = "enc-rookery-guide",
     order = 1,

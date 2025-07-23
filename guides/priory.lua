@@ -1,5 +1,7 @@
 ﻿DungeonGuide_Guides["Priory of the Sacred Flame"] = {
   id = "dung-priory",
+  season = "TWW-S2",
+  guideType = "M+",
   ["Priory of the Sacred Flame"] = {
     id = "enc-priory-guide",
     order = 1,

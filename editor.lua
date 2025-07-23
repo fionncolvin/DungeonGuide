@@ -13,12 +13,18 @@ end
 local isElvUI = S and type(S.HandleFrame) == "function"
 
 function DungeonGuideEditorUI:Create()
+    DungeonGuideEditorUI.selectedDungeonBtn = nil
+    DungeonGuideEditorUI.currentDungeon = nil
+    DungeonGuideEditorUI.selectedEncounterBtn = nil
+    DungeonGuideEditorUI.currentEncounter = nil
+
     if self.frame then
+        if self.dungeonList then
+            self:PopulateDungeonList()
+        end
+
         return
     end
-
-    DungeonGuideEditorUI.selectedDungeonBtn = nil
-    DungeonGuideEditorUI.selectedEncounterBtn = nil
 
     local f = CreateFrame("Frame", "DungeonGuideEditorFrame", UIParent, "BackdropTemplate")
     f:SetSize(1330, 580)
@@ -174,13 +180,14 @@ end
 
 function DungeonGuideEditorUI:PopulateDungeonList()
     local content = self.dungeonList.content
+    local seasonDungeons = DungeonGuide_GetSeasonDungeonList(DungeonGuideDB.selectedSeason)
     local yOffset = -5
 
     for _, child in ipairs({content:GetChildren()}) do
         child:Hide()
     end
 
-    for dungeonName, _ in pairs(DungeonGuide_Guides or {}) do
+    for _, dungeonName in ipairs(seasonDungeons or {}) do
         local btn = CreateFrame("Button", nil, content)
         btn:SetSize(140, 20)
         btn.text = btn:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
@@ -217,6 +224,20 @@ function DungeonGuideEditorUI:PopulateDungeonList()
 
         yOffset = yOffset - 22
     end
+
+    self:ResetEcounterList()
+end
+
+function DungeonGuideEditorUI:ResetEcounterList()
+    local encounterContent = self.encounterList.content
+
+    -- Clear previous content
+    for _, child in ipairs({encounterContent:GetChildren()}) do
+        child:Hide()
+    end
+
+    DungeonGuideEditorUI.currentEncounter = nil
+    DungeonGuideEditorUI.selectedEncounterBtn = nil
 end
 
 function DungeonGuideEditorUI:PopulateEncounters(dungeonName)
@@ -226,16 +247,11 @@ function DungeonGuideEditorUI:PopulateEncounters(dungeonName)
         return
     end
 
-    DungeonGuideEditorUI.currentEncounter = nil
-
     local encounterContent = self.encounterList.content
     local ordered = {}
     local yOffset = -5
 
-    -- Clear previous content
-    for _, child in ipairs({encounterContent:GetChildren()}) do
-        child:Hide()
-    end
+    self:ResetEcounterList()
 
     -- Sort encounters by order
     for enc, entry in pairs(guide) do

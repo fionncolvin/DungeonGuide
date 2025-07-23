@@ -253,6 +253,7 @@ function DungeonGuideUI:UpdateGuideContent(returnGuide)
         return row
     end
 
+    
     for _, line in ipairs(lines) do
         if not line.hide or line.hide == false then
             local row = f.contentRows[index]
@@ -436,7 +437,7 @@ function DungeonGuideUI:ShowGuideButton()
 end
 
 -- === DungeonGuide Menu System ===
-function DungeonGuideUI:BuildMainMenu(currentDungeon)
+function DungeonGuideUI:BuildMainMenu(dungeonSelected)
     if not self.MenuButton then
         DungeonGuide_DebugInfo("Menu button not initialized, cannot build main menu.")
         return
@@ -462,7 +463,7 @@ function DungeonGuideUI:BuildMainMenu(currentDungeon)
         self.MenuState = { showDungeons = false, selectedDungeon = nil }
     end
 
-    if (currentDungeon) then
+    if (dungeonSelected) then
         self.MenuState.selectedDungeon = DungeonGuideContext.dungeon or nil
         self.MenuState.showDungeons = false
     end
@@ -498,7 +499,6 @@ function DungeonGuideUI:BuildMainMenu(currentDungeon)
         y = y - (isSmall and 18 or 22)
         table.insert(menu.items, btn)
     end
-
 
     -- Dungeons root
     AddButton("Dungeons", function()
@@ -537,8 +537,10 @@ function DungeonGuideUI:BuildMainMenu(currentDungeon)
             end
         end
     elseif self.MenuState.showDungeons then
+        local seasonDungeons = DungeonGuide_GetSeasonDungeonList(DungeonGuideDB.selectedSeason)
+        
         -- Show full dungeon list
-        for dungeonName, _ in pairs(DungeonGuide_Guides) do
+        for _, dungeonName in ipairs(seasonDungeons or {}) do
             AddButton(dungeonName, function()
                 self.MenuState.selectedDungeon = dungeonName
                 self.MenuState.showDungeons = false
@@ -564,4 +566,8 @@ function DungeonGuideUI:BuildMainMenu(currentDungeon)
 
     menu:SetHeight(-y + 10)
     menu:Show()
+end
+
+function DungeonGuideUI:IsVisible()
+    return self.frame and self.frame:IsShown()
 end

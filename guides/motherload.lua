@@ -1,5 +1,7 @@
 ﻿DungeonGuide_Guides["The MOTHERLODE!!"] = {
   id = "dung-motherlode",
+  season = "TWW-S2",
+  guideType = "M+",
   ["The MOTHERLODE!!"] = {
     id = "enc-motherlode-guide",
     order = 1,
