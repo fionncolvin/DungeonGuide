@@ -1,7 +1,7 @@
 ## Title: DungeonGuide
 ## Notes: Compact Mythic+ dungeon notes for Tanks, Healers, and DPS
 ## Author: Fionn Colvin
-## Version: 1.3.9
+## Version: 1.4.0
 ## X-Wago-ID: E6gLaAK1
 ## X-Curse-Project-ID: 1305196
 ## Interface: 110100, 110105, 110107, 110200
@@ -10,20 +10,33 @@
 ## IconTexture: Interface\AddOns\DungeonGuide\DungeonGuide_Icon
 ## OptionalDeps: LibSharedMedia-3.0
 
+## Core Code
 main.lua
 config.lua
 ui.lua
 utils.lua
 editor.lua
 
-## Guides
+## Guide Utils
 guides/npcnames.lua
-guides/cinderbrew.lua
-guides/darkflame.lua
-guides/floodgate.lua
-guides/mechagon.lua
-guides/motherload.lua
-guides/priory.lua
-guides/rookery.lua
-guides/theater.lua
-guides/liberation-of-undermine.lua
+
+## TWW-S2 Guides
+guides/tww-s2/cinderbrew-tww-s2.lua
+guides/tww-s2/darkflame-tww-s2.lua
+guides/tww-s2/floodgate-tww-s2.lua
+guides/tww-s2/mechagon-tww-s2.lua
+guides/tww-s2/motherload-tww-s2.lua
+guides/tww-s2/priory-tww-s2.lua
+guides/tww-s2/rookery-tww-s2.lua
+guides/tww-s2/theater-tww-s2.lua
+guides/tww-s2/liberation-of-undermine-tww-s2.lua
+
+## TWW-S3 Guides
+guides/tww-s3/halls-tww-s3.lua
+guides/tww-s3/ecodome-tww-s3.lua
+guides/tww-s3/streets-tww-s3.lua
+guides/tww-s3/dawnbreaker-tww-s3.lua
+guides/tww-s3/arakara-tww-s3.lua
+guides/tww-s3/floodgate-tww-s3.lua
+guides/tww-s3/priory-tww-s3.lua
+guides/tww-s3/gambit-tww-s3.lua

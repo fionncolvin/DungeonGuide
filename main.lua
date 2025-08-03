@@ -14,20 +14,40 @@ DungeonGuideContext = {
     dungeon = nil
 }
 
+function DungeonGuide_ShowInstanceDetals()
+    local name, instanceType, difficultyID, difficultyName, maxPlayers, dynamicDifficulty, isDynamic, instanceID, instanceGroupSize, lfgDungeonID, toggleDifficultyID = GetInstanceInfo()
+
+    print("----- DungeonGuide Zone Info -----")
+    print("Name:               ", name)
+    print("Type:               ", instanceType)
+    print("Difficulty ID:      ", difficultyID)
+    print("Difficulty Name:    ", difficultyName)
+    print("Max Players:        ", maxPlayers)
+    print("Dynamic Difficulty: ", dynamicDifficulty)
+    print("Is Dynamic:         ", isDynamic)
+    print("Instance ID:        ", instanceID)
+    print("Group Size:         ", instanceGroupSize)
+    print("LFG Dungeon ID:     ", lfgDungeonID)
+    print("Toggle Difficulty ID:", toggleDifficultyID)
+    print("----------------------------------")
+end
+
 -- Detect context based on zone and set guide data
 function DungeonGuide_DetectGuideContext()
-    DungeonGuideContext.dungeon = GetRealZoneText()
+    local zoneName = GetRealZoneText()
+    local season = DungeonGuideDB.selectedSeason or DungeonGuide_GetAvailableSeasons()[1]
 
-    if DungeonGuideContext.dungeon then
-        DungeonGuide_DebugInfo("Detecting context for dungeon: " .. DungeonGuideContext.dungeon)
-    end
+    DungeonGuideContext.role = DungeonGuide_GetPlayerRole()
+    DungeonGuideContext.encounter = zoneName -- fallback default
+    DungeonGuideContext.season = season
 
-    local dungeon = DungeonGuide_GetDungeonEntry()
+    DungeonGuideContext.dungeon = DungeonGuide_FindDungeonIDByNameAndSeason(zoneName, season)
+
+    DungeonGuide_DebugInfo("Detecting context for zone: " .. tostring(zoneName) .. " | resolved dungeonID: " .. tostring(DungeonGuideContext.dungeon))
+
+    local dungeon = DungeonGuide_GetDungeonEntry(DungeonGuideContext.dungeon)
 
     if dungeon then
-        DungeonGuideContext.role = DungeonGuide_GetPlayerRole()
-        DungeonGuideContext.encounter = DungeonGuideContext.dungeon
-        
         if DungeonGuideUI and DungeonGuideUI.ShowGuideButton then
             DungeonGuideUI:ShowGuideButton()
         end
@@ -44,6 +64,8 @@ f:RegisterEvent("PLAYER_ENTERING_WORLD")
 f:RegisterEvent("ZONE_CHANGED")
 f:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 f:RegisterEvent("ZONE_CHANGED_INDOORS")
+f:RegisterEvent("CHALLENGE_MODE_START")
+f:RegisterEvent("CHALLENGE_MODE_MAPS_UPDATE")
 
 f:SetScript("OnEvent", function()
     C_Timer.After(1, DungeonGuide_DetectGuideContext)
@@ -62,9 +84,14 @@ SlashCmdList["DUNGEONGUIDE"] = function(msg)
             forceSelect = true
         }
     else
+        local zoneName = "Priory of the Sacred Flame"
+        local season = DungeonGuideDB.selectedSeason or DungeonGuide_GetAvailableSeasons()[1]
+
         DungeonGuideContext = {
+            role = DungeonGuide_GetPlayerRole(),
             encounter = "Route",
-            dungeon = "Priory of the Sacred Flame",
+            dungeon = DungeonGuide_FindDungeonIDByNameAndSeason(zoneName, season),
+            season = season,
             forceSelect = true
         }
     end

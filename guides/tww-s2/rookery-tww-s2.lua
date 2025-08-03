@@ -1,5 +1,6 @@
-﻿DungeonGuide_Guides["The Rookery"] = {
-  id = "dung-rookery",
+﻿DungeonGuide_Guides["dung-rookery-tww-s2"] = {
+  name = "The Rookery",
+  id = "dung-rookery-tww-s2",
   season = "TWW-S2",
   guideType = "M+",
   ["The Rookery"] = {

@@ -1,5 +1,6 @@
-﻿DungeonGuide_Guides["Operation: Floodgate"] = {
-  id = "dung-floodgate",
+﻿DungeonGuide_Guides["dung-floodgate-tww-s2"] = {
+  name = "Operation: Floodgate",
+  id = "dung-floodgate-tww-s2",
   season = "TWW-S2",
   guideType = "M+",
   ["Operation: Floodgate"] = {

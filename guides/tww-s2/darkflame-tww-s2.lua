@@ -1,5 +1,6 @@
-﻿DungeonGuide_Guides["Darkflame Cleft"] = {
-  id = "dung-darkflame",
+﻿DungeonGuide_Guides["dung-darkflame-tww-s2"] = {
+  name = "Darkflame Cleft",
+  id = "dung-darkflame-tww-s2",
   season = "TWW-S2",
   guideType = "M+",
   ["Darkflame Cleft"] = {
@@ -105,7 +106,7 @@
       { order = 1, role = "ALL", text = "Interrupt s[Paranoid Mind] or party gets feared.", type = "Interrupt", id = "gui-b05hjWAUE" },
       { order = 2, role = "ALL", text = "Aim s[Pickaxe] at statues.", type = "Call", id = "gui-P3emdwTc8G0" },
       { order = 3, role = "ALL", text = "Use s[Darkflame] (5y circle) to destroy multiple statues.", type = "Call", id = "gui-w8kJTStFdJ0" },
-      { order = 4, role = "TANK", text = "Stay clear of statues to avoid stun.", type = "Position", id = "gui-E4RMPNtwZvo" },
+      { order = 4, role = "TANK", text = "Stay clear of statues to avoid stun.", type = "Call", id = "gui-E4RMPNtwZvo" },
       { order = 5, role = "TANK", text = "Rotate boss to new spawn points after s[Darkflame].", type = "Mechanic", id = "gui-js4IEsR7u3Q" },
       { order = 6, role = "TANK", text = "Play relatively close together to cluster the wax statues, we are rotating counter-clockwise.", type = "Call", id = "gui-c0YrN4VlkB8" },
       { order = 7, role = "HEALER", text = "Prep CDs if many statues up before s[Darkflame] phase.", type = "Call", id = "gui-UmLTV9oXemU" },

@@ -1,5 +1,6 @@
-﻿DungeonGuide_Guides["Theater of Pain"] = {
-  id = "dung-theater",
+﻿DungeonGuide_Guides["dung-theater-tww-s2"] = {
+  name = "Theater of Pain",
+  id = "dung-theater-tww-s2",
   season = "TWW-S2",
   guideType = "M+",
   ["Theater of Pain"] = {

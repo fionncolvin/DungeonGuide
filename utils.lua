@@ -1,24 +1,31 @@
+-- DungeonGuide_FindDungeonIDByNameAndSeason retrieves the dungeon ID based on the dungeon name and season.
+function DungeonGuide_FindDungeonIDByNameAndSeason(name, season)
+    for id, guide in pairs(DungeonGuide_Guides) do
+        if guide.name == name and guide.season == season then
+            return id
+        end
+    end
+    return nil
+end
+
 -- DungeonGuide_GetBaseEntry retrieves the base guide entry for a specific dungeon and encounter.
 function DungeonGuide_GetBaseEntry(dungeonName, encounterName)
-    for dungeon, encounters in pairs(DungeonGuide_Guides) do
-        if dungeon == dungeonName then
-            if type(encounters) == "table" then
-                for bossName, bossEntry in pairs(encounters) do
-                    if bossName == encounterName then
-                        return bossEntry
-                    end
-                end
-            end
+    local dungeonID = DungeonGuide_FindDungeonIDByNameAndSeason(dungeonName, DungeonGuideContext.season) or dungeonName
+
+    for bossName, bossEntry in pairs(DungeonGuide_Guides[dungeonID] or {}) do
+        if bossName == encounterName then
+            return bossEntry
         end
     end
 end
 
 -- DungeonGuide_GetOverrideEntry retrieves the override entry for a specific dungeon and encounter.
 function DungeonGuide_GetOverrideEntry(dungeonName, encounterName)
-    if DungeonGuide_Overrides[dungeonName] and DungeonGuide_Overrides[dungeonName][encounterName] then
-        return DungeonGuide_Overrides[dungeonName][encounterName]
-    end
+    local dungeonID = DungeonGuide_FindDungeonIDByNameAndSeason(dungeonName, DungeonGuideContext.season) or dungeonName
 
+    if DungeonGuide_Overrides[dungeonID] and DungeonGuide_Overrides[dungeonID][encounterName] then
+        return DungeonGuide_Overrides[dungeonID][encounterName]
+    end
     return nil
 end
 
@@ -26,9 +33,9 @@ end
 function DungeonGuide_GetSeasonDungeonList(season)
     local dungeons = {}
 
-    for dungeon, entry in pairs(DungeonGuide_Guides) do
-        if entry.season == season then
-            table.insert(dungeons, dungeon)
+    for _, entry in pairs(DungeonGuide_Guides) do
+        if entry.season == season and entry.name then
+            table.insert(dungeons, entry.name)
         end
     end
 
@@ -45,7 +52,13 @@ function DungeonGuide_GetDungeonEntry(dungeon)
         dungeon = DungeonGuideContext.dungeon
     end
 
-    return DungeonGuide_Guides[dungeon] or nil
+    local dungeonID = DungeonGuide_FindDungeonIDByNameAndSeason(dungeon, DungeonGuideContext.season) or dungeon
+
+    if not DungeonGuide_Guides[dungeonID] then
+        DungeonGuide_DebugInfo("Guide not found for ID: " .. tostring(dungeonID))
+    end
+
+    return DungeonGuide_Guides[dungeonID] or nil
 end
 
 -- DungeonGuide_GetEncounterEntry retrieves the encounter entry for a specific dungeon and encounter.
@@ -58,7 +71,14 @@ function DungeonGuide_GetEncounterEntry(dungeon, encounter)
         encounter = DungeonGuideContext.encounter
     end
 
-    return DungeonGuide_Guides[dungeon][encounter] or nil
+    local dungeonID = DungeonGuide_FindDungeonIDByNameAndSeason(dungeon, DungeonGuideContext.season) or dungeon
+    local guide = DungeonGuide_Guides[dungeonID]
+
+    if guide and guide[encounter] then
+        return guide[encounter]
+    end
+
+    return nil
 end
 
 -- DungeonGuide_GetGuideEntry retrieves the guide entry for a specific dungeon and encounter.
@@ -66,63 +86,66 @@ function DungeonGuide_GetGuideEntry(dungeon, encounter, force)
     local base = nil
     local override = nil
 
-    DungeonGuide_DebugInfo("DungeonGuide_GetGuideEntry called with dungeon: " .. tostring(dungeon) .. ", encounter: " ..
-                               tostring(encounter) .. ", force: " .. tostring(force))
+    DungeonGuide_DebugInfo("DungeonGuide_GetGuideEntry called with dungeon: " .. tostring(dungeon) .. ", encounter: " .. tostring(encounter) .. ", force: " .. tostring(force))
 
+    -- Fallback to context values
     if not dungeon then
         dungeon = DungeonGuideContext.dungeon
     end
-
     if not encounter then
         encounter = DungeonGuideContext.encounter
     end
-
     if not force then
         force = DungeonGuideContext.forceSelect or false
     end
 
+    -- Resolve dungeon ID from name + season if not already an ID
+    local dungeonID = DungeonGuide_FindDungeonIDByNameAndSeason(dungeon, DungeonGuideContext.season) or dungeon
+
     local function sortedEntries(override, base)
         if override then
-            DungeonGuide_DebugInfo("Using override for " .. tostring(encounter) .. " in dungeon: " .. tostring(dungeon))
+            DungeonGuide_DebugInfo("Using override for " .. tostring(encounter) .. " in dungeon: " .. tostring(dungeonID))
             local merged = DungeonGuide_MergeGuide(base, override)
-            DungeonGuide_SortEntries(merged.entries, dungeon, encounter)
+            DungeonGuide_SortEntries(merged.entries, dungeonID, encounter)
             return merged
         end
 
         if base then
-            DungeonGuide_SortEntries(base.entries, dungeon, encounter)
+            DungeonGuide_SortEntries(base.entries, dungeonID, encounter)
         end
 
         return base
     end
 
+    -- Force-select bypasses detection
     if force then
-        base = DungeonGuide_GetBaseEntry(dungeon, encounter)
-        override = DungeonGuide_GetOverrideEntry(dungeon, encounter)
-
+        base = DungeonGuide_GetBaseEntry(dungeonID, encounter)
+        override = DungeonGuide_GetOverrideEntry(dungeonID, encounter)
         return sortedEntries(override, base)
     end
 
+    -- Try to use target name as encounter if available
     if UnitExists("target") then
         local targetName = UnitName("target")
-        DungeonGuide_DebugInfo("Checking for target Guide - " .. targetName .. " in dungeon: " .. dungeon)
-        base = DungeonGuide_GetBaseEntry(dungeon, targetName)
+        DungeonGuide_DebugInfo("Checking for target Guide - " .. targetName .. " in dungeon: " .. dungeonID)
+        base = DungeonGuide_GetBaseEntry(dungeonID, targetName)
 
         if base then
             DungeonGuideContext.encounter = targetName
             encounter = targetName
             DungeonGuide_DebugInfo("Found Guide for Target - " .. targetName)
-            override = DungeonGuide_GetOverrideEntry(dungeon, encounter)
-
+            override = DungeonGuide_GetOverrideEntry(dungeonID, encounter)
             return sortedEntries(override, base)
         end
     end
 
-    base = DungeonGuide_GetBaseEntry(dungeon, encounter) or nil
-    override = DungeonGuide_GetOverrideEntry(dungeon, encounter) or nil
+    -- Fallback to provided/selected encounter
+    base = DungeonGuide_GetBaseEntry(dungeonID, encounter)
+    override = DungeonGuide_GetOverrideEntry(dungeonID, encounter)
 
     return sortedEntries(override, base)
 end
+
 
 -- DungeonGuide_MergeGuide is a utility function that merges a base guide with an override.
 function DungeonGuide_MergeGuide(base, override)
@@ -166,16 +189,18 @@ function DungeonGuide_AreEntriesEqual(a, b)
         return false
     end
 
-    return (a.type == b.type) and (a.role == b.role) and (a.text == b.text) and (a.target == b.target) and
-               ((a.hide or false) == (b.hide or false))
+    return (a.type == b.type) and (a.role == b.role) and (a.text == b.text) and (a.target == b.target) and ((a.hide or false) == (b.hide or false))
 end
 
 -- DungeonGuide_SaveBaseEntries is a utility function that saves the base entries of a guide.
 function DungeonGuide_SaveBaseEntries(dungeon, encounter)
-    local guide = DungeonGuide_GetBaseEntry(dungeon, encounter)
+    local season = DungeonGuideContext.season
+    local dungeonID = DungeonGuide_FindDungeonIDByNameAndSeason(dungeon, season) or dungeon
+
+    local guide = DungeonGuide_GetBaseEntry(dungeonID, encounter)
     local baseEntries = {}
 
-    for _, entry in ipairs(guide.entries or {}) do
+    for _, entry in ipairs(guide and guide.entries or {}) do
         if entry.id then
             local copied = CopyTable(entry)
             copied.role = copied.role or "ALL"
@@ -203,12 +228,14 @@ function DungeonGuide_SortEntries(entries, dungeon, encounter)
         return
     end
 
-    local orderTable = DungeonGuide_Orders[dungeon] and DungeonGuide_Orders[dungeon][encounter]
+    local season = DungeonGuideContext.season
+    local dungeonID = DungeonGuide_FindDungeonIDByNameAndSeason(dungeon, season) or dungeon
+
+    local orderTable = DungeonGuide_Orders[dungeonID] and DungeonGuide_Orders[dungeonID][encounter]
 
     if not orderTable then
-        DungeonGuide_InitialiseOrderIfMissing(dungeon, encounter, entries)
-
-        orderTable = DungeonGuide_Orders[dungeon] and DungeonGuide_Orders[dungeon][encounter]
+        DungeonGuide_InitialiseOrderIfMissing(dungeonID, encounter, entries)
+        orderTable = DungeonGuide_Orders[dungeonID] and DungeonGuide_Orders[dungeonID][encounter]
     end
 
     table.sort(entries, function(a, b)
@@ -218,6 +245,11 @@ end
 
 -- DungeonGuide_InitialiseOrderIfMissing initializes the order table for a dungeon and encounter if it is missing.
 function DungeonGuide_InitialiseOrderIfMissing(dungeonID, encounterID, entries)
+    if not dungeonID or not encounterID or not entries then
+        DungeonGuide_DebugInfo("InitialiseOrder skipped due to missing params: " .. tostring(dungeonID) .. ", " .. tostring(encounterID))
+        return
+    end
+
     DungeonGuide_Orders[dungeonID] = DungeonGuide_Orders[dungeonID] or {}
     DungeonGuide_Orders[dungeonID][encounterID] = DungeonGuide_Orders[dungeonID][encounterID] or {}
 
@@ -237,7 +269,10 @@ function DungeonGuide_InitialiseOrderIfMissing(dungeonID, encounterID, entries)
             maxIndex = maxIndex + 1
             orderTable[entry.id] = maxIndex
 
-            DungeonGuide_DebugInfo("Initialised order for entry " .. entry.text .. " in " .. dungeonID .. " - " .. encounterID)
+            DungeonGuide_DebugInfo(string.format(
+                "Initialised order for entry %s [%s] in %s - %s",
+                entry.text or "Unnamed", entry.role or "ALL", dungeonID, encounterID
+            ))
         end
     end
 end
@@ -246,7 +281,7 @@ end
 function DungeonGuide_GetAvailableSeasons()
     local seen = {}
     local seasons = {}
-    
+
     for _, guide in pairs(DungeonGuide_Guides or {}) do
         if guide.season and not seen[guide.season] then
             seen[guide.season] = true
@@ -254,7 +289,7 @@ function DungeonGuide_GetAvailableSeasons()
         end
     end
 
-    table.sort(seasons, function(a, b) return a > b end) -- Newest season first
+    table.sort(seasons, function(a, b) return a > b end) -- Newest first
     return seasons
 end
 
@@ -280,20 +315,26 @@ end
 
 -- DungeonGuide_FindNPCID retrieves the NPC ID for a given dungeon and NPC name.
 function DungeonGuide_FindNPCID(dungeonName, npcName)
-    local npcID = nil
-    DungeonGuide_DebugInfo("DungeonGuide_FindNPCID: " .. dungeonName .. " - " .. npcName)
+    DungeonGuide_DebugInfo("DungeonGuide_FindNPCID: " .. tostring(dungeonName) .. " - " .. tostring(npcName))
 
-    if DungeonGuide_NPCNames[dungeonName] then
-        DungeonGuide_DebugInfo("DungeonGuide_NPCs: " .. tostring(DungeonGuide_NPCNames[dungeonName]))
-        if type(DungeonGuide_NPCNames[dungeonName]) == "table" then
-            if DungeonGuide_NPCNames[dungeonName][npcName] then
-                DungeonGuide_DebugInfo("DungeonGuide_NPCs: " .. tostring(DungeonGuide_NPCNames[dungeonName][npcName]))
-                npcID = DungeonGuide_NPCNames[dungeonName][npcName]
-            end
+    -- Resolve to dungeon display name if a guide ID is passed
+    local resolvedName = dungeonName
+    if DungeonGuide_Guides[dungeonName] then
+        resolvedName = DungeonGuide_Guides[dungeonName].name
+        DungeonGuide_DebugInfo("Resolved dungeonName to guide name: " .. resolvedName)
+    end
+
+    -- Now look up the NPC ID using the resolved name
+    local npcTable = DungeonGuide_NPCNames[resolvedName]
+    if type(npcTable) == "table" then
+        local npcID = npcTable[npcName]
+        if npcID then
+            DungeonGuide_DebugInfo("Found NPC ID: " .. tostring(npcID))
+            return npcID
         end
     end
 
-    return npcID
+    return nil
 end
 
 -- DungeonGuide_GetPlayerRole retrieves the player's role based on their specialization.
@@ -318,3 +359,7 @@ function DungeonGuide_DebugInfo(content)
     end
 end
 
+-- DungeonGuide_FindDungeonNameByID retrieves the dungeon name based on the dungeon ID.
+function DungeonGuide_FindDungeonNameByID(dungeonID)
+    return DungeonGuide_Guides[dungeonID] and DungeonGuide_Guides[dungeonID].name
+end

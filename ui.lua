@@ -463,9 +463,8 @@ function DungeonGuideUI:BuildMainMenu(dungeonSelected)
         self.MenuState = { showDungeons = false, selectedDungeon = nil }
     end
 
-    if (dungeonSelected) then
-        self.MenuState.selectedDungeon = DungeonGuideContext.dungeon or nil
-        self.MenuState.showDungeons = false
+    if dungeonSelected and not self.MenuState.selectedDungeon then
+        self.MenuState.selectedDungeon = DungeonGuide_FindDungeonIDByNameAndSeason(DungeonGuideContext.dungeon, DungeonGuideContext.season)
     end
 
     local y = -10
@@ -541,11 +540,16 @@ function DungeonGuideUI:BuildMainMenu(dungeonSelected)
         
         -- Show full dungeon list
         for _, dungeonName in ipairs(seasonDungeons or {}) do
-            AddButton(dungeonName, function()
-                self.MenuState.selectedDungeon = dungeonName
-                self.MenuState.showDungeons = false
-                DungeonGuideUI:BuildMainMenu(false)
-            end, 10)
+            local dungeonID = DungeonGuide_FindDungeonIDByNameAndSeason(dungeonName, DungeonGuideDB.selectedSeason)
+            if dungeonID then
+                AddButton(dungeonName, function()
+                    self.MenuState.selectedDungeon = dungeonID
+                    self.MenuState.showDungeons = false
+                    DungeonGuideUI:BuildMainMenu(false)
+                end, 10)
+            else
+                DungeonGuide_DebugInfo("Could not resolve dungeon ID for: " .. dungeonName)
+            end
         end
     end
 
