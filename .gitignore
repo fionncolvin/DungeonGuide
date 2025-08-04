@@ -1,2 +1,3 @@
 guides/add-ids.ps1
 local-deploy.ps1
+.github/copilot-instructions.md

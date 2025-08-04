@@ -4,6 +4,7 @@ DungeonGuide_Overrides = DungeonGuide_Overrides or {}
 DungeonGuide_Orders = DungeonGuide_Orders or {}
 
 BINDING_NAME_DUNGEONGUIDE_OPEN_SELECTOR = "Open Dungeon Selector"
+BINDING_NAME_DUNGEONGUIDE_INSTANCE_INFORMATION = "Show Instance Information"
 
 local f = CreateFrame("Frame")
 

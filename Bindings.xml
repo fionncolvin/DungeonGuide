@@ -2,4 +2,7 @@
   <Binding name="DUNGEONGUIDE_OPEN_SELECTOR" category="Dungeon Guide">
     DungeonGuideUI:ShowGuide()
   </Binding>
+  <Binding name="DUNGEONGUIDE_INSTANCE_INFORMATION" category="Dungeon Guide">
+    DungeonGuide_ShowInstanceDetals()
+  </Binding>
 </Bindings>

@@ -354,7 +354,7 @@ end
 
 -- DungeonGuide_DebugInfo is a utility function that prints debug information if debugging is enabled.
 function DungeonGuide_DebugInfo(content)
-    if DungeonGuideDB.debug then
+    if DungeonGuideDB and DungeonGuideDB.debug then
         print("|cff8888ff[DungeonGuide Debug]|r " .. content)
     end
 end
