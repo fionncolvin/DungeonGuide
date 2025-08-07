@@ -3,7 +3,8 @@
   id = "dung-ecodome-tww-s3",
   season = "TWW-S3",
   guideType = "M+",
-  ["Intro"] = {
+  
+  ["Eco-Dome Al'dani"] = {
     id = "enc-ecodome-tww-s3-intro",
     order = 1,
     header = "Intro",

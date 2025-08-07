@@ -403,6 +403,7 @@ function DungeonGuideUI:CreateGuideButton()
     button:SetScript("OnClick", function()
         DungeonGuide_DetectGuideContext()
         DungeonGuideUI:ShowGuide()
+        DungeonGuideUI.MenuState = { showDungeons = false, selectedDungeon = DungeonGuideContext.dungeon }
     end)
 
     button:SetScript("OnEnter", function(self)
@@ -460,11 +461,13 @@ function DungeonGuideUI:BuildMainMenu(dungeonSelected)
     local menu = self.MainMenu
 
     if not self.MenuState then
-        self.MenuState = { showDungeons = false, selectedDungeon = nil }
+        self.MenuState = { showDungeons = false, selectedDungeon = DungeonGuideContext.dungeon }
     end
 
     if dungeonSelected and not self.MenuState.selectedDungeon then
         self.MenuState.selectedDungeon = DungeonGuide_FindDungeonIDByNameAndSeason(DungeonGuideContext.dungeon, DungeonGuideContext.season)
+
+        DungeonGuide_DebugInfo("Selected dungeon: " .. (self.MenuState.selectedDungeon or "none"))
     end
 
     local y = -10

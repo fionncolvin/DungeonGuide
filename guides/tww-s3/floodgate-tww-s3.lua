@@ -3,6 +3,7 @@
   id = "dung-floodgate-tww-s3",
   season = "TWW-S3",
   guideType = "M+",
+  
   ["Operation: Floodgate"] = {
     id = "enc-floodgate-guide",
     order = 1,

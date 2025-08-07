@@ -3,6 +3,7 @@
   id = "dung-cinderbrew-tww-s2",
   season = "TWW-S2",
   guideType = "M+",
+  
   ["Cinderbrew Meadery"] = {
     id = "enc-cinderbrew-guide",
     order = 1,

@@ -4,7 +4,7 @@ DungeonGuide_Guides["dung-tazavesh-streets-tww-s3"] = {
   season = "TWW-S3",
   guideType = "M+",
 
-  ["Intro"] = {
+  ["Tazavesh: Streets of Wonder"] = {
     id = "enc-tazavesh-streets-tww-s3-intro",
     order = 1,
     header = "Intro",

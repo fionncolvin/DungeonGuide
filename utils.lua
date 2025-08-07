@@ -1,5 +1,7 @@
 -- DungeonGuide_FindDungeonIDByNameAndSeason retrieves the dungeon ID based on the dungeon name and season.
 function DungeonGuide_FindDungeonIDByNameAndSeason(name, season)
+    DungeonGuide_DebugInfo("DungeonGuide_FindDungeonIDByNameAndSeason called with name: " .. tostring(name) .. ", season: " .. tostring(season))
+
     for id, guide in pairs(DungeonGuide_Guides) do
         if guide.name == name and guide.season == season then
             return id
@@ -86,8 +88,6 @@ function DungeonGuide_GetGuideEntry(dungeon, encounter, force)
     local base = nil
     local override = nil
 
-    DungeonGuide_DebugInfo("DungeonGuide_GetGuideEntry called with dungeon: " .. tostring(dungeon) .. ", encounter: " .. tostring(encounter) .. ", force: " .. tostring(force))
-
     -- Fallback to context values
     if not dungeon then
         dungeon = DungeonGuideContext.dungeon
@@ -98,6 +98,8 @@ function DungeonGuide_GetGuideEntry(dungeon, encounter, force)
     if not force then
         force = DungeonGuideContext.forceSelect or false
     end
+
+    DungeonGuide_DebugInfo("DungeonGuide_GetGuideEntry called with dungeon: " .. tostring(dungeon) .. ", encounter: " .. tostring(encounter) .. ", force: " .. tostring(force))
 
     -- Resolve dungeon ID from name + season if not already an ID
     local dungeonID = DungeonGuide_FindDungeonIDByNameAndSeason(dungeon, DungeonGuideContext.season) or dungeon

@@ -1,10 +1,10 @@
 DungeonGuide_Guides["dung-dawnbreaker-tww-s3"] = {
-  name = "Dawnbreaker",
+  name = "The Dawnbreaker",
   id = "dung-dawnbreaker-tww-s3",
   season = "TWW-S3",
   guideType = "M+",
 
-  ["Intro"] = {
+  ["The Dawnbreaker"] = {
     id = "enc-dawnbreaker-tww-s3-intro",
     order = 1,
     header = "Intro",

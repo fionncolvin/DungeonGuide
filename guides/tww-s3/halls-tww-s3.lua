@@ -4,7 +4,7 @@ DungeonGuide_Guides["dung-halls-of-atonement-tww-s3"] = {
   season = "TWW-S3",
   guideType = "M+",
 
-  ["Intro"] = {
+  ["Halls of Atonement"] = {
     id = "enc-halls-tww-s3-intro",
     order = 1,
     header = "Intro",

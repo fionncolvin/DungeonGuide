@@ -3,6 +3,7 @@
   id = "dung-priory-tww-s3",
   season = "TWW-S3",
   guideType = "M+",
+  
   ["Priory of the Sacred Flame"] = {
     id = "enc-priory-guide",
     order = 1,

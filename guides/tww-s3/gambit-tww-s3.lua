@@ -4,7 +4,7 @@ DungeonGuide_Guides["dung-soleahs-gambit-tww-s3"] = {
   season = "TWW-S3",
   guideType = "M+",
 
-  ["Intro"] = {
+  ["So'leah's Gambit"] = {
     id = "enc-soleahs-gambit-tww-s3-intro",
     order = 1,
     header = "Intro",

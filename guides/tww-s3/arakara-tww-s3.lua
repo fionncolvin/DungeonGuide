@@ -4,7 +4,7 @@
   season = "TWW-S3",
   guideType = "M+",
 
-  ["Intro"] = {
+  ["Ara-Kara, City of Echoes"] = {
     id = "enc-ara-kara-tww-s3-intro",
     order = 1,
     header = "Intro",
