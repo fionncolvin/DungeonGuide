@@ -159,7 +159,10 @@ function DungeonGuideUI:CreateGuideFrame()
 end
 
 function DungeonGuideUI:ShowGuide()
-    self:CreateGuideFrame()
+    if not self.frame then
+        self:CreateGuideFrame()
+   end
+
     self:UpdateGuideContent()
     self.frame:Show()
 end
@@ -196,7 +199,7 @@ function DungeonGuideUI:UpdateGuideContent(returnGuide)
 
     DungeonGuide_DebugInfo("Updating guide content for " ..
         (DungeonGuideContext.encounter or "unknown encounter") ..
-        " in dungeon: " .. (DungeonGuideContext.dungeon or "unknown dungeon") ..
+        " in dungeon: " .. (DungeonGuideContext.dungeonID or "unknown dungeon") ..
         " for role: " .. (DungeonGuideContext.role or "unknown role"))
 
     local role = DungeonGuideContext.role or "ALL"
@@ -403,7 +406,7 @@ function DungeonGuideUI:CreateGuideButton()
     button:SetScript("OnClick", function()
         DungeonGuide_DetectGuideContext()
         DungeonGuideUI:ShowGuide()
-        DungeonGuideUI.MenuState = { showDungeons = false, selectedDungeon = DungeonGuideContext.dungeon }
+        DungeonGuideUI.MenuState = { showDungeons = false, selectedDungeon = DungeonGuideContext.dungeonID }
     end)
 
     button:SetScript("OnEnter", function(self)
@@ -461,11 +464,11 @@ function DungeonGuideUI:BuildMainMenu(dungeonSelected)
     local menu = self.MainMenu
 
     if not self.MenuState then
-        self.MenuState = { showDungeons = false, selectedDungeon = DungeonGuideContext.dungeon }
+        self.MenuState = { showDungeons = false, selectedDungeon = DungeonGuideContext.dungeonID }
     end
 
     if dungeonSelected and not self.MenuState.selectedDungeon then
-        self.MenuState.selectedDungeon = DungeonGuide_FindDungeonIDByNameAndSeason(DungeonGuideContext.dungeon, DungeonGuideContext.season)
+        self.MenuState.selectedDungeon = DungeonGuide_FindDungeonIDByNameAndSeason(DungeonGuideContext.dungeonID, DungeonGuideContext.season)
 
         DungeonGuide_DebugInfo("Selected dungeon: " .. (self.MenuState.selectedDungeon or "none"))
     end
@@ -493,9 +496,11 @@ function DungeonGuideUI:BuildMainMenu(dungeonSelected)
         btn:SetScript("OnEnter", function()
             btn.bg:SetColorTexture(0.2, 0.2, 0.2, 1) -- dark grey hover
         end)
+
         btn:SetScript("OnLeave", function()
             btn.bg:SetColorTexture(0, 0, 0, 0.8)
         end)
+
         btn:SetScript("OnClick", onClick)
 
         y = y - (isSmall and 18 or 22)
@@ -503,14 +508,15 @@ function DungeonGuideUI:BuildMainMenu(dungeonSelected)
     end
 
     -- Dungeons root
-    AddButton("Dungeons", function()
+    AddButton("Back to Dungeon List", function()
         self.MenuState.selectedDungeon = nil
         self.MenuState.showDungeons = not self.MenuState.showDungeons
         DungeonGuideUI:BuildMainMenu(false)
     end, 0, true)
 
     if self.MenuState.selectedDungeon then
-        local guide = DungeonGuide_Guides[self.MenuState.selectedDungeon]
+        local guide = DungeonGuide_GetDungeonEntry(self.MenuState.selectedDungeon)
+
         if guide then
             local ordered = {}
             for enc, entry in pairs(guide) do
@@ -525,13 +531,7 @@ function DungeonGuideUI:BuildMainMenu(dungeonSelected)
                 local displayName = entry.header or enc.name
 
                 AddButton(displayName, function()
-                    DungeonGuideContext = {
-                        role = DungeonGuide_GetPlayerRole(),
-                        dungeon = self.MenuState.selectedDungeon,
-                        encounter = enc.name
-                    }
-
-                    DungeonGuideContext.forceSelect = true
+                    DungeonGuide_SetGuideContext(DungeonGuideDB.selectedSeason, DungeonGuide_GetPlayerRole(), self.MenuState.selectedDungeon, enc.name, true)   
                     DungeonGuideUI:ShowGuide()
                     DungeonGuideContext.forceSelect = false
                     self.MainMenu:Hide()

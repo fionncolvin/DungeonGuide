@@ -9,10 +9,11 @@ BINDING_NAME_DUNGEONGUIDE_INSTANCE_INFORMATION = "Show Instance Information"
 local f = CreateFrame("Frame")
 
 DungeonGuideContext = {
+    season = nil,
     forceSelect = false,
     role = nil,
     encounter = nil,
-    dungeon = nil
+    dungeonID = nil
 }
 
 function DungeonGuide_ShowInstanceDetals()
@@ -37,36 +38,37 @@ end
 function DungeonGuide_DetectGuideContext()
     local zoneName = GetRealZoneText()
     local season = DungeonGuideDB.selectedSeason or DungeonGuide_GetAvailableSeasons()[1]
+    local role = DungeonGuide_GetPlayerRole()
+    local encounter = GetRealZoneText()
+    local dungeonID = DungeonGuide_FindDungeonIDByNameAndSeason(zoneName, season)
 
-    DungeonGuideContext.role = DungeonGuide_GetPlayerRole()
-    DungeonGuideContext.encounter = zoneName -- fallback default
-    DungeonGuideContext.season = season
+    if not dungeonID then
+        DungeonGuide_DebugInfo("[DungeonGuide_DetectGuideContext]: No dungeon found for name: " .. tostring(zoneName) .. ", season: " .. tostring(season))
 
-    DungeonGuideContext.dungeon = DungeonGuide_FindDungeonIDByNameAndSeason(zoneName, season)
-
-    DungeonGuide_DebugInfo("Detecting context for zone: " .. tostring(zoneName) .. " | resolved dungeonID: " .. tostring(DungeonGuideContext.dungeon))
-
-    local dungeon = DungeonGuide_GetDungeonEntry(DungeonGuideContext.dungeon)
-
-    if dungeon then
-        if DungeonGuideUI and DungeonGuideUI.ShowGuideButton then
-            DungeonGuideUI:ShowGuideButton()
-        end
-    else
         if DungeonGuideUI and DungeonGuideUI.GuideButton and DungeonGuideDB.autoHide then
             DungeonGuideUI.GuideButton:Hide()
+        end
+    else
+        DungeonGuide_SetGuideContext(season, role, dungeonID, encounter, false)
+
+        local dungeon = DungeonGuide_GetDungeonEntry(dungeonID)
+
+        if dungeon then
+            if DungeonGuideUI and DungeonGuideUI.ShowGuideButton then
+                DungeonGuideUI:ShowGuideButton()
+            end
+        else
+            if DungeonGuideUI and DungeonGuideUI.GuideButton and DungeonGuideDB.autoHide then
+                DungeonGuideUI.GuideButton:Hide()
+            end
         end
     end
 end
 
 -- Event registration
-f:RegisterEvent("PLAYER_REGEN_ENABLED")
 f:RegisterEvent("PLAYER_ENTERING_WORLD")
-f:RegisterEvent("ZONE_CHANGED")
-f:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-f:RegisterEvent("ZONE_CHANGED_INDOORS")
 f:RegisterEvent("CHALLENGE_MODE_START")
-f:RegisterEvent("CHALLENGE_MODE_MAPS_UPDATE")
+f:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 
 f:SetScript("OnEvent", function()
     C_Timer.After(1, DungeonGuide_DetectGuideContext)
@@ -77,25 +79,22 @@ SLASH_DUNGEONGUIDE1 = "/dg"
 SlashCmdList["DUNGEONGUIDE"] = function(msg)
     local role, encounter, dungeon = msg:match("^(.-)%s*@%s*(.-)%s*@%s*(.-)%s*$")
 
-    if role and encounter and dungeon then
-        DungeonGuideContext = {
-            role = role,
-            encounter = encounter,
-            dungeon = dungeon,
-            forceSelect = true
-        }
-    else
-        local zoneName = "Priory of the Sacred Flame"
-        local season = DungeonGuideDB.selectedSeason or DungeonGuide_GetAvailableSeasons()[1]
-
-        DungeonGuideContext = {
-            role = DungeonGuide_GetPlayerRole(),
-            encounter = "Route",
-            dungeon = DungeonGuide_FindDungeonIDByNameAndSeason(zoneName, season),
-            season = season,
-            forceSelect = true
-        }
+    if not role then
+        role = DungeonGuide_GetPlayerRole()
     end
+
+    if not encounter then
+        encounter = "Route" -- default to route if not specified
+    end
+
+    if not dungeon then
+        dungeon = "Priory of the Sacred Flame" -- default dungeon if not specified
+    end
+
+    local season = DungeonGuideDB.selectedSeason or DungeonGuide_GetAvailableSeasons()[1]
+    local dungeonID = DungeonGuide_FindDungeonIDByNameAndSeason(dungeon, season)
+
+    DungeonGuide_SetGuideContext(season, role, dungeonID, encounter, true)
 
     if DungeonGuideUI and DungeonGuideUI.ShowGuide then
         DungeonGuideUI:ShowGuideButton()

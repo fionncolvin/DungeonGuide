@@ -14,7 +14,7 @@ local isElvUI = S and type(S.HandleFrame) == "function"
 
 function DungeonGuideEditorUI:Create()
     DungeonGuideEditorUI.selectedDungeonBtn = nil
-    DungeonGuideEditorUI.currentDungeon = nil
+    DungeonGuideEditorUI.currentDungeonID = nil
     DungeonGuideEditorUI.selectedEncounterBtn = nil
     DungeonGuideEditorUI.currentEncounter = nil
 
@@ -210,11 +210,11 @@ function DungeonGuideEditorUI:PopulateDungeonList()
                 btn.bg:SetColorTexture(0.2, 0.8, 0.4, 0.6)
                 DungeonGuideEditorUI.selectedDungeonBtn = btn
 
-                DungeonGuideEditorUI.currentDungeon = dungeonID
+                DungeonGuideEditorUI.currentDungeonID = dungeonID
                 self:PopulateEncounters(dungeonID)
             end)
 
-            if DungeonGuideEditorUI.currentDungeon == dungeonID then
+            if DungeonGuideEditorUI.currentDungeonID == dungeonID then
                 btn.bg:SetColorTexture(0.2, 0.8, 0.4, 0.6)
                 DungeonGuideEditorUI.selectedDungeonBtn = btn
             end
@@ -288,7 +288,7 @@ function DungeonGuideEditorUI:PopulateEncounters(dungeonID)
             btn.bg:SetColorTexture(0.2, 0.8, 0.4, 0.6)
             DungeonGuideEditorUI.selectedEncounterBtn = btn
 
-            DungeonGuideEditorUI.currentDungeon = dungeonID
+            DungeonGuideEditorUI.currentDungeonID = dungeonID
             DungeonGuideEditorUI.currentEncounter = enc.name
             DungeonGuideEditorUI:PopulateGuideEntries(dungeonID, enc.name)
         end)
@@ -304,16 +304,16 @@ function DungeonGuideEditorUI:PopulateEncounters(dungeonID)
 end
 
 
-function DungeonGuideEditorUI:PopulateGuideEntries(dungeonID, encounterID)
+function DungeonGuideEditorUI:PopulateGuideEntries(dungeonID, encounter)
     local editArea = self.editArea
-    local guide = DungeonGuide_GetGuideEntry(dungeonID, encounterID, true)
+    local guide = DungeonGuide_GetGuideEntry(dungeonID, encounter, true)
 
     if not guide then
         return
     end
 
     -- Generate order data for entries if missing
-    DungeonGuide_InitialiseOrderIfMissing(dungeonID, encounterID, guide.entries or {})
+    DungeonGuide_InitialiseOrderIfMissing(dungeonID, encounter, guide.entries or {})
 
     self.currentRows = {}
     local rowHeight = 22
@@ -641,10 +641,10 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonID, encounterID)
                     table.insert(self.currentRows, newOrder, row)
 
                     -- Rebuild order values
-                    self:UpdateOrder(dungeonID, encounterID)
+                    self:UpdateOrder(dungeonID, encounter)
 
                     -- Re-render table
-                    self:PopulateGuideEntries(self.currentDungeon, self.currentEncounter)
+                    self:PopulateGuideEntries(self.currentDungeonID, self.currentEncounter)
                 end
 
                 orderEditBox:SetScript("OnEnterPressed", commitOrderEdit)
@@ -665,17 +665,17 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonID, encounterID)
     end
 
     -- Generate guide rows
-    self.baseEntries = DungeonGuide_SaveBaseEntries(dungeonID, encounterID)
+    self.baseEntries = DungeonGuide_SaveBaseEntries(dungeonID, encounter)
 
     local order = 1
     local index = 1
 
     local orderedEntries = CopyTable(guide.entries or {})
-    local orderTable = DungeonGuide_Orders[dungeonID] and DungeonGuide_Orders[dungeonID][encounterID]
+    local orderTable = DungeonGuide_Orders[dungeonID] and DungeonGuide_Orders[dungeonID][encounter]
 
     if not orderTable then
-        DungeonGuide_InitialiseOrderIfMissing(dungeonID, encounterID, guide.entries or {})
-        orderTable = DungeonGuide_Orders[dungeonID] and DungeonGuide_Orders[dungeonID][encounterID]
+        DungeonGuide_InitialiseOrderIfMissing(dungeonID, encounter, guide.entries or {})
+        orderTable = DungeonGuide_Orders[dungeonID] and DungeonGuide_Orders[dungeonID][encounter]
     end
 
     if orderTable then
@@ -695,21 +695,21 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonID, encounterID)
 end
 
 function DungeonGuideEditorUI:AddNewEntry()
-    if not self.currentDungeon or not self.currentEncounter then
+    if not self.currentDungeonID or not self.currentEncounter then
         return
     end
 
-    local dungeonID = self.currentDungeon
-    local encounterID = self.currentEncounter
+    local dungeonID = self.currentDungeonID
+    local encounter = self.currentEncounter
 
     -- Ensure base structure
     DungeonGuide_Overrides[dungeonID] = DungeonGuide_Overrides[dungeonID] or {}
-    DungeonGuide_Overrides[dungeonID][encounterID] = DungeonGuide_Overrides[dungeonID][encounterID] or {}
+    DungeonGuide_Overrides[dungeonID][encounter] = DungeonGuide_Overrides[dungeonID][encounter] or {}
     DungeonGuide_Orders[dungeonID] = DungeonGuide_Orders[dungeonID] or {}
-    DungeonGuide_Orders[dungeonID][encounterID] = DungeonGuide_Orders[dungeonID][encounterID] or {}
+    DungeonGuide_Orders[dungeonID][encounter] = DungeonGuide_Orders[dungeonID][encounter] or {}
 
-    local overrideList = DungeonGuide_Overrides[dungeonID][encounterID]
-    local orderTable = DungeonGuide_Orders[dungeonID][encounterID]
+    local overrideList = DungeonGuide_Overrides[dungeonID][encounter]
+    local orderTable = DungeonGuide_Orders[dungeonID][encounter]
 
     -- Generate a new unique ID
     local newID = "gen-" .. tostring(time()) .. "-" .. tostring(math.random(1e9))
@@ -736,7 +736,7 @@ function DungeonGuideEditorUI:AddNewEntry()
     orderTable[newID] = maxOrder + 1
 
     -- Re-render
-    self:PopulateGuideEntries(dungeonID, encounterID)
+    self:PopulateGuideEntries(dungeonID, encounter)
 end
 
 function DungeonGuideEditorUI:RemoveRow(row)
@@ -745,7 +745,7 @@ function DungeonGuideEditorUI:RemoveRow(row)
     end
 
     local id = row.entry.id
-    local dungeon = self.currentDungeon
+    local dungeon = self.currentDungeonID
     local encounter = self.currentEncounter
 
     -- Remove from override list
@@ -769,11 +769,11 @@ function DungeonGuideEditorUI:RemoveRow(row)
 end
 
 function DungeonGuideEditorUI:SaveData()
-    if not self.currentDungeon or not self.currentEncounter then
+    if not self.currentDungeonID or not self.currentEncounter then
         return
     end
 
-    local dungeon = self.currentDungeon
+    local dungeon = self.currentDungeonID
     local encounter = self.currentEncounter
 
     -- Load existing overrides for this encounter (if any)
@@ -823,7 +823,7 @@ function DungeonGuideEditorUI:SaveData()
     end
 end
 
-function DungeonGuideEditorUI:UpdateOrder(dungeonID, encounterID)
+function DungeonGuideEditorUI:UpdateOrder(dungeonID, encounter)
     if not self.currentRows or not next(self.currentRows) then
         return
     end
@@ -837,40 +837,40 @@ function DungeonGuideEditorUI:UpdateOrder(dungeonID, encounterID)
         end
     end
 
-    DungeonGuide_Orders[dungeonID][encounterID] = newOrder
-    DungeonGuide_DebugInfo("Updated entry order for " .. dungeonID .. " - " .. encounterID)
+    DungeonGuide_Orders[dungeonID][encounter] = newOrder
+    DungeonGuide_DebugInfo("Updated entry order for " .. dungeonID .. " - " .. encounter)
 end
 
 function DungeonGuideEditorUI:Reset()
-    if not self.currentDungeon or not self.currentEncounter then
+    if not self.currentDungeonID or not self.currentEncounter then
         return
     end
 
-    if DungeonGuide_Overrides[self.currentDungeon] then
-        DungeonGuide_Overrides[self.currentDungeon][self.currentEncounter] = nil
+    if DungeonGuide_Overrides[self.currentDungeonID] then
+        DungeonGuide_Overrides[self.currentDungeonID][self.currentEncounter] = nil
 
-        if next(DungeonGuide_Overrides[self.currentDungeon]) == nil then
-            DungeonGuide_Overrides[self.currentDungeon] = nil
+        if next(DungeonGuide_Overrides[self.currentDungeonID]) == nil then
+            DungeonGuide_Overrides[self.currentDungeonID] = nil
 
-            DungeonGuide_DebugInfo("Cleared Dungeon overrides for " .. self.currentDungeon)
+            DungeonGuide_DebugInfo("Cleared Dungeon overrides for " .. self.currentDungeonID)
         end
 
-        DungeonGuide_DebugInfo("Cleared Encounter overrides for " .. self.currentDungeon .. " - " .. self.currentEncounter)
+        DungeonGuide_DebugInfo("Cleared Encounter overrides for " .. self.currentDungeonID .. " - " .. self.currentEncounter)
     end
 
-    if DungeonGuide_Orders[self.currentDungeon] then
-        DungeonGuide_Orders[self.currentDungeon][self.currentEncounter] = nil
+    if DungeonGuide_Orders[self.currentDungeonID] then
+        DungeonGuide_Orders[self.currentDungeonID][self.currentEncounter] = nil
 
-        if next(DungeonGuide_Orders[self.currentDungeon]) == nil then
-            DungeonGuide_Orders[self.currentDungeon] = nil
+        if next(DungeonGuide_Orders[self.currentDungeonID]) == nil then
+            DungeonGuide_Orders[self.currentDungeonID] = nil
 
-            DungeonGuide_DebugInfo("Cleared Dungeon orders for " .. self.currentDungeon)
+            DungeonGuide_DebugInfo("Cleared Dungeon orders for " .. self.currentDungeonID)
         end
 
-        DungeonGuide_DebugInfo("Cleared Encounter orders for " .. self.currentDungeon .. " - " .. self.currentEncounter)
+        DungeonGuide_DebugInfo("Cleared Encounter orders for " .. self.currentDungeonID .. " - " .. self.currentEncounter)
     end
 
-    self:PopulateGuideEntries(self.currentDungeon, self.currentEncounter)
+    self:PopulateGuideEntries(self.currentDungeonID, self.currentEncounter)
 end
 
 function DungeonGuideEditorUI:Confirm(message, onConfirm)
