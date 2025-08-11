@@ -23,19 +23,23 @@
     order = 2,
     header = "Route",
     entries = {
-      { order = 1, role = "ALL", text = "We are pulling everything down the stairs and across the bridge. Avoid egg traps.", type = "Call", id = "gui-C49x6XTxC0" },
-      { order = 2, role = "ALL", text = "Interrupt s[Horrifying Shrill] from n[Ixin] - this is lethal if it goes off.", type = "Call", id = "gui-sSKIoUcQdk" },
-      { order = 3, role = "ALL", text = "After I engage n[Ixin], rotate interrupts on s[Horrifying Shrill] and stop s[Resonant Barrage] if possible.", type = "Call", id = "gui-yOGOjYwjuGw" },
-      { order = 4, role = "ALL", text = "Next, we head to the middle platform and pull into n[Nakt]. Be ready for poison + bleed overlaps.", type = "Call", id = "gui-S3x1aAzRQmI" },
-      { order = 5, role = "ALL", text = "On n[Nakt], use group CDs during s[Call of the Brood] + add spawns.", type = "Call", id = "gui-pb0OUt4nDc8" },
-      { order = 6, role = "ALL", text = "We then rotate to the right-side platform for n[Atik]. Watch for s[Poisonous Cloud] and bad positioning.", type = "Call", id = "gui-kVfzgB5UZiY" },
-      { order = 7, role = "ALL", text = "After all 3 mini-bosses, n[Avanoxx] jumps in. Hold defensives for s[Alerting Shrill] and control Starved Crawlers.", type = "Jump", id = "gui-BmE3npAja4k", target = "Avanoxx" },
-      { order = 8, role = "ALL", text = "Cross bridge and prep interrupts on n[Web Mage] (s[Revolting Volley]), n[Blood Guard] (s[Locust Swarm]), and n[Stag Shell] (s[Alarm Shrill]).", type = "Call", id = "gui-X36zpmQKV0" },
-      { order = 9, role = "ALL", text = "Before pulling n[Anub'zekt], decide on skip vs clearing Blood Guard pack; skipping requires mobility/utility.", type = "Call", id = "gui-G06c4JTfg2A" },
-      { order = 10, role = "ALL", text = "Final trash wing includes n[Overseers] (interrupt s[Venom Volley]) and n[Drones] (dispel s[Black Blood Drench Claws]).", type = "Call", id = "gui-I0jRRtfrayQ" },
-      { order = 11, role = "ALL", text = "n[Winged Carriers] will leap to first target in range - ensure tank pulls them first.", type = "Call", id = "gui-LmizXz6ZcdE" },
-      { order = 12, role = "ALL", text = "Final boss n[Ki'katal] ahead. Ensure puddle control and CD availability.", type = "Jump", id = "gui-by0XVCpgtLc", target = "Ki'katal the Harvester" }
-    },
+      { order = 1,  role = "ALL", text = "We are pulling everything down the stairs and across the bridge. Avoid egg traps.", type = "Call",   id = "gui-C49x6XTxC0" },
+      { order = 2,  role = "ALL", text = "CC and Kill n[Trilling Attendant] fast to stop s[Resonant Barrage]/s[Web Bolt] spam.", target = "Trilling Attendant", type = "Target", id = "gui-4mQf3yP2Vd" },
+      { order = 3,  role = "ALL", text = "Interrupt s[Horrifying Shrill] from n[Ixin] - this is lethal if it goes off.", type = "Call",   id = "gui-sSKIoUcQdk" },
+      { order = 4,  role = "ALL", text = "After I engage n[Ixin], rotate interrupts on s[Horrifying Shrill] and stop s[Resonant Barrage] if possible.", type = "Call", id = "gui-yOGOjYwjuGw" },
+      { order = 5,  role = "ALL", text = "Next, we head to the middle platform and pull into n[Nakt]. Be ready for poison + bleed overlaps.", type = "Call",  id = "gui-S3x1aAzRQmI" },
+      { order = 6,  role = "ALL", text = "On n[Nakt], use group CDs during s[Call of the Brood] + add spawns.", type = "Call",  id = "gui-pb0OUt4nDc8" },
+      { order = 7,  role = "ALL", text = "We then rotate to the right-side platform for n[Atik]. Watch for s[Poisonous Cloud] and bad positioning.", type = "Call", id = "gui-kVfzgB5UZiY" },
+      { order = 8,  role = "ALL", text = "After all 3 mini-bosses, n[Avanoxx] jumps in. Hold defensives for s[Alerting Shrill] and control Starved Crawlers.", type = "Jump", id = "gui-BmE3npAja4k", target = "Avanoxx" },
+      { order = 9,  role = "ALL", text = "Cross bridge and prep interrupts on n[Bloodstained Webmage] (s[Revolting Volley]), n[Bloodstained Webmage] (s[Web Bolt]), n[Sentry Stagshell] (s[Alarm Shrill]).", type = "Call", id = "gui-X36zpmQKV0" },
+      { order = 10, role = "ALL", text = "CC and Kill n[Sentry Stagshell] before it casts s[Alarm Shrill].", target = "Sentry Stagshell", type = "Target", id = "gui-Z63xdrQKV0" },
+      { order = 11, role = "ALL", text = "Kick n[Bloodstained Webmage] - stop s[Revolting Volley] first, then s[Web Bolt].", target = "Bloodstained Webmage", type = "Target", id = "gui-r9Wb6nJtYF" },
+      { order = 12, role = "ALL", text = "Kill n[Hulking Bloodguard] first to remove Bulwark; interrupt/CC s[Locust Swarm].", target = "Hulking Bloodguard", type = "Target", id = "gui-2KpZbq0cNM" },
+      { order = 13, role = "ALL", text = "Before pulling n[Anub'zekt], decide on skip vs clearing Blood Guard pack; skipping requires mobility/utility.", type = "Call", id = "gui-G06c4JTfg2A" },
+      { order = 14, role = "ALL", text = "Final trash wing includes n[Blood Overseer] (kick s[Venom Volley]) and n[Reinforced Drone] (dispel magic slow/heal reduction).", type = "Call", id = "gui-I0jRRtfrayQ" },
+      { order = 15, role = "ALL", text = "Tank tags n[Winged Carrier] first — they leap to the first target in range. Use grips/knockbacks if needed.", target = "Winged Carrier", type = "Target", id = "gui-LmizXz6ZcdE" },
+      { order = 16, role = "ALL", text = "Final boss n[Ki'katal] ahead. Ensure puddle control and CD availability.", type = "Jump", id = "gui-by0XVCpgtLc", target = "Ki'katal the Harvester" }
+    }
   },
 
   ["Ixin"] = {
@@ -118,7 +122,7 @@
       { order = 1,  role = "ALL",   text = "s[Infestation] rotates through players - when it expires, drop the chasing swarm away from others.", type = "Call", id = "gui-vi7ULfobVo" },
       { order = 2,  role = "ALL",   text = "At 100 energy move into the safe zone for s[Eye of the Swarm] in front of the boss - outside is lethal.", type = "Call", id = "gui-6YhqSgkUUg" },
       { order = 3,  role = "ALL",   text = "Keep left/right lanes clean: tank side right, group side left during Eye phase to avoid cross-fire.", type = "Call", id = "gui-YQV6gZmVHEQ" },
-      { order = 4,  role = "ALL",   text = "Kick or hard-CC n[Bloodstained Web Mage] s[Silken Restraint] instantly - rooted targets die in swarm.", type = "Call", id = "gui-o2Y1oOJSEJo" },
+      { order = 4,  role = "ALL",   text = "Kick or hard-CC n[Bloodstained Webmage] s[Silken Restraint] instantly - rooted targets die in swarm.", type = "Call", id = "gui-o2Y1oOJSEJo" },
       { order = 5,  role = "ALL",   text = "Assign one mobile ranged to bait s[Burrow Charge]; others avoid the path and destination.", type = "Call", id = "gui-zE8qj2mycp4" },
       { order = 6,  role = "TANK",  text = "Face boss away from group at all times - s[Impale] is a frontal cone.", type = "Position", id = "gui-edzaqOJBEU" },
       { order = 7,  role = "TANK",  text = "Open with a defensive - initial melee + debuff hits hard on pull.", type = "Call", id = "gui-DtPMzUbrd0w" },
@@ -142,11 +146,11 @@
       { order = 4,  role = "ALL",   text = "Do not break other players' roots with stray AoE (e.g., s[Divine Toll], s[Starfall]).", type = "Call", id = "gui-88aBjr4m90" },
       { order = 5,  role = "ALL",   text = "Dodge s[Erupting Webs] swirlies; overlaps with poison waves and puddle placement late in the fight.", type = "Mechanic", id = "gui-OCy0qI7hInc" },
       { order = 6,  role = "ALL",   text = "Track your puddle early - they despawn; each player should identify a backup spot.", type = "Call", id = "gui-DIGykmdQ84g" },
-      { order = 7,  role = "TANK",  text = "Pick up n[Blood Workers] quickly after each s[Cosmic Singularity] to reduce healer load.", type = "Call", id = "gui-OPAf3xYpB44" },
+      { order = 7,  role = "TANK",  text = "Pick up n[Bloodworker] quickly after each s[Cosmic Singularity] to reduce healer load.", type = "Call", id = "gui-OPAf3xYpB44" },
       { order = 8,  role = "TANK",  text = "Keep boss positioned to leave central lanes open for puddle usage and wave dodging.", type = "Position", id = "gui-qkDBLnWh5F0" },
       { order = 9,  role = "HEALER", text = "Poison waves now DoT instead of one-shot; spot-heal clipped players and cleanse high stacks.", type = "Call", id = "gui-V0COaf8k9Us" },
       { order = 10, role = "HEALER", text = "Pre-top before s[Cosmic Singularity]; failing to root still hits hard and applies a damage taken debuff.", type = "Call", id = "gui-03GKHmarqo" },
-      { order = 11, role = "DPS",   text = "Light cleave n[Blood Workers] to spawn puddles; avoid over-cleaving and popping roots early.", type = "Call", id = "gui-cC0peK3aEPQ" },
+      { order = 11, role = "DPS",   text = "Light cleave n[Bloodworker] to spawn puddles; avoid over-cleaving and popping roots early.", type = "Call", id = "gui-cC0peK3aEPQ" },
       { order = 12, role = "DPS",   text = "Spread during s[Cultivated Poison]; angle exit waves to the outer edges of the room.", type = "Call", id = "gui-kV0A8gsqE94" }
     }
   }

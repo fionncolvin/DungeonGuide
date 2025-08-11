@@ -15,8 +15,8 @@
       { order = 4, role = "ALL", text = "Some mechanics require player flight or environmental interactions (bombs/orbs).", type = "Mechanic", id = "gui-WjmgbsV5HMM" },
       { order = 5, role = "ALL", text = "Expect healing-intensive phases, especially during boss transitions and city trash.", type = "Call", id = "gui-n4AlRbPFJBY" },
       { order = 6, role = "ALL", text = "Watch for dangerous overlaps — s[Dark Orb] with s[Shadowy Decay] or s[Abyssal Blast] can wipe groups.", type = "Call", id = "gui-9exsnjIE7EM" },
-      { order = 7, role = "ALL", text = "Tank bleeds from n[Nightfall Commander] and healing reductions from n[Shadow Walkers] make pulls lethal if dragged out.", type = "Call", id = "gui-LrLbCU15W9w" },
-      { order = 8, role = "ALL", text = "n[Cursed Blade] gains stacking enrage — soothe or burst before stacks climb.", type = "Call", id = "gui-7AeAuKww0ms" },
+      { order = 7, role = "ALL", text = "Tank bleeds from n[Nightfall Commander] and healing reductions from n[Nightfall Shadowalker] make pulls lethal if dragged out.", type = "Call", id = "gui-LrLbCU15W9w" },
+      { order = 8, role = "ALL", text = "n[Nightfall Curseblade] gains stacking enrage — soothe or burst before stacks climb.", type = "Call", id = "gui-7AeAuKww0ms" },
       { order = 9, role = "ALL", text = "Priority interrupts early: s[Night Bolt] > s[Web Bolt] > other casts.", type = "Call", id = "gui-5NPUncCZ1I" },
       { order = 10, role = "ALL", text = "On small-ship landings, slow descent to avoid falling through deck.", type = "Call", id = "gui-j1qyFAFYDVQ" }
     }
@@ -27,18 +27,18 @@
     order = 2,
     header = "Route",
     entries = {
-      { order = 1, role = "ALL", text = "Start with double pull at entrance. Hug centre path to avoid pulling ranged n[Shadow Mages].", type = "Call", id = "gui-DYk75Jls43o" },
-      { order = 2, role = "ALL", text = "Interrupt s[Night Bolt] and avoid overlaps with s[Tormenting Ray].", type = "Call", id = "gui-bzWh0SFBkNc" },
-      { order = 3, role = "ALL", text = "We fly to the first ship — slow descent before landing to avoid falling through deck.", type = "Call", id = "gui-HkjMgqBslNo" },
-      { order = 4, role = "ALL", text = "On ships, prioritise killing n[Nightfall Commander] and n[Web Mage] — high tank and group pressure.", type = "Call", id = "gui-sfNp1ZRWcQU" },
-      { order = 5, role = "ALL", text = "After bomb activation, fly to second ship and clear carefully — use tank cooldowns early.", type = "Call", id = "gui-I9LKJIPNhSE" },
-      { order = 6, role = "ALL", text = "Return to Dawnbreaker for n[Speaker Shadowcrown]. Dodge beams, handle void zones.", type = "Jump", id = "gui-4neaFR8Uvac", target = "Speaker Shadowcrown" },
-      { order = 7, role = "ALL", text = "Fly to the city. Clear lieutenants: church, house, bridge. Save Lust for bridge if needed.", type = "Call", id = "gui-ZBU1lu4qvGo" },
-      { order = 8, role = "ALL", text = "Avoid accidental aggro when landing near house lieutenant — let tank land and secure first.", type = "Call", id = "gui-blCAVomOjzA" },
-      { order = 9, role = "ALL", text = "Bridge lieutenant: s[Dark Orb] can now target tanks — aim down bridge to avoid wall detonations.", type = "Call", id = "gui-B1OT7t0kpdI" },
+      { order = 1,  role = "ALL", text = "Start with double pull at entrance. Hug centre path to avoid pulling ranged n[Nightfall Shadowmage].", type = "Call", id = "gui-DYk75Jls43o" },
+      { order = 2,  role = "ALL", text = "Interrupt s[Night Bolt] and avoid overlaps with s[Tormenting Ray].", type = "Call", id = "gui-bzWh0SFBkNc" },
+      { order = 3,  role = "ALL", text = "We fly to the first ship — slow descent before landing to avoid falling through deck.", type = "Call", id = "gui-HkjMgqBslNo" },
+      { order = 4,  role = "ALL", text = "On ships, prioritise killing n[Nightfall Commander] and n[Sureki Webmage] — high tank and group pressure.", target = "Nightfall Commander", type = "Target", id = "gui-sfNp1ZRWcQU" },
+      { order = 5,  role = "ALL", text = "After bomb activation, fly to second ship and clear carefully — use tank cooldowns early.", type = "Call", id = "gui-I9LKJIPNhSE" },
+      { order = 6,  role = "ALL", text = "Return to Dawnbreaker for n[Speaker Shadowcrown]. Dodge beams, handle void zones.", type = "Jump", id = "gui-4neaFR8Uvac", target = "Speaker Shadowcrown" },
+      { order = 7,  role = "ALL", text = "Fly to the city. Clear lieutenants: church, house, bridge. Save Lust for bridge if needed.", type = "Call", id = "gui-ZBU1lu4qvGo" },
+      { order = 8,  role = "ALL", text = "Avoid accidental aggro when landing near house lieutenant — let tank land and secure first.", type = "Call", id = "gui-blCAVomOjzA" },
+      { order = 9,  role = "ALL", text = "Bridge lieutenant: s[Dark Orb] can now target tanks — aim down bridge to avoid wall detonations.", type = "Call", id = "gui-B1OT7t0kpdI" },
       { order = 10, role = "ALL", text = "Avoid pulling multiple tank-buster mobs together unless defensives are ready.", type = "Call", id = "gui-kw8OvXdJWUU" },
       { order = 11, role = "ALL", text = "Engage n[Anub'ikkaj] after all lieutenants are dead. Position for orbs, manage adds.", type = "Jump", id = "gui-GPOvdYfTBo", target = "Anub'ikkaj" },
-      { order = 12, role = "ALL", text = "Return to Dawnbreaker. Clear n[Dark Architect] before final boss.", type = "Call", id = "gui-jiOQWVMf0RE" },
+      { order = 12, role = "ALL", text = "Return to Dawnbreaker. Clear n[Nightfall Dark Architect] before final boss.", target = "Nightfall Dark Architect", type = "Target", id = "gui-jiOQWVMf0RE" },
       { order = 13, role = "ALL", text = "Final boss: n[Rasha'nan]. Fly and bomb sequence into final phase on city platform.", type = "Jump", id = "gui-kOYV1sSBUYM", target = "Rasha'nan" }
     }
   },
@@ -99,7 +99,7 @@
       { order = 6, role = "HEALER", text = "Dispel s[Abyssal Blast] ASAP or the DoT will tick during s[Decay] pulses.", type = "Mechanic", id = "gui-H5dGesGaYA" },
       { order = 7, role = "HEALER", text = "Use spot heals on anyone struck by near-wall orb detonation.", type = "Call", id = "gui-0RSmTfZjBQo" },
       { order = 8, role = "ALL", text = "Stack loosely and move as a unit — sudden orb or decay overlaps will punish tight stacks.", type = "Position", id = "gui-ZOBBV5sGc8A" },
-      { order = 9, role = "DPS", text = "Interrupt add casts — n[Dark Casters] and n[Tacticians] remain lethal here.", type = "Interrupt", id = "gui-fZW9iPhIZyk" },
+      { order = 9, role = "DPS", text = "Interrupt add casts — n[Nightfall Darkcaster] and n[Tacticians] remain lethal here.", type = "Interrupt", id = "gui-fZW9iPhIZyk" },
       { order = 10, role = "DPS", text = "Focus burst on boss — adds can be cleaved if they're not enraged.", type = "Call", id = "gui-vhaAzkJxymc" },
       { order = 11, role = "DPS", text = "Pop defensives when healer calls during s[Decay] — survival is tight.", type = "Call", id = "gui-1no6fmgBCRI" }
     }

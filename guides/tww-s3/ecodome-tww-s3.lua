@@ -13,7 +13,7 @@
       { order = 2, role = "ALL", text = "Ecodome Al'dani contains aberrations, ethereals, and desert beasts across 3 zones: toxic lab, arcane hall, and outdoor ruin.", type = "Mechanic", id = "gui-rJzthcbRStU" },
       { order = 3, role = "ALL", text = "Linear layout with mix of cleave, control, and high movement. Ends in a complex soul mechanic boss.", type = "Mechanic", id = "gui-MhLNgiWMX3M" },
       { order = 4, role = "ALL", text = "Arcane Siphons grant 30s haste/speed if used out of combat; plan pulls around nearby Siphons.", type = "Mechanic", id = "gui-3uZRYMF24vc" },
-      { order = 5, role = "ALL", text = "Major threats: n[Overgorged Mite] s[Engorge] stacks, n[Ravenous Destroyer] overlaps, n[Overcharged Sentinel] sub-50% chaos, n[Pack Speaker] spirits, and soul mismanagement on final boss.", type = "Mechanic", id = "gui-voouynRUjYU" }
+      { order = 5, role = "ALL", text = "Major threats: n[Overgorged Mite] s[Engorge] stacks, n[Ravenous Destroyer] overlaps, n[Overcharged Sentinel] sub-50% chaos, n[Wastelander Pactspeaker] spirits, and soul mismanagement on final boss.", type = "Mechanic", id = "gui-voouynRUjYU" }
     }
   },
 
@@ -22,15 +22,15 @@
     order = 2,
     header = "Route",
     entries = {
-      { order = 1, role = "ALL", text = "We are starting with a big pull down the stairway - use Bloodlust and all cooldowns. Focus interrupts on n[Overgorged Mite] to prevent s[Engorge] stacks.", type = "Call", id = "gui-AcmH4M70vo" },
-      { order = 2, role = "ALL", text = "Next we'll cleave down n[Invading Mite] and n[Voracious Gorger] packs - watch for s[Gorging Smash] swirlies and spread loosely during splash damage.", type = "Call", id = "gui-TrS0BT9rG0" },
-      { order = 3, role = "ALL", text = "After clearing the first hall, we'll move into n[Ravenous Destroyer] territory. Interrupt s[Gluttonous Miasma] and dodge s[Volatile Ejection] lines - targets stand still.", type = "Call", id = "gui-oTG0MocXCTo" },
-      { order = 4, role = "ALL", text = "Move up the ramp and into the boss room for n[Azakar]. Tanks stay in melee range or risk s[Thrash] group wipes.", type = "Jump", id = "gui-xmunDY0fmo", target = "Azakar" },
-      { order = 5, role = "ALL", text = "After n[Azakar], turn left into the Ethereal zone. Pull only 1 n[Overcharged Sentinel] at a time. Break shield, then kite during s[Shattered Core] puddles.", type = "Call", id = "gui-caQ6LKAdAj8" },
-      { order = 6, role = "ALL", text = "Kick n[Wastelander Farstalker] s[Arcing Zap]; dispel s[Arcing Energy] from n[Ritualist]; sidestep n[Runestalker] s[Warp].", type = "Call", id = "gui-8rCBVW71VuA" },
-      { order = 7, role = "ALL", text = "Engage n[Taah'bat and A'wazj]. We'll line s[Warp Strike] through n[Taah'bat] and stack bosses during the stun window.", type = "Jump", id = "gui-2sfxgvX9QAQ", target = "Taah'bat" },
-      { order = 8, role = "ALL", text = "Outdoor zone next - skip n[Burrowing Creeper] patrols if possible. Kill n[Wastelander Pack Speaker] spirits and purge n[Caresh Elemental] s[Embrace of Caresh].", type = "Call", id = "gui-SDvtO9kUsw" },
-      { order = 9, role = "ALL", text = "Before final boss, hit nearby Arcane Siphons for a haste/speed buff. Prep healing CDs for s[Whispers of Fate] into s[Ceremonial Dagger].", type = "Call", id = "gui-2EPfdKmkbhk" },
+      { order = 1,  role = "ALL", text = "We are starting with a big pull down the stairway - use Bloodlust and all cooldowns. Focus interrupts on n[Overgorged Mite] to prevent s[Engorge] stacks.", type = "Call", id = "gui-AcmH4M70vo" },
+      { order = 2,  role = "ALL", text = "Next we'll cleave down n[Invading Mite] and n[Voracious Gorger] packs - watch for s[Gorging Smash] swirlies and spread loosely during splash damage.", type = "Call", id = "gui-TrS0BT9rG0" },
+      { order = 3,  role = "ALL", text = "After clearing the first hall, we'll move into n[Ravenous Destroyer] territory. Interrupt s[Gluttonous Miasma] and dodge s[Volatile Ejection] lines - targets stand still.", type = "Target", target = "Ravenous Destroyer", id = "gui-oTG0MocXCTo" },
+      { order = 4,  role = "ALL", text = "Move up the ramp and into the boss room for n[Azhiccar]. Tanks stay in melee range or risk s[Thrash] group wipes.", type = "Jump", id = "gui-xmunDY0fmo", target = "Azakar" },
+      { order = 5,  role = "ALL", text = "After n[Azhiccar], turn left into the Ethereal zone. Pull only 1 n[Overcharged Sentinel] at a time. Break shield, then kite during s[Shattered Core] puddles.", type = "Target", target = "Overcharged Sentinel", id = "gui-caQ6LKAdAj8" },
+      { order = 6,  role = "ALL", text = "Kick n[Wastelander Farstalker] s[Arcing Zap]; dispel s[Arcing Energy] from n[Wastelander Ritualist]; sidestep n[Tamed Ruinstalker] s[Warp].", type = "Target", target = "Wastelander Farstalker", id = "gui-8rCBVW71VuA" },
+      { order = 7,  role = "ALL", text = "Engage n[Taah'bat]. We'll line s[Warp Strike] through n[Taah'bat] and stack bosses during the stun window.", type = "Jump", id = "gui-2sfxgvX9QAQ", target = "Taah'bat" },
+      { order = 8,  role = "ALL", text = "Outdoor zone next - skip n[Burrowing Creeper] patrols if possible. Kill n[Wastelander Pactspeaker] spirits and purge n[K'aresh Elemental] s[Embrace of Caresh].", type = "Target", target = "Evoked Spirit", id = "gui-SDvtO9kUsw" },
+      { order = 9,  role = "ALL", text = "Before final boss, hit nearby Arcane Siphons for a haste/speed buff. Prep healing CDs for s[Whispers of Fate] into s[Ceremonial Dagger].", type = "Call", id = "gui-2EPfdKmkbhk" },
       { order = 10, role = "ALL", text = "Final boss: n[Soul-Scribe]. We collect our souls fast to avoid s[Wounded Fate] and rotate pickups during s[Eternal Weave].", type = "Jump", id = "gui-CIDYdl6Wv2c", target = "Soul-Scribe" }
     }
   },

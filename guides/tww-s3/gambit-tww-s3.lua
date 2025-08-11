@@ -15,7 +15,7 @@
       { order = 4, role = "ALL", text = "Water hides swirlies — watch for Goliath boulders and s[Tidal Stomp] shockwaves in shallow pools.", type = "Mechanic", id = "gui-3SvXqfBpEbU" },
       { order = 5, role = "ALL", text = "Docks priorities: kick n[Hourglass Tidesage] s[Brackish Bolt]; spread loosely for Cannon splash; soothe/kite hard-hitting n[Burly Deckhand]s if needed.", type = "Call", id = "gui-ZWcWc75PgfU" },
       { order = 6, role = "ALL", text = "Vault priorities: hard swap n[Wandering Pulsar]; kick n[Focused Ritualist] s[Unstable Rift] to avoid extra explosions.", type = "Call", id = "gui-ZqsrW0HCQ" },
-      { order = 7, role = "ALL", text = "Boss add/stops you'll need: n[Vault Purifier] (Hylbrande) — stop s[Empowered Defense]; So'leah assassins — kick s[Shuriken Blitz].", type = "Call", id = "gui-vLBOzL4O3h8" },
+      { order = 7, role = "ALL", text = "Boss add/stops you'll need: n[Vault Purifier] (Hylbrande) — stop s[Empowered Defense]; n[So' Cartel Assassin] — kick s[Shuriken Blitz].", type = "Call", id = "gui-vLBOzL4O3h8" },
       { order = 8, role = "ALL", text = "Space game: place fires/puddles at edges so mid stays clear for Hylbrande runes and So'leah relic lines.", type = "Mechanic", id = "gui-if58ixxhYP0" },
       { order = 9, role = "HEALER", text = "Plan dispels for s[Time Bomb] (Hooktail). Save externals for Hylbrande tank combos and So'leah star soaks + raid hits.", type = "Mechanic", id = "gui-GR5wPjjkTPM" },
       { order = 10, role = "TANK", text = "Control pack movement: drag mobs out of s[Invigorating Fish Stick] aura; face dangerous frontals away; reposition to preserve safe lanes.", type = "Mechanic", id = "gui-nmeQWQIZDg" },
@@ -29,18 +29,18 @@
     order = 2,
     header = "Route",
     entries = {
-      { order = 1, role = "ALL", text = "We open with Bloodlust on the murloc beach - pull n[Coastwalker Goliath] with nearby packs. Watch s[Tidal Stomp] timing.", type = "Call", id = "gui-y71SMeFhP44" },
-      { order = 2, role = "ALL", text = "Ensure interrupts on n[Murkbrine Shellcrusher] s[Cry of Mergle] and n[Murkbrine Fishmancer] s[Water Bolt].", type = "Call", id = "gui-om6HD0Yf3Pk" },
-      { order = 3, role = "ALL", text = "Swap to n[Murkbrine Scalebinder] s[Invigorating Fish Stick] on spawn - it heals/DRs nearby mobs.", type = "Call", id = "gui-BQjB2WPe7KI" },
-      { order = 4, role = "ALL", text = "Kite if needed when s[Invigorating Fish Stick] is active, or drag packs out of its aura.", type = "Call", id = "gui-excbcvEl3Y" },
-      { order = 5, role = "ALL", text = "Manage n[Stormforged Guardian] - dodge s[Charged Pulse] swirls and line s[Crackle] away from the group.", type = "Call", id = "gui-8NLNmydxA4E" },
-      { order = 6, role = "ALL", text = "Jump to n[Hylbrande].", type = "Jump", id = "gui-7NuiXwSyzq8", target = "Hylbrande" },
-      { order = 7, role = "ALL", text = "Pirate docks: kick n[Hourglass Tidesage] s[Brackish Bolt], soothe/kite n[Burly Deckhand] s[Super Saison].", type = "Call", id = "gui-9iHHINLcr2U" },
-      { order = 8, role = "ALL", text = "Spread loosely for n[Corsair Officer] s[Sword Toss] ricochet and avoid Cannon fire zones.", type = "Call", id = "gui-EH7PuejvL2c" },
-      { order = 9, role = "ALL", text = "Jump to n[Timecap'n Hooktail].", type = "Jump", id = "gui-KN6rR7kD4", target = "Timecap'n Hooktail" },
-      { order = 10, role = "ALL", text = "Broker wing: hard swap to n[Wandering Pulsar]; kick n[Focused Ritualist] s[Unstable Rift].", type = "Call", id = "gui-fySuFNR9lJc" },
+      { order = 1,  role = "ALL", text = "We open with Bloodlust on the murloc beach - pull n[Coastwalker Goliath] with nearby packs. Watch s[Tidal Stomp] timing.", type = "Call", id = "gui-y71SMeFhP44" },
+      { order = 2,  role = "ALL", text = "Ensure interrupts on n[Murkbrine Shellcrusher] s[Cry of Mergle] and n[Murkbrine Fishmancer] s[Water Bolt].", type = "Call", id = "gui-om6HD0Yf3Pk" },
+      { order = 3,  role = "ALL", text = "Swap to n[Murkbrine Scalebinder] s[Invigorating Fish Stick] on spawn - it heals/DRs nearby mobs.", target = "Invigorating Fish Stick", type = "Target", id = "gui-BQjB2WPe7KI" },
+      { order = 4,  role = "ALL", text = "Kite if needed when s[Invigorating Fish Stick] is active, or drag packs out of its aura.", type = "Call", id = "gui-excbcvEl3Y" },
+      { order = 5,  role = "ALL", text = "Manage n[Stormforged Guardian] - dodge s[Charged Pulse] swirls and line s[Crackle] away from the group.", type = "Call", id = "gui-8NLNmydxA4E" },
+      { order = 6,  role = "ALL", text = "Jump to n[Hylbrande].", type = "Jump", id = "gui-7NuiXwSyzq8", target = "Hylbrande" },
+      { order = 7,  role = "ALL", text = "Pirate docks: kick n[Hourglass Tidesage] s[Brackish Bolt], soothe/kite n[Burly Deckhand] s[Super Saison].", type = "Call", id = "gui-9iHHINLcr2U" },
+      { order = 8,  role = "ALL", text = "Spread loosely for n[Corsair Officer] s[Sword Toss] ricochet and avoid Cannon fire zones.", type = "Call", id = "gui-EH7PuejvL2c" },
+      { order = 9,  role = "ALL", text = "Jump to n[Timecap'n Hooktail].", type = "Jump", id = "gui-KN6rR7kD4", target = "Timecap'n Hooktail" },
+      { order = 10, role = "ALL", text = "Broker wing: hard swap to n[Wandering Pulsar]; kick n[Focused Ritualist] s[Unstable Rift].", target = "Wandering Pulsar", type = "Target", id = "gui-fySuFNR9lJc" },
       { order = 11, role = "ALL", text = "Jump to n[So'leah].", type = "Jump", id = "gui-AynbaTgzy3Y", target = "So'leah" }
-    },
+    }
   },
 
   ["Hylbrande"] = {
@@ -96,7 +96,7 @@
     order = 5,
     header = "Boss: So'leah",
     entries = {
-      { order = 1, role = "ALL", text = "Kick n[Assassin] s[Shuriken Blitz] and prio-kill the add to prevent group bleed.", type = "Interrupt", id = "gui-fHPZEo1wSQ" },
+      { order = 1, role = "ALL", text = "Kick n[So' Cartel Assassin] s[Shuriken Blitz] and prio-kill the add to prevent group bleed.", type = "Interrupt", id = "gui-fHPZEo1wSQ" },
       { order = 2, role = "ALL", text = "s[Collapsing Star] — soak one at a time with personals; final charge can safely expire.", type = "Call", id = "gui-M1iVAfy3Vug" },
       { order = 3, role = "ALL", text = "s[Power Overwhelming] — stand in arrow lines and aim s[Hyperlight Jolt] through relics to break shield.", type = "Call", id = "gui-aS4c0f0ub4k" },
       { order = 4, role = "ALL", text = "Keep space tidy: dodge s[Energy Fragmentation] shots and avoid s[Hyperlight Nova] zones around relics/boss.", type = "Mechanic", id = "gui-mEixn4fI" },
@@ -108,7 +108,7 @@
       { order = 10, role = "HEALER", text = "Triage s[Shuriken Blitz] bleed targets and the tank during movement. Expect spikes after shield breaks.", type = "Mechanic", id = "gui-z5RrPYXHBt8" },
       { order = 11, role = "HEALER", text = "During s[Power Overwhelming], pre-top before lines form; heal on the move while players align s[Hyperlight Jolt].", type = "Call", id = "gui-lkwRsVdxoBw" },
       { order = 12, role = "HEALER", text = "After shield break, cover raid for s[Energy Fragmentation] volleys while the tank repositions.", type = "Mechanic", id = "gui-pYN84DtzBiw" },
-      { order = 13, role = "DPS", text = "Prio interrupts on n[Assassin] s[Shuriken Blitz]; swap and delete the add quickly.", type = "Interrupt", id = "gui-pRynzVuj488" },
+      { order = 13, role = "DPS", text = "Prio interrupts on n[So' Cartel Assassin] s[Shuriken Blitz]; swap and delete the add quickly.", type = "Interrupt", id = "gui-pRynzVuj488" },
       { order = 14, role = "DPS", text = "Soak s[Collapsing Star] by assignment; use personals/DRs if you're low. Don't double-soak.", type = "Mechanic", id = "gui-bjPHY1MtYzc" },
       { order = 15, role = "DPS", text = "s[Power Overwhelming]: get into an arrow line fast; aim s[Hyperlight Jolt] through as many relics as possible.", type = "Call", id = "gui-RvTGsrcmks8" },
       { order = 16, role = "DPS", text = "Maintain clean lanes: avoid s[Hyperlight Nova] auras, keep moving to dodge s[Energy Fragmentation].", type = "Mechanic", id = "gui-dCh2CxgNqY" }

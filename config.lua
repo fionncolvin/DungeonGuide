@@ -13,7 +13,8 @@ local defaults = {
         Position =  { r = 0.8,  g = 0.5,  b = 0.2,  a = 0.3 },
         Interrupt = { r = 0.85, g = 0.4,  b = 0.85, a = 0.3 },
         Mechanic =  { r = 0.5,  g = 0.5,  b = 0.5,  a = 0.3 },
-        Jump = { r = 0.18, g = 0.93, b = 0.21, a = 0.3 }
+        Jump = { r = 0.18, g = 0.93, b = 0.21, a = 0.3 },
+        Target = { r = 1.0, g = 1.0, b = 0.0, a = 1.0 }
     }
 }
 
@@ -281,6 +282,7 @@ function DungeonGuideConfig:CreateDungeonGuideOptionsPanel()
         { label = "Interrupt", key = "Interrupt" },
         { label = "Mechanic", key = "Mechanic" },
         { label = "Jump", key = "Jump" },
+        { label = "Target", key = "Target" }
     }
 
     local colourHeader = content:CreateFontString(nil, "OVERLAY", "GameFontNormal")

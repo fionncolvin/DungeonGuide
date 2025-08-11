@@ -30,8 +30,8 @@
     order = 2,
     header = "Route",
     entries = {
-      { order = 1, role = "ALL", text = "Pull Quartermaster Corti + right-side guards for extra count.", type = "Call", id = "gui-KsZDSRTIow" },
-      { order = 2, role = "ALL", text = "Focus Corti quickly. Watch Bounding Void frontal.", type = "Mechanic", id = "gui-5CnFPSceC4" },
+      { order = 1, role = "ALL", text = "Pull Quartermaster Koratite + right-side guards for extra count.", type = "Call", id = "gui-KsZDSRTIow" },
+      { order = 2, role = "ALL", text = "Focus Koratite quickly. Watch Bounding Void frontal.", type = "Mechanic", id = "gui-5CnFPSceC4" },
       { order = 3, role = "ALL", text = "Move into Storm's Roost: right side first, grab patrol + adjacent pack.", type = "Call", id = "gui-vnjfOAC0nw" },
       { order = 4, role = "ALL", text = "Kick Cursed Thunderers. Watch Storm Rook unavoidable group damage.", type = "Mechanic", id = "gui-1UTBeFhEmSI" },
       { order = 5, role = "ALL", text = "Clear around Storm's Roost room one pack at a time.", type = "Call", id = "gui-Qgl0kn3APYM" },

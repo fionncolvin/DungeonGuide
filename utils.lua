@@ -87,7 +87,7 @@ function DungeonGuide_GetEncounterEntry(dungeonID, encounter)
 end
 
 -- DungeonGuide_GetGuideEntry retrieves the guide entry for a specific dungeon and encounter.
-function DungeonGuide_GetGuideEntry(dungeonID, encounter, force)
+function DungeonGuide_GetGuideEntry(dungeonID, encounter)
     local base = nil
     local override = nil
 
@@ -100,14 +100,7 @@ function DungeonGuide_GetGuideEntry(dungeonID, encounter, force)
         encounter = DungeonGuideContext.encounter
     end
 
-    if not force then
-        force = DungeonGuideContext.forceSelect or false
-    end
-
     DungeonGuide_DebugInfo("[DungeonGuide_GetGuideEntry] DungeonGuide_GetGuideEntry called with dungeon: " .. tostring(dungeon) .. ", encounter: " .. tostring(encounter) .. ", force: " .. tostring(force))
-
-    -- Resolve dungeon ID from name + season if not already an ID
-    --local dungeonID = DungeonGuide_FindDungeonIDByNameAndSeason(dungeon, DungeonGuideContext.season) or dungeon
 
     local function sortedEntries(override, base)
         if override then
@@ -124,32 +117,8 @@ function DungeonGuide_GetGuideEntry(dungeonID, encounter, force)
         return base
     end
 
-    -- Force-select bypasses detection
-    if force then
-        base = DungeonGuide_GetBaseEntry(dungeonID, encounter)
-        override = DungeonGuide_GetOverrideEntry(dungeonID, encounter)
-        return sortedEntries(override, base)
-    end
-
-    -- Try to use target name as encounter if available
-    if UnitExists("target") then
-        local targetName = UnitName("target")
-        DungeonGuide_DebugInfo("[DungeonGuide_GetGuideEntry] Checking for target Guide - " .. targetName .. " in dungeon: " .. dungeonID)
-        base = DungeonGuide_GetBaseEntry(dungeonID, targetName)
-
-        if base then
-            DungeonGuideContext.encounter = targetName
-            encounter = targetName
-            DungeonGuide_DebugInfo("[DungeonGuide_GetGuideEntry] Found Guide for Target - " .. targetName)
-            override = DungeonGuide_GetOverrideEntry(dungeonID, encounter)
-            return sortedEntries(override, base)
-        end
-    end
-
-    -- Fallback to provided/selected encounter
     base = DungeonGuide_GetBaseEntry(dungeonID, encounter)
     override = DungeonGuide_GetOverrideEntry(dungeonID, encounter)
-
     return sortedEntries(override, base)
 end
 
@@ -363,13 +332,108 @@ function DungeonGuide_FindDungeonNameByID(dungeonID)
     return guide.name
 end
 
+-- DungeonGuide_SetTarget checks if the current target has a corresponding entry in the dungeon guide.
+function DungeonGuide_SetTarget()
+    local dungeonID = DungeonGuideContext.dungeonID
+    if not dungeonID then
+        DungeonGuide_DebugInfo("[DungeonGuide_SetTarget] No dungeon ID found for current context.")
+        return nil
+    end
+
+    local targetName = UnitName("target")
+    if not targetName then
+        DungeonGuide_DebugInfo("[DungeonGuide_SetTarget] No target selected.")
+        return nil
+    end
+
+    local entry = DungeonGuide_GetBaseEntry(dungeonID, targetName)
+    if entry then
+        DungeonGuide_DebugInfo("[DungeonGuide_SetTarget] Found guide entry for target: " .. targetName)
+        DungeonGuideContext.encounter = targetName
+        return nil
+    else
+        DungeonGuide_DebugInfo("[DungeonGuide_SetTarget] No entry found for target: " .. targetName)
+        return nil
+    end
+end  
+
 -- DungeonGuide_SetGuideContext sets the current guide context based on the provided parameters.
-function DungeonGuide_SetGuideContext(season, role, dungeonID, encounter, forceSelect)
+function DungeonGuide_SetGuideContext(season, role, dungeonID, encounter)
     DungeonGuideContext.season = season or DungeonGuideContext.season
     DungeonGuideContext.role = role or DungeonGuideContext.role
     DungeonGuideContext.dungeonID = dungeonID or DungeonGuideContext.dungeonID
     DungeonGuideContext.encounter = encounter or DungeonGuideContext.encounter
-    DungeonGuideContext.forceSelect = forceSelect or DungeonGuideContext.forceSelect
 
-    DungeonGuide_DebugInfo("[DungeonGuide_SetGuideContext] Set guide context: season=" .. tostring(DungeonGuideContext.season) .. " role=" .. tostring(DungeonGuideContext.role) .. " dungeonID=" .. tostring(DungeonGuideContext.dungeonID) .. ", encounter=" .. tostring(DungeonGuideContext.encounter) .. ", forceSelect=" .. tostring(DungeonGuideContext.forceSelect))
+    DungeonGuide_DebugInfo("[DungeonGuide_SetGuideContext] Set guide context: season=" .. tostring(DungeonGuideContext.season) .. " role=" .. tostring(DungeonGuideContext.role) .. " dungeonID=" .. tostring(DungeonGuideContext.dungeonID) .. ", encounter=" .. tostring(DungeonGuideContext.encounter))
+end
+
+-- ===== Targeting helpers (ID or Name) =====
+
+-- Parse NPC ID from a unit GUID
+function DungeonGuide_GetNpcIDFromGUID(guid)
+    if not guid then return nil end
+    local unitType, _, _, _, _, npcId = strsplit("-", guid)
+    if unitType ~= "Creature" and unitType ~= "Vehicle" and unitType ~= "Pet" then
+        return nil
+    end
+    return tonumber(npcId)
+end
+
+-- Is the target value an ID (e.g. "216340") or a Name (e.g. "Sentry Stagshell")?
+function DungeonGuide_LineTargetIsID(targetVal)
+    if type(targetVal) == "number" then return true end
+    if type(targetVal) == "string" then
+        return targetVal:match("^%d+$") ~= nil
+    end
+    return false
+end
+
+-- Does this unit token match the target (by NPC ID or by exact name)?
+function DungeonGuide_UnitMatchesLineTarget(unit, targetVal)
+    if not unit or not UnitExists(unit) or not targetVal then return false end
+    if DungeonGuide_LineTargetIsID(targetVal) then
+        return DungeonGuide_GetNpcIDFromGUID(UnitGUID(unit)) == tonumber(targetVal)
+    else
+        local n = UnitName(unit)
+        return n ~= nil and n == tostring(targetVal)
+    end
+end
+
+-- Find a visible, targetable unit token that matches this target (boss frames, nameplates, some extras)
+function DungeonGuide_FindMatchingUnitToken(targetVal)
+    if not targetVal then return nil end
+
+    -- already targeting?
+    if DungeonGuide_UnitMatchesLineTarget("target", targetVal) then
+        return "target"
+    end
+
+    -- boss frames
+    for i = 1, 5 do
+        local u = "boss"..i
+        if UnitExists(u) and DungeonGuide_UnitMatchesLineTarget(u, targetVal) then
+            return u
+        end
+    end
+
+    -- nameplates (must be visible/in LoS)
+    local plates = C_NamePlate and C_NamePlate.GetNamePlates and C_NamePlate.GetNamePlates()
+    if plates then
+        for i = 1, #plates do
+            local u = plates[i].namePlateUnitToken
+            if u and DungeonGuide_UnitMatchesLineTarget(u, targetVal) then
+                return u
+            end
+        end
+    end
+
+    -- handy extras
+    local extras = { "mouseover", "focus", "party1target","party2target","party3target","party4target" }
+    for _, u in ipairs(extras) do
+        if UnitExists(u) and DungeonGuide_UnitMatchesLineTarget(u, targetVal) then
+            return u
+        end
+    end
+
+    return nil
 end

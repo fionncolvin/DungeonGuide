@@ -30,18 +30,21 @@
     header = "Route",
     entries = {
       { order = 1, role = "ALL", text = "We are starting RIGHT side - n[Arathi Footman] + n[Fervent Sharpshooter] packs give high count with lower danger.", type = "Call", id = "gui-W3vH0xNe9s" },
-      { order = 2, role = "ALL", text = "Pull opener into n[Guard Captain Sullean]. I’ll tank him near stairs/wall to negate knockback.", type = "Call", id = "gui-T7fQ9pXl2b" },
-      { order = 3, role = "ALL", text = "After Sullean, engage n[Sergeant Shaynemail] - spread for s[Lunging Strike] bleed or stand on brazier to avoid target.", type = "Call", id = "gui-Y1kM5zVo8p" },
-      { order = 4, role = "ALL", text = "Chain into n[Fervent Sharpshooter] + n[Arathi Footman] patrol. Ranged stack in melee to bait s[Disengage].", type = "Call", id = "gui-H6gR8vQn4m" },
-      { order = 5, role = "ALL", text = "Next up: n[Forge Master Damian]. Dodge puddles, use AMS/Bubble/Spellwarding to prevent spawns.", type = "Call", id = "gui-J4xT0mFc6n" },
-      { order = 6, role = "ALL", text = "Move to fountain area, clear patrol into n[Elaena Emberlanz]. Interrupt s[Holy Radiance], dispel tank after s[Divine Judgment].", type = "Call", id = "gui-P9cS7bLq3y" },
-      { order = 7, role = "ALL", text = "Boss: n[Captain Dailcry] with 1 lieutenant. Stack, cleave, manage puddle placement.", type = "Jump", target = "Captain Dailcry", id = "gui-C3VZxxgbDeE" },
-      { order = 8, role = "ALL", text = "After boss, clear to cathedral. Skip LEFT side if we have count. Watch n[Ardent Paladin] s[Sacred Toll] and n[Zealous Templar] buffs.", type = "Call", id = "gui-K5jP2wNa0u" },
-      { order = 9, role = "ALL", text = "Interrupt n[Devout Priest] s[Greater Heal] and n[Risen Mage] s[Fireball Volley]. Stun n[Lightspawn] at low HP to avoid Purification heal.", type = "Call", id = "gui-N1tD8qLs7o" },
-      { order = 10, role = "ALL", text = "Next: n[Baron Braunpyke]. Hug left wall to bait hammers into one zone.", type = "Jump", target = "Baron Braunpyke", id = "gui-LI42kGHZ5Gk" },
-      { order = 11, role = "ALL", text = "Stairwell pack after Baron - LOS pull around corner. Handle n[Lightspawn] separately to avoid heals.", type = "Call", id = "gui-U8dR6pMf1x" },
-      { order = 12, role = "ALL", text = "Final mini-boss: n[Serb Ronpike]. Use Bloodlust here if not saving for last boss.", type = "Call", id = "gui-Q7mY4vPt2n" },
-      { order = 13, role = "ALL", text = "Last boss: n[Prioress Murrpray]. Prep cooldowns for 50% add phase and s[Embrace the Light] shield burn.", type = "Jump", target = "Prioress Murrpray", id = "gui-1184QRwvWPw" }
+      { order = 2, role = "ALL", text = "CC and kill n[Arathi Footman] fast to stop s[Defend] damage reduction.", type = "Target", target = "Arathi Footman", id = "gui-gTr9Pw8f2Lk" },
+      { order = 3, role = "ALL", text = "Pull opener into n[Guard Captain Sullean]. I'll tank him near stairs/wall to negate knockback.", type = "Call", id = "gui-T7fQ9pXl2b" },
+      { order = 4, role = "ALL", text = "After Sullean, engage n[Sergeant Shaynemail] - spread for s[Lunging Strike] bleed or stand on brazier to avoid target.", type = "Call", id = "gui-Y1kM5zVo8p" },
+      { order = 5, role = "ALL", text = "Chain into n[Fervent Sharpshooter] + n[Arathi Footman] patrol. Ranged stack in melee to bait s[Disengage].", type = "Call", id = "gui-H6gR8vQn4m" },
+      { order = 6, role = "ALL", text = "Next up: n[Forge Master Damian]. Dodge puddles, use AMS/Bubble/Spellwarding to prevent spawns.", type = "Call", id = "gui-J4xT0mFc6n" },
+      { order = 7, role = "ALL", text = "Move to fountain area, clear patrol into n[Elaena Emberlanz]. Interrupt s[Holy Radiance], dispel tank after s[Divine Judgment].", type = "Call", id = "gui-P9cS7bLq3y" },
+      { order = 8, role = "ALL", text = "Boss: n[Captain Dailcry] with 1 lieutenant. Stack, cleave, manage puddle placement.", type = "Jump", target = "Captain Dailcry", id = "gui-C3VZxxgbDeE" },
+      { order = 9, role = "ALL", text = "After boss, clear to cathedral. Skip LEFT side if we have count. Watch n[Ardent Paladin] s[Sacred Toll] and n[Zealous Templar] buffs.", type = "Call", id = "gui-K5jP2wNa0u" },
+      { order = 10, role = "ALL", text = "Kill n[Ardent Paladin] fast to reduce s[Sacred Toll] group hits.", type = "Target", target = "Ardent Paladin", id = "gui-F9kSmcT82Yp" },
+      { order = 11, role = "ALL", text = "Interrupt n[Devout Priest] s[Greater Heal] and n[Risen Mage] s[Fireball Volley]. Stun n[Lightspawn] at low HP to avoid Purification heal.", type = "Call", id = "gui-N1tD8qLs7o" },
+      { order = 12, role = "ALL", text = "Focus n[Devout Priest] to prevent s[Greater Heal] and n[Risen Mage] to stop s[Fireball Volley].", type = "Target", target = "Devout Priest", id = "gui-C5zJrt9x1mL" },
+      { order = 13, role = "ALL", text = "Next: n[Baron Braunpyke]. Hug left wall to bait hammers into one zone.", type = "Jump", target = "Baron Braunpyke", id = "gui-LI42kGHZ5Gk" },
+      { order = 14, role = "ALL", text = "Stairwell pack after Baron - LOS pull around corner. Handle n[Lightspawn] separately to avoid heals.", type = "Call", id = "gui-U8dR6pMf1x" },
+      { order = 15, role = "ALL", text = "Final mini-boss: n[Baron Braunpyke]. Use Bloodlust here if not saving for last boss.", type = "Call", id = "gui-Q7mY4vPt2n" },
+      { order = 16, role = "ALL", text = "Last boss: n[Prioress Murrpray]. Prep cooldowns for 50% add phase and s[Embrace the Light] shield burn.", type = "Jump", target = "Prioress Murrpray", id = "gui-1184QRwvWPw" }
     }
   },
   

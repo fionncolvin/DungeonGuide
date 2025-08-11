@@ -306,7 +306,7 @@ end
 
 function DungeonGuideEditorUI:PopulateGuideEntries(dungeonID, encounter)
     local editArea = self.editArea
-    local guide = DungeonGuide_GetGuideEntry(dungeonID, encounter, true)
+    local guide = DungeonGuide_GetGuideEntry(dungeonID, encounter)
 
     if not guide then
         return
@@ -478,7 +478,7 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonID, encounter)
                 UIDropDownMenu_SetText(dd, fields.type)
 
                 UIDropDownMenu_Initialize(dd, function(self, level)
-                    local types = { "Call", "Position", "Interrupt", "Mechanic", "Jump" }
+                    local types = { "Call", "Position", "Interrupt", "Mechanic", "Jump", "Target" }
                     for _, t in ipairs(types) do
                         local info = UIDropDownMenu_CreateInfo()
                         info.text = t

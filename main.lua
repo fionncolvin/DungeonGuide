@@ -10,7 +10,6 @@ local f = CreateFrame("Frame")
 
 DungeonGuideContext = {
     season = nil,
-    forceSelect = false,
     role = nil,
     encounter = nil,
     dungeonID = nil
@@ -71,7 +70,7 @@ f:RegisterEvent("CHALLENGE_MODE_START")
 f:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 
 f:SetScript("OnEvent", function()
-    C_Timer.After(1, DungeonGuide_DetectGuideContext)
+    C_Timer.After(5, DungeonGuide_DetectGuideContext)
 end)
 
 -- Slash command handler
@@ -100,6 +99,4 @@ SlashCmdList["DUNGEONGUIDE"] = function(msg)
         DungeonGuideUI:ShowGuideButton()
         DungeonGuideUI:ShowGuide()
     end
-
-    DungeonGuideContext.forceSelect = false
 end

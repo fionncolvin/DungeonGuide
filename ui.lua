@@ -267,6 +267,13 @@ function DungeonGuideUI:UpdateGuideContent(returnGuide)
 
             row:SetScript("OnClick", nil)
 
+            -- Kill any previous Target ticker on this row to avoid leaks
+            if row._dgTicker then
+                row._dgTicker:Cancel()
+                row._dgTicker = nil
+            end
+            row._dgTargetable = nil
+
             -- Colour bar
             local c = DungeonGuideDB.colours[line.type]
 
@@ -298,14 +305,46 @@ function DungeonGuideUI:UpdateGuideContent(returnGuide)
                         print("[DungeonGuide] Not in a party.")
                     end
                 end)
+            elseif line.type == "Target" then
+                -- get the configured highlight colour
+                local highlightColor = DungeonGuideDB.colours["Target"]
+
+                row._dgTicker = C_Timer.NewTicker(1, function()
+                    local u = DungeonGuide_FindMatchingUnitToken(line.target)
+                    local isTargetable = (u ~= nil)
+                    if isTargetable ~= row._dgTargetable then
+                        row._dgTargetable = isTargetable
+                        if isTargetable and highlightColor then
+                            row.text:SetTextColor(highlightColor.r, highlightColor.g, highlightColor.b, highlightColor.a or 1)
+                        else
+                            -- reset to default colour
+                            row.text:SetTextColor(1, 1, 1, 1)
+                        end
+                    end
+                end)
+
+                if not row._dgHookedHide then
+                    row:HookScript("OnHide", function(self)
+                        if self._dgTicker then self._dgTicker:Cancel(); self._dgTicker = nil end
+                        self._dgTargetable = nil
+                        row.text:SetTextColor(1, 1, 1, 1) -- reset when hidden
+                    end)
+                    row._dgHookedHide = true
+                end
+
+                row:SetScript("OnClick", function()
+                    if IsInGroup(LE_PARTY_CATEGORY_HOME) then
+                        SendChatMessage(DungeonGuideUI:StripFormat(line.text), "PARTY")
+                    else
+                        print("[DungeonGuide] Not in a party.")
+                    end
+                end)
             elseif line.type == "Jump" then 
                 row:SetScript("OnClick", function()
                     if line.target then
                         local returnGuide = DungeonGuideContext.encounter
                         DungeonGuideContext.encounter = line.target
-                        DungeonGuideContext.forceSelect = true
                         DungeonGuideUI:UpdateGuideContent(returnGuide)
-                        DungeonGuideContext.forceSelect = false
                     else
                         DungeonGuide_DebugInfo("No target specified for jump action: " .. line.text)
                     end
@@ -349,9 +388,7 @@ function DungeonGuideUI:UpdateGuideContent(returnGuide)
 
         row:SetScript("OnClick", function()
             DungeonGuideContext.encounter = returnGuide
-            DungeonGuideContext.forceSelect = true
             DungeonGuideUI:UpdateGuideContent()
-            DungeonGuideContext.forceSelect = false
         end)
 
         row:Show()
@@ -405,6 +442,7 @@ function DungeonGuideUI:CreateGuideButton()
 
     button:SetScript("OnClick", function()
         DungeonGuide_DetectGuideContext()
+        DungeonGuide_SetTarget()
         DungeonGuideUI:ShowGuide()
         DungeonGuideUI.MenuState = { showDungeons = false, selectedDungeon = DungeonGuideContext.dungeonID }
     end)
@@ -533,7 +571,6 @@ function DungeonGuideUI:BuildMainMenu(dungeonSelected)
                 AddButton(displayName, function()
                     DungeonGuide_SetGuideContext(DungeonGuideDB.selectedSeason, DungeonGuide_GetPlayerRole(), self.MenuState.selectedDungeon, enc.name, true)   
                     DungeonGuideUI:ShowGuide()
-                    DungeonGuideContext.forceSelect = false
                     self.MainMenu:Hide()
                 end, 20, false, true)
             end
