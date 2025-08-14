@@ -24,7 +24,7 @@
     entries = {
       { order = 1,  role = "ALL", text = "Turn left at start, hugging the wall to skip initial mobs.", type = "Call", id = "gui-start-left-wall" },
       { order = 2,  role = "ALL", text = "Pull patrolling n[Ravenous Destroyer] with nearby n[Overgorged Mite] packs.", type = "Target", target = "Ravenous Destroyer", id = "gui-destroyer-bigpull" },
-      { order = 3,  role = "ALL", text = "Use Bloodlust here. Focus melee kicks on s[Engorge] from Mites.", type = "Call", id = "gui-mite-engorge" },
+      { order = 3,  role = "ALL", text = "We use Bloodlust here. Focus melee kicks on s[Engorge] from Mites.", type = "Call", id = "gui-mite-engorge" },
       { order = 4,  role = "ALL", text = "If s[Engorge] gets off, expect a heavy DoT. Use defensives and spot healing.", type = "Call", id = "gui-gorge-dot" },
       { order = 5,  role = "ALL", text = "Spread loosely for splash damage. Watch for s[Gorging Smash] swirlies.", type = "Call", id = "gui-gorging-smash" },
       { order = 6,  role = "ALL", text = "Clear to first boss. Funnel 2x n[Scavenger] into n[Azakar] for extra damage.", type = "Target", target = "Scavenger", id = "gui-scavenger-funnel" },
