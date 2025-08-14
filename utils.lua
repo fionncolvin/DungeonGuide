@@ -198,7 +198,6 @@ function DungeonGuide_SortEntries(entries, dungeonID, encounter)
         return
     end
 
-    local season = DungeonGuideContext.season
     local orderTable = DungeonGuide_Orders[dungeonID] and DungeonGuide_Orders[dungeonID][encounter]
 
     if not orderTable then
