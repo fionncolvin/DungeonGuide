@@ -193,14 +193,12 @@ function DungeonGuide_tIndexOf(list, value)
 end
 
 -- DungeonGuide_SortEntries sorts the entries of a dungeon guide based on a predefined order.
-function DungeonGuide_SortEntries(entries, dungeon, encounter)
+function DungeonGuide_SortEntries(entries, dungeonID, encounter)
     if not entries then
         return
     end
 
     local season = DungeonGuideContext.season
-    local dungeonID = DungeonGuide_FindDungeonIDByNameAndSeason(dungeon, season) or dungeon
-
     local orderTable = DungeonGuide_Orders[dungeonID] and DungeonGuide_Orders[dungeonID][encounter]
 
     if not orderTable then
