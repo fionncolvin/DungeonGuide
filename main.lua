@@ -16,20 +16,56 @@ DungeonGuideContext = {
 }
 
 function DungeonGuide_ShowInstanceDetals()
-    local name, instanceType, difficultyID, difficultyName, maxPlayers, dynamicDifficulty, isDynamic, instanceID, instanceGroupSize, lfgDungeonID, toggleDifficultyID = GetInstanceInfo()
+    -- GetInstanceInfo basics
+    local name, instanceType, difficultyID, difficultyName, maxPlayers,
+          dynamicDifficulty, isDynamic, instanceID, instanceGroupSize,
+          lfgDungeonID, toggleDifficultyID = GetInstanceInfo()
+
+    -- Challenge Mode (Mythic+) map id + readable name (if any)
+    local cmMapID = C_ChallengeMode and C_ChallengeMode.GetActiveChallengeMapID and C_ChallengeMode.GetActiveChallengeMapID()
+    local cmName
+    if cmMapID and C_ChallengeMode.GetMapUIInfo then
+        local info = C_ChallengeMode.GetMapUIInfo(cmMapID) -- returns name (string)
+        if type(info) == "table" then
+            cmName = info.name
+        else
+            cmName = info -- some builds return string directly
+        end
+    end
+
+    -- UiMapID + group + map name
+    local uiMapID = C_Map and C_Map.GetBestMapForUnit and C_Map.GetBestMapForUnit("player")
+    local mapGroupID = (uiMapID and C_Map.GetMapGroupID) and C_Map.GetMapGroupID(uiMapID) or nil
+    local mapInfo = (uiMapID and C_Map.GetMapInfo) and C_Map.GetMapInfo(uiMapID) or nil
+    local mapName = mapInfo and mapInfo.name or nil
+
+    -- Optional: Encounter Journal instance id from map (may be nil)
+    local ejInstanceID
+    if uiMapID and EJ_GetInstanceForMap then
+        ejInstanceID = EJ_GetInstanceForMap(uiMapID)
+    elseif uiMapID and C_EncounterJournal and C_EncounterJournal.GetInstanceForMap then
+        -- depending on client, this may exist instead
+        ejInstanceID = C_EncounterJournal.GetInstanceForMap(uiMapID)
+    end
 
     print("----- DungeonGuide Zone Info -----")
-    print("Name:               ", name)
-    print("Type:               ", instanceType)
-    print("Difficulty ID:      ", difficultyID)
-    print("Difficulty Name:    ", difficultyName)
-    print("Max Players:        ", maxPlayers)
-    print("Dynamic Difficulty: ", dynamicDifficulty)
-    print("Is Dynamic:         ", isDynamic)
-    print("Instance ID:        ", instanceID)
-    print("Group Size:         ", instanceGroupSize)
-    print("LFG Dungeon ID:     ", lfgDungeonID)
-    print("Toggle Difficulty ID:", toggleDifficultyID)
+    print("Name:                ", tostring(name))
+    print("Type:                ", tostring(instanceType))
+    print("Difficulty ID:       ", tostring(difficultyID))
+    print("Difficulty Name:     ", tostring(difficultyName))
+    print("Max Players:         ", tostring(maxPlayers))
+    print("Dynamic Difficulty:  ", tostring(dynamicDifficulty))
+    print("Is Dynamic:          ", tostring(isDynamic))
+    print("Instance ID:         ", tostring(instanceID))
+    print("Group Size:          ", tostring(instanceGroupSize))
+    print("LFG Dungeon ID:      ", tostring(lfgDungeonID))
+    print("Toggle Difficulty ID:", tostring(toggleDifficultyID))
+    print("--- Map Detection ----------------")
+    print("CM Map ID:           ", tostring(cmMapID or "nil"), cmName and ("("..cmName..")") or "")
+    print("UiMapID:             ", tostring(uiMapID or "nil"))
+    print("Map Group ID:        ", tostring(mapGroupID or "nil"))
+    print("Map Name:            ", tostring(mapName or "nil"))
+    print("EJ Instance (map):   ", tostring(ejInstanceID or "nil"))
     print("----------------------------------")
 end
 
@@ -70,6 +106,9 @@ f:SetScript("OnEvent", function()
 end)
 
 -- Slash command handler
+SLASH_DGINSTANCE1 = "/dginfo"
+SlashCmdList["DGINSTANCE"] = function() DungeonGuide_ShowInstanceDetals() end
+
 SLASH_DUNGEONGUIDE1 = "/dg"
 SlashCmdList["DUNGEONGUIDE"] = function(msg)
     local role, encounter, dungeon = msg:match("^(.-)%s*@%s*(.-)%s*@%s*(.-)%s*$")
