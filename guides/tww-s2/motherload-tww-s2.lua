@@ -1,8 +1,11 @@
 ﻿DungeonGuide_Guides["dung-motherlode-tww-s2"] = {
+  unitMapIDs = {1010},
+  challengeMapID = {247},
   name = "The MOTHERLODE!!",
   id = "dung-motherlode-tww-s2",
   season = "TWW-S2",
   guideType = "M+",
+  
   ["The MOTHERLODE!!"] = {
     id = "enc-motherlode-guide",
     order = 1,

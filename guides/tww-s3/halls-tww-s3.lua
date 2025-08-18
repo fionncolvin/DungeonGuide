@@ -1,4 +1,6 @@
 ﻿DungeonGuide_Guides["dung-halls-of-atonement-tww-s3"] = {
+  unitMapIDs = {1663, 1664, 1665},
+  challengeMapID = {378},
   name = "Halls of Atonement",
   id = "dung-halls-of-atonement-tww-s3",
   season = "TWW-S3",

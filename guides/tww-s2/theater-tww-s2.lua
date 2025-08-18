@@ -1,8 +1,11 @@
 ﻿DungeonGuide_Guides["dung-theater-tww-s2"] = {
+  unitMapIDs = {1683, 1684, 1685, 1686, 1687},
+  challengeMapID = {382},
   name = "Theater of Pain",
   id = "dung-theater-tww-s2",
   season = "TWW-S2",
   guideType = "M+",
+  
   ["Theater of Pain"] = {
     id = "enc-theater-guide",
     order = 1,

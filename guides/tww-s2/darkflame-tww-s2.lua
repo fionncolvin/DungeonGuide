@@ -1,8 +1,11 @@
 ﻿DungeonGuide_Guides["dung-darkflame-tww-s2"] = {
+  unitMapIDs = {2214, 2303},
+  challengeMapID = {504},
   name = "Darkflame Cleft",
   id = "dung-darkflame-tww-s2",
   season = "TWW-S2",
   guideType = "M+",
+  
   ["Darkflame Cleft"] = {
     id = "enc-darkflame-guide",
     order = 1,

@@ -1,8 +1,11 @@
 ﻿DungeonGuide_Guides["dung-floodgate-tww-s2"] = {
+  unitMapIDs = {2387, 2388},
+  challengeMapID = {525},
   name = "Operation: Floodgate",
   id = "dung-floodgate-tww-s2",
   season = "TWW-S2",
   guideType = "M+",
+  
   ["Operation: Floodgate"] = {
     id = "enc-floodgate-guide",
     order = 1,

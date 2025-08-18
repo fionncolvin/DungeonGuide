@@ -1,4 +1,6 @@
 DungeonGuide_Guides["dung-tazavesh-streets-tww-s3"] = {
+  unitMapIDs = {1989, 1990, 1991, 1992},
+  challengeMapID = {391},
   name = "Tazavesh: Streets of Wonder",
   id = "dung-tazavesh-streets-tww-s3",
   season = "TWW-S3",

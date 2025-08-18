@@ -35,31 +35,27 @@ end
 
 -- Detect context based on zone and set guide data
 function DungeonGuide_DetectGuideContext()
-    local zoneName = GetRealZoneText()
     local season = DungeonGuideDB.selectedSeason or DungeonGuide_GetAvailableSeasons()[1]
     local role = DungeonGuide_GetPlayerRole()
-    local encounter = GetRealZoneText()
-    local dungeonID = DungeonGuide_FindDungeonIDByNameAndSeason(zoneName, season)
+    local encounter = GetRealZoneText() -- still use zone text as default encounter
+
+    local dungeonID = DungeonGuide_FindDungeonIDByContext()
 
     if not dungeonID then
-        DungeonGuide_DebugInfo("[DungeonGuide_DetectGuideContext]: No dungeon found for name: " .. tostring(zoneName) .. ", season: " .. tostring(season))
-
+        DungeonGuide_DebugInfo("[DungeonGuide_DetectGuideContext]: No dungeon found for current context, season: " .. tostring(season))
         if DungeonGuideUI and DungeonGuideUI.GuideButton and DungeonGuideDB.autoHide then
             DungeonGuideUI.GuideButton:Hide()
         end
     else
         DungeonGuide_SetGuideContext(season, role, dungeonID, encounter, false)
-
         local dungeon = DungeonGuide_GetDungeonEntry(dungeonID)
 
         if dungeon then
             if DungeonGuideUI and DungeonGuideUI.ShowGuideButton then
                 DungeonGuideUI:ShowGuideButton()
             end
-        else
-            if DungeonGuideUI and DungeonGuideUI.GuideButton and DungeonGuideDB.autoHide then
-                DungeonGuideUI.GuideButton:Hide()
-            end
+        elseif DungeonGuideUI and DungeonGuideUI.GuideButton and DungeonGuideDB.autoHide then
+            DungeonGuideUI.GuideButton:Hide()
         end
     end
 end

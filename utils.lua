@@ -1,3 +1,41 @@
+-- Find dungeon by challengeMapID (M+) or unitMapIDs (normal/heroic/mythic)
+function DungeonGuide_FindDungeonIDByContext()
+    local season = DungeonGuideDB.selectedSeason or DungeonGuide_GetAvailableSeasons()[1]
+
+    -- First try Challenge Mode (M+)
+    local cmID = C_ChallengeMode.GetActiveChallengeMapID and C_ChallengeMode.GetActiveChallengeMapID()
+
+    if cmID then
+        for id, guide in pairs(DungeonGuide_Guides) do
+            if guide.season == season and guide.challengeMapID then
+                for _, v in ipairs(guide.challengeMapID) do
+                    if v == cmID then
+                        return id
+                    end
+                end
+            end
+        end
+    end
+
+    -- Fallback: check current UiMapID
+    local uiID = C_Map.GetBestMapForUnit("player")
+    
+    if uiID then
+        local groupID = C_Map.GetMapGroupID(uiID) or uiID
+        for id, guide in pairs(DungeonGuide_Guides) do
+            if guide.season == season and guide.unitMapIDs then
+                for _, v in ipairs(guide.unitMapIDs) do
+                    if v == groupID then
+                        return id
+                    end
+                end
+            end
+        end
+    end
+
+    return nil
+end
+
 -- DungeonGuide_FindDungeonIDByNameAndSeason retrieves the dungeon ID based on the dungeon name and season.
 function DungeonGuide_FindDungeonIDByNameAndSeason(name, season)
     for id, guide in pairs(DungeonGuide_Guides) do

@@ -1,8 +1,11 @@
 ﻿DungeonGuide_Guides["dung-priory-tww-s2"] = {
+  unitMapIDs = {2215, 2308, 2309},
+  challengeMapID = {499},
   name = "Priory of the Sacred Flame",
   id = "dung-priory-tww-s2",
   season = "TWW-S2",
   guideType = "M+",
+  
   ["Priory of the Sacred Flame"] = {
     id = "enc-priory-guide",
     order = 1,

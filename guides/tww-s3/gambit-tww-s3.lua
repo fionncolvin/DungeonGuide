@@ -1,4 +1,6 @@
-﻿DungeonGuide_Guides["dung-soleahs-gambit-tww-s3"] = {
+DungeonGuide_Guides["dung-soleahs-gambit-tww-s3"] = {
+  unitMapIDs = {1993, 1995, 1996},
+  challengeMapID = {392},
   name = "So'leah's Gambit",
   id = "dung-soleahs-gambit-tww-s3",
   season = "TWW-S3",

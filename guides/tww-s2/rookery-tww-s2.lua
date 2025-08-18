@@ -1,8 +1,11 @@
 ﻿DungeonGuide_Guides["dung-rookery-tww-s2"] = {
+  unitMapIDs = {2315, 2316, 2317, 2318, 2319, 2320},
+  challengeMapID = {500},
   name = "The Rookery",
   id = "dung-rookery-tww-s2",
   season = "TWW-S2",
   guideType = "M+",
+  
   ["The Rookery"] = {
     id = "enc-rookery-guide",
     order = 1,

@@ -1,4 +1,6 @@
 ﻿DungeonGuide_Guides["dung-priory-tww-s3"] = {
+  unitMapIDs = {2215, 2308, 2309},
+  challengeMapID = {499},
   name = "Priory of the Sacred Flame",
   id = "dung-priory-tww-s3",
   season = "TWW-S3",
@@ -29,7 +31,7 @@
     order = 2,
     header = "Route",
     entries = {
-      { order = 1, role = "ALL", text = "We are starting RIGHT side - n[Arathi Footman] + n[Fervent Sharpshooter] packs give high count with lower danger.", type = "Call", id = "gui-W3vH0xNe9s" },
+      { order = 1, role = "ALL", text = "We are taking the RIGHT side - n[Arathi Footman] + n[Fervent Sharpshooter] packs give high count with lower danger.", type = "Call", id = "gui-W3vH0xNe9s" },
       { order = 2, role = "ALL", text = "CC and kill n[Arathi Footman] fast to stop s[Defend] damage reduction.", type = "Target", target = "Arathi Footman", id = "gui-gTr9Pw8f2Lk" },
       { order = 3, role = "ALL", text = "Pull opener into n[Guard Captain Sullean]. I'll tank him near stairs/wall to negate knockback.", type = "Call", id = "gui-T7fQ9pXl2b" },
       { order = 4, role = "ALL", text = "After Sullean, engage n[Sergeant Shaynemail] - spread for s[Lunging Strike] bleed or stand on brazier to avoid target.", type = "Call", id = "gui-Y1kM5zVo8p" },
