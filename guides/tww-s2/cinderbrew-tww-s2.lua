@@ -1,5 +1,5 @@
 ﻿DungeonGuide_Guides["dung-cinderbrew-tww-s2"] = {
-  unitMapIDs = {2248, 2335},
+  unitMapIDs = { 2248, 2335 },
   challengeMapID = {506},
   name = "Cinderbrew Meadery",
   id = "dung-cinderbrew-tww-s2",

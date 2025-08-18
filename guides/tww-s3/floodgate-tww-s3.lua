@@ -1,5 +1,5 @@
 DungeonGuide_Guides["dung-floodgate-tww-s3"] = {
-  unitMapIDs = {2387, 2388},
+  unitMapIDs = { 2214, 2387, 2388 },
   challengeMapID = {525},
   name = "Operation: Floodgate",
   id = "dung-floodgate-tww-s3",

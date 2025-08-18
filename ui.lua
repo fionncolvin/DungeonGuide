@@ -506,8 +506,7 @@ function DungeonGuideUI:BuildMainMenu(dungeonSelected)
     end
 
     if dungeonSelected and not self.MenuState.selectedDungeon then
-        self.MenuState.selectedDungeon = DungeonGuide_FindDungeonIDByNameAndSeason(DungeonGuideContext.dungeonID, DungeonGuideContext.season)
-
+        self.MenuState.selectedDungeon = DungeonGuideContext.dungeonID
         DungeonGuide_DebugInfo("Selected dungeon: " .. (self.MenuState.selectedDungeon or "none"))
     end
 

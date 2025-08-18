@@ -1,5 +1,5 @@
 ﻿DungeonGuide_Guides["dung-priory-tww-s3"] = {
-  unitMapIDs = {2215, 2308, 2309},
+  unitMapIDs = { 2215, 2308, 2309 },
   challengeMapID = {499},
   name = "Priory of the Sacred Flame",
   id = "dung-priory-tww-s3",

@@ -1,15 +1,40 @@
--- Find dungeon by challengeMapID (M+) or unitMapIDs (normal/heroic/mythic)
+-- helper: iterate a value that may be a number or a table
+local function _dgIter(val)
+    if type(val) == "number" then
+        local done = false
+        return function()
+            if done then return nil end
+            done = true
+            return val
+        end
+    elseif type(val) == "table" then
+        local i = 0
+        return function()
+            i = i + 1
+            return val[i]
+        end
+    end
+    return function() return nil end
+end
+
 function DungeonGuide_FindDungeonIDByContext()
     local season = DungeonGuideDB.selectedSeason or DungeonGuide_GetAvailableSeasons()[1]
 
-    -- First try Challenge Mode (M+)
+    -- 1) Prefer Mythic+ challenge map id
     local cmID = C_ChallengeMode.GetActiveChallengeMapID and C_ChallengeMode.GetActiveChallengeMapID()
-
     if cmID then
         for id, guide in pairs(DungeonGuide_Guides) do
-            if guide.season == season and guide.challengeMapID then
-                for _, v in ipairs(guide.challengeMapID) do
+            if guide.season == season then
+                for v in _dgIter(guide.challengeMapID) do
                     if v == cmID then
+                        DungeonGuide_DebugInfo("[Context] matched by CM map id: "..cmID.." -> "..id)
+                        return id
+                    end
+                end
+                -- also accept plural field if you ever use it
+                for v in _dgIter(guide.challengeMapIDs) do
+                    if v == cmID then
+                        DungeonGuide_DebugInfo("[Context] matched by CM map id (plural): "..cmID.." -> "..id)
                         return id
                     end
                 end
@@ -17,16 +42,39 @@ function DungeonGuide_FindDungeonIDByContext()
         end
     end
 
-    -- Fallback: check current UiMapID
-    local uiID = C_Map.GetBestMapForUnit("player")
-    
+    local _, instanceType = IsInInstance()
+    if instanceType ~= "party" then
+        DungeonGuide_DebugInfo("[Context] Skipping UiMap check (instanceType ~= 'party', got '"..tostring(instanceType).."').")
+        return nil
+    end
+
+    -- 2) Fallback: exact UiMapID match (your requirement)
+    local uiID = C_Map.GetBestMapForUnit and C_Map.GetBestMapForUnit("player")
+    DungeonGuide_DebugInfo("[Context] UiMapID = "..tostring(uiID))
+
     if uiID then
-        local groupID = C_Map.GetMapGroupID(uiID) or uiID
+        -- Try exact floor UiMapID against unitMapIDs first
         for id, guide in pairs(DungeonGuide_Guides) do
-            if guide.season == season and guide.unitMapIDs then
-                for _, v in ipairs(guide.unitMapIDs) do
-                    if v == groupID then
+            if guide.season == season then
+                for v in _dgIter(guide.unitMapIDs) do
+                    if v == uiID then
+                        DungeonGuide_DebugInfo("[Context] matched by UiMapID: "..uiID.." -> "..id)
                         return id
+                    end
+                end
+            end
+        end
+
+        -- Optional safety net: if a guide stores a MapGroupID instead of floors, accept that too
+        local groupID = C_Map.GetMapGroupID and C_Map.GetMapGroupID(uiID)
+        if groupID then
+            for id, guide in pairs(DungeonGuide_Guides) do
+                if guide.season == season then
+                    for v in _dgIter(guide.unitMapIDs) do
+                        if v == groupID then
+                            DungeonGuide_DebugInfo("[Context] matched by MapGroupID: "..groupID.." -> "..id)
+                            return id
+                        end
                     end
                 end
             end
@@ -471,4 +519,71 @@ function DungeonGuide_FindMatchingUnitToken(targetVal)
     end
 
     return nil
+end
+
+-- Derive MapGroupIDs for every guide from its unitMapIDs list.
+-- Prints a summary and can optionally write back group IDs into guide.unitMapIDs.
+local function _GetGroupIDsForGuide(guide)
+    local groups, floors = {}, {}
+    local list = guide and guide.unitMapIDs
+    if type(list) == "number" then list = { list } end
+    if type(list) ~= "table" then return groups, floors end
+
+    for _, ui in ipairs(list) do
+        if type(ui) == "number" then
+            local gid = C_Map.GetMapGroupID and C_Map.GetMapGroupID(ui) or nil
+            if gid then groups[gid] = true else floors[ui] = true end
+        end
+    end
+    return groups, floors
+end
+
+-- Pretty-print helpers
+local function _keysToArray(t)
+    local out = {}
+    for k in pairs(t or {}) do table.insert(out, k) end
+    table.sort(out)
+    return out
+end
+
+-- 1) List group IDs for all dungeons
+function DungeonGuide_ListAllGroupIDs()
+    print("=== DungeonGuide: MapGroupIDs by dungeon ===")
+    for id, guide in pairs(DungeonGuide_Guides) do
+        if type(guide) == "table" and guide.name and guide.season then
+            local groups, floors = _GetGroupIDsForGuide(guide)
+            local g = _keysToArray(groups)
+            local f = _keysToArray(floors)
+            if #g > 0 then
+                print(("[%s] %s -> groupIDs = {%s}"):format(id, guide.name, table.concat(g, ", ")))
+            else
+                print(("[%s] %s -> (no group ids) floors = {%s}"):format(id, guide.name, table.concat(f, ", ")))
+            end
+        end
+    end
+    print("=== End ===")
+end
+
+-- 2) Normalise: replace unitMapIDs with groupIDs when available (keeps floors if no group)
+--    Set writeFloorsIfNoGroup=false to clear floors when no group exists (default = keep).
+function DungeonGuide_NormaliseUnitMapIDsToGroups(writeFloorsIfNoGroup)
+    local changed = 0
+    for id, guide in pairs(DungeonGuide_Guides) do
+        if type(guide) == "table" and guide.name then
+            local groups, floors = _GetGroupIDsForGuide(guide)
+            local g = _keysToArray(groups)
+            local f = _keysToArray(floors)
+
+            if #g > 0 then
+                guide.unitMapIDs = g
+                changed = changed + 1
+                DungeonGuide_DebugInfo(("Normalised %s: unitMapIDs -> {%s} (groups)"):format(id, table.concat(g, ", ")))
+            elseif writeFloorsIfNoGroup ~= false then
+                guide.unitMapIDs = f
+            else
+                guide.unitMapIDs = {}
+            end
+        end
+    end
+    print(("DungeonGuide: normalised %d guides to group IDs."):format(changed))
 end

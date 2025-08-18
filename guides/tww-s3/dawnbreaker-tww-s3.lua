@@ -1,5 +1,5 @@
 ﻿DungeonGuide_Guides["dung-dawnbreaker-tww-s3"] = {
-  unitMapIDs = {2359},
+  unitMapIDs = { 2215, 2359 },
   challengeMapID = {505},
   name = "The Dawnbreaker",
   id = "dung-dawnbreaker-tww-s3",

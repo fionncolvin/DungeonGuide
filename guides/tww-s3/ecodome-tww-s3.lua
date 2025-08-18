@@ -1,5 +1,5 @@
 ﻿DungeonGuide_Guides["dung-ecodome-tww-s3"] = {
-  unitMapIDs = {2449, 2371},
+  unitMapIDs = { 2449, 2371 },
   challengeMapID = {542},
   name = "Eco-Dome Al'dani",
   id = "dung-ecodome-tww-s3",

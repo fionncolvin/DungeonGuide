@@ -1,5 +1,5 @@
 ﻿DungeonGuide_Guides["dung-darkflame-tww-s2"] = {
-  unitMapIDs = {2214, 2303},
+  unitMapIDs = { 2214, 2303 },
   challengeMapID = {504},
   name = "Darkflame Cleft",
   id = "dung-darkflame-tww-s2",

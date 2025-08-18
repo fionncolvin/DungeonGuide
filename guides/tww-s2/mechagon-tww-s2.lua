@@ -1,5 +1,5 @@
 ﻿DungeonGuide_Guides["dung-mechagon-tww-s2"] = {
-  unitMapIDs = {1491, 1493, 1494, 1497},
+  unitMapIDs = { 1491, 1493, 1494, 1497 },
   challengeMapID = {370},
   name = "Operation: Mechagon",
   id = "dung-mechagon-tww-s2",
