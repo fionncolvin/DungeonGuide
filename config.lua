@@ -18,8 +18,8 @@ local defaults = {
     }
 }
 
-local CURRENT_ORDER_VERSION = "1.0"  -- Change this when structure changes
-local CURRENT_OVERRIDE_VERSION = "1.0"  -- Change this when structure changes
+local CURRENT_ORDER_VERSION = "1.1"  -- Change this when structure changes
+local CURRENT_OVERRIDE_VERSION = "1.1"  -- Change this when structure changes
 
 function DungeonGuideConfig:RefreshSeasonDropdown()
     if not self.SeasonDropdown then return end
