@@ -21,31 +21,33 @@
   },
 
   ["Route"] = {
-    id = "enc-ara-kara-tww-s3-route",
-    order = 2,
-    header = "Route",
-    entries = {
-      { order = 1,  role = "ALL", text = "We are pulling everything down the stairs and across the bridge. Avoid egg traps.", type = "Call",   id = "gui-WbbPXjxDHLs" },
-      { order = 2,  role = "ALL", text = "CC and Kill n[Trilling Attendant] fast to stop s[Resonant Barrage]/s[Web Bolt] spam.", target = "Trilling Attendant", type = "Target", id = "gui-ba3PqXN1b00" },
-      { order = 3,  role = "ALL", text = "Interrupt s[Horrifying Shrill] from n[Ixin] - this is lethal if it goes off.", type = "Call",   id = "gui-RM4CuYNX9LA" },
-      { order = 4,  role = "ALL", text = "After I engage n[Ixin], rotate interrupts on s[Horrifying Shrill] and stop s[Resonant Barrage] if possible.", type = "Call", id = "gui-0eRlBONYg6Q" },
-      { order = 5,  role = "ALL", text = "Mini-Boss-1: n[Ixin].", type = "Jump", target = "Ixin", id = "gui-bgmbkLrzQFo" },
-      { order = 6,  role = "ALL", text = "Next, we head to the middle platform and pull into n[Nakt]. Be ready for poison + bleed overlaps.", type = "Call",  id = "gui-2oncmBttEs" },
-      { order = 7,  role = "ALL", text = "On n[Nakt], use group CDs during s[Call of the Brood] + add spawns.", type = "Call",  id = "gui-oXF3deIeoXg" },
-      { order = 8,  role = "ALL", text = "Mini-Boss-2: n[Nakt].", type = "Jump", target = "Nakt", id = "gui-TZ7Zo5rcIQ" },
-      { order = 9,  role = "ALL", text = "We then rotate to the right-side platform for n[Atik]. Watch for s[Poisonous Cloud] and bad positioning.", type = "Call", id = "gui-ldBJFqnHcc" },
-      { order = 10, role = "ALL", text = "Mini-Boss-3: n[Atik].", type = "Jump", target = "Atik", id = "gui-Xa1TkFSK9o" },
-      { order = 11, role = "ALL", text = "Back for n[Avanoxx] jumps in. Hold defensives for s[Alerting Shrill] and control Starved Crawlers.", type = "Call", id = "gui-W30hBkmGG94" },
-      { order = 12, role = "ALL", text = "Boss-1: n[Avanoxx]", type = "Jump", id = "gui-BtyNCf42HqU", target = "Avanoxx" },
-      { order = 13, role = "ALL", text = "Cross bridge and prep interrupts on n[Bloodstained Webmage] (s[Revolting Volley]), n[Bloodstained Webmage] (s[Web Bolt]), n[Sentry Stagshell] (s[Alarm Shrill]).", type = "Call", id = "gui-Uxs4ZYNl1gI" },
-      { order = 14, role = "ALL", text = "CC and Kill n[Sentry Stagshell] before it casts s[Alarm Shrill].", target = "Sentry Stagshell", type = "Target", id = "gui-ggs6NkOu3wI" },
-      { order = 15, role = "ALL", text = "Kick n[Bloodstained Webmage] - stop s[Revolting Volley] first, then s[Web Bolt].", target = "Bloodstained Webmage", type = "Target", id = "gui-gFUIw6XxPU" },
-      { order = 16, role = "ALL", text = "Kill n[Hulking Bloodguard] first to remove Bulwark; interrupt/CC s[Locust Swarm].", target = "Hulking Bloodguard", type = "Target", id = "gui-Cc7aQyVIX64" },
-      { order = 17, role = "ALL", text = "Boss-2: n[Anub'zekt].", type = "Target", target = "Anub'zekt", id = "gui-OfL8bowOjgs" },
-      { order = 18, role = "ALL", text = "Final trash wing includes n[Blood Overseer] (kick s[Venom Volley]) and n[Reinforced Drone] (dispel magic slow/heal reduction).", type = "Call", id = "gui-n4lOKLksBlk" },
-      { order = 19, role = "ALL", text = "Tank tags n[Winged Carrier] first — they leap to the first target in range. Use grips/knockbacks if needed.", target = "Winged Carrier", type = "Target", id = "gui-7MeUHsyOImY" },
-      { order = 20, role = "ALL", text = "Boss-3: n[Ki'katal the Harvester].", type = "Jump", target = "Ki'katal the Harvester", id = "gui-I7RyjB1ADgg" }
-    }
+      id = "enc-ara-kara-tww-s3-route",
+      order = 2,
+      header = "Route",
+      entries = {
+          { order = 1, role = "ALL", type = "Call", id = "gui-WoQ1a7pc8j", text = "We will start mounted and gather the entire stairway and bridge into the first mini-boss. Use Bloodlust and every defensive here." },
+          { order = 2, role = "ALL", type = "Target", id = "gui-P2b0ytm7qZ", target = "Trilling Attendant", text = "Kick n[Trilling Attendant] s[Resonant Barrage] if possible. Spare kicks go to s[Web Bolt]." },
+          { order = 3, role = "ALL", type = "Target", id = "gui-c6VZ8Vv4xM", target = "Ixin", text = "Save an interrupt for n[Ixin] s[Horrifying Shrill] every time. This is the wipe cast." },
+          { order = 4, role = "ALL", type = "Jump", id = "gui-0Xgq5fCkN8", target = "Ixin", text = "Mini-Boss-1: n[Ixin]." },
+          { order = 5, role = "ALL", type = "Call", id = "gui-aT4Dp0lNwQ", text = "We will cross the narrow bridge and clear the poison packs before engaging the second mini-boss." },
+          { order = 6, role = "ALL", type = "Target", id = "gui-5qKxC3eVam", target = "Engorged Crawler", text = "Dispels are key here. Poison stacks from n[Engorged Crawler] s[Venomous Spit] ramp fast." },
+          { order = 7, role = "ALL", type = "Jump", id = "gui-72grv1DxWc", target = "Nakt", text = "Mini-Boss-2: n[Nakt]." },
+          { order = 8, role = "ALL", type = "Call", id = "gui-x9g1dYkT0a", text = "We are moving into the flyer platform. Avoid stepping on eggs and keep space clear for dodging." },
+          { order = 9, role = "ALL", type = "Target", id = "gui-Tw32pzEkHn", target = "Jabbing Flyer", text = "Bleeds from n[Jabbing Flyer] now hit all players. Keep healing and defensives ready." },
+          { order = 10, role = "ALL", type = "Jump", id = "gui-sYQ2aPjIu4", target = "Atik", text = "Mini-Boss-3: n[Atik]." },
+          { order = 11, role = "ALL", type = "Call", id = "gui-P9KvRzJboL", text = "We will return to the platform and trigger n[Avanoxx]. Handle adds cleanly and avoid dragging them into the boss." },
+          { order = 12, role = "ALL", type = "Jump", id = "gui-Yh7R4LkD1n", target = "Avanoxx", text = "Boss-1: n[Avanoxx]." },
+          { order = 13, role = "ALL", type = "Call", id = "gui-F0qVwLsn5d", text = "Next area: n[Bloodstained Webmage] casts must be kicked. n[Sentry Stagshell] s[Alarm Shrill] must be stopped at all costs." },
+          { order = 14, role = "ALL", type = "Target", id = "gui-n5PtVbQkL7", target = "Hulking Bloodguard", text = "Focus n[Hulking Bloodguard]. Use tailoring stun to cancel s[Locust Swarm] if available." },
+          { order = 15, role = "ALL", type = "Call", id = "gui-hrY0JwFmD3", text = "At the fork we are going left. Stay tight on me to avoid right side patrol." },
+          { order = 16, role = "ALL", type = "Call", id = "gui-Gq2oX9JbkE", text = "Ensure we interrupt n[Bloodstained Webmage] and control n[Sentry Stagshell] casts." },
+          { order = 17, role = "ALL", type = "Jump", id = "gui-L9U7vCgJwP", target = "Anub'zekt", text = "Boss-2: n[Anub'zekt]." },
+          { order = 18, role = "ALL", type = "Call", id = "gui-6oyIhlHhBLQ", text = "Next pull we take n[Blood Overseer] onto the upper right platform." },
+          { order = 19, role = "ALL", type = "Target", id = "gui-dJrM3zT5Qe", target = "Reinforced Drone", text = "Tanks get slowed by n[Reinforced Drone]. Use dispels or freedoms to keep them moving." },
+          { order = 20, role = "ALL", type = "Target", id = "gui-Ru5n8kG2Lm", target = "Winged Carrier", text = "Be ready for n[Winged Carrier] s[Dashing Strike]. Tank must take initial aggro to avoid one-shots." },
+          { order = 21, role = "ALL", type = "Call", id = "gui-JrU3wEzDyf", text = "Now cross to the left platform, we are not taking the stairs." },
+          { order = 22, role = "ALL", type = "Jump", id = "gui-Uz8hP0sXkF", target = "Ki'katal the Harvester", text = "Boss-3: n[Ki'katal the Harvester]." }
+      }
   },
 
   ["Ixin"] = {

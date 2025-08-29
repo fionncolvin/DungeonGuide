@@ -3,15 +3,6 @@
 DungeonGuideEditorUI = {}
 DUNGEONGUIDE_ROLES = { "ALL", "TANK", "HEALER", "DPS" }
 
-local E = _G.ElvUI and unpack(_G.ElvUI) or nil
-local S
-
-if E and E.GetModule then
-    S = E:GetModule("Skins", true)
-end
-
-local isElvUI = S and type(S.HandleFrame) == "function"
-
 function DungeonGuideEditorUI:Create()
     DungeonGuideEditorUI.selectedDungeonBtn = nil
     DungeonGuideEditorUI.currentDungeonID = nil
@@ -34,12 +25,16 @@ function DungeonGuideEditorUI:Create()
     f:RegisterForDrag("LeftButton")
     f:SetScript("OnDragStart", f.StartMoving)
     f:SetScript("OnDragStop", f.StopMovingOrSizing)
-
+    f:SetBackdrop({
+        bgFile   = "Interface\\Buttons\\WHITE8x8",
+        edgeFile = "Interface\\Buttons\\WHITE8x8",
+        edgeSize = 1,
+        insets   = { left = 1, right = 1, top = 1, bottom = 1 },
+    })
+    f:SetBackdropColor(0, 0, 0, 0.8)
+    f:SetBackdropBorderColor(0, 0, 0, 0.9)
+    f:SetFrameStrata("DIALOG")    
     f:SetResizable(false)
-
-    if isElvUI then
-        S:HandleFrame(f, true)
-    end
 
     local header = f:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
     header:SetPoint("TOPLEFT", 15, -10)
@@ -50,10 +45,6 @@ function DungeonGuideEditorUI:Create()
     dungeonList:SetPoint("TOPLEFT", 10, -40)
     dungeonList:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8x8" })
     dungeonList:SetBackdropColor(0.1, 0.1, 0.1, 0.9)
-
-    if isElvUI then
-        S:HandleFrame(dungeonList, true)
-    end
 
     local dungeonScroll = CreateFrame("ScrollFrame", nil, dungeonList, "UIPanelScrollFrameTemplate")
     dungeonScroll:SetPoint("TOPLEFT", 5, -5)
@@ -73,10 +64,6 @@ function DungeonGuideEditorUI:Create()
     encounterList:SetPoint("TOPLEFT", dungeonList, "BOTTOMLEFT", 0, -10)
     encounterList:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8x8" })
     encounterList:SetBackdropColor(0.1, 0.1, 0.1, 0.9)
-
-    if isElvUI then
-        S:HandleFrame(encounterList, true)
-    end
 
     local encounterScroll = CreateFrame("ScrollFrame", nil, encounterList, "UIPanelScrollFrameTemplate")
     encounterScroll:SetPoint("TOPLEFT", 5, -5)
@@ -103,10 +90,6 @@ function DungeonGuideEditorUI:Create()
     editContent:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8x8" })
     editContent:SetBackdropColor(0.05, 0.05, 0.05, 0.9)
 
-    if isElvUI then
-        S:HandleFrame(editContent, true)
-    end
-
     self.editArea = editContent
     self.editScroll = editScroll
 
@@ -115,10 +98,6 @@ function DungeonGuideEditorUI:Create()
     saveBtn:SetSize(100, 24)
     saveBtn:SetPoint("BOTTOMRIGHT", -10, 10)
     saveBtn:SetText("Save")
-
-    if isElvUI then
-        S:HandleButton(saveBtn)
-    end
 
     saveBtn:SetScript("OnClick", function()
         self:SaveData()
@@ -129,10 +108,6 @@ function DungeonGuideEditorUI:Create()
     resetBtn:SetSize(100, 24)
     resetBtn:SetPoint("RIGHT", saveBtn, "LEFT", -10, 0)
     resetBtn:SetText("Reset")
-
-    if isElvUI then
-        S:HandleButton(resetBtn)
-    end
 
     resetBtn:SetScript("OnClick", function()
         DungeonGuideEditorUI:Confirm("Reset this Encounter to BASE?", function()
@@ -146,19 +121,11 @@ function DungeonGuideEditorUI:Create()
     exportBtn:SetPoint("RIGHT", resetBtn, "LEFT", -10, 0)
     exportBtn:SetText("Export")
 
-    if isElvUI then
-        S:HandleButton(exportBtn)
-    end
-
     -- Add Button (bottom-left)
     local addBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     addBtn:SetSize(100, 24)
     addBtn:SetPoint("BOTTOMLEFT", 200, 10)
     addBtn:SetText("Add")
-
-    if isElvUI then
-        S:HandleButton(addBtn)
-    end
 
     addBtn:SetScript("OnClick", function()
         self:AddNewEntry()
@@ -167,11 +134,6 @@ function DungeonGuideEditorUI:Create()
     -- Close Button
     local close = CreateFrame("Button", nil, f, "UIPanelCloseButton")
     close:SetPoint("TOPRIGHT", -5, -5)
-
-    if isElvUI then
-        S:HandleFrame(f, true)
-        S:HandleCloseButton(close)
-    end
 
     self.frame = f
     self:PopulateDungeonList()
@@ -217,10 +179,6 @@ function DungeonGuideEditorUI:PopulateDungeonList()
             if DungeonGuideEditorUI.currentDungeonID == dungeonID then
                 btn.bg:SetColorTexture(0.2, 0.8, 0.4, 0.6)
                 DungeonGuideEditorUI.selectedDungeonBtn = btn
-            end
-
-            if isElvUI then
-                S:HandleButton(btn)
             end
 
             yOffset = yOffset - 22
@@ -298,7 +256,6 @@ function DungeonGuideEditorUI:PopulateEncounters(dungeonID)
             DungeonGuideEditorUI.selectedEncounterBtn = btn
         end
 
-        if isElvUI then S:HandleButton(btn) end
         yOffset = yOffset - 22
     end
 end
@@ -420,10 +377,6 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonID, encounter)
                     -- DungeonGuide_AreEntriesEqual returns true if the entries are equal, false otherwise.
                     SetDirtyState(row, DungeonGuide_AreEntriesEqual(baseEntry, entry) == false)
                 end)
-
-                if isElvUI and S.HandleCheckBox then
-                    S:HandleCheckBox(cb)
-                end
             elseif col.key == "remove" then
                 if entry.added then
                     local removeBtn = CreateFrame("Button", nil, row, "UIPanelCloseButton")
@@ -441,10 +394,6 @@ function DungeonGuideEditorUI:PopulateGuideEntries(dungeonID, encounter)
                             DungeonGuideEditorUI:RemoveRow(row)
                         end)
                     end)
-
-                    if isElvUI and S.HandleCloseButton then
-                        S:HandleCloseButton(removeBtn)
-                    end
                 end    
             elseif col.key == "role" then
                 local dd = CreateFrame("Frame", nil, row, "UIDropDownMenuTemplate")

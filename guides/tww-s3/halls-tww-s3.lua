@@ -30,19 +30,19 @@
     order = 2,
     header = "Route",
     entries = {
-      { order = 1,  role = "ALL", text = "Open with Lust on first n[Shard of Halkias] pull. Chain in nearby mobs for count. Watch s[Thrash] and s[Sinquake] overlap.", type = "Call", id = "gui-n5wVx3VXeA" },
-      { order = 2,  role = "ALL", text = "Line-of-sight s[Thrash] on Shard pulls using pillars if overlaps get spicy.", type = "Call", id = "gui-Ba5Krp8R2OY" },
-      { order = 3,  role = "ALL", text = "Control n[Toiling Groundskeeper] flee behaviour to avoid extra packs.", target = "Toiling Groundskeeper", type = "Target", id = "gui-b6Bg2pHrm6Y" },
-      { order = 4,  role = "ALL", text = "Kill other 2 Shards in clockwise path. Use LoS and AoE CC to manage casters.", type = "Call", id = "gui-UErLIRMMv4g" },
-      { order = 5,  role = "ALL", text = "After the 3rd Shard there is ~30s before n[Halkias] spawns - pick a safe micro-pull for count.", type = "Call", id = "gui-PBrueGzqx6M" },
-      { order = 6,  role = "ALL", text = "Boss 1: n[Halkias] - stay in red circle, control puddle placement, dodge beams.", type = "Jump", id = "gui-IC15TpSajiE", target = "Halkias" },
-      { order = 7,  role = "ALL", text = "Head right up stairs. Manage tight patrol spacing; beware n[Reaver] s[Mortal Strike] and n[Eviscerator] s[Hurl Glaive] bounces.", target = "Stoneborn Reaver", type = "Target", id = "gui-GPboIw6Mnk" },
-      { order = 8,  role = "ALL", text = "Skip n[Slasher] if stone phase active; otherwise control s[Stonefist] and s[Disrupting Screech].", type = "Call", id = "gui-LnjK85qmxg4" },
-      { order = 9,  role = "ALL", text = "Boss 2: n[Echelon] - bait s[Blood Torrent] to edge, control adds for leap shatter.", type = "Jump", id = "gui-cC2BTYDK0Zg", target = "Echelon" },
-      { order = 10, role = "ALL", text = "After Echelon, clear right-side patrols before cathedral. Prioritise n[Depraved Houndmaster] and n[Stoneborn Reaver].", target = "Depraved Houndmaster", type = "Target", id = "gui-UFT4BCQr7KI" },
-      { order = 11, role = "ALL", text = "Boss 3: n[High Adjudicator Aleez] - interrupt s[Anima Bolt], manage fixate adds to lanterns.", type = "Jump", id = "gui-IXn9i6CPkTQ", target = "High Adjudicator Aleez" },
-      { order = 12, role = "ALL", text = "Final trash: n[Inquisitor Sigar] - interrupt s[Wicked Bolt], control adds, spread for s[Display of Power] expiry.", type = "Call", id = "gui-BlGSJ8odL7E" },
-      { order = 13, role = "ALL", text = "Boss 4: n[Lord Chamberlain] - intercept statue beams, avoid statue toss collisions.", type = "Jump", id = "gui-j269MeN4VD4", target = "Lord Chamberlain" }
+      { order = 1,  role = "ALL", text = "Open with Lust on first n[Shard of Halkias] pull. Chain in nearby mobs for count. Watch s[Thrash] and s[Sinquake] overlap.", type = "Call", id = "gui-oNXz6BI3qZM" },
+      { order = 2,  role = "ALL", text = "Line-of-sight s[Thrash] on Shard pulls using pillars if overlaps get spicy.", type = "Call", id = "gui-kvyI2Geq5FU" },
+      { order = 3,  role = "ALL", text = "Control n[Toiling Groundskeeper] flee behaviour to avoid extra packs.", target = "Toiling Groundskeeper", type = "Target", id = "gui-pjOX7GmgcZ4" },
+      { order = 4,  role = "ALL", text = "Kill other 2 Shards in clockwise path. Use LoS and AoE CC to manage casters.", type = "Call", id = "gui-pFWNbpZGKIk" },
+      { order = 5,  role = "ALL", text = "After the 3rd Shard there is ~30s before n[Halkias] spawns - pick a safe micro-pull for count.", type = "Call", id = "gui-DUiiW0mHIFY" },
+      { order = 6,  role = "ALL", text = "Boss 1: n[Halkias] - stay in red circle, control puddle placement, dodge beams.", type = "Jump", id = "gui-Bt7ZuSfCRI", target = "Halkias" },
+      { order = 7,  role = "ALL", text = "Head right up stairs. Manage tight patrol spacing; beware n[Reaver] s[Mortal Strike] and n[Eviscerator] s[Hurl Glaive] bounces.", target = "Stoneborn Reaver", type = "Target", id = "gui-0gHMMg46O3g" },
+      { order = 8,  role = "ALL", text = "Skip n[Slasher] if stone phase active; otherwise control s[Stonefist] and s[Disrupting Screech].", type = "Call", id = "gui-vSj0OvZS6HU" },
+      { order = 9,  role = "ALL", text = "Boss 2: n[Echelon] - bait s[Blood Torrent] to edge, control adds for leap shatter.", type = "Jump", id = "gui-MUTwDfUoCo", target = "Echelon" },
+      { order = 10, role = "ALL", text = "After Echelon, clear right-side patrols before cathedral. Prioritise n[Depraved Houndmaster] and n[Stoneborn Reaver].", target = "Depraved Houndmaster", type = "Target", id = "gui-tIIDIFtcCF4" },
+      { order = 11, role = "ALL", text = "Boss 3: n[High Adjudicator Aleez] - interrupt s[Anima Bolt], manage fixate adds to lanterns.", type = "Jump", id = "gui-14TmoG3viLY", target = "High Adjudicator Aleez" },
+      { order = 12, role = "ALL", text = "Final trash: n[Inquisitor Sigar] - interrupt s[Wicked Bolt], control adds, spread for s[Display of Power] expiry.", type = "Call", id = "gui-LhsEdfswjQ" },
+      { order = 13, role = "ALL", text = "Boss 4: n[Lord Chamberlain] - intercept statue beams, avoid statue toss collisions.", type = "Jump", id = "gui-s8Q7OMeIvZk", target = "Lord Chamberlain" }
     }
   },
 

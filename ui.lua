@@ -8,15 +8,6 @@ local ICON_BUTTON = 441147
 local SPELL_COLOR = { r = 3 / 255, g = 198 / 255, b = 252 / 255 }
 local NPC_COLOR = { r = 252 / 255, g = 194 / 255, b = 3 / 255 }
 
-local E = (_G.ElvUI and unpack(_G.ElvUI)) or nil
-local S
-
-if E and E.GetModule then
-    S = E:GetModule("Skins", true)
-end
-
-local isElvUI = S and type(S.HandleFrame) == "function"
-
 function DungeonGuideUI:GetFontPath()
     return LibStub("LibSharedMedia-3.0"):Fetch("font", DungeonGuideDB.font or "Friz Quadrata TT")
 end
@@ -47,6 +38,16 @@ function DungeonGuideUI:CreateGuideFrame()
     }
 
     f:SetPoint(pos.point, UIParent, pos.point, pos.x, pos.y)
+
+    f:SetBackdrop({
+        bgFile   = "Interface\\Buttons\\WHITE8x8",
+        edgeFile = "Interface\\Buttons\\WHITE8x8",
+        edgeSize = 1,
+        insets   = { left = 1, right = 1, top = 1, bottom = 1 },
+    })
+    f:SetBackdropColor(0, 0, 0, 0.8)
+    f:SetBackdropBorderColor(0, 0, 0, 0.9)
+    f:SetFrameStrata("DIALOG")
 
     f:SetMovable(true)
     f:EnableMouse(true)
@@ -149,11 +150,6 @@ function DungeonGuideUI:CreateGuideFrame()
 
     local close = CreateFrame("Button", nil, f, "UIPanelCloseButton")
     close:SetPoint("TOPRIGHT", -5, -5)
-
-    if isElvUI then
-        S:HandleFrame(f, true)
-        S:HandleCloseButton(close)
-    end
 
     self.frame = f
 end

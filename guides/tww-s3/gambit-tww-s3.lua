@@ -31,17 +31,17 @@
     order = 2,
     header = "Route",
     entries = {
-      { order = 1,  role = "ALL", text = "We open with Bloodlust on the murloc beach - pull n[Coastwalker Goliath] with nearby packs. Watch s[Tidal Stomp] timing.", type = "Call", id = "gui-mXSffBiYSfk" },
-      { order = 2,  role = "ALL", text = "Ensure interrupts on n[Murkbrine Shellcrusher] s[Cry of Mergle] and n[Murkbrine Fishmancer] s[Water Bolt].", type = "Call", id = "gui-CDNHcub8kpg" },
-      { order = 3,  role = "ALL", text = "Swap to n[Murkbrine Scalebinder] s[Invigorating Fish Stick] on spawn - it heals/DRs nearby mobs.", target = "Invigorating Fish Stick", type = "Target", id = "gui-1v9eLVpOU0" },
-      { order = 4,  role = "ALL", text = "Kite if needed when s[Invigorating Fish Stick] is active, or drag packs out of its aura.", type = "Call", id = "gui-9dmGa3Ck2Mc" },
-      { order = 5,  role = "ALL", text = "Manage n[Stormforged Guardian] - dodge s[Charged Pulse] swirls and line s[Crackle] away from the group.", type = "Call", id = "gui-i99AjYZzO80" },
-      { order = 6,  role = "ALL", text = "Jump to n[Hylbrande].", type = "Jump", id = "gui-rrTFLyJx0bg", target = "Hylbrande" },
-      { order = 7,  role = "ALL", text = "Pirate docks: kick n[Hourglass Tidesage] s[Brackish Bolt], soothe/kite n[Burly Deckhand] s[Super Saison].", type = "Call", id = "gui-4lKG8URABj8" },
-      { order = 8,  role = "ALL", text = "Spread loosely for n[Corsair Officer] s[Sword Toss] ricochet and avoid Cannon fire zones.", type = "Call", id = "gui-AarFiSsGHx0" },
-      { order = 9,  role = "ALL", text = "Jump to n[Timecap'n Hooktail].", type = "Jump", id = "gui-pcvTpr8HPs", target = "Timecap'n Hooktail" },
-      { order = 10, role = "ALL", text = "Broker wing: hard swap to n[Wandering Pulsar]; kick n[Focused Ritualist] s[Unstable Rift].", target = "Wandering Pulsar", type = "Target", id = "gui-ZxY6cu6EfZw" },
-      { order = 11, role = "ALL", text = "Jump to n[So'leah].", type = "Jump", id = "gui-rN6ZpKhHerQ", target = "So'leah" }
+      { order = 1,  role = "ALL", text = "We open with Bloodlust on the murloc beach - pull n[Coastwalker Goliath] with nearby packs. Watch s[Tidal Stomp] timing.", type = "Call", id = "gui-bqUGEkSdY" },
+      { order = 2,  role = "ALL", text = "Ensure interrupts on n[Murkbrine Shellcrusher] s[Cry of Mergle] and n[Murkbrine Fishmancer] s[Water Bolt].", type = "Call", id = "gui-LBWAIyBySd4" },
+      { order = 3,  role = "ALL", text = "Swap to n[Murkbrine Scalebinder] s[Invigorating Fish Stick] on spawn - it heals/DRs nearby mobs.", target = "Invigorating Fish Stick", type = "Target", id = "gui-gWRKiRTR4V0" },
+      { order = 4,  role = "ALL", text = "Kite if needed when s[Invigorating Fish Stick] is active, or drag packs out of its aura.", type = "Call", id = "gui-uWzxs3cZRpI" },
+      { order = 5,  role = "ALL", text = "Manage n[Stormforged Guardian] - dodge s[Charged Pulse] swirls and line s[Crackle] away from the group.", type = "Call", id = "gui-SSxUyB7vE5M" },
+      { order = 6,  role = "ALL", text = "Jump to n[Hylbrande].", type = "Jump", id = "gui-V4bmE9cK49c", target = "Hylbrande" },
+      { order = 7,  role = "ALL", text = "Pirate docks: kick n[Hourglass Tidesage] s[Brackish Bolt], soothe/kite n[Burly Deckhand] s[Super Saison].", type = "Call", id = "gui-oG6qGWN9ic" },
+      { order = 8,  role = "ALL", text = "Spread loosely for n[Corsair Officer] s[Sword Toss] ricochet and avoid Cannon fire zones.", type = "Call", id = "gui-whRCNWGNyqU" },
+      { order = 9,  role = "ALL", text = "Jump to n[Timecap'n Hooktail].", type = "Jump", id = "gui-UsSCUKgj1Io", target = "Timecap'n Hooktail" },
+      { order = 10, role = "ALL", text = "Broker wing: hard swap to n[Wandering Pulsar]; kick n[Focused Ritualist] s[Unstable Rift].", target = "Wandering Pulsar", type = "Target", id = "gui-MiGgJhcaLIE" },
+      { order = 11, role = "ALL", text = "Jump to n[So'leah].", type = "Jump", id = "gui-UbuOJXyPwms", target = "So'leah" }
     }
   },
 

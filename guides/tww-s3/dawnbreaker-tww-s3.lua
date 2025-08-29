@@ -25,24 +25,37 @@
   },
 
   ["Route"] = {
-    id = "enc-dawnbreaker-tww-s3-route",
-    order = 2,
-    header = "Route",
-    entries = {
-      { order = 1,  role = "ALL", text = "Start with double pull at entrance. Hug centre path to avoid pulling ranged n[Nightfall Shadowmage].", type = "Call", id = "gui-zpgs25hDg7k" },
-      { order = 2,  role = "ALL", text = "Interrupt s[Night Bolt] and avoid overlaps with s[Tormenting Ray].", type = "Call", id = "gui-8XsqLzXVt8c" },
-      { order = 3,  role = "ALL", text = "We fly to the first ship — slow descent before landing to avoid falling through deck.", type = "Call", id = "gui-kIEG5L9fZQ0" },
-      { order = 4,  role = "ALL", text = "On ships, prioritise killing n[Nightfall Commander] and n[Sureki Webmage] — high tank and group pressure.", target = "Nightfall Commander", type = "Target", id = "gui-0ow2Icxmaqs" },
-      { order = 5,  role = "ALL", text = "After bomb activation, fly to second ship and clear carefully — use tank cooldowns early.", type = "Call", id = "gui-PzVDsMXQD0" },
-      { order = 6,  role = "ALL", text = "Return to Dawnbreaker for n[Speaker Shadowcrown]. Dodge beams, handle void zones.", type = "Jump", id = "gui-TvX8ADPIfb4", target = "Speaker Shadowcrown" },
-      { order = 7,  role = "ALL", text = "Fly to the city. Clear lieutenants: church, house, bridge. Save Lust for bridge if needed.", type = "Call", id = "gui-H8yAUaM5E" },
-      { order = 8,  role = "ALL", text = "Avoid accidental aggro when landing near house lieutenant — let tank land and secure first.", type = "Call", id = "gui-D8YLIpoZkF8" },
-      { order = 9,  role = "ALL", text = "Bridge lieutenant: s[Dark Orb] can now target tanks — aim down bridge to avoid wall detonations.", type = "Call", id = "gui-do9qhYDv5Pc" },
-      { order = 10, role = "ALL", text = "Avoid pulling multiple tank-buster mobs together unless defensives are ready.", type = "Call", id = "gui-4HHfEWZWynI" },
-      { order = 11, role = "ALL", text = "Engage n[Anub'ikkaj] after all lieutenants are dead. Position for orbs, manage adds.", type = "Jump", id = "gui-nq5iGnKbcqQ", target = "Anub'ikkaj" },
-      { order = 12, role = "ALL", text = "Return to Dawnbreaker. Clear n[Nightfall Dark Architect] before final boss.", target = "Nightfall Dark Architect", type = "Target", id = "gui-KbGXokvqZMs" },
-      { order = 13, role = "ALL", text = "Final boss: n[Rasha'nan]. Fly and bomb sequence into final phase on city platform.", type = "Jump", id = "gui-05UPuZ2JbA", target = "Rasha'nan" }
-    }
+      id = "enc-dawnbreaker-tww-s3-route",
+      order = 2,
+      header = "Route",
+      entries = {
+          { order = 1, role = "ALL", type = "Call", id = "gui-f58iqcOzyLQ", text = "We will start with the front pack at the entrance. Stack up and stay close." },
+          { order = 2, role = "ALL", type = "Target", id = "gui-gbPqKzIZJQ", target = "Nightfall Shadowmage", text = "Kick n[Nightfall Shadowmage] bolts. Focus interrupts here." },
+          { order = 3, role = "ALL", type = "Target", id = "gui-hwHf9gQJiR0", target = "Nightfall Commander", text = "Focus n[Nightfall Commander]. Tank beware of s[Tainted Slash] bleed." },
+          { order = 4, role = "ALL", type = "Call", id = "gui-JyhZ4cXHbk", text = "On the Dawnbreaker we take both packs together. Use Bloodlust and cooldowns." },
+          { order = 5, role = "ALL", type = "Target", id = "gui-UGlNyf0ckno", target = "Sureki Webmage", text = "Interrupt n[Sureki Webmage] bolts on the tank. Keep them locked down." },
+          { order = 6, role = "ALL", type = "Call", id = "gui-jfCO8QAQrlE", text = "After clearing both ships, back to the Dawnbreaker for the first boss." },
+          { order = 7, role = "ALL", type = "Jump", id = "gui-SOEbiveEZYk", target = "Speaker Shadowcrown", text = "Boss-1 - Speaker Shadowcrown" },
+          { order = 8, role = "ALL", type = "Call", id = "gui-CylPnDW35aw", text = "After Speaker Shadowcrown we fly to the church area. We will chain the slope packs onto the stairs." },
+          { order = 9, role = "ALL", type = "Target", id = "gui-7oeGvBuwNZQ", target = "Nightfall Tactician", text = "Kill n[Nightfall Tactician] first. They enrage mobs with s[Rage]." },
+          { order = 10, role = "ALL", type = "Target", id = "gui-eiop9YlgQ", target = "Nightfall Darkcaster", text = "Interrupt n[Nightfall Darkcaster] s[Umbrel Barrier] and beam." },
+          { order = 11, role = "ALL", type = "Call", id = "gui-fXCBctDslT0", text = "We clear into the church. We'll chain the two packs outside for cleave. Tank in the corner to keep control." },
+          { order = 12, role = "ALL", type = "Jump", id = "gui-6N8zwXfbBUE", target = "Ixkreten the Unbreakable", text = "Mini-Boss-1 - Ixkreten the Unbreakable" },
+          { order = 13, role = "ALL", type = "Call", id = "gui-W8SJYVRvzHM", text = "Save Bloodlust for the dangerous Inn mini-boss (Dark Orb mechanic). Use defensives." },
+          { order = 14, role = "ALL", type = "Call", id = "gui-WT6u2vNTsB8", text = "After the church pulls we head to the next mini-boss n[Deathscreamer Iken'tak] (Inn)." },
+          { order = 15, role = "ALL", type = "Jump", id = "gui-Z8hrI6IfE", target = "Deathscreamer Iken'tak", text = "Mini-Boss-2 - Deathscreamer Iken'tak" },
+          { order = 16, role = "ALL", type = "Call", id = "gui-cx8HF7E3ozU", text = "After n[Deathscreamer Iken'tak] we are back to the church area, North of the entrance. Follow me." },
+          { order = 17, role = "ALL", type = "Target", id = "gui-UweSvTuWO58", target = "Nightfall Dark Architect", text = "Interrupt n[Nightfall Dark Architect]. Heavy AoE if unchecked." },
+          { order = 18, role = "ALL", type = "Call", id = "gui-tmqZRUUo4", text = "Now on to n[Ascendant Vis'coxria] at the House." },
+          { order = 19, role = "ALL", type = "Jump", id = "gui-y1PFlKhiBFw", target = "Ascendant Vis'coxria", text = "Mini-Boss-3 - Ascendant Vis'coxria" },
+          { order = 20, role = "ALL", type = "Call", id = "gui-opmjUqvgOI4", text = "After n[Ascendant Vis'coxria] on to the upper courtyard, south of Church entrance. Expect more n[Nightfall Shadowalker] and n[Nightfall Tactician]." },
+          { order = 21, role = "ALL", type = "Call", id = "gui-XubsAL1wwf8", text = "Now on to Boss 2 - n[Anub'ikkaj]." },
+          { order = 22, role = "ALL", type = "Jump", id = "gui-skQCzF3TAQ4", target = "Anub'ikkaj", text = "Boss-2 - Anub'ikkaj" },
+          { order = 23, role = "ALL", type = "Call", id = "gui-fTAD0vHQBL8", text = "After n[Anub'ikkaj] we return to the Dawnbreaker ship and mini-boss n[Nightfall Dark Architect]." },
+          { order = 24, role = "ALL", type = "Jump", id = "gui-Nwv70pTvxk8", target = "Nightfall Dark Architect", text = "Mini-boss-4 - Nightfall Dark Architect" },
+          { order = 25, role = "ALL", type = "Call", id = "gui-zlNm1dRgvwk", text = "Ok, now to finish Rasha'nan. Remember stage one focus is throwing barrels!" },
+          { order = 26, role = "ALL", type = "Jump", id = "gui-iMRKNnOTsQ", target = "Rasha'nan", text = "Boss-3 - Rasha'nan" }
+      }
   },
 
   ["Speaker Shadowcrown"] = {
